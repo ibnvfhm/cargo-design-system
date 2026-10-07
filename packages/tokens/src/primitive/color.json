@@ -1,0 +1,156 @@
+{
+  "color": {
+    "$type": "color",
+    "$description": "Primitive colors Cargo: warna mentah, dinamai sesuai warnanya. Jangan dipakai langsung di desain; desain memakai token semantic.",
+    "white": {
+      "$value": "#FFFFFF"
+    },
+    "black": {
+      "$value": "#212121",
+      "$description": "Hitam Cargo, sama dengan neutral.100."
+    },
+    "neutral": {
+      "$description": "System: Neutral",
+      "10": { "$value": "#FFFFFF" },
+      "20": { "$value": "#F5F5F5" },
+      "30": { "$value": "#EEEEEE" },
+      "40": { "$value": "#E0E0E0" },
+      "50": { "$value": "#BDBDBD" },
+      "60": { "$value": "#9E9E9E" },
+      "70": { "$value": "#757575" },
+      "80": { "$value": "#616161" },
+      "90": { "$value": "#424242" },
+      "100": { "$value": "#212121" }
+    },
+    "yellow": {
+      "$description": "System: Warning",
+      "10": { "$value": "#FEF8E6" },
+      "20": { "$value": "#FDEDC1" },
+      "30": { "$value": "#FCE29C" },
+      "40": { "$value": "#FBD877" },
+      "50": { "$value": "#FACD50" },
+      "60": { "$value": "#F8C024" },
+      "70": { "$value": "#E6AA07" },
+      "80": { "$value": "#B88806" },
+      "90": { "$value": "#8A6604" },
+      "100": { "$value": "#5C4403" }
+    },
+    "red": {
+      "$description": "System: Danger",
+      "10": { "$value": "#FFE1E1" },
+      "20": { "$value": "#FFB4B4" },
+      "30": { "$value": "#FF8888" },
+      "40": { "$value": "#FF5B5B" },
+      "50": { "$value": "#FF2D2D" },
+      "60": { "$value": "#FF0303" },
+      "70": { "$value": "#D70000" },
+      "80": { "$value": "#AC0000" },
+      "90": { "$value": "#810000" },
+      "100": { "$value": "#560000" }
+    },
+    "green": {
+      "$description": "System: Success",
+      "10": { "$value": "#E2F8E1" },
+      "20": { "$value": "#B7EDB4" },
+      "30": { "$value": "#8BE387" },
+      "40": { "$value": "#60D859" },
+      "50": { "$value": "#36C92F" },
+      "60": { "$value": "#2FAE29" },
+      "70": { "$value": "#279122" },
+      "80": { "$value": "#20741B" },
+      "90": { "$value": "#185714" },
+      "100": { "$value": "#103A0E" }
+    },
+    "blue": {
+      "$description": "System: Info",
+      "10": { "$value": "#EDF5FE" },
+      "20": { "$value": "#A7CDF8" },
+      "30": { "$value": "#60A5F3" },
+      "40": { "$value": "#2C87EF" },
+      "50": { "$value": "#1174E5" },
+      "60": { "$value": "#0F63C3" },
+      "70": { "$value": "#0C52A3" },
+      "80": { "$value": "#0A4282" },
+      "90": { "$value": "#073162" },
+      "100": { "$value": "#052141" }
+    },
+    "purple": {
+      "$description": "System: Purple (other)",
+      "10": { "$value": "#F2EFFD" },
+      "20": { "$value": "#C6B4F5" },
+      "30": { "$value": "#9C74EC" },
+      "40": { "$value": "#8A54E6" },
+      "50": { "$value": "#7833D8" },
+      "60": { "$value": "#662AB9" },
+      "70": { "$value": "#4D1E8F" },
+      "80": { "$value": "#331262" },
+      "90": { "$value": "#260B4C" },
+      "100": { "$value": "#180533" }
+    },
+    "imperial": {
+      "$description": "Brand: UIC",
+      "10": { "$value": "#E3EEFF" },
+      "20": { "$value": "#C6DDFF" },
+      "30": { "$value": "#8DBBFF" },
+      "40": { "$value": "#1C77FF" },
+      "50": { "$value": "#005AE2" },
+      "60": { "$value": "#0044A9" },
+      "70": { "$value": "#002D71" },
+      "80": { "$value": "#002358" },
+      "90": { "$value": "#001A40" },
+      "100": { "$value": "#000A18" }
+    },
+    "grape": {
+      "$description": "Brand: INTI",
+      "10": { "$value": "#F2DDF1" },
+      "20": { "$value": "#D189CE" },
+      "30": { "$value": "#BE57B9" },
+      "40": { "$value": "#A640A1" },
+      "50": { "$value": "#843380" },
+      "60": { "$value": "#682865" },
+      "70": { "$value": "#4C1D49" },
+      "80": { "$value": "#2F122E" },
+      "90": { "$value": "#260F25" },
+      "100": { "$value": "#1C0B1B" }
+    },
+    "fuchsia": {
+      "$description": "Brand: InMeterai",
+      "10": { "$value": "#FEE5EC" },
+      "20": { "$value": "#FCCAD9" },
+      "30": { "$value": "#FAA3BD" },
+      "40": { "$value": "#F76E97" },
+      "50": { "$value": "#F5487C" },
+      "60": { "$value": "#EC0C50" },
+      "70": { "$value": "#AC093A" },
+      "80": { "$value": "#6B0624" },
+      "90": { "$value": "#2B020E" },
+      "100": { "$value": "#150107" }
+    },
+    "tosca": {
+      "$description": "Brand: InCivas",
+      "10": { "$value": "#D4FDFB" },
+      "20": { "$value": "#A9FAF8" },
+      "30": { "$value": "#69F7F2" },
+      "40": { "$value": "#13F3EB" },
+      "50": { "$value": "#0ABAB5" },
+      "60": { "$value": "#08918C" },
+      "70": { "$value": "#066966" },
+      "80": { "$value": "#033533" },
+      "90": { "$value": "#011A19" },
+      "100": { "$value": "#010D0D" }
+    },
+    "sea": {
+      "$description": "Brand: InCustom",
+      "10": { "$value": "#F2F7FF" },
+      "20": { "$value": "#D7E7FE" },
+      "30": { "$value": "#A2C7FE" },
+      "40": { "$value": "#6DA6FD" },
+      "50": { "$value": "#458DFC" },
+      "60": { "$value": "#0466F9" },
+      "70": { "$value": "#02419E" },
+      "80": { "$value": "#022E71" },
+      "90": { "$value": "#011C44" },
+      "100": { "$value": "#01122D" }
+    }
+  }
+}
