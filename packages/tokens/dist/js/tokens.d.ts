@@ -116,3 +116,131 @@ export const ColorSea70: string;
 export const ColorSea80: string;
 export const ColorSea90: string;
 export const ColorSea100: string;
+/** Isi warna brand: tombol utama, toggle aktif, elemen terpilih. */
+export const ColorBrandFill: string;
+/** Isi brand saat kursor di atasnya. */
+export const ColorBrandFillHover: string;
+/** Isi brand saat ditekan. */
+export const ColorBrandFillPressed: string;
+/** Latar brand yang lembut: chip atau item terpilih. */
+export const ColorBrandFillSubtle: string;
+/** Teks dan ikon di atas isi brand. */
+export const ColorBrandOnFill: string;
+/** Teks dan link berwarna brand di atas latar terang. */
+export const ColorBrandText: string;
+/** Teks atau link brand saat kursor di atasnya. */
+export const ColorBrandTextHover: string;
+/** Garis brand: elemen terpilih dan cincin fokus. */
+export const ColorBrandBorder: string;
+/** Latar halaman, kartu, dan modal. */
+export const ColorBgDefault: string;
+/** Latar bagian yang dibedakan, misalnya sidebar. */
+export const ColorBgSecondary: string;
+/** Latar lapis ketiga, misalnya hover pada daftar. */
+export const ColorBgTertiary: string;
+/** Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. */
+export const ColorBgDisabled: string;
+/** Latar gelap: tooltip dan snackbar. Teks di atasnya: text/inverse. */
+export const ColorBgInverse: string;
+/** Tombol utama dan elemen brand. Teks di atasnya: text/on-brand. */
+export const ColorBgBrand: string;
+/** Tombol utama saat kursor di atasnya. */
+export const ColorBgBrandHover: string;
+/** Tombol utama saat ditekan. */
+export const ColorBgBrandPressed: string;
+/** Latar lembut brand, misalnya item terpilih. Teks di atasnya: text/brand. */
+export const ColorBgBrandSubtle: string;
+/** Tombol hapus dan badge error. Teks di atasnya: text/on-error. */
+export const ColorBgError: string;
+/** Tombol hapus saat kursor di atasnya. */
+export const ColorBgErrorHover: string;
+/** Tombol hapus saat ditekan. */
+export const ColorBgErrorPressed: string;
+/** Latar pesan error. Teks di atasnya: text/error. */
+export const ColorBgErrorSubtle: string;
+/** Badge sukses. Teks di atasnya: text/on-success. */
+export const ColorBgSuccess: string;
+/** Latar pesan sukses. Teks di atasnya: text/success. */
+export const ColorBgSuccessSubtle: string;
+/** Badge peringatan. Teks di atasnya: text/on-warning (gelap). */
+export const ColorBgWarning: string;
+/** Latar pesan peringatan. Teks di atasnya: text/warning. */
+export const ColorBgWarningSubtle: string;
+/** Badge informasi. Teks di atasnya: text/on-info. */
+export const ColorBgInfo: string;
+/** Latar pesan informasi. Teks di atasnya: text/info. */
+export const ColorBgInfoSubtle: string;
+/** Teks utama: judul dan isi. */
+export const ColorTextDefault: string;
+/** Teks pendukung: subjudul dan label. */
+export const ColorTextSecondary: string;
+/** Teks paling lembut yang masih terbaca: placeholder dan keterangan. */
+export const ColorTextTertiary: string;
+/** Teks komponen yang tidak aktif (tidak wajib memenuhi kontras). */
+export const ColorTextDisabled: string;
+/** Teks di atas bg/inverse. */
+export const ColorTextInverse: string;
+/** Teks berwarna brand, misalnya tab yang aktif. */
+export const ColorTextBrand: string;
+/** Link di dalam teks. */
+export const ColorTextLink: string;
+/** Link saat kursor di atasnya. */
+export const ColorTextLinkHover: string;
+/** Teks di atas bg/brand. */
+export const ColorTextOnBrand: string;
+/** Teks di atas bg/error. */
+export const ColorTextOnError: string;
+/** Teks di atas bg/success. */
+export const ColorTextOnSuccess: string;
+/** Teks di atas bg/warning. Gelap, karena teks putih tidak terbaca di atas kuning. */
+export const ColorTextOnWarning: string;
+/** Teks di atas bg/info. */
+export const ColorTextOnInfo: string;
+/** Pesan error, misalnya teks validasi di bawah input. */
+export const ColorTextError: string;
+/** Pesan sukses. */
+export const ColorTextSuccess: string;
+/** Pesan peringatan. */
+export const ColorTextWarning: string;
+/** Pesan informasi. */
+export const ColorTextInfo: string;
+/** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
+export const ColorIconDefault: string;
+/** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */
+export const ColorIconSecondary: string;
+/** Ikon pada komponen yang tidak aktif. */
+export const ColorIconDisabled: string;
+/** Ikon di atas latar gelap bg/inverse, misalnya di tooltip atau snackbar. */
+export const ColorIconInverse: string;
+/** Ikon berwarna brand, misalnya ikon tab yang aktif. */
+export const ColorIconBrand: string;
+/** Ikon di atas bg/brand, misalnya ikon panah di tombol Kirim. */
+export const ColorIconOnBrand: string;
+/** Ikon error, misalnya tanda seru di pesan error. */
+export const ColorIconError: string;
+/** Ikon sukses, misalnya tanda centang. */
+export const ColorIconSuccess: string;
+/** Ikon peringatan, misalnya segitiga bertanda seru. */
+export const ColorIconWarning: string;
+/** Ikon informasi, misalnya ikon huruf i di pesan info. */
+export const ColorIconInfo: string;
+/** Garis pemisah yang sangat halus, misalnya di antara item daftar. Dekoratif. */
+export const ColorBorderSubtle: string;
+/** Garis kartu dan pembatas bagian. Dekoratif, jangan jadi satu-satunya penanda batas input. */
+export const ColorBorderDefault: string;
+/** Garis input, checkbox, dan kontrol lain yang harus terlihat jelas. */
+export const ColorBorderStrong: string;
+/** Garis komponen yang tidak aktif. */
+export const ColorBorderDisabled: string;
+/** Garis elemen terpilih, misalnya kartu terpilih atau tombol outline Batal. */
+export const ColorBorderBrand: string;
+/** Cincin fokus saat berpindah elemen dengan keyboard. */
+export const ColorBorderFocus: string;
+/** Garis input yang error. */
+export const ColorBorderError: string;
+/** Garis input yang valid. */
+export const ColorBorderSuccess: string;
+/** Garis input dengan peringatan. */
+export const ColorBorderWarning: string;
+/** Garis kotak informasi. */
+export const ColorBorderInfo: string;

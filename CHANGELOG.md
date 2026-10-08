@@ -4,6 +4,14 @@ Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](htt
 
 ## [Belum dirilis]
 
+### Ditambahkan
+
+- Brand Theme untuk UIC (`src/brand/uic.json`): 8 token `color.brand.*`. Warna utamanya navy `color.imperial.70`.
+- 56 token semantic untuk mode Light (`src/semantic/color.json`): `color.bg.*` (19), `color.text.*` (17), `color.icon.*` (10), dan `color.border.*` (10). Semuanya alias, dan setiap token punya deskripsi yang sama dengan di Figma.
+- Di CSS dan file mobile, token semantic menunjuk ke token lain, misalnya `--cargo-color-bg-brand: var(--cargo-color-brand-fill)`.
+- Tabel Brand Theme dan Semantic yang dibuat otomatis di `packages/tokens/dist/docs/semantic.md`.
+- Tes otomatis untuk token semantic: harus alias, harus punya deskripsi, dan 36 pasangan teks, ikon, serta garis harus mencapai kontras minimum.
+
 ### Diubah
 
 - `color.black` dari `#212121` menjadi `#000000` (hitam murni). Warna teks utama tetap `#212121` lewat `color.neutral.100`.

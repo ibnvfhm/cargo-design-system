@@ -12,13 +12,17 @@ StyleDictionary.registerFileHeader({
   ],
 });
 
+const fromFolder = (folder) => (token) => token.filePath.replaceAll('\\', '/').includes(`/${folder}/`);
+const collapseBlankLines = (lines) => lines.filter((line, i, all) => !(line === '' && all[i - 1] === '')).join('\n') + '\n';
+
 // Colour reference generated from the tokens, so the documentation can never drift from the values.
 StyleDictionary.registerFormat({
   name: 'cargo/markdown-colors',
   format: ({ dictionary }) => {
     const root = dictionary.tokens.color;
-    const singles = dictionary.allTokens.filter((t) => t.path.length === 2);
-    const palettes = Object.keys(root).filter((key) => !key.startsWith('$') && !('$value' in root[key]));
+    const primitives = dictionary.allTokens.filter(fromFolder('primitive'));
+    const singles = primitives.filter((t) => t.path.length === 2);
+    const palettes = [...new Set(primitives.filter((t) => t.path.length === 3).map((t) => t.path[1]))];
     const ratio = (n) => n.toFixed(1);
     const readable = (hex) => {
       const onWhite = contrast(hex, WHITE) >= AA_TEXT;
@@ -41,7 +45,7 @@ StyleDictionary.registerFormat({
       ...singles.map((t) => `| \`color.${t.path[1]}\` | \`${t.$value}\` |`),
     ];
     for (const name of palettes) {
-      const tokens = dictionary.allTokens.filter((t) => t.path[1] === name && t.path.length === 3);
+      const tokens = primitives.filter((t) => t.path[1] === name && t.path.length === 3);
       lines.push(
         '',
         `## ${name}`,
@@ -56,7 +60,40 @@ StyleDictionary.registerFormat({
         }),
       );
     }
-    return lines.filter((line, i, all) => !(line === '' && all[i - 1] === '')).join('\n') + '\n';
+    return collapseBlankLines(lines);
+  },
+});
+
+// Semantic and Brand Theme reference: what each token points at, its final colour and when to use it.
+StyleDictionary.registerFormat({
+  name: 'cargo/markdown-semantic',
+  format: ({ dictionary }) => {
+    const root = dictionary.tokens.color;
+    const target = (t) => String(t.original.$value).replace(/^\{(.*)\}$/, '$1');
+    const table = (tokens) => [
+      '| Token | Menunjuk ke | Hex (UIC, Light) | Dipakai untuk |',
+      '|---|---|---|---|',
+      ...tokens.map((t) => `| \`${t.path.join('.')}\` | \`${target(t)}\` | \`${t.$value}\` | ${t.$description ?? ''} |`),
+    ];
+    const brand = dictionary.allTokens.filter(fromFolder('brand'));
+    const semantic = dictionary.allTokens.filter(fromFolder('semantic'));
+    const lines = [
+      '# Semantic colors Cargo',
+      '',
+      '> Dibuat otomatis dari `packages/tokens/src/brand` dan `packages/tokens/src/semantic`. Jangan edit file ini langsung.',
+      '',
+      'Desain dan kode memakai token semantic, bukan primitive. Setiap token menunjuk ke token lain; kolom Hex menunjukkan warna akhirnya untuk brand UIC dalam mode Light.',
+      '',
+      '## Brand Theme (mode UIC)',
+      '',
+      root.brand.$description ?? '',
+      '',
+      ...table(brand),
+    ];
+    for (const group of [...new Set(semantic.map((t) => t.path[1]))]) {
+      lines.push('', `## ${group}`, '', root[group].$description ?? '', '', ...table(semantic.filter((t) => t.path[1] === group)));
+    }
+    return collapseBlankLines(lines);
   },
 });
 
@@ -66,7 +103,8 @@ const header = { fileHeader: 'cargo/header' };
 const mobile = { ...header, outputReferences: true };
 
 const sd = new StyleDictionary({
-  source: ['src/**/*.json'],
+  // One brand for now. Step 3 adds a build per brand (src/brand/<brand>.json) and per light/dark mode.
+  source: ['src/primitive/**/*.json', 'src/brand/uic.json', 'src/semantic/**/*.json'],
   usesDtcg: true,
   log: { warnings: 'error', errors: { brokenReferences: 'throw' } },
   platforms: {
@@ -74,7 +112,8 @@ const sd = new StyleDictionary({
       transformGroup: 'css',
       prefix: 'cargo',
       buildPath: 'dist/css/',
-      files: [{ destination: 'tokens.css', format: 'css/variables', options: header }],
+      // Semantic variables point at other variables, e.g. --cargo-color-bg-brand: var(--cargo-color-brand-fill).
+      files: [{ destination: 'tokens.css', format: 'css/variables', options: { ...header, outputReferences: true } }],
     },
     js: {
       transformGroup: 'js',
@@ -111,7 +150,10 @@ const sd = new StyleDictionary({
     docs: {
       transforms: ['attribute/cti', 'name/kebab'],
       buildPath: 'dist/docs/',
-      files: [{ destination: 'colors.md', format: 'cargo/markdown-colors' }],
+      files: [
+        { destination: 'colors.md', format: 'cargo/markdown-colors' },
+        { destination: 'semantic.md', format: 'cargo/markdown-semantic' },
+      ],
     },
   },
 });
