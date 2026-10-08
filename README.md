@@ -6,8 +6,8 @@ Satu sumber kebenaran untuk warna, tipografi, spacing, dan komponen di semua pro
 
 | Langkah | Isi | Status |
 |---|---|---|
-| 1 | Primitive colors: semua warna mentah | Selesai di kode. Di Figma tinggal palet `grape` (INTI). |
-| 2 | Semantic colors: tugas tiap warna (background, teks, border, ikon, status) | Berikutnya |
+| 1 | Primitive colors: semua warna mentah | Selesai, di Figma dan di kode |
+| 2 | Semantic colors: tugas tiap warna (background, teks, border, ikon, status) | Sedang dibuat di Figma |
 | 3 | Tema brand dan mode gelap | Belum |
 | 4 | Token non-warna: tipografi, spacing, radius, shadow | Belum |
 | 5 | Memasang token ke komponen Figma | Belum |
@@ -67,7 +67,7 @@ Palet yang ada sekarang:
 | `tosca` | Brand InCivas |
 | `sea` | Brand InCustom |
 
-Ditambah `white` (#FFFFFF) dan `black` (#212121, sama dengan `neutral.100`).
+Ditambah `white` (#FFFFFF) dan `black` (#000000, hitam murni). Warna teks utama nanti memakai `neutral.100` (#212121), bukan `black`.
 
 ## Mengubah atau menambah token
 

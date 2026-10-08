@@ -6,8 +6,8 @@
       "$value": "#FFFFFF"
     },
     "black": {
-      "$value": "#212121",
-      "$description": "Hitam Cargo, sama dengan neutral.100."
+      "$value": "#000000",
+      "$description": "Hitam murni, misalnya untuk overlay dan bayangan. Teks utama memakai neutral.100 (#212121)."
     },
     "neutral": {
       "$description": "System: Neutral",

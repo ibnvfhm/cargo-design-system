@@ -7,7 +7,7 @@ Kolom "Teks kecil" menunjukkan warna teks yang mencapai kontras 4.5:1 (WCAG AA) 
 | Token | Hex |
 |---|---|
 | `color.white` | `#FFFFFF` |
-| `color.black` | `#212121` |
+| `color.black` | `#000000` |
 
 ## neutral
 

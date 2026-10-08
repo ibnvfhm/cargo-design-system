@@ -4,7 +4,7 @@
  */
 
 export const ColorWhite: string;
-/** Hitam Cargo, sama dengan neutral.100. */
+/** Hitam murni, misalnya untuk overlay dan bayangan. Teks utama memakai neutral.100 (#212121). */
 export const ColorBlack: string;
 export const ColorNeutral10: string;
 export const ColorNeutral20: string;

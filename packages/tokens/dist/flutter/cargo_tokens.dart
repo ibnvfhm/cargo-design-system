@@ -14,7 +14,7 @@ class CargoTokens {
     CargoTokens._();
 
     static const colorWhite = Color(0xFFFFFFFF);
-    static const colorBlack = Color(0xFF212121); /** Hitam Cargo, sama dengan neutral.100. */
+    static const colorBlack = Color(0xFF000000); /** Hitam murni, misalnya untuk overlay dan bayangan. Teks utama memakai neutral.100 (#212121). */
     static const colorNeutral10 = Color(0xFFFFFFFF);
     static const colorNeutral20 = Color(0xFFF5F5F5);
     static const colorNeutral30 = Color(0xFFEEEEEE);

@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.*
 
 object CargoTokens {
   val colorWhite = Color(0xffffffff)
-  val colorBlack = Color(0xff212121)
+  val colorBlack = Color(0xff000000)
   val colorNeutral10 = Color(0xffffffff)
   val colorNeutral20 = Color(0xfff5f5f5)
   val colorNeutral30 = Color(0xffeeeeee)

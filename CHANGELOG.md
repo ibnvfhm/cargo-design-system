@@ -2,6 +2,12 @@
 
 Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/), dan nomor versi mengikuti [Semantic Versioning](https://semver.org/lang/id/).
 
+## [Belum dirilis]
+
+### Diubah
+
+- `color.black` dari `#212121` menjadi `#000000` (hitam murni). Warna teks utama tetap `#212121` lewat `color.neutral.100`.
+
 ## [0.1.0] - 2026-10-07
 
 ### Ditambahkan

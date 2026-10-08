@@ -5,7 +5,7 @@
 
 :root {
   --cargo-color-white: #ffffff;
-  --cargo-color-black: #212121; /** Hitam Cargo, sama dengan neutral.100. */
+  --cargo-color-black: #000000; /** Hitam murni, misalnya untuk overlay dan bayangan. Teks utama memakai neutral.100 (#212121). */
   --cargo-color-neutral-10: #ffffff;
   --cargo-color-neutral-20: #f5f5f5;
   --cargo-color-neutral-30: #eeeeee;

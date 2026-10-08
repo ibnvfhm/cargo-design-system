@@ -11,7 +11,7 @@ import SwiftUI
 
 public enum CargoTokens {
     public static let colorWhite = Color(red: 1.000, green: 1.000, blue: 1.000, opacity: 1)
-    public static let colorBlack = Color(red: 0.129, green: 0.129, blue: 0.129, opacity: 1) /** Hitam Cargo, sama dengan neutral.100. */
+    public static let colorBlack = Color(red: 0.000, green: 0.000, blue: 0.000, opacity: 1) /** Hitam murni, misalnya untuk overlay dan bayangan. Teks utama memakai neutral.100 (#212121). */
     public static let colorNeutral10 = Color(red: 1.000, green: 1.000, blue: 1.000, opacity: 1)
     public static let colorNeutral20 = Color(red: 0.961, green: 0.961, blue: 0.961, opacity: 1)
     public static let colorNeutral30 = Color(red: 0.933, green: 0.933, blue: 0.933, opacity: 1)
