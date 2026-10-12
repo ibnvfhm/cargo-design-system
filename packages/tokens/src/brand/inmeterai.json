@@ -1,0 +1,78 @@
+{
+  "color": {
+    "brand": {
+      "$type": "color",
+      "$description": "Brand Theme, mode InMeterai: warna khas brand. Tidak dipakai langsung di desain; desain memakai token semantic.",
+      "light": {
+        "$description": "Dipakai oleh Semantic mode Light.",
+        "fill": {
+          "$value": "{color.fuchsia.50}",
+          "$description": "Isi warna brand: tombol utama, toggle aktif, elemen terpilih."
+        },
+        "fill-hover": {
+          "$value": "{color.fuchsia.60}",
+          "$description": "Isi brand saat kursor di atasnya."
+        },
+        "fill-pressed": {
+          "$value": "{color.fuchsia.70}",
+          "$description": "Isi brand saat ditekan."
+        },
+        "fill-subtle": {
+          "$value": "{color.fuchsia.10}",
+          "$description": "Latar brand yang lembut: chip atau item terpilih."
+        },
+        "on-fill": {
+          "$value": "{color.white}",
+          "$description": "Teks dan ikon di atas isi brand."
+        },
+        "text": {
+          "$value": "{color.fuchsia.50}",
+          "$description": "Teks dan link berwarna brand di atas latar terang."
+        },
+        "text-hover": {
+          "$value": "{color.fuchsia.60}",
+          "$description": "Teks atau link brand saat kursor di atasnya."
+        },
+        "border": {
+          "$value": "{color.fuchsia.50}",
+          "$description": "Garis brand: elemen terpilih dan cincin fokus."
+        }
+      },
+      "dark": {
+        "$description": "Dipakai oleh Semantic mode Dark.",
+        "fill": {
+          "$value": "{color.fuchsia.50}",
+          "$description": "Isi warna brand di mode Dark: tombol utama, toggle aktif, elemen terpilih."
+        },
+        "fill-hover": {
+          "$value": "{color.fuchsia.40}",
+          "$description": "Isi brand di mode Dark saat kursor di atasnya."
+        },
+        "fill-pressed": {
+          "$value": "{color.fuchsia.30}",
+          "$description": "Isi brand di mode Dark saat ditekan."
+        },
+        "fill-subtle": {
+          "$value": "{color.fuchsia.90}",
+          "$description": "Latar brand yang lembut di mode Dark: chip atau item terpilih."
+        },
+        "on-fill": {
+          "$value": "{color.white}",
+          "$description": "Teks dan ikon di atas isi brand di mode Dark."
+        },
+        "text": {
+          "$value": "{color.fuchsia.50}",
+          "$description": "Teks dan link berwarna brand di atas latar gelap."
+        },
+        "text-hover": {
+          "$value": "{color.fuchsia.40}",
+          "$description": "Teks atau link brand di mode Dark saat kursor di atasnya."
+        },
+        "border": {
+          "$value": "{color.fuchsia.50}",
+          "$description": "Garis brand di mode Dark: elemen terpilih dan cincin fokus."
+        }
+      }
+    }
+  }
+}

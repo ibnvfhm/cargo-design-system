@@ -1,0 +1,50 @@
+import { AA_TEXT } from './contrast.mjs';
+
+// Icons and borders need 3:1 against their background (WCAG 1.4.11), text needs 4.5:1.
+export const NON_TEXT = 3;
+
+// [foreground, the background it is normally used on, minimum contrast], checked for every brand and mode.
+export const PAIRS = [
+  ['text.default', 'bg.default', AA_TEXT],
+  ['text.secondary', 'bg.tertiary', AA_TEXT],
+  ['text.tertiary', 'bg.tertiary', AA_TEXT],
+  ['text.inverse', 'bg.inverse', AA_TEXT],
+  ['text.brand', 'bg.default', AA_TEXT],
+  ['text.brand', 'bg.brand-subtle', AA_TEXT],
+  ['text.link', 'bg.secondary', AA_TEXT],
+  ['text.link-hover', 'bg.default', AA_TEXT],
+  ['text.on-brand', 'bg.brand', AA_TEXT],
+  ['text.on-brand', 'bg.brand-hover', AA_TEXT],
+  ['text.on-brand', 'bg.brand-pressed', AA_TEXT],
+  ['text.on-error', 'bg.error', AA_TEXT],
+  ['text.on-error', 'bg.error-hover', AA_TEXT],
+  ['text.on-error', 'bg.error-pressed', AA_TEXT],
+  ['text.on-success', 'bg.success', AA_TEXT],
+  ['text.on-warning', 'bg.warning', AA_TEXT],
+  ['text.on-info', 'bg.info', AA_TEXT],
+  // Status text sits inside its message box and directly on the page, e.g. validation text under an input.
+  ['text.error', 'bg.error-subtle', AA_TEXT],
+  ['text.error', 'bg.default', AA_TEXT],
+  ['text.success', 'bg.success-subtle', AA_TEXT],
+  ['text.success', 'bg.default', AA_TEXT],
+  ['text.warning', 'bg.warning-subtle', AA_TEXT],
+  ['text.warning', 'bg.default', AA_TEXT],
+  ['text.info', 'bg.info-subtle', AA_TEXT],
+  ['text.info', 'bg.default', AA_TEXT],
+  ['icon.default', 'bg.default', NON_TEXT],
+  ['icon.secondary', 'bg.default', NON_TEXT],
+  ['icon.inverse', 'bg.inverse', NON_TEXT],
+  ['icon.brand', 'bg.default', NON_TEXT],
+  ['icon.on-brand', 'bg.brand', NON_TEXT],
+  ['icon.error', 'bg.error-subtle', NON_TEXT],
+  ['icon.success', 'bg.success-subtle', NON_TEXT],
+  ['icon.warning', 'bg.warning-subtle', NON_TEXT],
+  ['icon.info', 'bg.info-subtle', NON_TEXT],
+  ['border.strong', 'bg.default', NON_TEXT],
+  ['border.brand', 'bg.default', NON_TEXT],
+  ['border.focus', 'bg.default', NON_TEXT],
+  ['border.error', 'bg.default', NON_TEXT],
+  ['border.success', 'bg.default', NON_TEXT],
+  ['border.warning', 'bg.default', NON_TEXT],
+  ['border.info', 'bg.default', NON_TEXT],
+];

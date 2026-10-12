@@ -9,10 +9,10 @@
     "src"
   ],
   "exports": {
-    "./css": "./dist/css/tokens.css",
-    "./js": {
-      "types": "./dist/js/tokens.d.ts",
-      "default": "./dist/js/tokens.js"
+    "./css/*": "./dist/css/*.css",
+    "./js/*": {
+      "types": "./dist/js/*.d.ts",
+      "default": "./dist/js/*.js"
     }
   },
   "scripts": {

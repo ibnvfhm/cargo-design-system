@@ -1,6 +1,6 @@
 
 //
-// cargo_tokens.dart
+// cargo_tokens_dark.dart
 //
 
 // Jangan edit file ini langsung.
@@ -10,8 +10,8 @@
 
 import 'dart:ui';
 
-class CargoTokens {
-    CargoTokens._();
+class CargoTokensDark {
+    CargoTokensDark._();
 
     static const colorWhite = Color(0xFFFFFFFF);
     static const colorBlack = Color(0xFF000000); /** Hitam murni, misalnya untuk overlay dan bayangan. Teks utama memakai neutral.100 (#212121). */
@@ -125,68 +125,68 @@ class CargoTokens {
     static const colorSea80 = Color(0xFF022E71);
     static const colorSea90 = Color(0xFF011C44);
     static const colorSea100 = Color(0xFF01122D);
-    static const colorBrandFill = colorImperial70; /** Isi warna brand: tombol utama, toggle aktif, elemen terpilih. */
-    static const colorBrandFillHover = colorImperial80; /** Isi brand saat kursor di atasnya. */
-    static const colorBrandFillPressed = colorImperial90; /** Isi brand saat ditekan. */
-    static const colorBrandFillSubtle = colorImperial10; /** Latar brand yang lembut: chip atau item terpilih. */
-    static const colorBrandOnFill = colorWhite; /** Teks dan ikon di atas isi brand. */
-    static const colorBrandText = colorImperial70; /** Teks dan link berwarna brand di atas latar terang. */
-    static const colorBrandTextHover = colorImperial80; /** Teks atau link brand saat kursor di atasnya. */
-    static const colorBrandBorder = colorImperial70; /** Garis brand: elemen terpilih dan cincin fokus. */
-    static const colorBgDefault = colorWhite; /** Latar halaman, kartu, dan modal. */
-    static const colorBgSecondary = colorNeutral20; /** Latar bagian yang dibedakan, misalnya sidebar. */
-    static const colorBgTertiary = colorNeutral30; /** Latar lapis ketiga, misalnya hover pada daftar. */
-    static const colorBgDisabled = colorNeutral40; /** Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. */
-    static const colorBgInverse = colorNeutral100; /** Latar gelap: tooltip dan snackbar. Teks di atasnya: text/inverse. */
+    static const colorBrandDarkFill = colorFuchsia50; /** Isi warna brand di mode Dark: tombol utama, toggle aktif, elemen terpilih. */
+    static const colorBrandDarkFillHover = colorFuchsia40; /** Isi brand di mode Dark saat kursor di atasnya. */
+    static const colorBrandDarkFillPressed = colorFuchsia30; /** Isi brand di mode Dark saat ditekan. */
+    static const colorBrandDarkFillSubtle = colorFuchsia90; /** Latar brand yang lembut di mode Dark: chip atau item terpilih. */
+    static const colorBrandDarkOnFill = colorWhite; /** Teks dan ikon di atas isi brand di mode Dark. */
+    static const colorBrandDarkText = colorFuchsia50; /** Teks dan link berwarna brand di atas latar gelap. */
+    static const colorBrandDarkTextHover = colorFuchsia40; /** Teks atau link brand di mode Dark saat kursor di atasnya. */
+    static const colorBrandDarkBorder = colorFuchsia50; /** Garis brand di mode Dark: elemen terpilih dan cincin fokus. */
+    static const colorBgDefault = colorNeutral100; /** Latar halaman, kartu, dan modal. */
+    static const colorBgSecondary = colorBlack; /** Latar bagian yang dibedakan, misalnya sidebar. */
+    static const colorBgTertiary = colorNeutral90; /** Latar lapis ketiga, misalnya hover pada daftar. */
+    static const colorBgDisabled = colorNeutral90; /** Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. */
+    static const colorBgInverse = colorWhite; /** Latar yang berlawanan dengan bg/default (gelap di mode Light, terang di mode Dark): tooltip dan snackbar. Teks di atasnya: text/inverse. */
     static const colorBgError = colorRed70; /** Tombol hapus dan badge error. Teks di atasnya: text/on-error. */
     static const colorBgErrorHover = colorRed80; /** Tombol hapus saat kursor di atasnya. */
     static const colorBgErrorPressed = colorRed90; /** Tombol hapus saat ditekan. */
-    static const colorBgErrorSubtle = colorRed10; /** Latar pesan error. Teks di atasnya: text/error. */
+    static const colorBgErrorSubtle = colorRed100; /** Latar pesan error. Teks di atasnya: text/error. */
     static const colorBgSuccess = colorGreen80; /** Badge sukses. Teks di atasnya: text/on-success. */
-    static const colorBgSuccessSubtle = colorGreen10; /** Latar pesan sukses. Teks di atasnya: text/success. */
+    static const colorBgSuccessSubtle = colorGreen100; /** Latar pesan sukses. Teks di atasnya: text/success. */
     static const colorBgWarning = colorYellow70; /** Badge peringatan. Teks di atasnya: text/on-warning (gelap). */
-    static const colorBgWarningSubtle = colorYellow10; /** Latar pesan peringatan. Teks di atasnya: text/warning. */
+    static const colorBgWarningSubtle = colorYellow100; /** Latar pesan peringatan. Teks di atasnya: text/warning. */
     static const colorBgInfo = colorBlue70; /** Badge informasi. Teks di atasnya: text/on-info. */
-    static const colorBgInfoSubtle = colorBlue10; /** Latar pesan informasi. Teks di atasnya: text/info. */
-    static const colorTextDefault = colorNeutral100; /** Teks utama: judul dan isi. */
-    static const colorTextSecondary = colorNeutral90; /** Teks pendukung: subjudul dan label. */
-    static const colorTextTertiary = colorNeutral80; /** Teks paling lembut yang masih terbaca: placeholder dan keterangan. */
-    static const colorTextDisabled = colorNeutral60; /** Teks komponen yang tidak aktif (tidak wajib memenuhi kontras). */
-    static const colorTextInverse = colorWhite; /** Teks di atas bg/inverse. */
+    static const colorBgInfoSubtle = colorBlue100; /** Latar pesan informasi. Teks di atasnya: text/info. */
+    static const colorTextDefault = colorWhite; /** Teks utama: judul dan isi. */
+    static const colorTextSecondary = colorNeutral40; /** Teks pendukung: subjudul dan label. */
+    static const colorTextTertiary = colorNeutral50; /** Teks paling lembut yang masih terbaca: placeholder dan keterangan. */
+    static const colorTextDisabled = colorNeutral70; /** Teks komponen yang tidak aktif (tidak wajib memenuhi kontras). */
+    static const colorTextInverse = colorNeutral100; /** Teks di atas bg/inverse. */
     static const colorTextOnError = colorWhite; /** Teks di atas bg/error. */
     static const colorTextOnSuccess = colorWhite; /** Teks di atas bg/success. */
     static const colorTextOnWarning = colorNeutral100; /** Teks di atas bg/warning. Gelap, karena teks putih tidak terbaca di atas kuning. */
     static const colorTextOnInfo = colorWhite; /** Teks di atas bg/info. */
-    static const colorTextError = colorRed80; /** Pesan error, misalnya teks validasi di bawah input. */
-    static const colorTextSuccess = colorGreen80; /** Pesan sukses. */
-    static const colorTextWarning = colorYellow90; /** Pesan peringatan. */
-    static const colorTextInfo = colorBlue70; /** Pesan informasi. */
-    static const colorIconDefault = colorNeutral100; /** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
-    static const colorIconSecondary = colorNeutral80; /** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */
-    static const colorIconDisabled = colorNeutral60; /** Ikon pada komponen yang tidak aktif. */
-    static const colorIconInverse = colorWhite; /** Ikon di atas latar gelap bg/inverse, misalnya di tooltip atau snackbar. */
-    static const colorIconError = colorRed70; /** Ikon error, misalnya tanda seru di pesan error. */
-    static const colorIconSuccess = colorGreen70; /** Ikon sukses, misalnya tanda centang. */
-    static const colorIconWarning = colorYellow80; /** Ikon peringatan, misalnya segitiga bertanda seru. */
-    static const colorIconInfo = colorBlue60; /** Ikon informasi, misalnya ikon huruf i di pesan info. */
-    static const colorBorderSubtle = colorNeutral40; /** Garis pemisah yang sangat halus, misalnya di antara item daftar. Dekoratif. */
-    static const colorBorderDefault = colorNeutral50; /** Garis kartu dan pembatas bagian. Dekoratif, jangan jadi satu-satunya penanda batas input. */
-    static const colorBorderStrong = colorNeutral80; /** Garis input, checkbox, dan kontrol lain yang harus terlihat jelas. */
-    static const colorBorderDisabled = colorNeutral60; /** Garis komponen yang tidak aktif. */
-    static const colorBorderError = colorRed70; /** Garis input yang error. */
-    static const colorBorderSuccess = colorGreen70; /** Garis input yang valid. */
-    static const colorBorderWarning = colorYellow80; /** Garis input dengan peringatan. */
-    static const colorBorderInfo = colorBlue60; /** Garis kotak informasi. */
-    static const colorBgBrand = colorBrandFill; /** Tombol utama dan elemen brand. Teks di atasnya: text/on-brand. */
-    static const colorBgBrandHover = colorBrandFillHover; /** Tombol utama saat kursor di atasnya. */
-    static const colorBgBrandPressed = colorBrandFillPressed; /** Tombol utama saat ditekan. */
-    static const colorBgBrandSubtle = colorBrandFillSubtle; /** Latar lembut brand, misalnya item terpilih. Teks di atasnya: text/brand. */
-    static const colorTextBrand = colorBrandText; /** Teks berwarna brand, misalnya tab yang aktif. */
-    static const colorTextLink = colorBrandText; /** Link di dalam teks. */
-    static const colorTextLinkHover = colorBrandTextHover; /** Link saat kursor di atasnya. */
-    static const colorTextOnBrand = colorBrandOnFill; /** Teks di atas bg/brand. */
-    static const colorIconBrand = colorBrandText; /** Ikon berwarna brand, misalnya ikon tab yang aktif. */
-    static const colorIconOnBrand = colorBrandOnFill; /** Ikon di atas bg/brand, misalnya ikon panah di tombol Kirim. */
-    static const colorBorderBrand = colorBrandBorder; /** Garis elemen terpilih, misalnya kartu terpilih atau tombol outline Batal. */
-    static const colorBorderFocus = colorBrandBorder; /** Cincin fokus saat berpindah elemen dengan keyboard. */
+    static const colorTextError = colorRed40; /** Pesan error, misalnya teks validasi di bawah input. */
+    static const colorTextSuccess = colorGreen50; /** Pesan sukses. */
+    static const colorTextWarning = colorYellow60; /** Pesan peringatan. */
+    static const colorTextInfo = colorBlue30; /** Pesan informasi. */
+    static const colorIconDefault = colorWhite; /** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
+    static const colorIconSecondary = colorNeutral50; /** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */
+    static const colorIconDisabled = colorNeutral70; /** Ikon pada komponen yang tidak aktif. */
+    static const colorIconInverse = colorNeutral100; /** Ikon di atas bg/inverse, misalnya di tooltip atau snackbar. */
+    static const colorIconError = colorRed50; /** Ikon error, misalnya tanda seru di pesan error. */
+    static const colorIconSuccess = colorGreen60; /** Ikon sukses, misalnya tanda centang. */
+    static const colorIconWarning = colorYellow70; /** Ikon peringatan, misalnya segitiga bertanda seru. */
+    static const colorIconInfo = colorBlue40; /** Ikon informasi, misalnya ikon huruf i di pesan info. */
+    static const colorBorderSubtle = colorNeutral90; /** Garis pemisah yang sangat halus, misalnya di antara item daftar. Dekoratif. */
+    static const colorBorderDefault = colorNeutral80; /** Garis kartu dan pembatas bagian. Dekoratif, jangan jadi satu-satunya penanda batas input. */
+    static const colorBorderStrong = colorNeutral60; /** Garis input, checkbox, dan kontrol lain yang harus terlihat jelas. */
+    static const colorBorderDisabled = colorNeutral70; /** Garis komponen yang tidak aktif. */
+    static const colorBorderError = colorRed50; /** Garis input yang error. */
+    static const colorBorderSuccess = colorGreen60; /** Garis input yang valid. */
+    static const colorBorderWarning = colorYellow70; /** Garis input dengan peringatan. */
+    static const colorBorderInfo = colorBlue40; /** Garis kotak informasi. */
+    static const colorBgBrand = colorBrandDarkFill; /** Tombol utama dan elemen brand. Teks di atasnya: text/on-brand. */
+    static const colorBgBrandHover = colorBrandDarkFillHover; /** Tombol utama saat kursor di atasnya. */
+    static const colorBgBrandPressed = colorBrandDarkFillPressed; /** Tombol utama saat ditekan. */
+    static const colorBgBrandSubtle = colorBrandDarkFillSubtle; /** Latar lembut brand, misalnya item terpilih. Teks di atasnya: text/brand. */
+    static const colorTextBrand = colorBrandDarkText; /** Teks berwarna brand, misalnya tab yang aktif. */
+    static const colorTextLink = colorBrandDarkText; /** Link di dalam teks. */
+    static const colorTextLinkHover = colorBrandDarkTextHover; /** Link saat kursor di atasnya. */
+    static const colorTextOnBrand = colorBrandDarkOnFill; /** Teks di atas bg/brand. */
+    static const colorIconBrand = colorBrandDarkText; /** Ikon berwarna brand, misalnya ikon tab yang aktif. */
+    static const colorIconOnBrand = colorBrandDarkOnFill; /** Ikon di atas bg/brand, misalnya ikon panah di tombol Kirim. */
+    static const colorBorderBrand = colorBrandDarkBorder; /** Garis elemen terpilih, misalnya kartu terpilih atau tombol outline Batal. */
+    static const colorBorderFocus = colorBrandDarkBorder; /** Cincin fokus saat berpindah elemen dengan keyboard. */
 }

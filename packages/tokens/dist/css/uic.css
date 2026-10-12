@@ -1,0 +1,321 @@
+/**
+ * Jangan edit file ini langsung.
+ * Dibuat otomatis dari packages/tokens/src dengan `npm run build`.
+ */
+
+/* Brand UIC. Mode Light berlaku secara default. Mode Dark berlaku dengan data-theme="dark",
+   atau otomatis kalau sistem memakai mode gelap dan halaman tidak memakai data-theme="light". */
+
+:root {
+  --cargo-color-white: #ffffff;
+  --cargo-color-black: #000000; /** Hitam murni, misalnya untuk overlay dan bayangan. Teks utama memakai neutral.100 (#212121). */
+  --cargo-color-neutral-10: #ffffff;
+  --cargo-color-neutral-20: #f5f5f5;
+  --cargo-color-neutral-30: #eeeeee;
+  --cargo-color-neutral-40: #e0e0e0;
+  --cargo-color-neutral-50: #bdbdbd;
+  --cargo-color-neutral-60: #9e9e9e;
+  --cargo-color-neutral-70: #757575;
+  --cargo-color-neutral-80: #616161;
+  --cargo-color-neutral-90: #424242;
+  --cargo-color-neutral-100: #212121;
+  --cargo-color-yellow-10: #fef8e6;
+  --cargo-color-yellow-20: #fdedc1;
+  --cargo-color-yellow-30: #fce29c;
+  --cargo-color-yellow-40: #fbd877;
+  --cargo-color-yellow-50: #facd50;
+  --cargo-color-yellow-60: #f8c024;
+  --cargo-color-yellow-70: #e6aa07;
+  --cargo-color-yellow-80: #b88806;
+  --cargo-color-yellow-90: #8a6604;
+  --cargo-color-yellow-100: #5c4403;
+  --cargo-color-red-10: #ffe1e1;
+  --cargo-color-red-20: #ffb4b4;
+  --cargo-color-red-30: #ff8888;
+  --cargo-color-red-40: #ff5b5b;
+  --cargo-color-red-50: #ff2d2d;
+  --cargo-color-red-60: #ff0303;
+  --cargo-color-red-70: #d70000;
+  --cargo-color-red-80: #ac0000;
+  --cargo-color-red-90: #810000;
+  --cargo-color-red-100: #560000;
+  --cargo-color-green-10: #e2f8e1;
+  --cargo-color-green-20: #b7edb4;
+  --cargo-color-green-30: #8be387;
+  --cargo-color-green-40: #60d859;
+  --cargo-color-green-50: #36c92f;
+  --cargo-color-green-60: #2fae29;
+  --cargo-color-green-70: #279122;
+  --cargo-color-green-80: #20741b;
+  --cargo-color-green-90: #185714;
+  --cargo-color-green-100: #103a0e;
+  --cargo-color-blue-10: #edf5fe;
+  --cargo-color-blue-20: #a7cdf8;
+  --cargo-color-blue-30: #60a5f3;
+  --cargo-color-blue-40: #2c87ef;
+  --cargo-color-blue-50: #1174e5;
+  --cargo-color-blue-60: #0f63c3;
+  --cargo-color-blue-70: #0c52a3;
+  --cargo-color-blue-80: #0a4282;
+  --cargo-color-blue-90: #073162;
+  --cargo-color-blue-100: #052141;
+  --cargo-color-purple-10: #f2effd;
+  --cargo-color-purple-20: #c6b4f5;
+  --cargo-color-purple-30: #9c74ec;
+  --cargo-color-purple-40: #8a54e6;
+  --cargo-color-purple-50: #7833d8;
+  --cargo-color-purple-60: #662ab9;
+  --cargo-color-purple-70: #4d1e8f;
+  --cargo-color-purple-80: #331262;
+  --cargo-color-purple-90: #260b4c;
+  --cargo-color-purple-100: #180533;
+  --cargo-color-imperial-10: #e3eeff;
+  --cargo-color-imperial-20: #c6ddff;
+  --cargo-color-imperial-30: #8dbbff;
+  --cargo-color-imperial-40: #1c77ff;
+  --cargo-color-imperial-50: #005ae2;
+  --cargo-color-imperial-60: #0044a9;
+  --cargo-color-imperial-70: #002d71;
+  --cargo-color-imperial-80: #002358;
+  --cargo-color-imperial-90: #001a40;
+  --cargo-color-imperial-100: #000a18;
+  --cargo-color-grape-10: #f2ddf1;
+  --cargo-color-grape-20: #d189ce;
+  --cargo-color-grape-30: #be57b9;
+  --cargo-color-grape-40: #a640a1;
+  --cargo-color-grape-50: #843380;
+  --cargo-color-grape-60: #682865;
+  --cargo-color-grape-70: #4c1d49;
+  --cargo-color-grape-80: #2f122e;
+  --cargo-color-grape-90: #260f25;
+  --cargo-color-grape-100: #1c0b1b;
+  --cargo-color-fuchsia-10: #fee5ec;
+  --cargo-color-fuchsia-20: #fccad9;
+  --cargo-color-fuchsia-30: #faa3bd;
+  --cargo-color-fuchsia-40: #f76e97;
+  --cargo-color-fuchsia-50: #f5487c;
+  --cargo-color-fuchsia-60: #ec0c50;
+  --cargo-color-fuchsia-70: #ac093a;
+  --cargo-color-fuchsia-80: #6b0624;
+  --cargo-color-fuchsia-90: #2b020e;
+  --cargo-color-fuchsia-100: #150107;
+  --cargo-color-tosca-10: #d4fdfb;
+  --cargo-color-tosca-20: #a9faf8;
+  --cargo-color-tosca-30: #69f7f2;
+  --cargo-color-tosca-40: #13f3eb;
+  --cargo-color-tosca-50: #0abab5;
+  --cargo-color-tosca-60: #08918c;
+  --cargo-color-tosca-70: #066966;
+  --cargo-color-tosca-80: #033533;
+  --cargo-color-tosca-90: #011a19;
+  --cargo-color-tosca-100: #010d0d;
+  --cargo-color-sea-10: #f2f7ff;
+  --cargo-color-sea-20: #d7e7fe;
+  --cargo-color-sea-30: #a2c7fe;
+  --cargo-color-sea-40: #6da6fd;
+  --cargo-color-sea-50: #458dfc;
+  --cargo-color-sea-60: #0466f9;
+  --cargo-color-sea-70: #02419e;
+  --cargo-color-sea-80: #022e71;
+  --cargo-color-sea-90: #011c44;
+  --cargo-color-sea-100: #01122d;
+  --cargo-color-brand-light-fill: var(--cargo-color-imperial-70); /** Isi warna brand: tombol utama, toggle aktif, elemen terpilih. */
+  --cargo-color-brand-light-fill-hover: var(--cargo-color-imperial-80); /** Isi brand saat kursor di atasnya. */
+  --cargo-color-brand-light-fill-pressed: var(--cargo-color-imperial-90); /** Isi brand saat ditekan. */
+  --cargo-color-brand-light-fill-subtle: var(--cargo-color-imperial-10); /** Latar brand yang lembut: chip atau item terpilih. */
+  --cargo-color-brand-light-on-fill: var(--cargo-color-white); /** Teks dan ikon di atas isi brand. */
+  --cargo-color-brand-light-text: var(--cargo-color-imperial-70); /** Teks dan link berwarna brand di atas latar terang. */
+  --cargo-color-brand-light-text-hover: var(--cargo-color-imperial-80); /** Teks atau link brand saat kursor di atasnya. */
+  --cargo-color-brand-light-border: var(--cargo-color-imperial-70); /** Garis brand: elemen terpilih dan cincin fokus. */
+  --cargo-color-brand-dark-fill: var(--cargo-color-imperial-70); /** Isi warna brand di mode Dark: tombol utama, toggle aktif, elemen terpilih. */
+  --cargo-color-brand-dark-fill-hover: var(--cargo-color-imperial-60); /** Isi brand di mode Dark saat kursor di atasnya. */
+  --cargo-color-brand-dark-fill-pressed: var(--cargo-color-imperial-50); /** Isi brand di mode Dark saat ditekan. */
+  --cargo-color-brand-dark-fill-subtle: var(--cargo-color-imperial-90); /** Latar brand yang lembut di mode Dark: chip atau item terpilih. */
+  --cargo-color-brand-dark-on-fill: var(--cargo-color-white); /** Teks dan ikon di atas isi brand di mode Dark. */
+  --cargo-color-brand-dark-text: var(--cargo-color-imperial-70); /** Teks dan link berwarna brand di atas latar gelap. */
+  --cargo-color-brand-dark-text-hover: var(--cargo-color-imperial-60); /** Teks atau link brand di mode Dark saat kursor di atasnya. */
+  --cargo-color-brand-dark-border: var(--cargo-color-imperial-70); /** Garis brand di mode Dark: elemen terpilih dan cincin fokus. */
+}
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --cargo-color-bg-default: var(--cargo-color-white); /** Latar halaman, kartu, dan modal. */
+  --cargo-color-bg-secondary: var(--cargo-color-neutral-20); /** Latar bagian yang dibedakan, misalnya sidebar. */
+  --cargo-color-bg-tertiary: var(--cargo-color-neutral-30); /** Latar lapis ketiga, misalnya hover pada daftar. */
+  --cargo-color-bg-disabled: var(--cargo-color-neutral-40); /** Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. */
+  --cargo-color-bg-inverse: var(--cargo-color-neutral-100); /** Latar yang berlawanan dengan bg/default (gelap di mode Light, terang di mode Dark): tooltip dan snackbar. Teks di atasnya: text/inverse. */
+  --cargo-color-bg-error: var(--cargo-color-red-70); /** Tombol hapus dan badge error. Teks di atasnya: text/on-error. */
+  --cargo-color-bg-error-hover: var(--cargo-color-red-80); /** Tombol hapus saat kursor di atasnya. */
+  --cargo-color-bg-error-pressed: var(--cargo-color-red-90); /** Tombol hapus saat ditekan. */
+  --cargo-color-bg-error-subtle: var(--cargo-color-red-10); /** Latar pesan error. Teks di atasnya: text/error. */
+  --cargo-color-bg-success: var(--cargo-color-green-80); /** Badge sukses. Teks di atasnya: text/on-success. */
+  --cargo-color-bg-success-subtle: var(--cargo-color-green-10); /** Latar pesan sukses. Teks di atasnya: text/success. */
+  --cargo-color-bg-warning: var(--cargo-color-yellow-70); /** Badge peringatan. Teks di atasnya: text/on-warning (gelap). */
+  --cargo-color-bg-warning-subtle: var(--cargo-color-yellow-10); /** Latar pesan peringatan. Teks di atasnya: text/warning. */
+  --cargo-color-bg-info: var(--cargo-color-blue-70); /** Badge informasi. Teks di atasnya: text/on-info. */
+  --cargo-color-bg-info-subtle: var(--cargo-color-blue-10); /** Latar pesan informasi. Teks di atasnya: text/info. */
+  --cargo-color-text-default: var(--cargo-color-neutral-100); /** Teks utama: judul dan isi. */
+  --cargo-color-text-secondary: var(--cargo-color-neutral-90); /** Teks pendukung: subjudul dan label. */
+  --cargo-color-text-tertiary: var(--cargo-color-neutral-80); /** Teks paling lembut yang masih terbaca: placeholder dan keterangan. */
+  --cargo-color-text-disabled: var(--cargo-color-neutral-60); /** Teks komponen yang tidak aktif (tidak wajib memenuhi kontras). */
+  --cargo-color-text-inverse: var(--cargo-color-white); /** Teks di atas bg/inverse. */
+  --cargo-color-text-on-error: var(--cargo-color-white); /** Teks di atas bg/error. */
+  --cargo-color-text-on-success: var(--cargo-color-white); /** Teks di atas bg/success. */
+  --cargo-color-text-on-warning: var(--cargo-color-neutral-100); /** Teks di atas bg/warning. Gelap, karena teks putih tidak terbaca di atas kuning. */
+  --cargo-color-text-on-info: var(--cargo-color-white); /** Teks di atas bg/info. */
+  --cargo-color-text-error: var(--cargo-color-red-80); /** Pesan error, misalnya teks validasi di bawah input. */
+  --cargo-color-text-success: var(--cargo-color-green-80); /** Pesan sukses. */
+  --cargo-color-text-warning: var(--cargo-color-yellow-90); /** Pesan peringatan. */
+  --cargo-color-text-info: var(--cargo-color-blue-70); /** Pesan informasi. */
+  --cargo-color-icon-default: var(--cargo-color-neutral-100); /** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
+  --cargo-color-icon-secondary: var(--cargo-color-neutral-80); /** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */
+  --cargo-color-icon-disabled: var(--cargo-color-neutral-60); /** Ikon pada komponen yang tidak aktif. */
+  --cargo-color-icon-inverse: var(--cargo-color-white); /** Ikon di atas bg/inverse, misalnya di tooltip atau snackbar. */
+  --cargo-color-icon-error: var(--cargo-color-red-70); /** Ikon error, misalnya tanda seru di pesan error. */
+  --cargo-color-icon-success: var(--cargo-color-green-70); /** Ikon sukses, misalnya tanda centang. */
+  --cargo-color-icon-warning: var(--cargo-color-yellow-80); /** Ikon peringatan, misalnya segitiga bertanda seru. */
+  --cargo-color-icon-info: var(--cargo-color-blue-60); /** Ikon informasi, misalnya ikon huruf i di pesan info. */
+  --cargo-color-border-subtle: var(--cargo-color-neutral-40); /** Garis pemisah yang sangat halus, misalnya di antara item daftar. Dekoratif. */
+  --cargo-color-border-default: var(--cargo-color-neutral-50); /** Garis kartu dan pembatas bagian. Dekoratif, jangan jadi satu-satunya penanda batas input. */
+  --cargo-color-border-strong: var(--cargo-color-neutral-80); /** Garis input, checkbox, dan kontrol lain yang harus terlihat jelas. */
+  --cargo-color-border-disabled: var(--cargo-color-neutral-60); /** Garis komponen yang tidak aktif. */
+  --cargo-color-border-error: var(--cargo-color-red-70); /** Garis input yang error. */
+  --cargo-color-border-success: var(--cargo-color-green-70); /** Garis input yang valid. */
+  --cargo-color-border-warning: var(--cargo-color-yellow-80); /** Garis input dengan peringatan. */
+  --cargo-color-border-info: var(--cargo-color-blue-60); /** Garis kotak informasi. */
+  --cargo-color-bg-brand: var(--cargo-color-brand-light-fill); /** Tombol utama dan elemen brand. Teks di atasnya: text/on-brand. */
+  --cargo-color-bg-brand-hover: var(--cargo-color-brand-light-fill-hover); /** Tombol utama saat kursor di atasnya. */
+  --cargo-color-bg-brand-pressed: var(--cargo-color-brand-light-fill-pressed); /** Tombol utama saat ditekan. */
+  --cargo-color-bg-brand-subtle: var(--cargo-color-brand-light-fill-subtle); /** Latar lembut brand, misalnya item terpilih. Teks di atasnya: text/brand. */
+  --cargo-color-text-brand: var(--cargo-color-brand-light-text); /** Teks berwarna brand, misalnya tab yang aktif. */
+  --cargo-color-text-link: var(--cargo-color-brand-light-text); /** Link di dalam teks. */
+  --cargo-color-text-link-hover: var(--cargo-color-brand-light-text-hover); /** Link saat kursor di atasnya. */
+  --cargo-color-text-on-brand: var(--cargo-color-brand-light-on-fill); /** Teks di atas bg/brand. */
+  --cargo-color-icon-brand: var(--cargo-color-brand-light-text); /** Ikon berwarna brand, misalnya ikon tab yang aktif. */
+  --cargo-color-icon-on-brand: var(--cargo-color-brand-light-on-fill); /** Ikon di atas bg/brand, misalnya ikon panah di tombol Kirim. */
+  --cargo-color-border-brand: var(--cargo-color-brand-light-border); /** Garis elemen terpilih, misalnya kartu terpilih atau tombol outline Batal. */
+  --cargo-color-border-focus: var(--cargo-color-brand-light-border); /** Cincin fokus saat berpindah elemen dengan keyboard. */
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --cargo-color-bg-default: var(--cargo-color-neutral-100);
+  --cargo-color-bg-secondary: var(--cargo-color-black);
+  --cargo-color-bg-tertiary: var(--cargo-color-neutral-90);
+  --cargo-color-bg-disabled: var(--cargo-color-neutral-90);
+  --cargo-color-bg-inverse: var(--cargo-color-white);
+  --cargo-color-bg-error: var(--cargo-color-red-70);
+  --cargo-color-bg-error-hover: var(--cargo-color-red-80);
+  --cargo-color-bg-error-pressed: var(--cargo-color-red-90);
+  --cargo-color-bg-error-subtle: var(--cargo-color-red-100);
+  --cargo-color-bg-success: var(--cargo-color-green-80);
+  --cargo-color-bg-success-subtle: var(--cargo-color-green-100);
+  --cargo-color-bg-warning: var(--cargo-color-yellow-70);
+  --cargo-color-bg-warning-subtle: var(--cargo-color-yellow-100);
+  --cargo-color-bg-info: var(--cargo-color-blue-70);
+  --cargo-color-bg-info-subtle: var(--cargo-color-blue-100);
+  --cargo-color-text-default: var(--cargo-color-white);
+  --cargo-color-text-secondary: var(--cargo-color-neutral-40);
+  --cargo-color-text-tertiary: var(--cargo-color-neutral-50);
+  --cargo-color-text-disabled: var(--cargo-color-neutral-70);
+  --cargo-color-text-inverse: var(--cargo-color-neutral-100);
+  --cargo-color-text-on-error: var(--cargo-color-white);
+  --cargo-color-text-on-success: var(--cargo-color-white);
+  --cargo-color-text-on-warning: var(--cargo-color-neutral-100);
+  --cargo-color-text-on-info: var(--cargo-color-white);
+  --cargo-color-text-error: var(--cargo-color-red-40);
+  --cargo-color-text-success: var(--cargo-color-green-50);
+  --cargo-color-text-warning: var(--cargo-color-yellow-60);
+  --cargo-color-text-info: var(--cargo-color-blue-30);
+  --cargo-color-icon-default: var(--cargo-color-white);
+  --cargo-color-icon-secondary: var(--cargo-color-neutral-50);
+  --cargo-color-icon-disabled: var(--cargo-color-neutral-70);
+  --cargo-color-icon-inverse: var(--cargo-color-neutral-100);
+  --cargo-color-icon-error: var(--cargo-color-red-50);
+  --cargo-color-icon-success: var(--cargo-color-green-60);
+  --cargo-color-icon-warning: var(--cargo-color-yellow-70);
+  --cargo-color-icon-info: var(--cargo-color-blue-40);
+  --cargo-color-border-subtle: var(--cargo-color-neutral-90);
+  --cargo-color-border-default: var(--cargo-color-neutral-80);
+  --cargo-color-border-strong: var(--cargo-color-neutral-60);
+  --cargo-color-border-disabled: var(--cargo-color-neutral-70);
+  --cargo-color-border-error: var(--cargo-color-red-50);
+  --cargo-color-border-success: var(--cargo-color-green-60);
+  --cargo-color-border-warning: var(--cargo-color-yellow-70);
+  --cargo-color-border-info: var(--cargo-color-blue-40);
+  --cargo-color-bg-brand: var(--cargo-color-brand-dark-fill);
+  --cargo-color-bg-brand-hover: var(--cargo-color-brand-dark-fill-hover);
+  --cargo-color-bg-brand-pressed: var(--cargo-color-brand-dark-fill-pressed);
+  --cargo-color-bg-brand-subtle: var(--cargo-color-brand-dark-fill-subtle);
+  --cargo-color-text-brand: var(--cargo-color-brand-dark-text);
+  --cargo-color-text-link: var(--cargo-color-brand-dark-text);
+  --cargo-color-text-link-hover: var(--cargo-color-brand-dark-text-hover);
+  --cargo-color-text-on-brand: var(--cargo-color-brand-dark-on-fill);
+  --cargo-color-icon-brand: var(--cargo-color-brand-dark-text);
+  --cargo-color-icon-on-brand: var(--cargo-color-brand-dark-on-fill);
+  --cargo-color-border-brand: var(--cargo-color-brand-dark-border);
+  --cargo-color-border-focus: var(--cargo-color-brand-dark-border);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --cargo-color-bg-default: var(--cargo-color-neutral-100);
+    --cargo-color-bg-secondary: var(--cargo-color-black);
+    --cargo-color-bg-tertiary: var(--cargo-color-neutral-90);
+    --cargo-color-bg-disabled: var(--cargo-color-neutral-90);
+    --cargo-color-bg-inverse: var(--cargo-color-white);
+    --cargo-color-bg-error: var(--cargo-color-red-70);
+    --cargo-color-bg-error-hover: var(--cargo-color-red-80);
+    --cargo-color-bg-error-pressed: var(--cargo-color-red-90);
+    --cargo-color-bg-error-subtle: var(--cargo-color-red-100);
+    --cargo-color-bg-success: var(--cargo-color-green-80);
+    --cargo-color-bg-success-subtle: var(--cargo-color-green-100);
+    --cargo-color-bg-warning: var(--cargo-color-yellow-70);
+    --cargo-color-bg-warning-subtle: var(--cargo-color-yellow-100);
+    --cargo-color-bg-info: var(--cargo-color-blue-70);
+    --cargo-color-bg-info-subtle: var(--cargo-color-blue-100);
+    --cargo-color-text-default: var(--cargo-color-white);
+    --cargo-color-text-secondary: var(--cargo-color-neutral-40);
+    --cargo-color-text-tertiary: var(--cargo-color-neutral-50);
+    --cargo-color-text-disabled: var(--cargo-color-neutral-70);
+    --cargo-color-text-inverse: var(--cargo-color-neutral-100);
+    --cargo-color-text-on-error: var(--cargo-color-white);
+    --cargo-color-text-on-success: var(--cargo-color-white);
+    --cargo-color-text-on-warning: var(--cargo-color-neutral-100);
+    --cargo-color-text-on-info: var(--cargo-color-white);
+    --cargo-color-text-error: var(--cargo-color-red-40);
+    --cargo-color-text-success: var(--cargo-color-green-50);
+    --cargo-color-text-warning: var(--cargo-color-yellow-60);
+    --cargo-color-text-info: var(--cargo-color-blue-30);
+    --cargo-color-icon-default: var(--cargo-color-white);
+    --cargo-color-icon-secondary: var(--cargo-color-neutral-50);
+    --cargo-color-icon-disabled: var(--cargo-color-neutral-70);
+    --cargo-color-icon-inverse: var(--cargo-color-neutral-100);
+    --cargo-color-icon-error: var(--cargo-color-red-50);
+    --cargo-color-icon-success: var(--cargo-color-green-60);
+    --cargo-color-icon-warning: var(--cargo-color-yellow-70);
+    --cargo-color-icon-info: var(--cargo-color-blue-40);
+    --cargo-color-border-subtle: var(--cargo-color-neutral-90);
+    --cargo-color-border-default: var(--cargo-color-neutral-80);
+    --cargo-color-border-strong: var(--cargo-color-neutral-60);
+    --cargo-color-border-disabled: var(--cargo-color-neutral-70);
+    --cargo-color-border-error: var(--cargo-color-red-50);
+    --cargo-color-border-success: var(--cargo-color-green-60);
+    --cargo-color-border-warning: var(--cargo-color-yellow-70);
+    --cargo-color-border-info: var(--cargo-color-blue-40);
+    --cargo-color-bg-brand: var(--cargo-color-brand-dark-fill);
+    --cargo-color-bg-brand-hover: var(--cargo-color-brand-dark-fill-hover);
+    --cargo-color-bg-brand-pressed: var(--cargo-color-brand-dark-fill-pressed);
+    --cargo-color-bg-brand-subtle: var(--cargo-color-brand-dark-fill-subtle);
+    --cargo-color-text-brand: var(--cargo-color-brand-dark-text);
+    --cargo-color-text-link: var(--cargo-color-brand-dark-text);
+    --cargo-color-text-link-hover: var(--cargo-color-brand-dark-text-hover);
+    --cargo-color-text-on-brand: var(--cargo-color-brand-dark-on-fill);
+    --cargo-color-icon-brand: var(--cargo-color-brand-dark-text);
+    --cargo-color-icon-on-brand: var(--cargo-color-brand-dark-on-fill);
+    --cargo-color-border-brand: var(--cargo-color-brand-dark-border);
+    --cargo-color-border-focus: var(--cargo-color-brand-dark-border);
+  }
+}

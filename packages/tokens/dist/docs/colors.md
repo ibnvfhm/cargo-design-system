@@ -11,6 +11,8 @@ Kolom "Teks kecil" menunjukkan warna teks yang mencapai kontras 4.5:1 (WCAG AA) 
 
 ## neutral
 
+System: Neutral
+
 | Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
 |---|---|---|---|---|
 | `color.neutral.10` | `#FFFFFF` | 1.0 | 16.1 | gelap |
@@ -25,6 +27,8 @@ Kolom "Teks kecil" menunjukkan warna teks yang mencapai kontras 4.5:1 (WCAG AA) 
 | `color.neutral.100` | `#212121` | 16.1 | 1.0 | putih |
 
 ## yellow
+
+System: Warning
 
 | Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
 |---|---|---|---|---|
@@ -41,6 +45,8 @@ Kolom "Teks kecil" menunjukkan warna teks yang mencapai kontras 4.5:1 (WCAG AA) 
 
 ## red
 
+System: Danger
+
 | Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
 |---|---|---|---|---|
 | `color.red.10` | `#FFE1E1` | 1.2 | 13.1 | gelap |
@@ -55,6 +61,8 @@ Kolom "Teks kecil" menunjukkan warna teks yang mencapai kontras 4.5:1 (WCAG AA) 
 | `color.red.100` | `#560000` | 15.0 | 1.1 | putih |
 
 ## green
+
+System: Success
 
 | Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
 |---|---|---|---|---|
@@ -71,6 +79,8 @@ Kolom "Teks kecil" menunjukkan warna teks yang mencapai kontras 4.5:1 (WCAG AA) 
 
 ## blue
 
+System: Info
+
 | Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
 |---|---|---|---|---|
 | `color.blue.10` | `#EDF5FE` | 1.1 | 14.6 | gelap |
@@ -85,6 +95,8 @@ Kolom "Teks kecil" menunjukkan warna teks yang mencapai kontras 4.5:1 (WCAG AA) 
 | `color.blue.100` | `#052141` | 16.1 | 1.0 | putih |
 
 ## purple
+
+System: Purple (other)
 
 | Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
 |---|---|---|---|---|
@@ -101,6 +113,8 @@ Kolom "Teks kecil" menunjukkan warna teks yang mencapai kontras 4.5:1 (WCAG AA) 
 
 ## imperial
 
+Brand: UIC
+
 | Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
 |---|---|---|---|---|
 | `color.imperial.10` | `#E3EEFF` | 1.2 | 13.8 | gelap |
@@ -115,6 +129,8 @@ Kolom "Teks kecil" menunjukkan warna teks yang mencapai kontras 4.5:1 (WCAG AA) 
 | `color.imperial.100` | `#000A18` | 19.9 | 1.2 | putih |
 
 ## grape
+
+Brand: INTI
 
 | Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
 |---|---|---|---|---|
@@ -131,6 +147,8 @@ Kolom "Teks kecil" menunjukkan warna teks yang mencapai kontras 4.5:1 (WCAG AA) 
 
 ## fuchsia
 
+Brand: InMeterai
+
 | Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
 |---|---|---|---|---|
 | `color.fuchsia.10` | `#FEE5EC` | 1.2 | 13.5 | gelap |
@@ -146,6 +164,8 @@ Kolom "Teks kecil" menunjukkan warna teks yang mencapai kontras 4.5:1 (WCAG AA) 
 
 ## tosca
 
+Brand: InCivas
+
 | Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
 |---|---|---|---|---|
 | `color.tosca.10` | `#D4FDFB` | 1.1 | 14.8 | gelap |
@@ -160,6 +180,8 @@ Kolom "Teks kecil" menunjukkan warna teks yang mencapai kontras 4.5:1 (WCAG AA) 
 | `color.tosca.100` | `#010D0D` | 19.7 | 1.2 | putih |
 
 ## sea
+
+Brand: InCustoms
 
 | Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
 |---|---|---|---|---|

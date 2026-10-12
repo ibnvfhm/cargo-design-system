@@ -1,6 +1,6 @@
 
 //
-// CargoTokens.swift
+// CargoTokensLight.swift
 //
 
 // Jangan edit file ini langsung.
@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-public enum CargoTokens {
+public enum CargoTokensLight {
     public static let colorWhite = Color(red: 1.000, green: 1.000, blue: 1.000, opacity: 1)
     public static let colorBlack = Color(red: 0.000, green: 0.000, blue: 0.000, opacity: 1) /** Hitam murni, misalnya untuk overlay dan bayangan. Teks utama memakai neutral.100 (#212121). */
     public static let colorNeutral10 = Color(red: 1.000, green: 1.000, blue: 1.000, opacity: 1)
@@ -122,19 +122,19 @@ public enum CargoTokens {
     public static let colorSea80 = Color(red: 0.008, green: 0.180, blue: 0.443, opacity: 1)
     public static let colorSea90 = Color(red: 0.004, green: 0.110, blue: 0.267, opacity: 1)
     public static let colorSea100 = Color(red: 0.004, green: 0.071, blue: 0.176, opacity: 1)
-    public static let colorBrandFill = colorImperial70 /** Isi warna brand: tombol utama, toggle aktif, elemen terpilih. */
-    public static let colorBrandFillHover = colorImperial80 /** Isi brand saat kursor di atasnya. */
-    public static let colorBrandFillPressed = colorImperial90 /** Isi brand saat ditekan. */
-    public static let colorBrandFillSubtle = colorImperial10 /** Latar brand yang lembut: chip atau item terpilih. */
-    public static let colorBrandOnFill = colorWhite /** Teks dan ikon di atas isi brand. */
-    public static let colorBrandText = colorImperial70 /** Teks dan link berwarna brand di atas latar terang. */
-    public static let colorBrandTextHover = colorImperial80 /** Teks atau link brand saat kursor di atasnya. */
-    public static let colorBrandBorder = colorImperial70 /** Garis brand: elemen terpilih dan cincin fokus. */
+    public static let colorBrandLightFill = colorTosca50 /** Isi warna brand: tombol utama, toggle aktif, elemen terpilih. */
+    public static let colorBrandLightFillHover = colorTosca60 /** Isi brand saat kursor di atasnya. */
+    public static let colorBrandLightFillPressed = colorTosca70 /** Isi brand saat ditekan. */
+    public static let colorBrandLightFillSubtle = colorTosca10 /** Latar brand yang lembut: chip atau item terpilih. */
+    public static let colorBrandLightOnFill = colorWhite /** Teks dan ikon di atas isi brand. */
+    public static let colorBrandLightText = colorTosca50 /** Teks dan link berwarna brand di atas latar terang. */
+    public static let colorBrandLightTextHover = colorTosca60 /** Teks atau link brand saat kursor di atasnya. */
+    public static let colorBrandLightBorder = colorTosca50 /** Garis brand: elemen terpilih dan cincin fokus. */
     public static let colorBgDefault = colorWhite /** Latar halaman, kartu, dan modal. */
     public static let colorBgSecondary = colorNeutral20 /** Latar bagian yang dibedakan, misalnya sidebar. */
     public static let colorBgTertiary = colorNeutral30 /** Latar lapis ketiga, misalnya hover pada daftar. */
     public static let colorBgDisabled = colorNeutral40 /** Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. */
-    public static let colorBgInverse = colorNeutral100 /** Latar gelap: tooltip dan snackbar. Teks di atasnya: text/inverse. */
+    public static let colorBgInverse = colorNeutral100 /** Latar yang berlawanan dengan bg/default (gelap di mode Light, terang di mode Dark): tooltip dan snackbar. Teks di atasnya: text/inverse. */
     public static let colorBgError = colorRed70 /** Tombol hapus dan badge error. Teks di atasnya: text/on-error. */
     public static let colorBgErrorHover = colorRed80 /** Tombol hapus saat kursor di atasnya. */
     public static let colorBgErrorPressed = colorRed90 /** Tombol hapus saat ditekan. */
@@ -161,7 +161,7 @@ public enum CargoTokens {
     public static let colorIconDefault = colorNeutral100 /** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
     public static let colorIconSecondary = colorNeutral80 /** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */
     public static let colorIconDisabled = colorNeutral60 /** Ikon pada komponen yang tidak aktif. */
-    public static let colorIconInverse = colorWhite /** Ikon di atas latar gelap bg/inverse, misalnya di tooltip atau snackbar. */
+    public static let colorIconInverse = colorWhite /** Ikon di atas bg/inverse, misalnya di tooltip atau snackbar. */
     public static let colorIconError = colorRed70 /** Ikon error, misalnya tanda seru di pesan error. */
     public static let colorIconSuccess = colorGreen70 /** Ikon sukses, misalnya tanda centang. */
     public static let colorIconWarning = colorYellow80 /** Ikon peringatan, misalnya segitiga bertanda seru. */
@@ -174,16 +174,16 @@ public enum CargoTokens {
     public static let colorBorderSuccess = colorGreen70 /** Garis input yang valid. */
     public static let colorBorderWarning = colorYellow80 /** Garis input dengan peringatan. */
     public static let colorBorderInfo = colorBlue60 /** Garis kotak informasi. */
-    public static let colorBgBrand = colorBrandFill /** Tombol utama dan elemen brand. Teks di atasnya: text/on-brand. */
-    public static let colorBgBrandHover = colorBrandFillHover /** Tombol utama saat kursor di atasnya. */
-    public static let colorBgBrandPressed = colorBrandFillPressed /** Tombol utama saat ditekan. */
-    public static let colorBgBrandSubtle = colorBrandFillSubtle /** Latar lembut brand, misalnya item terpilih. Teks di atasnya: text/brand. */
-    public static let colorTextBrand = colorBrandText /** Teks berwarna brand, misalnya tab yang aktif. */
-    public static let colorTextLink = colorBrandText /** Link di dalam teks. */
-    public static let colorTextLinkHover = colorBrandTextHover /** Link saat kursor di atasnya. */
-    public static let colorTextOnBrand = colorBrandOnFill /** Teks di atas bg/brand. */
-    public static let colorIconBrand = colorBrandText /** Ikon berwarna brand, misalnya ikon tab yang aktif. */
-    public static let colorIconOnBrand = colorBrandOnFill /** Ikon di atas bg/brand, misalnya ikon panah di tombol Kirim. */
-    public static let colorBorderBrand = colorBrandBorder /** Garis elemen terpilih, misalnya kartu terpilih atau tombol outline Batal. */
-    public static let colorBorderFocus = colorBrandBorder /** Cincin fokus saat berpindah elemen dengan keyboard. */
+    public static let colorBgBrand = colorBrandLightFill /** Tombol utama dan elemen brand. Teks di atasnya: text/on-brand. */
+    public static let colorBgBrandHover = colorBrandLightFillHover /** Tombol utama saat kursor di atasnya. */
+    public static let colorBgBrandPressed = colorBrandLightFillPressed /** Tombol utama saat ditekan. */
+    public static let colorBgBrandSubtle = colorBrandLightFillSubtle /** Latar lembut brand, misalnya item terpilih. Teks di atasnya: text/brand. */
+    public static let colorTextBrand = colorBrandLightText /** Teks berwarna brand, misalnya tab yang aktif. */
+    public static let colorTextLink = colorBrandLightText /** Link di dalam teks. */
+    public static let colorTextLinkHover = colorBrandLightTextHover /** Link saat kursor di atasnya. */
+    public static let colorTextOnBrand = colorBrandLightOnFill /** Teks di atas bg/brand. */
+    public static let colorIconBrand = colorBrandLightText /** Ikon berwarna brand, misalnya ikon tab yang aktif. */
+    public static let colorIconOnBrand = colorBrandLightOnFill /** Ikon di atas bg/brand, misalnya ikon panah di tombol Kirim. */
+    public static let colorBorderBrand = colorBrandLightBorder /** Garis elemen terpilih, misalnya kartu terpilih atau tombol outline Batal. */
+    public static let colorBorderFocus = colorBrandLightBorder /** Cincin fokus saat berpindah elemen dengan keyboard. */
 }

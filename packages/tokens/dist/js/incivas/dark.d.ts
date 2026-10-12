@@ -116,22 +116,22 @@ export const ColorSea70: string;
 export const ColorSea80: string;
 export const ColorSea90: string;
 export const ColorSea100: string;
-/** Isi warna brand: tombol utama, toggle aktif, elemen terpilih. */
-export const ColorBrandFill: string;
-/** Isi brand saat kursor di atasnya. */
-export const ColorBrandFillHover: string;
-/** Isi brand saat ditekan. */
-export const ColorBrandFillPressed: string;
-/** Latar brand yang lembut: chip atau item terpilih. */
-export const ColorBrandFillSubtle: string;
-/** Teks dan ikon di atas isi brand. */
-export const ColorBrandOnFill: string;
-/** Teks dan link berwarna brand di atas latar terang. */
-export const ColorBrandText: string;
-/** Teks atau link brand saat kursor di atasnya. */
-export const ColorBrandTextHover: string;
-/** Garis brand: elemen terpilih dan cincin fokus. */
-export const ColorBrandBorder: string;
+/** Isi warna brand di mode Dark: tombol utama, toggle aktif, elemen terpilih. */
+export const ColorBrandDarkFill: string;
+/** Isi brand di mode Dark saat kursor di atasnya. */
+export const ColorBrandDarkFillHover: string;
+/** Isi brand di mode Dark saat ditekan. */
+export const ColorBrandDarkFillPressed: string;
+/** Latar brand yang lembut di mode Dark: chip atau item terpilih. */
+export const ColorBrandDarkFillSubtle: string;
+/** Teks dan ikon di atas isi brand di mode Dark. */
+export const ColorBrandDarkOnFill: string;
+/** Teks dan link berwarna brand di atas latar gelap. */
+export const ColorBrandDarkText: string;
+/** Teks atau link brand di mode Dark saat kursor di atasnya. */
+export const ColorBrandDarkTextHover: string;
+/** Garis brand di mode Dark: elemen terpilih dan cincin fokus. */
+export const ColorBrandDarkBorder: string;
 /** Latar halaman, kartu, dan modal. */
 export const ColorBgDefault: string;
 /** Latar bagian yang dibedakan, misalnya sidebar. */
@@ -140,7 +140,7 @@ export const ColorBgSecondary: string;
 export const ColorBgTertiary: string;
 /** Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. */
 export const ColorBgDisabled: string;
-/** Latar gelap: tooltip dan snackbar. Teks di atasnya: text/inverse. */
+/** Latar yang berlawanan dengan bg/default (gelap di mode Light, terang di mode Dark): tooltip dan snackbar. Teks di atasnya: text/inverse. */
 export const ColorBgInverse: string;
 /** Tombol utama dan elemen brand. Teks di atasnya: text/on-brand. */
 export const ColorBgBrand: string;
@@ -210,7 +210,7 @@ export const ColorIconDefault: string;
 export const ColorIconSecondary: string;
 /** Ikon pada komponen yang tidak aktif. */
 export const ColorIconDisabled: string;
-/** Ikon di atas latar gelap bg/inverse, misalnya di tooltip atau snackbar. */
+/** Ikon di atas bg/inverse, misalnya di tooltip atau snackbar. */
 export const ColorIconInverse: string;
 /** Ikon berwarna brand, misalnya ikon tab yang aktif. */
 export const ColorIconBrand: string;

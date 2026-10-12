@@ -140,7 +140,7 @@
       "100": { "$value": "#010D0D" }
     },
     "sea": {
-      "$description": "Brand: InCustom",
+      "$description": "Brand: InCustoms",
       "10": { "$value": "#F2F7FF" },
       "20": { "$value": "#D7E7FE" },
       "30": { "$value": "#A2C7FE" },
