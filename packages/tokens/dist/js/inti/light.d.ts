@@ -170,6 +170,10 @@ export const ColorBgWarningSubtle: string;
 export const ColorBgInfo: string;
 /** Latar pesan informasi. Teks di atasnya: text/info. */
 export const ColorBgInfoSubtle: string;
+/** Badge kategori lain (ungu). Teks di atasnya: text/on-accent. */
+export const ColorBgAccent: string;
+/** Latar penanda kategori lain (ungu), misalnya badge Accent. Teks di atasnya: text/accent. */
+export const ColorBgAccentSubtle: string;
 /** Teks utama: judul, isi, dan label form. */
 export const ColorTextDefault: string;
 /** Teks pendukung: subjudul dan informasi tambahan, misalnya tanggal di kartu. */
@@ -204,6 +208,10 @@ export const ColorTextSuccess: string;
 export const ColorTextWarning: string;
 /** Pesan informasi. */
 export const ColorTextInfo: string;
+/** Teks penanda kategori lain (ungu). */
+export const ColorTextAccent: string;
+/** Teks di atas bg/accent. */
+export const ColorTextOnAccent: string;
 /** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
 export const ColorIconDefault: string;
 /** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */
@@ -224,6 +232,18 @@ export const ColorIconSuccess: string;
 export const ColorIconWarning: string;
 /** Ikon informasi, misalnya ikon huruf i di pesan info. */
 export const ColorIconInfo: string;
+/** Ikon di atas bg/error, misalnya ikon di tombol Danger. */
+export const ColorIconOnError: string;
+/** Ikon di atas bg/success. */
+export const ColorIconOnSuccess: string;
+/** Ikon di atas bg/warning. */
+export const ColorIconOnWarning: string;
+/** Ikon di atas bg/info. */
+export const ColorIconOnInfo: string;
+/** Ikon penanda kategori lain (ungu). */
+export const ColorIconAccent: string;
+/** Ikon di atas bg/accent. */
+export const ColorIconOnAccent: string;
 /** Garis pemisah yang sangat halus, misalnya di antara item daftar. Dekoratif. */
 export const ColorBorderSubtle: string;
 /** Garis kartu dan pembatas bagian. Dekoratif, jangan jadi satu-satunya penanda batas input. */

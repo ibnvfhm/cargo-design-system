@@ -148,6 +148,8 @@ class CargoTokensLight {
     static const colorBgWarningSubtle = colorYellow10; /** Latar pesan peringatan. Teks di atasnya: text/warning. */
     static const colorBgInfo = colorBlue70; /** Badge informasi. Teks di atasnya: text/on-info. */
     static const colorBgInfoSubtle = colorBlue10; /** Latar pesan informasi. Teks di atasnya: text/info. */
+    static const colorBgAccent = colorPurple50; /** Badge kategori lain (ungu). Teks di atasnya: text/on-accent. */
+    static const colorBgAccentSubtle = colorPurple10; /** Latar penanda kategori lain (ungu), misalnya badge Accent. Teks di atasnya: text/accent. */
     static const colorTextDefault = colorNeutral100; /** Teks utama: judul, isi, dan label form. */
     static const colorTextSecondary = colorNeutral90; /** Teks pendukung: subjudul dan informasi tambahan, misalnya tanggal di kartu. */
     static const colorTextTertiary = colorNeutral80; /** Teks paling lembut yang masih terbaca: placeholder, keterangan, dan penghitung karakter. */
@@ -161,6 +163,8 @@ class CargoTokensLight {
     static const colorTextSuccess = colorGreen80; /** Pesan sukses. */
     static const colorTextWarning = colorYellow90; /** Pesan peringatan. */
     static const colorTextInfo = colorBlue70; /** Pesan informasi. */
+    static const colorTextAccent = colorPurple50; /** Teks penanda kategori lain (ungu). */
+    static const colorTextOnAccent = colorWhite; /** Teks di atas bg/accent. */
     static const colorIconDefault = colorNeutral100; /** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
     static const colorIconSecondary = colorNeutral80; /** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */
     static const colorIconDisabled = colorNeutral60; /** Ikon pada komponen yang tidak aktif. */
@@ -169,6 +173,12 @@ class CargoTokensLight {
     static const colorIconSuccess = colorGreen70; /** Ikon sukses, misalnya tanda centang. */
     static const colorIconWarning = colorYellow80; /** Ikon peringatan, misalnya segitiga bertanda seru. */
     static const colorIconInfo = colorBlue60; /** Ikon informasi, misalnya ikon huruf i di pesan info. */
+    static const colorIconOnError = colorWhite; /** Ikon di atas bg/error, misalnya ikon di tombol Danger. */
+    static const colorIconOnSuccess = colorWhite; /** Ikon di atas bg/success. */
+    static const colorIconOnWarning = colorNeutral100; /** Ikon di atas bg/warning. */
+    static const colorIconOnInfo = colorWhite; /** Ikon di atas bg/info. */
+    static const colorIconAccent = colorPurple50; /** Ikon penanda kategori lain (ungu). */
+    static const colorIconOnAccent = colorWhite; /** Ikon di atas bg/accent. */
     static const colorBorderSubtle = colorNeutral40; /** Garis pemisah yang sangat halus, misalnya di antara item daftar. Dekoratif. */
     static const colorBorderDefault = colorNeutral50; /** Garis kartu dan pembatas bagian. Dekoratif, jangan jadi satu-satunya penanda batas input. */
     static const colorBorderStrong = colorNeutral80; /** Garis input, checkbox, dan kontrol lain yang harus terlihat jelas. */

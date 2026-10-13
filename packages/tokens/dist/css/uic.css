@@ -221,6 +221,8 @@
   --cargo-color-bg-warning-subtle: var(--cargo-color-yellow-10); /** Latar pesan peringatan. Teks di atasnya: text/warning. */
   --cargo-color-bg-info: var(--cargo-color-blue-70); /** Badge informasi. Teks di atasnya: text/on-info. */
   --cargo-color-bg-info-subtle: var(--cargo-color-blue-10); /** Latar pesan informasi. Teks di atasnya: text/info. */
+  --cargo-color-bg-accent: var(--cargo-color-purple-50); /** Badge kategori lain (ungu). Teks di atasnya: text/on-accent. */
+  --cargo-color-bg-accent-subtle: var(--cargo-color-purple-10); /** Latar penanda kategori lain (ungu), misalnya badge Accent. Teks di atasnya: text/accent. */
   --cargo-color-text-default: var(--cargo-color-neutral-100); /** Teks utama: judul, isi, dan label form. */
   --cargo-color-text-secondary: var(--cargo-color-neutral-90); /** Teks pendukung: subjudul dan informasi tambahan, misalnya tanggal di kartu. */
   --cargo-color-text-tertiary: var(--cargo-color-neutral-80); /** Teks paling lembut yang masih terbaca: placeholder, keterangan, dan penghitung karakter. */
@@ -234,6 +236,8 @@
   --cargo-color-text-success: var(--cargo-color-green-80); /** Pesan sukses. */
   --cargo-color-text-warning: var(--cargo-color-yellow-90); /** Pesan peringatan. */
   --cargo-color-text-info: var(--cargo-color-blue-70); /** Pesan informasi. */
+  --cargo-color-text-accent: var(--cargo-color-purple-50); /** Teks penanda kategori lain (ungu). */
+  --cargo-color-text-on-accent: var(--cargo-color-white); /** Teks di atas bg/accent. */
   --cargo-color-icon-default: var(--cargo-color-neutral-100); /** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
   --cargo-color-icon-secondary: var(--cargo-color-neutral-80); /** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */
   --cargo-color-icon-disabled: var(--cargo-color-neutral-60); /** Ikon pada komponen yang tidak aktif. */
@@ -242,6 +246,12 @@
   --cargo-color-icon-success: var(--cargo-color-green-70); /** Ikon sukses, misalnya tanda centang. */
   --cargo-color-icon-warning: var(--cargo-color-yellow-80); /** Ikon peringatan, misalnya segitiga bertanda seru. */
   --cargo-color-icon-info: var(--cargo-color-blue-60); /** Ikon informasi, misalnya ikon huruf i di pesan info. */
+  --cargo-color-icon-on-error: var(--cargo-color-white); /** Ikon di atas bg/error, misalnya ikon di tombol Danger. */
+  --cargo-color-icon-on-success: var(--cargo-color-white); /** Ikon di atas bg/success. */
+  --cargo-color-icon-on-warning: var(--cargo-color-neutral-100); /** Ikon di atas bg/warning. */
+  --cargo-color-icon-on-info: var(--cargo-color-white); /** Ikon di atas bg/info. */
+  --cargo-color-icon-accent: var(--cargo-color-purple-50); /** Ikon penanda kategori lain (ungu). */
+  --cargo-color-icon-on-accent: var(--cargo-color-white); /** Ikon di atas bg/accent. */
   --cargo-color-border-subtle: var(--cargo-color-neutral-40); /** Garis pemisah yang sangat halus, misalnya di antara item daftar. Dekoratif. */
   --cargo-color-border-default: var(--cargo-color-neutral-50); /** Garis kartu dan pembatas bagian. Dekoratif, jangan jadi satu-satunya penanda batas input. */
   --cargo-color-border-strong: var(--cargo-color-neutral-80); /** Garis input, checkbox, dan kontrol lain yang harus terlihat jelas. */
@@ -283,6 +293,8 @@
   --cargo-color-bg-warning-subtle: var(--cargo-color-yellow-100);
   --cargo-color-bg-info: var(--cargo-color-blue-70);
   --cargo-color-bg-info-subtle: var(--cargo-color-blue-100);
+  --cargo-color-bg-accent: var(--cargo-color-purple-50);
+  --cargo-color-bg-accent-subtle: var(--cargo-color-purple-100);
   --cargo-color-text-default: var(--cargo-color-white);
   --cargo-color-text-secondary: var(--cargo-color-neutral-40);
   --cargo-color-text-tertiary: var(--cargo-color-neutral-50);
@@ -296,6 +308,8 @@
   --cargo-color-text-success: var(--cargo-color-green-50);
   --cargo-color-text-warning: var(--cargo-color-yellow-60);
   --cargo-color-text-info: var(--cargo-color-blue-30);
+  --cargo-color-text-accent: var(--cargo-color-purple-30);
+  --cargo-color-text-on-accent: var(--cargo-color-white);
   --cargo-color-icon-default: var(--cargo-color-white);
   --cargo-color-icon-secondary: var(--cargo-color-neutral-50);
   --cargo-color-icon-disabled: var(--cargo-color-neutral-70);
@@ -304,6 +318,12 @@
   --cargo-color-icon-success: var(--cargo-color-green-60);
   --cargo-color-icon-warning: var(--cargo-color-yellow-70);
   --cargo-color-icon-info: var(--cargo-color-blue-40);
+  --cargo-color-icon-on-error: var(--cargo-color-white);
+  --cargo-color-icon-on-success: var(--cargo-color-white);
+  --cargo-color-icon-on-warning: var(--cargo-color-neutral-100);
+  --cargo-color-icon-on-info: var(--cargo-color-white);
+  --cargo-color-icon-accent: var(--cargo-color-purple-30);
+  --cargo-color-icon-on-accent: var(--cargo-color-white);
   --cargo-color-border-subtle: var(--cargo-color-neutral-90);
   --cargo-color-border-default: var(--cargo-color-neutral-80);
   --cargo-color-border-strong: var(--cargo-color-neutral-60);
@@ -346,6 +366,8 @@
     --cargo-color-bg-warning-subtle: var(--cargo-color-yellow-100);
     --cargo-color-bg-info: var(--cargo-color-blue-70);
     --cargo-color-bg-info-subtle: var(--cargo-color-blue-100);
+    --cargo-color-bg-accent: var(--cargo-color-purple-50);
+    --cargo-color-bg-accent-subtle: var(--cargo-color-purple-100);
     --cargo-color-text-default: var(--cargo-color-white);
     --cargo-color-text-secondary: var(--cargo-color-neutral-40);
     --cargo-color-text-tertiary: var(--cargo-color-neutral-50);
@@ -359,6 +381,8 @@
     --cargo-color-text-success: var(--cargo-color-green-50);
     --cargo-color-text-warning: var(--cargo-color-yellow-60);
     --cargo-color-text-info: var(--cargo-color-blue-30);
+    --cargo-color-text-accent: var(--cargo-color-purple-30);
+    --cargo-color-text-on-accent: var(--cargo-color-white);
     --cargo-color-icon-default: var(--cargo-color-white);
     --cargo-color-icon-secondary: var(--cargo-color-neutral-50);
     --cargo-color-icon-disabled: var(--cargo-color-neutral-70);
@@ -367,6 +391,12 @@
     --cargo-color-icon-success: var(--cargo-color-green-60);
     --cargo-color-icon-warning: var(--cargo-color-yellow-70);
     --cargo-color-icon-info: var(--cargo-color-blue-40);
+    --cargo-color-icon-on-error: var(--cargo-color-white);
+    --cargo-color-icon-on-success: var(--cargo-color-white);
+    --cargo-color-icon-on-warning: var(--cargo-color-neutral-100);
+    --cargo-color-icon-on-info: var(--cargo-color-white);
+    --cargo-color-icon-accent: var(--cargo-color-purple-30);
+    --cargo-color-icon-on-accent: var(--cargo-color-white);
     --cargo-color-border-subtle: var(--cargo-color-neutral-90);
     --cargo-color-border-default: var(--cargo-color-neutral-80);
     --cargo-color-border-strong: var(--cargo-color-neutral-60);

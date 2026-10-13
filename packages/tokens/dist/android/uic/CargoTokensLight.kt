@@ -150,6 +150,8 @@ object CargoTokensLight {
   val colorBgWarningSubtle = colorYellow10
   val colorBgInfo = colorBlue70
   val colorBgInfoSubtle = colorBlue10
+  val colorBgAccent = colorPurple50
+  val colorBgAccentSubtle = colorPurple10
   val colorTextDefault = colorNeutral100
   val colorTextSecondary = colorNeutral90
   val colorTextTertiary = colorNeutral80
@@ -167,6 +169,8 @@ object CargoTokensLight {
   val colorTextSuccess = colorGreen80
   val colorTextWarning = colorYellow90
   val colorTextInfo = colorBlue70
+  val colorTextAccent = colorPurple50
+  val colorTextOnAccent = colorWhite
   val colorIconDefault = colorNeutral100
   val colorIconSecondary = colorNeutral80
   val colorIconDisabled = colorNeutral60
@@ -177,6 +181,12 @@ object CargoTokensLight {
   val colorIconSuccess = colorGreen70
   val colorIconWarning = colorYellow80
   val colorIconInfo = colorBlue60
+  val colorIconOnError = colorWhite
+  val colorIconOnSuccess = colorWhite
+  val colorIconOnWarning = colorNeutral100
+  val colorIconOnInfo = colorWhite
+  val colorIconAccent = colorPurple50
+  val colorIconOnAccent = colorWhite
   val colorBorderSubtle = colorNeutral40
   val colorBorderDefault = colorNeutral50
   val colorBorderStrong = colorNeutral80

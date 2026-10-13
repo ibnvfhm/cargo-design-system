@@ -2,15 +2,15 @@
 
 > Dibuat otomatis dari `packages/tokens/src` dan `packages/tokens/lib/pairs.mjs`. Jangan edit file ini langsung.
 
-Setiap teks, ikon, dan garis dicek terhadap latar tempat ia biasa dipakai, untuk setiap brand dan mode. Teks butuh kontras minimal 4.5:1, ikon dan garis minimal 3:1 (WCAG 2.2 AA). Daftar 41 pasangannya ada di `lib/pairs.mjs`.
+Setiap teks, ikon, dan garis dicek terhadap latar tempat ia biasa dipakai, untuk setiap brand dan mode. Teks butuh kontras minimal 4.5:1, ikon dan garis minimal 3:1 (WCAG 2.2 AA). Daftar 50 pasangannya ada di `lib/pairs.mjs`.
 
 | Brand | Light | Dark |
 |---|---|---|
-| UIC | 41 dari 41 lolos | 34 dari 41 lolos |
-| INTI | 41 dari 41 lolos | 33 dari 41 lolos |
-| InMeterai | 35 dari 41 lolos | 38 dari 41 lolos |
-| InCivas | 31 dari 41 lolos | 37 dari 41 lolos |
-| InCustoms | 37 dari 41 lolos | 38 dari 41 lolos |
+| UIC | 50 dari 50 lolos | 43 dari 50 lolos |
+| INTI | 50 dari 50 lolos | 42 dari 50 lolos |
+| InMeterai | 44 dari 50 lolos | 47 dari 50 lolos |
+| InCivas | 40 dari 50 lolos | 46 dari 50 lolos |
+| InCustoms | 46 dari 50 lolos | 47 dari 50 lolos |
 
 ## Di bawah standar
 

@@ -7,12 +7,12 @@ Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](htt
 ### Ditambahkan
 
 - Brand Theme untuk lima brand (`src/brand/`): UIC, INTI, InMeterai, InCivas, dan InCustoms. Setiap brand punya 16 token: `color.brand.light.*` untuk mode Light dan `color.brand.dark.*` untuk mode Dark.
-- 56 token semantic dalam dua mode, `src/semantic/light.json` dan `src/semantic/dark.json`: `color.bg.*` (19), `color.text.*` (17), `color.icon.*` (10), dan `color.border.*` (10). Semuanya alias, dan setiap token punya deskripsi yang sama dengan di Figma.
+- 66 token semantic dalam dua mode, `src/semantic/light.json` dan `src/semantic/dark.json`: `color.bg.*` (21), `color.text.*` (19), `color.icon.*` (16), dan `color.border.*` (10). Semuanya alias, dan setiap token punya deskripsi yang sama dengan di Figma.
 - Hasil build untuk setiap brand: satu file CSS berisi mode Light dan Dark (dipilih dengan `data-theme`, atau otomatis mengikuti setelan sistem), modul JavaScript/TypeScript untuk setiap mode, serta kelas `CargoTokensLight` dan `CargoTokensDark` untuk Flutter, Android (Compose), dan iOS (SwiftUI).
 - Di CSS dan file mobile, token semantic menunjuk ke token lain, misalnya `--cargo-color-bg-brand: var(--cargo-color-brand-light-fill)`.
 - Dokumentasi yang dibuat otomatis: `dist/docs/semantic.md` (Brand Theme semua brand, serta Semantic Light dan Dark) dan `dist/docs/contrast.md` (hasil cek kontras untuk setiap brand dan mode).
 - `contrast-exceptions.json`: 45 pasangan warna yang sengaja dibiarkan di bawah kontras minimum atas keputusan designer.
-- Tes otomatis untuk Brand Theme, Semantic, dan kontras. Untuk setiap brand dan mode, 41 pasangan teks, ikon, dan garis harus mencapai kontras minimum, kecuali pasangan yang dicatat.
+- Tes otomatis untuk Brand Theme, Semantic, dan kontras. Untuk setiap brand dan mode, 50 pasangan teks, ikon, dan garis harus mencapai kontras minimum, kecuali pasangan yang dicatat.
 - Collection Dimension (`src/dimension/`): 16 token spacing (`space.0` sampai `space.128`), 8 token radius (`radius.0` sampai `radius.16`, dan `radius.full` untuk bentuk pil), serta 2 token tebal garis (`border-width.1` dan `border-width.2`). Nama token sama dengan nilainya dalam px, di grid 4px ditambah 2 dan 6.
 - Hasil build untuk Dimension: di CSS ikut di setiap file brand; di JavaScript ada `dist/js/dimension.js`; di Flutter, Android (Compose), dan iOS (SwiftUI) ada kelas `CargoDimension`. Angkanya sama di semua platform (px, dp, pt).
 - Dokumentasi `dist/docs/dimension.md` dan tes skala ukuran.
@@ -23,6 +23,7 @@ Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](htt
 - Cincin fokus (`src/semantic/focus-ring.json`): `focus-ring.default` dan `focus-ring.error`. Warnanya menunjuk ke `color.bg.default`, `color.border.focus`, dan `color.border.error`, jadi ikut brand dan mode.
 - Hasil build shadow: di CSS, shadow ada di setiap file brand dan cincin fokus ikut berganti di mode Dark. Di JavaScript ada `dist/js/shadow.js`, dan cincin fokus ada di file setiap brand. Di mobile ada kelas `CargoShadow`, dengan setiap shadow dipecah menjadi warna, offset, blur, dan spread.
 - Dokumentasi `dist/docs/shadow.md` dan tes shadow.
+- 10 token semantic baru yang dibutuhkan saat memasang token ke Badge (Langkah 5): `color.icon.on-error`, `on-success`, `on-warning`, dan `on-info` untuk ikon di atas latar status (nilainya sama dengan `text/on-…`), serta keluarga `accent` (ungu) untuk penanda kategori lain: `color.bg.accent`, `bg.accent-subtle`, `text.accent`, `text.on-accent`, `icon.accent`, dan `icon.on-accent`. Semuanya lolos tes kontras.
 
 ### Diubah
 

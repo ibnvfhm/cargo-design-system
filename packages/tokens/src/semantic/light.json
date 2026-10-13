@@ -78,6 +78,14 @@
       "info-subtle": {
         "$value": "{color.blue.10}",
         "$description": "Latar pesan informasi. Teks di atasnya: text/info."
+      },
+      "accent": {
+        "$value": "{color.purple.50}",
+        "$description": "Badge kategori lain (ungu). Teks di atasnya: text/on-accent."
+      },
+      "accent-subtle": {
+        "$value": "{color.purple.10}",
+        "$description": "Latar penanda kategori lain (ungu), misalnya badge Accent. Teks di atasnya: text/accent."
       }
     },
     "text": {
@@ -150,6 +158,14 @@
       "info": {
         "$value": "{color.blue.70}",
         "$description": "Pesan informasi."
+      },
+      "accent": {
+        "$value": "{color.purple.50}",
+        "$description": "Teks penanda kategori lain (ungu)."
+      },
+      "on-accent": {
+        "$value": "{color.white}",
+        "$description": "Teks di atas bg/accent."
       }
     },
     "icon": {
@@ -194,6 +210,30 @@
       "info": {
         "$value": "{color.blue.60}",
         "$description": "Ikon informasi, misalnya ikon huruf i di pesan info."
+      },
+      "on-error": {
+        "$value": "{color.white}",
+        "$description": "Ikon di atas bg/error, misalnya ikon di tombol Danger."
+      },
+      "on-success": {
+        "$value": "{color.white}",
+        "$description": "Ikon di atas bg/success."
+      },
+      "on-warning": {
+        "$value": "{color.neutral.100}",
+        "$description": "Ikon di atas bg/warning."
+      },
+      "on-info": {
+        "$value": "{color.white}",
+        "$description": "Ikon di atas bg/info."
+      },
+      "accent": {
+        "$value": "{color.purple.50}",
+        "$description": "Ikon penanda kategori lain (ungu)."
+      },
+      "on-accent": {
+        "$value": "{color.white}",
+        "$description": "Ikon di atas bg/accent."
       }
     },
     "border": {

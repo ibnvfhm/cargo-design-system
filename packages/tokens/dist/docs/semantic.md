@@ -65,6 +65,8 @@ Latar. Scoping di Figma: Fill untuk Frame dan Shape.
 | `color.bg.warning-subtle` | `yellow.10` `#FEF8E6` | `yellow.100` `#5C4403` | Latar pesan peringatan. Teks di atasnya: text/warning. |
 | `color.bg.info` | `blue.70` `#0C52A3` | `blue.70` `#0C52A3` | Badge informasi. Teks di atasnya: text/on-info. |
 | `color.bg.info-subtle` | `blue.10` `#EDF5FE` | `blue.100` `#052141` | Latar pesan informasi. Teks di atasnya: text/info. |
+| `color.bg.accent` | `purple.50` `#7833D8` | `purple.50` `#7833D8` | Badge kategori lain (ungu). Teks di atasnya: text/on-accent. |
+| `color.bg.accent-subtle` | `purple.10` `#F2EFFD` | `purple.100` `#180533` | Latar penanda kategori lain (ungu), misalnya badge Accent. Teks di atasnya: text/accent. |
 
 ## text
 
@@ -89,6 +91,8 @@ Teks. Scoping di Figma: Fill untuk Text.
 | `color.text.success` | `green.80` `#20741B` | `green.50` `#36C92F` | Pesan sukses. |
 | `color.text.warning` | `yellow.90` `#8A6604` | `yellow.60` `#F8C024` | Pesan peringatan. |
 | `color.text.info` | `blue.70` `#0C52A3` | `blue.30` `#60A5F3` | Pesan informasi. |
+| `color.text.accent` | `purple.50` `#7833D8` | `purple.30` `#9C74EC` | Teks penanda kategori lain (ungu). |
+| `color.text.on-accent` | `white` `#FFFFFF` | `white` `#FFFFFF` | Teks di atas bg/accent. |
 
 ## icon
 
@@ -106,6 +110,12 @@ Ikon. Scoping di Figma: Fill untuk Shape, dan Stroke.
 | `color.icon.success` | `green.70` `#279122` | `green.60` `#2FAE29` | Ikon sukses, misalnya tanda centang. |
 | `color.icon.warning` | `yellow.80` `#B88806` | `yellow.70` `#E6AA07` | Ikon peringatan, misalnya segitiga bertanda seru. |
 | `color.icon.info` | `blue.60` `#0F63C3` | `blue.40` `#2C87EF` | Ikon informasi, misalnya ikon huruf i di pesan info. |
+| `color.icon.on-error` | `white` `#FFFFFF` | `white` `#FFFFFF` | Ikon di atas bg/error, misalnya ikon di tombol Danger. |
+| `color.icon.on-success` | `white` `#FFFFFF` | `white` `#FFFFFF` | Ikon di atas bg/success. |
+| `color.icon.on-warning` | `neutral.100` `#212121` | `neutral.100` `#212121` | Ikon di atas bg/warning. |
+| `color.icon.on-info` | `white` `#FFFFFF` | `white` `#FFFFFF` | Ikon di atas bg/info. |
+| `color.icon.accent` | `purple.50` `#7833D8` | `purple.30` `#9C74EC` | Ikon penanda kategori lain (ungu). |
+| `color.icon.on-accent` | `white` `#FFFFFF` | `white` `#FFFFFF` | Ikon di atas bg/accent. |
 
 ## border
 

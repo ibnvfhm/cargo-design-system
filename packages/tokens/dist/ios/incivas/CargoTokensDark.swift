@@ -145,6 +145,8 @@ public enum CargoTokensDark {
     public static let colorBgWarningSubtle = colorYellow100 /** Latar pesan peringatan. Teks di atasnya: text/warning. */
     public static let colorBgInfo = colorBlue70 /** Badge informasi. Teks di atasnya: text/on-info. */
     public static let colorBgInfoSubtle = colorBlue100 /** Latar pesan informasi. Teks di atasnya: text/info. */
+    public static let colorBgAccent = colorPurple50 /** Badge kategori lain (ungu). Teks di atasnya: text/on-accent. */
+    public static let colorBgAccentSubtle = colorPurple100 /** Latar penanda kategori lain (ungu), misalnya badge Accent. Teks di atasnya: text/accent. */
     public static let colorTextDefault = colorWhite /** Teks utama: judul, isi, dan label form. */
     public static let colorTextSecondary = colorNeutral40 /** Teks pendukung: subjudul dan informasi tambahan, misalnya tanggal di kartu. */
     public static let colorTextTertiary = colorNeutral50 /** Teks paling lembut yang masih terbaca: placeholder, keterangan, dan penghitung karakter. */
@@ -158,6 +160,8 @@ public enum CargoTokensDark {
     public static let colorTextSuccess = colorGreen50 /** Pesan sukses. */
     public static let colorTextWarning = colorYellow60 /** Pesan peringatan. */
     public static let colorTextInfo = colorBlue30 /** Pesan informasi. */
+    public static let colorTextAccent = colorPurple30 /** Teks penanda kategori lain (ungu). */
+    public static let colorTextOnAccent = colorWhite /** Teks di atas bg/accent. */
     public static let colorIconDefault = colorWhite /** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
     public static let colorIconSecondary = colorNeutral50 /** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */
     public static let colorIconDisabled = colorNeutral70 /** Ikon pada komponen yang tidak aktif. */
@@ -166,6 +170,12 @@ public enum CargoTokensDark {
     public static let colorIconSuccess = colorGreen60 /** Ikon sukses, misalnya tanda centang. */
     public static let colorIconWarning = colorYellow70 /** Ikon peringatan, misalnya segitiga bertanda seru. */
     public static let colorIconInfo = colorBlue40 /** Ikon informasi, misalnya ikon huruf i di pesan info. */
+    public static let colorIconOnError = colorWhite /** Ikon di atas bg/error, misalnya ikon di tombol Danger. */
+    public static let colorIconOnSuccess = colorWhite /** Ikon di atas bg/success. */
+    public static let colorIconOnWarning = colorNeutral100 /** Ikon di atas bg/warning. */
+    public static let colorIconOnInfo = colorWhite /** Ikon di atas bg/info. */
+    public static let colorIconAccent = colorPurple30 /** Ikon penanda kategori lain (ungu). */
+    public static let colorIconOnAccent = colorWhite /** Ikon di atas bg/accent. */
     public static let colorBorderSubtle = colorNeutral90 /** Garis pemisah yang sangat halus, misalnya di antara item daftar. Dekoratif. */
     public static let colorBorderDefault = colorNeutral80 /** Garis kartu dan pembatas bagian. Dekoratif, jangan jadi satu-satunya penanda batas input. */
     public static let colorBorderStrong = colorNeutral60 /** Garis input, checkbox, dan kontrol lain yang harus terlihat jelas. */
