@@ -180,6 +180,11 @@
   --cargo-display-3-font-size: 28px; /** Judul sub-bagian di website. Desktop 38px, mobile 28px. */
   --cargo-display-3-line-height: 30px; /** Tinggi baris display-3. Desktop 40px, mobile 30px. */
   --cargo-display-3-letter-spacing: 0px; /** Spasi huruf display-3. Desktop -1%, mobile 0% dari ukuran huruf. */
+  --cargo-shadow-sm: 0px 1px 2px 0px #00000033; /** Bayangan tipis untuk kartu. */
+  --cargo-shadow-md: 0px 2px 4px 0px #0000004D; /** Bayangan sedang untuk search bar, dropdown, dan popover. */
+  --cargo-shadow-lg: 0px 4px 8px 0px #0000004D; /** Bayangan tebal untuk modal dan bottom sheet. */
+  --cargo-shadow-top: 0px -1px 2px 0px #00000033; /** Bayangan ke atas untuk bottom navigation dan tombol yang menempel di bawah layar. */
+  --cargo-shadow-inner: inset 1px 2px 2px 0px #0000001F; /** Bayangan dalam untuk elemen yang tampak tertekan. */
   --cargo-color-brand-light-fill: var(--cargo-color-fuchsia-50); /** Isi warna brand: tombol utama, toggle aktif, elemen terpilih. */
   --cargo-color-brand-light-fill-hover: var(--cargo-color-fuchsia-60); /** Isi brand saat kursor di atasnya. */
   --cargo-color-brand-light-fill-pressed: var(--cargo-color-fuchsia-70); /** Isi brand saat ditekan. */
@@ -257,6 +262,8 @@
   --cargo-color-icon-on-brand: var(--cargo-color-brand-light-on-fill); /** Ikon di atas bg/brand, misalnya ikon panah di tombol Kirim. */
   --cargo-color-border-brand: var(--cargo-color-brand-light-border); /** Garis elemen terpilih, misalnya kartu terpilih atau tombol outline Batal. */
   --cargo-color-border-focus: var(--cargo-color-brand-light-border); /** Cincin fokus saat berpindah elemen dengan keyboard. */
+  --cargo-focus-ring-default: 0px 0px 0px 2px var(--cargo-color-bg-default), 0px 0px 0px 4px var(--cargo-color-border-focus); /** Cincin fokus tombol dan input: 2px warna latar (bg/default), lalu 2px border/focus. Warnanya ikut brand dan mode. */
+  --cargo-focus-ring-error: 0px 0px 0px 2px var(--cargo-color-bg-default), 0px 0px 0px 4px var(--cargo-color-border-error); /** Cincin fokus tombol danger: 2px warna latar (bg/default), lalu 2px border/error. Warnanya ikut brand dan mode. */
 }
 
 [data-theme="dark"] {
@@ -317,6 +324,8 @@
   --cargo-color-icon-on-brand: var(--cargo-color-brand-dark-on-fill);
   --cargo-color-border-brand: var(--cargo-color-brand-dark-border);
   --cargo-color-border-focus: var(--cargo-color-brand-dark-border);
+  --cargo-focus-ring-default: 0px 0px 0px 2px var(--cargo-color-bg-default), 0px 0px 0px 4px var(--cargo-color-border-focus);
+  --cargo-focus-ring-error: 0px 0px 0px 2px var(--cargo-color-bg-default), 0px 0px 0px 4px var(--cargo-color-border-error);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -378,6 +387,8 @@
     --cargo-color-icon-on-brand: var(--cargo-color-brand-dark-on-fill);
     --cargo-color-border-brand: var(--cargo-color-brand-dark-border);
     --cargo-color-border-focus: var(--cargo-color-brand-dark-border);
+    --cargo-focus-ring-default: 0px 0px 0px 2px var(--cargo-color-bg-default), 0px 0px 0px 4px var(--cargo-color-border-focus);
+    --cargo-focus-ring-error: 0px 0px 0px 2px var(--cargo-color-bg-default), 0px 0px 0px 4px var(--cargo-color-border-error);
   }
 }
 

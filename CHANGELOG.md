@@ -19,6 +19,10 @@ Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](htt
 - Tipografi (`src/typography/desktop.json` dan `mobile.json`): 2 font family (Inter dan Montserrat), 3 font weight, serta `font-size`, `line-height`, dan `letter-spacing` untuk 10 peran (`heading-1` sampai `display-3`), dalam mode Desktop dan Mobile.
 - Hasil build tipografi: di CSS ikut di setiap file brand, dengan ukuran Mobile sebagai bawaan dan ukuran Desktop mulai lebar 768px, ditambah 30 class text style (misalnya `.cargo-text-body-medium`). Di JavaScript ada `dist/js/typography/desktop.js` dan `mobile.js`; di Flutter, Android (Compose), dan iOS (SwiftUI) ada kelas `CargoTypographyDesktop` dan `CargoTypographyMobile`.
 - Dokumentasi `dist/docs/typography.md` dan tes tipografi.
+- Shadow (`src/shadow/shadow.json`): `shadow.sm`, `shadow.md`, `shadow.lg`, `shadow.top`, dan `shadow.inner`, sama dengan effect style di Figma.
+- Cincin fokus (`src/semantic/focus-ring.json`): `focus-ring.default` dan `focus-ring.error`. Warnanya menunjuk ke `color.bg.default`, `color.border.focus`, dan `color.border.error`, jadi ikut brand dan mode.
+- Hasil build shadow: di CSS, shadow ada di setiap file brand dan cincin fokus ikut berganti di mode Dark. Di JavaScript ada `dist/js/shadow.js`, dan cincin fokus ada di file setiap brand. Di mobile ada kelas `CargoShadow`, dengan setiap shadow dipecah menjadi warna, offset, blur, dan spread.
+- Dokumentasi `dist/docs/shadow.md` dan tes shadow.
 
 ### Diubah
 

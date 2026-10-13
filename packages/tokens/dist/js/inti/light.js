@@ -179,3 +179,7 @@ export const ColorBorderError = "#d70000"; // Garis input yang error.
 export const ColorBorderSuccess = "#279122"; // Garis input yang valid.
 export const ColorBorderWarning = "#b88806"; // Garis input dengan peringatan.
 export const ColorBorderInfo = "#0f63c3"; // Garis kotak informasi.
+export const FocusRingDefault =
+  "0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #843380"; // Cincin fokus tombol dan input: 2px warna latar (bg/default), lalu 2px border/focus. Warnanya ikut brand dan mode.
+export const FocusRingError =
+  "0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #d70000"; // Cincin fokus tombol danger: 2px warna latar (bg/default), lalu 2px border/error. Warnanya ikut brand dan mode.

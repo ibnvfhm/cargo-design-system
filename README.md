@@ -9,8 +9,8 @@ Satu sumber kebenaran untuk warna, tipografi, spacing, dan komponen di semua pro
 | 1 | Primitive colors: semua warna mentah | Selesai, di Figma dan di kode |
 | 2 | Semantic colors: tugas tiap warna (latar, teks, ikon, garis, status) | Selesai |
 | 3 | Tema brand (UIC, INTI, InMeterai, InCivas, InCustoms) dan mode gelap | Selesai: 5 brand, mode Light dan Dark |
-| 4 | Token non-warna: tipografi, spacing, radius, shadow | Sedang berjalan: spacing, radius, tebal garis, dan tipografi selesai; shadow berikutnya |
-| 5 | Memasang token ke komponen Figma | Belum |
+| 4 | Token non-warna: tipografi, spacing, radius, shadow | Selesai: spacing, radius, tebal garis, tipografi, dan shadow |
+| 5 | Memasang token ke komponen Figma | Berikutnya |
 | 6 | Paket developer dan situs dokumentasi | Belum |
 
 ## Cara kerjanya
@@ -35,6 +35,8 @@ Ukuran ada di collection terpisah, **Dimension**: spacing, radius, dan tebal gar
 
 Tipografi ada di collection **Typography**, dengan mode Desktop dan Mobile seperti Light dan Dark. Text style di Figma memakai variable ini, jadi satu style otomatis berganti ukuran mengikuti mode frame-nya.
 
+Shadow ada sebagai **effect style**, karena Figma belum bisa menyimpan shadow sebagai variable: `shadow/sm`, `md`, `lg`, `top`, dan `inner`, ditambah cincin fokus `focus-ring/default` dan `focus-ring/error`. Warna cincin fokus tersambung ke variable Semantic, jadi ikut brand dan mode.
+
 Designer mengatur token di Figma Variables. Nilai yang sama ditulis di `packages/tokens/src`, lalu `npm run build` menerjemahkannya ke file untuk setiap platform, untuk setiap brand dan mode.
 
 Satu token punya nama yang sama di semua tempat:
@@ -47,9 +49,9 @@ Satu token punya nama yang sama di semua tempat:
 | JavaScript / TypeScript | `ColorBgBrand` | `Space16` | `BodyFontSize` |
 | Flutter, Android (Compose), iOS (SwiftUI) | `CargoTokensLight.colorBgBrand` dan `CargoTokensDark.colorBgBrand` | `CargoDimension.space16` | `CargoTypographyMobile.bodyFontSize` dan `CargoTypographyDesktop.bodyFontSize` |
 
-Text style `body/medium` di Figma menjadi class `.cargo-text-body-medium` di CSS.
+Text style `body/medium` di Figma menjadi class `.cargo-text-body-medium` di CSS. Effect style `shadow/md` menjadi `--cargo-shadow-md` di CSS, `ShadowMd` di JavaScript, dan `CargoShadow.shadowMdBlur` (beserta warna, offset, dan spread-nya) di mobile.
 
-Brand dipilih dengan memakai file brand itu. Mode dipilih dengan `data-theme` di web, atau dengan kelas `Light`/`Dark` di mobile. Ukuran dan tipografi sama di semua brand: di CSS sudah ikut di setiap file brand, sedangkan di JavaScript dan mobile ada di file tersendiri.
+Brand dipilih dengan memakai file brand itu. Mode dipilih dengan `data-theme` di web, atau dengan kelas `Light`/`Dark` di mobile. Ukuran, tipografi, dan shadow sama di semua brand: di CSS sudah ikut di setiap file brand, sedangkan di JavaScript dan mobile ada di file tersendiri.
 
 ## Isi repo
 
@@ -65,35 +67,39 @@ packages/tokens/
 │   │   └── incustoms.json
 │   ├── semantic/                collection Semantic, satu file per mode
 │   │   ├── light.json
-│   │   └── dark.json
+│   │   ├── dark.json
+│   │   └── focus-ring.json      effect style focus-ring/…, warnanya menunjuk ke token semantic
 │   ├── dimension/               collection Dimension, satu file per grup
 │   │   ├── space.json
 │   │   ├── radius.json
 │   │   └── border-width.json
-│   └── typography/              collection Typography, satu file per mode
-│       ├── desktop.json
-│       └── mobile.json
+│   ├── typography/              collection Typography, satu file per mode
+│   │   ├── desktop.json
+│   │   └── mobile.json
+│   └── shadow/shadow.json       effect style shadow/…
 ├── lib/                         daftar brand dan mode, pasangan yang dicek kontrasnya, rumus kontras
 ├── contrast-exceptions.json     pasangan di bawah kontras minimum yang disengaja
 ├── build.mjs                    menerjemahkan token ke setiap platform (Style Dictionary)
 ├── test/                        cek otomatis: struktur, alias, deskripsi, kontras, skala ukuran
 └── dist/                        hasil build, jangan diedit langsung
-    ├── css/<brand>.css                              warna Light dan Dark, ukuran, tipografi, dan class text style dalam satu file
-    ├── js/<brand>/light.js, dark.js                 warna, beserta .d.ts
+    ├── css/<brand>.css                              warna Light dan Dark, ukuran, tipografi, class text style, dan shadow dalam satu file
+    ├── js/<brand>/light.js, dark.js                 warna dan cincin fokus, beserta .d.ts
     ├── js/dimension.js                              ukuran, beserta .d.ts
     ├── js/typography/desktop.js, mobile.js          tipografi, beserta .d.ts
+    ├── js/shadow.js                                 shadow, beserta .d.ts
     ├── flutter/<brand>/cargo_tokens_light.dart, cargo_tokens_dark.dart
-    ├── flutter/cargo_dimension.dart, cargo_typography_desktop.dart, cargo_typography_mobile.dart
+    ├── flutter/cargo_dimension.dart, cargo_typography_desktop.dart, cargo_typography_mobile.dart, cargo_shadow.dart
     ├── android/<brand>/CargoTokensLight.kt, CargoTokensDark.kt
-    ├── android/CargoDimension.kt, CargoTypographyDesktop.kt, CargoTypographyMobile.kt
+    ├── android/CargoDimension.kt, CargoTypographyDesktop.kt, CargoTypographyMobile.kt, CargoShadow.kt
     ├── ios/<brand>/CargoTokensLight.swift, CargoTokensDark.swift
-    ├── ios/CargoDimension.swift, CargoTypographyDesktop.swift, CargoTypographyMobile.swift
+    ├── ios/CargoDimension.swift, CargoTypographyDesktop.swift, CargoTypographyMobile.swift, CargoShadow.swift
     └── docs/
         ├── colors.md            tabel primitive dan kontrasnya
         ├── semantic.md          Brand Theme semua brand, dan Semantic Light dan Dark
         ├── contrast.md          hasil cek kontras untuk setiap brand dan mode
         ├── dimension.md         spacing, radius, dan tebal garis
-        └── typography.md        jenis dan tebal huruf, peran, dan text style
+        ├── typography.md        jenis dan tebal huruf, peran, dan text style
+        └── shadow.md            shadow dan cincin fokus
 ```
 
 ## Aturan primitive colors
@@ -171,6 +177,24 @@ Daftar lengkapnya ada di [`dist/docs/dimension.md`](packages/tokens/dist/docs/di
 
 Daftar lengkapnya ada di [`dist/docs/typography.md`](packages/tokens/dist/docs/typography.md).
 
+## Aturan shadow
+
+- **Effect style di Figma**, bukan variable, karena Figma belum bisa menyimpan shadow sebagai variable.
+- **Lima shadow**, sama di mode Light dan Dark:
+
+  | Effect style | Dipakai untuk |
+  |---|---|
+  | `shadow/sm` | Kartu |
+  | `shadow/md` | Search bar, dropdown, popover |
+  | `shadow/lg` | Modal, bottom sheet |
+  | `shadow/top` | Bottom navigation dan tombol yang menempel di bawah layar |
+  | `shadow/inner` | Elemen yang tampak tertekan |
+
+- **Cincin fokus**: `focus-ring/default` dan `focus-ring/error`. Bentuknya 2px warna latar (`bg/default`), lalu 2px warna fokus (`border/focus` atau `border/error`). Warnanya tersambung ke variable Semantic, jadi ikut brand dan mode. Aplikasi mobile tidak mendapat cincin fokus.
+- **Di mobile**, setiap shadow dipecah menjadi warna, offset X, offset Y, blur, dan spread, karena Android, iOS, dan Flutter menggambar shadow dengan caranya masing-masing.
+
+Daftar lengkapnya ada di [`dist/docs/shadow.md`](packages/tokens/dist/docs/shadow.md).
+
 ## Kontras
 
 Untuk setiap brand dan mode, 41 pasangan dicek: setiap teks, ikon, dan garis terhadap latar tempat ia biasa dipakai. Teks butuh kontras minimal 4.5:1, ikon dan garis 3:1 (WCAG 2.2 AA). Daftar pasangannya ada di `lib/pairs.mjs`, dan hasilnya di [`dist/docs/contrast.md`](packages/tokens/dist/docs/contrast.md).
@@ -208,7 +232,8 @@ lalu pakai token semantic dan ukuran:
   color: var(--cargo-color-text-on-brand);
 }
 .button-primary:hover { background: var(--cargo-color-bg-brand-hover); }
-.button-primary:focus-visible { outline: var(--cargo-border-width-2) solid var(--cargo-color-border-focus); }
+.button-primary:focus-visible { box-shadow: var(--cargo-focus-ring-default); }
+.card { box-shadow: var(--cargo-shadow-sm); }
 ```
 Mode Dark otomatis mengikuti setelan sistem. Untuk memilih sendiri, pasang `data-theme="dark"` atau `data-theme="light"` di `<html>`, atau di elemen lain untuk satu bagian halaman saja.
 
@@ -219,14 +244,17 @@ Untuk teks, pakai class text style. Ukurannya otomatis berganti di lebar 768px:
 ```
 Font Inter dan Montserrat perlu dimuat sendiri, misalnya dari Google Fonts.
 
-**JavaScript / TypeScript**: warna ada di satu modul per brand dan mode, ukuran di satu modul tersendiri.
+**JavaScript / TypeScript**: warna dan cincin fokus ada di satu modul per brand dan mode; ukuran, tipografi, dan shadow masing-masing di modul tersendiri.
 ```ts
 import { ColorBgBrand, ColorTextOnBrand } from '@cargo/tokens/js/uic/light';
 import { Space16, Radius8 } from '@cargo/tokens/js/dimension';
 import { BodyFontSize, BodyLineHeight } from '@cargo/tokens/js/typography/desktop';
+import { ShadowMd } from '@cargo/tokens/js/shadow';
 ```
 
-**Flutter**: salin `dist/flutter/<brand>/` dan `dist/flutter/cargo_dimension.dart`.
+Aplikasi mobile memakai ukuran tipografi Mobile.
+
+**Flutter**: salin `dist/flutter/<brand>/`, lalu `cargo_dimension.dart`, `cargo_typography_mobile.dart`, dan `cargo_shadow.dart` dari `dist/flutter/`.
 ```dart
 final dark = MediaQuery.platformBrightnessOf(context) == Brightness.dark;
 Container(
@@ -235,13 +263,13 @@ Container(
 )
 ```
 
-**Android (Jetpack Compose)**: salin `dist/android/<brand>/` dan `dist/android/CargoDimension.kt`.
+**Android (Jetpack Compose)**: salin `dist/android/<brand>/`, lalu `CargoDimension.kt`, `CargoTypographyMobile.kt`, dan `CargoShadow.kt` dari `dist/android/`.
 ```kotlin
 val bgBrand = if (isSystemInDarkTheme()) CargoTokensDark.colorBgBrand else CargoTokensLight.colorBgBrand
 Box(Modifier.background(bgBrand).padding(CargoDimension.space16))
 ```
 
-**iOS (SwiftUI)**: salin `dist/ios/<brand>/` dan `dist/ios/CargoDimension.swift`.
+**iOS (SwiftUI)**: salin `dist/ios/<brand>/`, lalu `CargoDimension.swift`, `CargoTypographyMobile.swift`, dan `CargoShadow.swift` dari `dist/ios/`.
 ```swift
 @Environment(\.colorScheme) private var colorScheme
 

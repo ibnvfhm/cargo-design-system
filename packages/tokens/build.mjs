@@ -103,7 +103,9 @@ StyleDictionary.registerTransform({
   filter: (token) => token.$type === 'fontFamily',
   transform: (token) => JSON.stringify(token.$value),
 });
-const { flutter: flutterTransforms, compose: composeTransforms } = StyleDictionary.hooks.transformGroups;
+const { flutter: flutterTransforms, compose: composeTransforms, js: jsGroup } = StyleDictionary.hooks.transformGroups;
+// JavaScript gets shadows as CSS strings, ready for box-shadow.
+const jsTransforms = [...jsGroup, 'shadow/css/shorthand'];
 // Listed one by one to keep this order in every output: space, radius, border width.
 const DIMENSION = ['src/dimension/space.json', 'src/dimension/radius.json', 'src/dimension/border-width.json'];
 
@@ -192,14 +194,64 @@ function typographyConfig(mode) {
   };
 }
 
+// Elevation shadows are the same for every brand and mode. Mobile gets every shadow split into its parts
+// (color, offset, blur, spread), because Android, iOS and Flutter each draw shadows their own way.
+const shadowConfig = {
+  source: ['src/shadow/shadow.json'],
+  usesDtcg: true,
+  log,
+  platforms: {
+    js: {
+      transforms: jsTransforms,
+      buildPath: 'dist/js/',
+      files: [
+        { destination: 'shadow.js', format: 'javascript/es6', options: header },
+        { destination: 'shadow.d.ts', format: 'typescript/es6-declarations', options: header },
+      ],
+    },
+    flutter: {
+      transformGroup: 'flutter',
+      ...mobileSizes,
+      expand: true,
+      buildPath: 'dist/flutter/',
+      files: [{ destination: 'cargo_shadow.dart', format: 'flutter/class.dart', options: { ...mobile, className: 'CargoShadow' } }],
+    },
+    android: {
+      transformGroup: 'compose',
+      ...mobileSizes,
+      expand: true,
+      buildPath: 'dist/android/',
+      files: [{ destination: 'CargoShadow.kt', format: 'compose/object', options: { ...mobile, className: 'CargoShadow', packageName: 'com.cargo.tokens' } }],
+    },
+    ios: {
+      transforms: iosTransforms,
+      ...mobileSizes,
+      expand: true,
+      buildPath: 'dist/ios/',
+      files: [{ destination: 'CargoShadow.swift', format: 'ios-swift/enum.swift', options: { ...mobile, className: 'CargoShadow', import: ['SwiftUI'] } }],
+    },
+    docs: { transforms: ['attribute/cti', 'name/kebab'] },
+  },
+};
+
 function config(brand, mode) {
-  // Brand files only hold colours (sizes and typography have their own files above). A Light file only needs
-  // color.brand.light.*, a Dark file only color.brand.dark.*.
+  // Brand files only hold colours (sizes, typography and shadows have their own files above). A Light file only
+  // needs color.brand.light.*, a Dark file only color.brand.dark.*. JavaScript also gets the focus rings, which use
+  // the brand's colours; mobile apps have no keyboard focus ring.
   const filter = (token) => token.path[0] === 'color' && (token.path[1] !== 'brand' || token.path[2] === mode.id);
+  const webFilter = (token) => filter(token) || token.path[0] === 'focus-ring';
   const className = `CargoTokens${mode.name}`;
   return {
     // Mobile typography is the CSS default; the Desktop values are added by the cargo/css-themes format.
-    source: ['src/primitive/**/*.json', ...DIMENSION, 'src/typography/mobile.json', `src/brand/${brand.id}.json`, `src/semantic/${mode.id}.json`],
+    source: [
+      'src/primitive/**/*.json',
+      ...DIMENSION,
+      'src/typography/mobile.json',
+      'src/shadow/shadow.json',
+      `src/brand/${brand.id}.json`,
+      `src/semantic/${mode.id}.json`,
+      'src/semantic/focus-ring.json',
+    ],
     usesDtcg: true,
     log,
     platforms: {
@@ -210,11 +262,11 @@ function config(brand, mode) {
         files: [{ destination: `${brand.id}.css`, format: 'cargo/css-themes', options: { ...header, brand } }],
       },
       js: {
-        transformGroup: 'js',
+        transforms: jsTransforms,
         buildPath: `dist/js/${brand.id}/`,
         files: [
-          { destination: `${mode.id}.js`, format: 'javascript/es6', filter, options: header },
-          { destination: `${mode.id}.d.ts`, format: 'typescript/es6-declarations', filter, options: header },
+          { destination: `${mode.id}.js`, format: 'javascript/es6', filter: webFilter, options: header },
+          { destination: `${mode.id}.d.ts`, format: 'typescript/es6-declarations', filter: webFilter, options: header },
         ],
       },
       flutter: {
@@ -245,6 +297,10 @@ await rm('dist', { recursive: true, force: true });
 const dimension = new StyleDictionary(dimensionConfig);
 for (const platform of ['js', 'flutter', 'android', 'ios']) await dimension.buildPlatform(platform);
 const dimensionDocs = await dimension.getPlatformTokens('docs');
+
+const shadow = new StyleDictionary(shadowConfig);
+for (const platform of ['js', 'flutter', 'android', 'ios']) await shadow.buildPlatform(platform);
+const shadowDocs = await shadow.getPlatformTokens('docs');
 
 const typography = {}; // "desktop" → { docs, notes }
 for (const mode of TYPOGRAPHY_MODES) {
@@ -356,7 +412,8 @@ function semanticMarkdown() {
       }),
     );
   }
-  const semantic = light.allTokens.filter(isSemantic);
+  // Colours only: the focus rings, also in src/semantic, are documented with the shadows.
+  const semantic = light.allTokens.filter((t) => isSemantic(t) && t.path[0] === 'color');
   for (const group of [...new Set(semantic.map((t) => t.path[1]))]) {
     lines.push(
       '',
@@ -487,10 +544,46 @@ function typographyMarkdown() {
   return collapseBlankLines(lines);
 }
 
+function shadowMarkdown() {
+  // "0 2px 4px 0 · hitam 30%" from a shadow value; colours that point at a token keep the token's name.
+  const describe = (layers, original) =>
+    [layers].flat().map((layer, i) => {
+      const color = [original].flat()[i].color;
+      const shade = /^\{/.test(color) ? `\`${color.replace(/^\{color\.(.*)\}$/, '$1')}\`` : `hitam ${Math.round((parseInt(color.slice(7, 9), 16) / 255) * 100)}%`;
+      return `${layer.inset ? 'inset ' : ''}${layer.offsetX} ${layer.offsetY} ${layer.blur} ${layer.spread} · ${shade}`;
+    }).join(', lalu ');
+  const rings = docs.get(`${BRANDS[0].id}/light`).allTokens.filter((t) => t.path[0] === 'focus-ring');
+  const lines = [
+    '# Shadow Cargo',
+    '',
+    '> Dibuat otomatis dari `packages/tokens/src/shadow` dan `packages/tokens/src/semantic/focus-ring.json`. Jangan edit file ini langsung.',
+    '',
+    'Sama dengan effect style di Figma. Setiap nilai ditulis sebagai offset X, offset Y, blur, dan spread.',
+    '',
+    '## shadow',
+    '',
+    shadow.tokens.shadow.$description ?? '',
+    '',
+    '| Token | Nilai | Dipakai untuk |',
+    '|---|---|---|',
+    ...shadowDocs.allTokens.map((t) => `| \`${t.path.join('.')}\` | ${describe(t.$value, t.original.$value)} | ${t.$description ?? ''} |`),
+    '',
+    '## focus-ring',
+    '',
+    'Cincin fokus. Warnanya menunjuk ke token semantic, jadi ikut brand dan mode Light/Dark. Cincin dalam ditulis lebih dulu, karena di CSS bayangan pertama digambar paling atas.',
+    '',
+    '| Token | Nilai | Dipakai untuk |',
+    '|---|---|---|',
+    ...rings.map((t) => `| \`${t.path.join('.')}\` | ${describe(t.$value, t.original.$value)} | ${t.$description ?? ''} |`),
+  ];
+  return collapseBlankLines(lines);
+}
+
 await mkdir('dist/docs', { recursive: true });
 await writeFile('dist/docs/colors.md', colorsMarkdown(docs.get(`${BRANDS[0].id}/light`)));
 await writeFile('dist/docs/semantic.md', semanticMarkdown());
 await writeFile('dist/docs/contrast.md', contrastMarkdown());
 await writeFile('dist/docs/dimension.md', dimensionMarkdown());
 await writeFile('dist/docs/typography.md', typographyMarkdown());
-console.log('✔︎ dist/docs/colors.md, semantic.md, contrast.md, dimension.md, typography.md');
+await writeFile('dist/docs/shadow.md', shadowMarkdown());
+console.log('✔︎ dist/docs/colors.md, semantic.md, contrast.md, dimension.md, typography.md, shadow.md');

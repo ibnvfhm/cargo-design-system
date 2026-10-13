@@ -1,0 +1,20 @@
+{
+  "focus-ring": {
+    "$type": "shadow",
+    "$description": "Cincin fokus, sama dengan effect style focus-ring/… di Figma. Warnanya menunjuk ke token semantic, jadi ikut brand dan mode. Cincin dalam ditulis lebih dulu, karena di CSS bayangan pertama digambar paling atas.",
+    "default": {
+      "$value": [
+        { "color": "{color.bg.default}", "offsetX": "0px", "offsetY": "0px", "blur": "0px", "spread": "2px" },
+        { "color": "{color.border.focus}", "offsetX": "0px", "offsetY": "0px", "blur": "0px", "spread": "4px" }
+      ],
+      "$description": "Cincin fokus tombol dan input: 2px warna latar (bg/default), lalu 2px border/focus. Warnanya ikut brand dan mode."
+    },
+    "error": {
+      "$value": [
+        { "color": "{color.bg.default}", "offsetX": "0px", "offsetY": "0px", "blur": "0px", "spread": "2px" },
+        { "color": "{color.border.error}", "offsetX": "0px", "offsetY": "0px", "blur": "0px", "spread": "4px" }
+      ],
+      "$description": "Cincin fokus tombol danger: 2px warna latar (bg/default), lalu 2px border/error. Warnanya ikut brand dan mode."
+    }
+  }
+}

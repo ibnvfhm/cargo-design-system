@@ -1,0 +1,26 @@
+{
+  "shadow": {
+    "$type": "shadow",
+    "$description": "Bayangan untuk ketinggian elemen, sama dengan effect style shadow/… di Figma. Sama di mode Light dan Dark.",
+    "sm": {
+      "$value": { "color": "#00000033", "offsetX": "0px", "offsetY": "1px", "blur": "2px", "spread": "0px" },
+      "$description": "Bayangan tipis untuk kartu."
+    },
+    "md": {
+      "$value": { "color": "#0000004D", "offsetX": "0px", "offsetY": "2px", "blur": "4px", "spread": "0px" },
+      "$description": "Bayangan sedang untuk search bar, dropdown, dan popover."
+    },
+    "lg": {
+      "$value": { "color": "#0000004D", "offsetX": "0px", "offsetY": "4px", "blur": "8px", "spread": "0px" },
+      "$description": "Bayangan tebal untuk modal dan bottom sheet."
+    },
+    "top": {
+      "$value": { "color": "#00000033", "offsetX": "0px", "offsetY": "-1px", "blur": "2px", "spread": "0px" },
+      "$description": "Bayangan ke atas untuk bottom navigation dan tombol yang menempel di bawah layar."
+    },
+    "inner": {
+      "$value": { "color": "#0000001F", "offsetX": "1px", "offsetY": "2px", "blur": "2px", "spread": "0px", "inset": true },
+      "$description": "Bayangan dalam untuk elemen yang tampak tertekan."
+    }
+  }
+}

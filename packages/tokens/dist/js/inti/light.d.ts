@@ -244,3 +244,7 @@ export const ColorBorderSuccess: string;
 export const ColorBorderWarning: string;
 /** Garis kotak informasi. */
 export const ColorBorderInfo: string;
+/** Cincin fokus tombol dan input: 2px warna latar (bg/default), lalu 2px border/focus. Warnanya ikut brand dan mode. */
+export const FocusRingDefault: string;
+/** Cincin fokus tombol danger: 2px warna latar (bg/default), lalu 2px border/error. Warnanya ikut brand dan mode. */
+export const FocusRingError: string;
