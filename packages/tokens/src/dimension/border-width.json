@@ -1,0 +1,14 @@
+{
+  "border-width": {
+    "$type": "dimension",
+    "$description": "Tebal garis. Scoping di Figma: Stroke.",
+    "1": {
+      "$value": "1px",
+      "$description": "Garis standar: input, kartu, dan pemisah."
+    },
+    "2": {
+      "$value": "2px",
+      "$description": "Garis tebal: input yang fokus atau terpilih, dan cincin fokus."
+    }
+  }
+}

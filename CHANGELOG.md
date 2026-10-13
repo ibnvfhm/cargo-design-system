@@ -13,6 +13,9 @@ Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](htt
 - Dokumentasi yang dibuat otomatis: `dist/docs/semantic.md` (Brand Theme semua brand, serta Semantic Light dan Dark) dan `dist/docs/contrast.md` (hasil cek kontras untuk setiap brand dan mode).
 - `contrast-exceptions.json`: 45 pasangan warna yang sengaja dibiarkan di bawah kontras minimum atas keputusan designer.
 - Tes otomatis untuk Brand Theme, Semantic, dan kontras. Untuk setiap brand dan mode, 41 pasangan teks, ikon, dan garis harus mencapai kontras minimum, kecuali pasangan yang dicatat.
+- Collection Dimension (`src/dimension/`): 16 token spacing (`space.0` sampai `space.128`), 8 token radius (`radius.0` sampai `radius.16`, dan `radius.full` untuk bentuk pil), serta 2 token tebal garis (`border-width.1` dan `border-width.2`). Nama token sama dengan nilainya dalam px, di grid 4px ditambah 2 dan 6.
+- Hasil build untuk Dimension: di CSS ikut di setiap file brand; di JavaScript ada `dist/js/dimension.js`; di Flutter, Android (Compose), dan iOS (SwiftUI) ada kelas `CargoDimension`. Angkanya sama di semua platform (px, dp, pt).
+- Dokumentasi `dist/docs/dimension.md` dan tes skala ukuran.
 
 ### Diubah
 

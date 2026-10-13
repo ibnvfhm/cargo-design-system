@@ -119,6 +119,32 @@
   --cargo-color-sea-80: #022e71;
   --cargo-color-sea-90: #011c44;
   --cargo-color-sea-100: #01122d;
+  --cargo-space-0: 0px; /** Tanpa jarak. */
+  --cargo-space-2: 2px; /** Jarak paling rapat, misalnya antara label dan teks bantuan di input. */
+  --cargo-space-4: 4px; /** Jarak rapat, misalnya antara ikon dan teks di badge atau checkbox. */
+  --cargo-space-6: 6px; /** Jarak rapat untuk komponen kecil, misalnya ikon dan teks di tombol kecil. */
+  --cargo-space-8: 8px; /** Jarak umum antarelemen di dalam komponen, misalnya ikon dan teks di tombol. */
+  --cargo-space-12: 12px; /** Padding komponen kecil, misalnya tombol dan chip. */
+  --cargo-space-16: 16px; /** Padding standar kartu, modal, dan tooltip. */
+  --cargo-space-20: 20px; /** Jarak antarkelompok di dalam kartu atau form. */
+  --cargo-space-24: 24px; /** Jarak antarkelompok yang lebih longgar, misalnya antarbagian form. */
+  --cargo-space-32: 32px; /** Jarak antarbagian di dalam modal atau halaman. */
+  --cargo-space-40: 40px; /** Jarak antarbagian halaman. */
+  --cargo-space-48: 48px; /** Jarak antarbagian halaman yang besar. */
+  --cargo-space-64: 64px; /** Jarak antar-section di website. */
+  --cargo-space-80: 80px; /** Jarak antar-section besar di website. */
+  --cargo-space-96: 96px; /** Jarak antar-section besar di website. */
+  --cargo-space-128: 128px; /** Jarak antar-section paling besar di website. */
+  --cargo-radius-0: 0px; /** Sudut tajam. */
+  --cargo-radius-2: 2px; /** Sudut sangat kecil, misalnya checkbox kecil. */
+  --cargo-radius-4: 4px; /** Sudut kecil, misalnya checkbox dan langkah di stepper. */
+  --cargo-radius-6: 6px; /** Sudut input (text field, search bar, text area) dan tombol kecil. */
+  --cargo-radius-8: 8px; /** Sudut standar: tombol sedang, modal, tooltip, dan section message. */
+  --cargo-radius-12: 12px; /** Sudut besar, misalnya kartu besar. */
+  --cargo-radius-16: 16px; /** Sudut sangat besar, misalnya bottom sheet. */
+  --cargo-radius-full: 9999px; /** Bentuk pil dan lingkaran: badge, toggle, radio, avatar. */
+  --cargo-border-width-1: 1px; /** Garis standar: input, kartu, dan pemisah. */
+  --cargo-border-width-2: 2px; /** Garis tebal: input yang fokus atau terpilih, dan cincin fokus. */
   --cargo-color-brand-light-fill: var(--cargo-color-tosca-50); /** Isi warna brand: tombol utama, toggle aktif, elemen terpilih. */
   --cargo-color-brand-light-fill-hover: var(--cargo-color-tosca-60); /** Isi brand saat kursor di atasnya. */
   --cargo-color-brand-light-fill-pressed: var(--cargo-color-tosca-70); /** Isi brand saat ditekan. */

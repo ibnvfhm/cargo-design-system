@@ -57,15 +57,63 @@ const header = { fileHeader: 'cargo/header' };
 // The mobile formats sort tokens by name (10, 100, 20 …) unless outputReferences is on; with it they keep the
 // source order, and semantic tokens point at other tokens by name instead of repeating hex values.
 const mobile = { ...header, outputReferences: true };
+// Sizes are written in px, as in Figma. The mobile size transforms treat numbers as rem and multiply them by
+// basePxFontSize (16 by default); 1 keeps 16px as 16dp on Android and 16pt on iOS.
+const mobileSizes = { basePxFontSize: 1 };
+// Same as the built-in "ios-swift" group, but colours become SwiftUI `Color` instead of UIKit `UIColor`.
+const iosTransforms = ['attribute/cti', 'name/camel', 'color/ColorSwiftUI', 'content/swift/literal', 'asset/swift/literal', 'size/swift/remToCGFloat'];
+const log = { warnings: 'error', errors: { brokenReferences: 'throw' } };
+// Listed one by one to keep this order in every output: space, radius, border width.
+const DIMENSION = ['src/dimension/space.json', 'src/dimension/radius.json', 'src/dimension/border-width.json'];
+
+// Sizes are the same for every brand and mode, so JavaScript and mobile get one separate file for them.
+// CSS gets them inside every brand file instead, so a web app still loads a single file.
+const dimensionConfig = {
+  source: DIMENSION,
+  usesDtcg: true,
+  log,
+  platforms: {
+    js: {
+      transformGroup: 'js',
+      buildPath: 'dist/js/',
+      files: [
+        { destination: 'dimension.js', format: 'javascript/es6', options: header },
+        { destination: 'dimension.d.ts', format: 'typescript/es6-declarations', options: header },
+      ],
+    },
+    flutter: {
+      transformGroup: 'flutter',
+      ...mobileSizes,
+      buildPath: 'dist/flutter/',
+      files: [{ destination: 'cargo_dimension.dart', format: 'flutter/class.dart', options: { ...mobile, className: 'CargoDimension' } }],
+    },
+    android: {
+      transformGroup: 'compose',
+      ...mobileSizes,
+      buildPath: 'dist/android/',
+      files: [
+        { destination: 'CargoDimension.kt', format: 'compose/object', options: { ...mobile, className: 'CargoDimension', packageName: 'com.cargo.tokens' } },
+      ],
+    },
+    ios: {
+      transforms: iosTransforms,
+      ...mobileSizes,
+      buildPath: 'dist/ios/',
+      files: [{ destination: 'CargoDimension.swift', format: 'ios-swift/enum.swift', options: { ...mobile, className: 'CargoDimension', import: ['SwiftUI'] } }],
+    },
+    docs: { transforms: ['attribute/cti', 'name/kebab'] },
+  },
+};
 
 function config(brand, mode) {
-  // A Light file only needs color.brand.light.*, a Dark file only color.brand.dark.*.
-  const filter = (token) => token.path[1] !== 'brand' || token.path[2] === mode.id;
+  // Brand files only hold colours (sizes have their own files above). A Light file only needs
+  // color.brand.light.*, a Dark file only color.brand.dark.*.
+  const filter = (token) => token.path[0] === 'color' && (token.path[1] !== 'brand' || token.path[2] === mode.id);
   const className = `CargoTokens${mode.name}`;
   return {
-    source: ['src/primitive/**/*.json', `src/brand/${brand.id}.json`, `src/semantic/${mode.id}.json`],
+    source: ['src/primitive/**/*.json', ...DIMENSION, `src/brand/${brand.id}.json`, `src/semantic/${mode.id}.json`],
     usesDtcg: true,
-    log: { warnings: 'error', errors: { brokenReferences: 'throw' } },
+    log,
     platforms: {
       css: {
         transformGroup: 'css',
@@ -94,8 +142,7 @@ function config(brand, mode) {
         ],
       },
       ios: {
-        // Same as the built-in "ios-swift" group, but colours become SwiftUI `Color` instead of UIKit `UIColor`.
-        transforms: ['attribute/cti', 'name/camel', 'color/ColorSwiftUI', 'content/swift/literal', 'asset/swift/literal', 'size/swift/remToCGFloat'],
+        transforms: iosTransforms,
         buildPath: `dist/ios/${brand.id}/`,
         files: [{ destination: `${className}.swift`, format: 'ios-swift/enum.swift', filter, options: { ...mobile, className, import: ['SwiftUI'] } }],
       },
@@ -106,6 +153,10 @@ function config(brand, mode) {
 }
 
 await rm('dist', { recursive: true, force: true });
+
+const dimension = new StyleDictionary(dimensionConfig);
+for (const platform of ['js', 'flutter', 'android', 'ios']) await dimension.buildPlatform(platform);
+const dimensionDocs = await dimension.getPlatformTokens('docs');
 
 const docs = new Map(); // "uic/light" → resolved tokens
 // Group descriptions (e.g. "Latar. Scoping di Figma: …") only survive in the untransformed tokens.
@@ -274,8 +325,32 @@ function contrastMarkdown() {
   return collapseBlankLines(lines);
 }
 
+function dimensionMarkdown() {
+  const lines = [
+    '# Dimension Cargo',
+    '',
+    '> Dibuat otomatis dari `packages/tokens/src/dimension`. Jangan edit file ini langsung.',
+    '',
+    'Ukuran yang sama untuk semua brand dan mode: spacing, radius, dan tebal garis. Nilainya dalam px, sama seperti di Figma. Di Android menjadi dp dan di iOS menjadi pt, dengan angka yang sama.',
+  ];
+  for (const group of [...new Set(dimensionDocs.allTokens.map((t) => t.path[0]))]) {
+    lines.push(
+      '',
+      `## ${group}`,
+      '',
+      dimension.tokens[group].$description ?? '',
+      '',
+      '| Token | Nilai | Dipakai untuk |',
+      '|---|---|---|',
+      ...dimensionDocs.allTokens.filter((t) => t.path[0] === group).map((t) => `| \`${t.path.join('.')}\` | \`${t.$value}\` | ${t.$description ?? ''} |`),
+    );
+  }
+  return collapseBlankLines(lines);
+}
+
 await mkdir('dist/docs', { recursive: true });
 await writeFile('dist/docs/colors.md', colorsMarkdown(docs.get(`${BRANDS[0].id}/light`)));
 await writeFile('dist/docs/semantic.md', semanticMarkdown());
 await writeFile('dist/docs/contrast.md', contrastMarkdown());
-console.log('✔︎ dist/docs/colors.md, semantic.md, contrast.md');
+await writeFile('dist/docs/dimension.md', dimensionMarkdown());
+console.log('✔︎ dist/docs/colors.md, semantic.md, contrast.md, dimension.md');

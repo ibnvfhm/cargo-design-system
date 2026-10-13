@@ -1,0 +1,38 @@
+{
+  "radius": {
+    "$type": "dimension",
+    "$description": "Sudut membulat. Scoping di Figma: Corner radius. radius.full membuat bentuk pil dan lingkaran.",
+    "0": {
+      "$value": "0px",
+      "$description": "Sudut tajam."
+    },
+    "2": {
+      "$value": "2px",
+      "$description": "Sudut sangat kecil, misalnya checkbox kecil."
+    },
+    "4": {
+      "$value": "4px",
+      "$description": "Sudut kecil, misalnya checkbox dan langkah di stepper."
+    },
+    "6": {
+      "$value": "6px",
+      "$description": "Sudut input (text field, search bar, text area) dan tombol kecil."
+    },
+    "8": {
+      "$value": "8px",
+      "$description": "Sudut standar: tombol sedang, modal, tooltip, dan section message."
+    },
+    "12": {
+      "$value": "12px",
+      "$description": "Sudut besar, misalnya kartu besar."
+    },
+    "16": {
+      "$value": "16px",
+      "$description": "Sudut sangat besar, misalnya bottom sheet."
+    },
+    "full": {
+      "$value": "9999px",
+      "$description": "Bentuk pil dan lingkaran: badge, toggle, radio, avatar."
+    }
+  }
+}

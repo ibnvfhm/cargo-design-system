@@ -9,7 +9,7 @@ Satu sumber kebenaran untuk warna, tipografi, spacing, dan komponen di semua pro
 | 1 | Primitive colors: semua warna mentah | Selesai, di Figma dan di kode |
 | 2 | Semantic colors: tugas tiap warna (latar, teks, ikon, garis, status) | Selesai |
 | 3 | Tema brand (UIC, INTI, InMeterai, InCivas, InCustoms) dan mode gelap | Selesai: 5 brand, mode Light dan Dark |
-| 4 | Token non-warna: tipografi, spacing, radius, shadow | Berikutnya |
+| 4 | Token non-warna: tipografi, spacing, radius, shadow | Sedang berjalan: spacing, radius, dan tebal garis selesai; tipografi dan shadow berikutnya |
 | 5 | Memasang token ke komponen Figma | Belum |
 | 6 | Paket developer dan situs dokumentasi | Belum |
 
@@ -31,19 +31,21 @@ color.imperial.70 ◄──  color.brand.dark.fill   ◄──    color.bg.brand
 
 Di Figma, setiap frame memilih satu mode Brand Theme (brand-nya) dan satu mode Semantic (Light atau Dark). Kombinasi apa pun dari 5 brand dan 2 mode pasti cocok.
 
+Ukuran ada di collection terpisah, **Dimension**: spacing, radius, dan tebal garis. Ukuran sama untuk semua brand dan mode, jadi cukup satu lapis. Designer langsung memakai `space/16` atau `radius/8`, tanpa lapis semantic.
+
 Designer mengatur token di Figma Variables. Nilai yang sama ditulis di `packages/tokens/src`, lalu `npm run build` menerjemahkannya ke file untuk setiap platform, untuk setiap brand dan mode.
 
 Satu token punya nama yang sama di semua tempat:
 
-| Tempat | Nama |
-|---|---|
-| Figma | `color/bg/brand` |
-| JSON | `color.bg.brand` |
-| CSS | `--cargo-color-bg-brand` |
-| JavaScript / TypeScript | `ColorBgBrand` |
-| Flutter, Android (Compose), iOS (SwiftUI) | `CargoTokensLight.colorBgBrand` dan `CargoTokensDark.colorBgBrand` |
+| Tempat | Warna | Ukuran |
+|---|---|---|
+| Figma | `color/bg/brand` | `space/16` |
+| JSON | `color.bg.brand` | `space.16` |
+| CSS | `--cargo-color-bg-brand` | `--cargo-space-16` |
+| JavaScript / TypeScript | `ColorBgBrand` | `Space16` |
+| Flutter, Android (Compose), iOS (SwiftUI) | `CargoTokensLight.colorBgBrand` dan `CargoTokensDark.colorBgBrand` | `CargoDimension.space16` |
 
-Brand dipilih dengan memakai file brand itu. Mode dipilih dengan `data-theme` di web, atau dengan kelas `Light`/`Dark` di mobile.
+Brand dipilih dengan memakai file brand itu. Mode dipilih dengan `data-theme` di web, atau dengan kelas `Light`/`Dark` di mobile. Ukuran sama di semua brand dan mode: di CSS sudah ikut di setiap file brand, sedangkan di JavaScript dan mobile ada di file tersendiri.
 
 ## Isi repo
 
@@ -57,23 +59,32 @@ packages/tokens/
 │   │   ├── inmeterai.json
 │   │   ├── incivas.json
 │   │   └── incustoms.json
-│   └── semantic/                collection Semantic, satu file per mode
-│       ├── light.json
-│       └── dark.json
+│   ├── semantic/                collection Semantic, satu file per mode
+│   │   ├── light.json
+│   │   └── dark.json
+│   └── dimension/               collection Dimension, satu file per grup
+│       ├── space.json
+│       ├── radius.json
+│       └── border-width.json
 ├── lib/                         daftar brand dan mode, pasangan yang dicek kontrasnya, rumus kontras
 ├── contrast-exceptions.json     pasangan di bawah kontras minimum yang disengaja
 ├── build.mjs                    menerjemahkan token ke setiap platform (Style Dictionary)
-├── test/                        cek otomatis: struktur, alias, deskripsi, kontras
+├── test/                        cek otomatis: struktur, alias, deskripsi, kontras, skala ukuran
 └── dist/                        hasil build, jangan diedit langsung
-    ├── css/<brand>.css                              mode Light dan Dark dalam satu file
-    ├── js/<brand>/light.js, dark.js                 beserta .d.ts
+    ├── css/<brand>.css                              warna mode Light dan Dark, plus semua ukuran, dalam satu file
+    ├── js/<brand>/light.js, dark.js                 warna, beserta .d.ts
+    ├── js/dimension.js                              ukuran, beserta .d.ts
     ├── flutter/<brand>/cargo_tokens_light.dart, cargo_tokens_dark.dart
+    ├── flutter/cargo_dimension.dart
     ├── android/<brand>/CargoTokensLight.kt, CargoTokensDark.kt
+    ├── android/CargoDimension.kt
     ├── ios/<brand>/CargoTokensLight.swift, CargoTokensDark.swift
+    ├── ios/CargoDimension.swift
     └── docs/
         ├── colors.md            tabel primitive dan kontrasnya
         ├── semantic.md          Brand Theme semua brand, dan Semantic Light dan Dark
-        └── contrast.md          hasil cek kontras untuk setiap brand dan mode
+        ├── contrast.md          hasil cek kontras untuk setiap brand dan mode
+        └── dimension.md         spacing, radius, dan tebal garis
 ```
 
 ## Aturan primitive colors
@@ -122,6 +133,23 @@ Ditambah `white` (#FFFFFF) dan `black` (#000000, hitam murni). Warna teks utama 
 
 Daftar lengkapnya ada di [`dist/docs/semantic.md`](packages/tokens/dist/docs/semantic.md).
 
+## Aturan Dimension
+
+- **Satu lapis**, dipakai langsung di desain dan kode.
+- **Nama = nilai dalam px**: `space/16` bernilai 16px. Satu-satunya pengecualian adalah `radius/full` (9999), untuk semua bentuk pil dan lingkaran.
+- **Grid 4px**, ditambah 2 dan 6 untuk elemen kecil. Tidak ada 10.
+- **Tiga grup**, masing-masing dengan scoping sendiri di Figma:
+
+  | Grup | Isi | Scoping di Figma |
+  |---|---|---|
+  | `space` (16) | gap dan padding | Gap |
+  | `radius` (8) | sudut membulat | Corner radius |
+  | `border-width` (2) | tebal garis | Stroke |
+
+- **Angkanya sama di semua platform**: px di web, dp di Android, pt di iOS.
+
+Daftar lengkapnya ada di [`dist/docs/dimension.md`](packages/tokens/dist/docs/dimension.md).
+
 ## Kontras
 
 Untuk setiap brand dan mode, 41 pasangan dicek: setiap teks, ikon, dan garis terhadap latar tempat ia biasa dipakai. Teks butuh kontras minimal 4.5:1, ikon dan garis 3:1 (WCAG 2.2 AA). Daftar pasangannya ada di `lib/pairs.mjs`, dan hasilnya di [`dist/docs/contrast.md`](packages/tokens/dist/docs/contrast.md).
@@ -144,43 +172,51 @@ Beberapa pasangan sengaja dibiarkan di bawah standar atas keputusan designer. Pa
 
 Paket `@cargo/tokens` belum dipublikasikan. Sementara itu, salin file brand yang dibutuhkan dari `packages/tokens/dist/`.
 
-Pakai **token semantic**, bukan primitive. Contohnya tombol utama:
+Untuk warna, pakai **token semantic**, bukan primitive. Contohnya tombol utama:
 
 **Web (CSS, Next.js, React)**: muat file brand-nya sekali, misalnya di `app/layout.tsx`:
 ```ts
 import '@cargo/tokens/css/uic';
 ```
-lalu pakai token semantic:
+lalu pakai token semantic dan ukuran:
 ```css
 .button-primary {
+  padding: var(--cargo-space-8) var(--cargo-space-16);
+  border-radius: var(--cargo-radius-8);
   background: var(--cargo-color-bg-brand);
   color: var(--cargo-color-text-on-brand);
 }
 .button-primary:hover { background: var(--cargo-color-bg-brand-hover); }
-.button-primary:focus-visible { outline: 2px solid var(--cargo-color-border-focus); }
+.button-primary:focus-visible { outline: var(--cargo-border-width-2) solid var(--cargo-color-border-focus); }
 ```
 Mode Dark otomatis mengikuti setelan sistem. Untuk memilih sendiri, pasang `data-theme="dark"` atau `data-theme="light"` di `<html>`, atau di elemen lain untuk satu bagian halaman saja.
 
-**JavaScript / TypeScript**: satu modul per brand dan mode.
+**JavaScript / TypeScript**: warna ada di satu modul per brand dan mode, ukuran di satu modul tersendiri.
 ```ts
 import { ColorBgBrand, ColorTextOnBrand } from '@cargo/tokens/js/uic/light';
+import { Space16, Radius8 } from '@cargo/tokens/js/dimension';
 ```
 
-**Flutter**: salin `dist/flutter/<brand>/`.
+**Flutter**: salin `dist/flutter/<brand>/` dan `dist/flutter/cargo_dimension.dart`.
 ```dart
 final dark = MediaQuery.platformBrightnessOf(context) == Brightness.dark;
-Container(color: dark ? CargoTokensDark.colorBgBrand : CargoTokensLight.colorBgBrand)
+Container(
+  padding: EdgeInsets.all(CargoDimension.space16),
+  color: dark ? CargoTokensDark.colorBgBrand : CargoTokensLight.colorBgBrand,
+)
 ```
 
-**Android (Jetpack Compose)**: salin `dist/android/<brand>/`.
+**Android (Jetpack Compose)**: salin `dist/android/<brand>/` dan `dist/android/CargoDimension.kt`.
 ```kotlin
 val bgBrand = if (isSystemInDarkTheme()) CargoTokensDark.colorBgBrand else CargoTokensLight.colorBgBrand
-Box(Modifier.background(bgBrand))
+Box(Modifier.background(bgBrand).padding(CargoDimension.space16))
 ```
 
-**iOS (SwiftUI)**: salin `dist/ios/<brand>/`.
+**iOS (SwiftUI)**: salin `dist/ios/<brand>/` dan `dist/ios/CargoDimension.swift`.
 ```swift
 @Environment(\.colorScheme) private var colorScheme
 
-Rectangle().fill(colorScheme == .dark ? CargoTokensDark.colorBgBrand : CargoTokensLight.colorBgBrand)
+Text("Kirim")
+  .padding(CargoDimension.space16)
+  .background(colorScheme == .dark ? CargoTokensDark.colorBgBrand : CargoTokensLight.colorBgBrand)
 ```

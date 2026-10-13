@@ -1,0 +1,70 @@
+{
+  "space": {
+    "$type": "dimension",
+    "$description": "Jarak: gap dan padding auto layout. Scoping di Figma: Gap. Grid 4px, ditambah 2 dan 6 untuk elemen kecil.",
+    "0": {
+      "$value": "0px",
+      "$description": "Tanpa jarak."
+    },
+    "2": {
+      "$value": "2px",
+      "$description": "Jarak paling rapat, misalnya antara label dan teks bantuan di input."
+    },
+    "4": {
+      "$value": "4px",
+      "$description": "Jarak rapat, misalnya antara ikon dan teks di badge atau checkbox."
+    },
+    "6": {
+      "$value": "6px",
+      "$description": "Jarak rapat untuk komponen kecil, misalnya ikon dan teks di tombol kecil."
+    },
+    "8": {
+      "$value": "8px",
+      "$description": "Jarak umum antarelemen di dalam komponen, misalnya ikon dan teks di tombol."
+    },
+    "12": {
+      "$value": "12px",
+      "$description": "Padding komponen kecil, misalnya tombol dan chip."
+    },
+    "16": {
+      "$value": "16px",
+      "$description": "Padding standar kartu, modal, dan tooltip."
+    },
+    "20": {
+      "$value": "20px",
+      "$description": "Jarak antarkelompok di dalam kartu atau form."
+    },
+    "24": {
+      "$value": "24px",
+      "$description": "Jarak antarkelompok yang lebih longgar, misalnya antarbagian form."
+    },
+    "32": {
+      "$value": "32px",
+      "$description": "Jarak antarbagian di dalam modal atau halaman."
+    },
+    "40": {
+      "$value": "40px",
+      "$description": "Jarak antarbagian halaman."
+    },
+    "48": {
+      "$value": "48px",
+      "$description": "Jarak antarbagian halaman yang besar."
+    },
+    "64": {
+      "$value": "64px",
+      "$description": "Jarak antar-section di website."
+    },
+    "80": {
+      "$value": "80px",
+      "$description": "Jarak antar-section besar di website."
+    },
+    "96": {
+      "$value": "96px",
+      "$description": "Jarak antar-section besar di website."
+    },
+    "128": {
+      "$value": "128px",
+      "$description": "Jarak antar-section paling besar di website."
+    }
+  }
+}
