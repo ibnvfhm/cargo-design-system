@@ -9,7 +9,7 @@ Satu sumber kebenaran untuk warna, tipografi, spacing, dan komponen di semua pro
 | 1 | Primitive colors: semua warna mentah | Selesai, di Figma dan di kode |
 | 2 | Semantic colors: tugas tiap warna (latar, teks, ikon, garis, status) | Selesai |
 | 3 | Tema brand (UIC, INTI, InMeterai, InCivas, InCustoms) dan mode gelap | Selesai: 5 brand, mode Light dan Dark |
-| 4 | Token non-warna: tipografi, spacing, radius, shadow | Sedang berjalan: spacing, radius, dan tebal garis selesai; tipografi dan shadow berikutnya |
+| 4 | Token non-warna: tipografi, spacing, radius, shadow | Sedang berjalan: spacing, radius, tebal garis, dan tipografi selesai; shadow berikutnya |
 | 5 | Memasang token ke komponen Figma | Belum |
 | 6 | Paket developer dan situs dokumentasi | Belum |
 
@@ -33,19 +33,23 @@ Di Figma, setiap frame memilih satu mode Brand Theme (brand-nya) dan satu mode S
 
 Ukuran ada di collection terpisah, **Dimension**: spacing, radius, dan tebal garis. Ukuran sama untuk semua brand dan mode, jadi cukup satu lapis. Designer langsung memakai `space/16` atau `radius/8`, tanpa lapis semantic.
 
+Tipografi ada di collection **Typography**, dengan mode Desktop dan Mobile seperti Light dan Dark. Text style di Figma memakai variable ini, jadi satu style otomatis berganti ukuran mengikuti mode frame-nya.
+
 Designer mengatur token di Figma Variables. Nilai yang sama ditulis di `packages/tokens/src`, lalu `npm run build` menerjemahkannya ke file untuk setiap platform, untuk setiap brand dan mode.
 
 Satu token punya nama yang sama di semua tempat:
 
-| Tempat | Warna | Ukuran |
-|---|---|---|
-| Figma | `color/bg/brand` | `space/16` |
-| JSON | `color.bg.brand` | `space.16` |
-| CSS | `--cargo-color-bg-brand` | `--cargo-space-16` |
-| JavaScript / TypeScript | `ColorBgBrand` | `Space16` |
-| Flutter, Android (Compose), iOS (SwiftUI) | `CargoTokensLight.colorBgBrand` dan `CargoTokensDark.colorBgBrand` | `CargoDimension.space16` |
+| Tempat | Warna | Ukuran | Tipografi |
+|---|---|---|---|
+| Figma | `color/bg/brand` | `space/16` | `body/font-size` |
+| JSON | `color.bg.brand` | `space.16` | `body.font-size` |
+| CSS | `--cargo-color-bg-brand` | `--cargo-space-16` | `--cargo-body-font-size` |
+| JavaScript / TypeScript | `ColorBgBrand` | `Space16` | `BodyFontSize` |
+| Flutter, Android (Compose), iOS (SwiftUI) | `CargoTokensLight.colorBgBrand` dan `CargoTokensDark.colorBgBrand` | `CargoDimension.space16` | `CargoTypographyMobile.bodyFontSize` dan `CargoTypographyDesktop.bodyFontSize` |
 
-Brand dipilih dengan memakai file brand itu. Mode dipilih dengan `data-theme` di web, atau dengan kelas `Light`/`Dark` di mobile. Ukuran sama di semua brand dan mode: di CSS sudah ikut di setiap file brand, sedangkan di JavaScript dan mobile ada di file tersendiri.
+Text style `body/medium` di Figma menjadi class `.cargo-text-body-medium` di CSS.
+
+Brand dipilih dengan memakai file brand itu. Mode dipilih dengan `data-theme` di web, atau dengan kelas `Light`/`Dark` di mobile. Ukuran dan tipografi sama di semua brand: di CSS sudah ikut di setiap file brand, sedangkan di JavaScript dan mobile ada di file tersendiri.
 
 ## Isi repo
 
@@ -62,29 +66,34 @@ packages/tokens/
 │   ├── semantic/                collection Semantic, satu file per mode
 │   │   ├── light.json
 │   │   └── dark.json
-│   └── dimension/               collection Dimension, satu file per grup
-│       ├── space.json
-│       ├── radius.json
-│       └── border-width.json
+│   ├── dimension/               collection Dimension, satu file per grup
+│   │   ├── space.json
+│   │   ├── radius.json
+│   │   └── border-width.json
+│   └── typography/              collection Typography, satu file per mode
+│       ├── desktop.json
+│       └── mobile.json
 ├── lib/                         daftar brand dan mode, pasangan yang dicek kontrasnya, rumus kontras
 ├── contrast-exceptions.json     pasangan di bawah kontras minimum yang disengaja
 ├── build.mjs                    menerjemahkan token ke setiap platform (Style Dictionary)
 ├── test/                        cek otomatis: struktur, alias, deskripsi, kontras, skala ukuran
 └── dist/                        hasil build, jangan diedit langsung
-    ├── css/<brand>.css                              warna mode Light dan Dark, plus semua ukuran, dalam satu file
+    ├── css/<brand>.css                              warna Light dan Dark, ukuran, tipografi, dan class text style dalam satu file
     ├── js/<brand>/light.js, dark.js                 warna, beserta .d.ts
     ├── js/dimension.js                              ukuran, beserta .d.ts
+    ├── js/typography/desktop.js, mobile.js          tipografi, beserta .d.ts
     ├── flutter/<brand>/cargo_tokens_light.dart, cargo_tokens_dark.dart
-    ├── flutter/cargo_dimension.dart
+    ├── flutter/cargo_dimension.dart, cargo_typography_desktop.dart, cargo_typography_mobile.dart
     ├── android/<brand>/CargoTokensLight.kt, CargoTokensDark.kt
-    ├── android/CargoDimension.kt
+    ├── android/CargoDimension.kt, CargoTypographyDesktop.kt, CargoTypographyMobile.kt
     ├── ios/<brand>/CargoTokensLight.swift, CargoTokensDark.swift
-    ├── ios/CargoDimension.swift
+    ├── ios/CargoDimension.swift, CargoTypographyDesktop.swift, CargoTypographyMobile.swift
     └── docs/
         ├── colors.md            tabel primitive dan kontrasnya
         ├── semantic.md          Brand Theme semua brand, dan Semantic Light dan Dark
         ├── contrast.md          hasil cek kontras untuk setiap brand dan mode
-        └── dimension.md         spacing, radius, dan tebal garis
+        ├── dimension.md         spacing, radius, dan tebal garis
+        └── typography.md        jenis dan tebal huruf, peran, dan text style
 ```
 
 ## Aturan primitive colors
@@ -150,6 +159,18 @@ Daftar lengkapnya ada di [`dist/docs/semantic.md`](packages/tokens/dist/docs/sem
 
 Daftar lengkapnya ada di [`dist/docs/dimension.md`](packages/tokens/dist/docs/dimension.md).
 
+## Aturan tipografi
+
+- **Dua mode, nama sama**: Desktop dan Mobile. Web memakai ukuran Mobile di layar kecil, lalu ukuran Desktop mulai lebar 768px. Aplikasi HP memakai ukuran Mobile.
+- **10 peran**: `heading-1`, `heading-2`, `heading-3`, `title`, `body`, `small`, dan `extra-small` (huruf Inter, untuk aplikasi), serta `display-1` sampai `display-3` (huruf Montserrat, untuk judul besar di website).
+- **Setiap peran punya tiga token**: `font-size`, `line-height`, dan `letter-spacing`, semuanya dalam px. Letter spacing ditulis dalam px karena begitulah Figma menyimpannya; nilainya berasal dari persen ukuran huruf, misalnya -2% × 24px = -0.48px.
+- **Tebal huruf**: `regular` (400), `medium` (500), `bold` (700).
+- **30 text style** = 10 peran × 3 tebal, misalnya `body/medium`.
+- **Scoping di Figma** sesuai propertinya: Font family, Font weight, Font size, Line height, dan Letter spacing.
+- Di file token, ketiga token peran memakai `$type` `fontSize`, supaya di Android hasilnya `sp` (ikut setelan ukuran huruf pengguna), bukan `dp`.
+
+Daftar lengkapnya ada di [`dist/docs/typography.md`](packages/tokens/dist/docs/typography.md).
+
 ## Kontras
 
 Untuk setiap brand dan mode, 41 pasangan dicek: setiap teks, ikon, dan garis terhadap latar tempat ia biasa dipakai. Teks butuh kontras minimal 4.5:1, ikon dan garis 3:1 (WCAG 2.2 AA). Daftar pasangannya ada di `lib/pairs.mjs`, dan hasilnya di [`dist/docs/contrast.md`](packages/tokens/dist/docs/contrast.md).
@@ -191,10 +212,18 @@ lalu pakai token semantic dan ukuran:
 ```
 Mode Dark otomatis mengikuti setelan sistem. Untuk memilih sendiri, pasang `data-theme="dark"` atau `data-theme="light"` di `<html>`, atau di elemen lain untuk satu bagian halaman saja.
 
+Untuk teks, pakai class text style. Ukurannya otomatis berganti di lebar 768px:
+```html
+<h1 class="cargo-text-heading-1-bold">Pengajuan cuti</h1>
+<p class="cargo-text-body-regular">Permintaanmu sudah dikirim.</p>
+```
+Font Inter dan Montserrat perlu dimuat sendiri, misalnya dari Google Fonts.
+
 **JavaScript / TypeScript**: warna ada di satu modul per brand dan mode, ukuran di satu modul tersendiri.
 ```ts
 import { ColorBgBrand, ColorTextOnBrand } from '@cargo/tokens/js/uic/light';
 import { Space16, Radius8 } from '@cargo/tokens/js/dimension';
+import { BodyFontSize, BodyLineHeight } from '@cargo/tokens/js/typography/desktop';
 ```
 
 **Flutter**: salin `dist/flutter/<brand>/` dan `dist/flutter/cargo_dimension.dart`.

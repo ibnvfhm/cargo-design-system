@@ -16,6 +16,9 @@ Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](htt
 - Collection Dimension (`src/dimension/`): 16 token spacing (`space.0` sampai `space.128`), 8 token radius (`radius.0` sampai `radius.16`, dan `radius.full` untuk bentuk pil), serta 2 token tebal garis (`border-width.1` dan `border-width.2`). Nama token sama dengan nilainya dalam px, di grid 4px ditambah 2 dan 6.
 - Hasil build untuk Dimension: di CSS ikut di setiap file brand; di JavaScript ada `dist/js/dimension.js`; di Flutter, Android (Compose), dan iOS (SwiftUI) ada kelas `CargoDimension`. Angkanya sama di semua platform (px, dp, pt).
 - Dokumentasi `dist/docs/dimension.md` dan tes skala ukuran.
+- Tipografi (`src/typography/desktop.json` dan `mobile.json`): 2 font family (Inter dan Montserrat), 3 font weight, serta `font-size`, `line-height`, dan `letter-spacing` untuk 10 peran (`heading-1` sampai `display-3`), dalam mode Desktop dan Mobile.
+- Hasil build tipografi: di CSS ikut di setiap file brand, dengan ukuran Mobile sebagai bawaan dan ukuran Desktop mulai lebar 768px, ditambah 30 class text style (misalnya `.cargo-text-body-medium`). Di JavaScript ada `dist/js/typography/desktop.js` dan `mobile.js`; di Flutter, Android (Compose), dan iOS (SwiftUI) ada kelas `CargoTypographyDesktop` dan `CargoTypographyMobile`.
+- Dokumentasi `dist/docs/typography.md` dan tes tipografi.
 
 ### Diubah
 

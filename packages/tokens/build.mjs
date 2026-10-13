@@ -22,6 +22,19 @@ const collapseBlankLines = (lines) => lines.filter((line, i, all) => !(line === 
 
 // The dark-mode tokens of each brand, collected before that brand's CSS file is written.
 const darkCss = new Map();
+// The Desktop typography values, added to every brand CSS file for screens of at least DESKTOP_MIN_WIDTH.
+let desktopTypographyCss;
+// The web switches from the Mobile to the Desktop typography at this width; apps use the Mobile values.
+const DESKTOP_MIN_WIDTH = '768px';
+
+// Text styles, as in Figma: every role in every weight. display-1 to display-3 use font-family.display, the
+// other roles font-family.ui.
+const NON_ROLE = ['font-family', 'font-weight'];
+function textStyles(dictionary) {
+  const roles = dictionary.allTokens.filter((t) => t.path[1] === 'font-size').map((t) => t.path[0]);
+  const weights = dictionary.allTokens.filter((t) => t.path[0] === 'font-weight').map((t) => t.path[1]);
+  return roles.flatMap((role) => weights.map((weight) => ({ role, weight, family: role.startsWith('display') ? 'display' : 'ui' })));
+}
 
 const cssVariables = (dictionary, tokens, indentation, comments = true) =>
   formattedVariables({
@@ -47,6 +60,26 @@ StyleDictionary.registerFormat({
         `:root,\n[data-theme="light"] {\n  color-scheme: light;\n${cssVariables(dictionary, dictionary.allTokens.filter(isSemantic), '  ')}\n}`,
         `[data-theme="dark"] {\n  color-scheme: dark;\n${darkVariables('  ')}\n}`,
         `@media (prefers-color-scheme: dark) {\n  :root:not([data-theme="light"]) {\n    color-scheme: dark;\n${darkVariables('    ')}\n  }\n}`,
+        `/* Tipografi: ukuran Mobile di atas, ukuran Desktop mulai lebar ${DESKTOP_MIN_WIDTH}. */`,
+        `@media (min-width: ${DESKTOP_MIN_WIDTH}) {\n  :root {\n${cssVariables(
+          desktopTypographyCss,
+          desktopTypographyCss.allTokens.filter((t) => !NON_ROLE.includes(t.path[0])),
+          '    ',
+          false,
+        )}\n  }\n}`,
+        '/* Text style, sama dengan di Figma: body/medium menjadi .cargo-text-body-medium. */',
+        ...textStyles(dictionary).map(({ role, weight, family }) => {
+          const name = (path) => `var(--${dictionary.allTokens.find((t) => t.path.join('.') === path).name})`;
+          return [
+            `.cargo-text-${role}-${weight} {`,
+            `  font-family: ${name(`font-family.${family}`)}, sans-serif;`,
+            `  font-weight: ${name(`font-weight.${weight}`)};`,
+            `  font-size: ${name(`${role}.font-size`)};`,
+            `  line-height: ${name(`${role}.line-height`)};`,
+            `  letter-spacing: ${name(`${role}.letter-spacing`)};`,
+            '}',
+          ].join('\n');
+        }),
       ].join('\n\n') +
       '\n'
     );
@@ -63,6 +96,14 @@ const mobileSizes = { basePxFontSize: 1 };
 // Same as the built-in "ios-swift" group, but colours become SwiftUI `Color` instead of UIKit `UIColor`.
 const iosTransforms = ['attribute/cti', 'name/camel', 'color/ColorSwiftUI', 'content/swift/literal', 'asset/swift/literal', 'size/swift/remToCGFloat'];
 const log = { warnings: 'error', errors: { brokenReferences: 'throw' } };
+// Font family names have to be quoted strings in Dart, Kotlin and Swift.
+StyleDictionary.registerTransform({
+  name: 'cargo/string-literal',
+  type: 'value',
+  filter: (token) => token.$type === 'fontFamily',
+  transform: (token) => JSON.stringify(token.$value),
+});
+const { flutter: flutterTransforms, compose: composeTransforms } = StyleDictionary.hooks.transformGroups;
 // Listed one by one to keep this order in every output: space, radius, border width.
 const DIMENSION = ['src/dimension/space.json', 'src/dimension/radius.json', 'src/dimension/border-width.json'];
 
@@ -105,13 +146,60 @@ const dimensionConfig = {
   },
 };
 
+// Typography has a Desktop and a Mobile mode, like the Typography collection in Figma. JavaScript and mobile get
+// one file per mode; CSS gets both inside every brand file (Mobile by default, Desktop from DESKTOP_MIN_WIDTH).
+const TYPOGRAPHY_MODES = [
+  { id: 'desktop', name: 'Desktop' },
+  { id: 'mobile', name: 'Mobile' },
+];
+function typographyConfig(mode) {
+  const className = `CargoTypography${mode.name}`;
+  return {
+    source: [`src/typography/${mode.id}.json`],
+    usesDtcg: true,
+    log,
+    platforms: {
+      // No files: the brand CSS files take these tokens.
+      css: { transformGroup: 'css', prefix: 'cargo' },
+      js: {
+        transformGroup: 'js',
+        buildPath: 'dist/js/typography/',
+        files: [
+          { destination: `${mode.id}.js`, format: 'javascript/es6', options: header },
+          { destination: `${mode.id}.d.ts`, format: 'typescript/es6-declarations', options: header },
+        ],
+      },
+      flutter: {
+        transforms: [...flutterTransforms, 'cargo/string-literal'],
+        ...mobileSizes,
+        buildPath: 'dist/flutter/',
+        files: [{ destination: `cargo_typography_${mode.id}.dart`, format: 'flutter/class.dart', options: { ...mobile, className } }],
+      },
+      android: {
+        transforms: [...composeTransforms, 'cargo/string-literal'],
+        ...mobileSizes,
+        buildPath: 'dist/android/',
+        files: [{ destination: `${className}.kt`, format: 'compose/object', options: { ...mobile, className, packageName: 'com.cargo.tokens' } }],
+      },
+      ios: {
+        transforms: [...iosTransforms, 'cargo/string-literal'],
+        ...mobileSizes,
+        buildPath: 'dist/ios/',
+        files: [{ destination: `${className}.swift`, format: 'ios-swift/enum.swift', options: { ...mobile, className, import: ['SwiftUI'] } }],
+      },
+      docs: { transforms: ['attribute/cti', 'name/kebab'] },
+    },
+  };
+}
+
 function config(brand, mode) {
-  // Brand files only hold colours (sizes have their own files above). A Light file only needs
+  // Brand files only hold colours (sizes and typography have their own files above). A Light file only needs
   // color.brand.light.*, a Dark file only color.brand.dark.*.
   const filter = (token) => token.path[0] === 'color' && (token.path[1] !== 'brand' || token.path[2] === mode.id);
   const className = `CargoTokens${mode.name}`;
   return {
-    source: ['src/primitive/**/*.json', ...DIMENSION, `src/brand/${brand.id}.json`, `src/semantic/${mode.id}.json`],
+    // Mobile typography is the CSS default; the Desktop values are added by the cargo/css-themes format.
+    source: ['src/primitive/**/*.json', ...DIMENSION, 'src/typography/mobile.json', `src/brand/${brand.id}.json`, `src/semantic/${mode.id}.json`],
     usesDtcg: true,
     log,
     platforms: {
@@ -157,6 +245,14 @@ await rm('dist', { recursive: true, force: true });
 const dimension = new StyleDictionary(dimensionConfig);
 for (const platform of ['js', 'flutter', 'android', 'ios']) await dimension.buildPlatform(platform);
 const dimensionDocs = await dimension.getPlatformTokens('docs');
+
+const typography = {}; // "desktop" → { docs, notes }
+for (const mode of TYPOGRAPHY_MODES) {
+  const sd = new StyleDictionary(typographyConfig(mode));
+  for (const platform of ['js', 'flutter', 'android', 'ios']) await sd.buildPlatform(platform);
+  if (mode.id === 'desktop') desktopTypographyCss = await sd.getPlatformTokens('css');
+  typography[mode.id] = { docs: await sd.getPlatformTokens('docs'), notes: sd.tokens };
+}
 
 const docs = new Map(); // "uic/light" → resolved tokens
 // Group descriptions (e.g. "Latar. Scoping di Figma: …") only survive in the untransformed tokens.
@@ -348,9 +444,53 @@ function dimensionMarkdown() {
   return collapseBlankLines(lines);
 }
 
+function typographyMarkdown() {
+  const { desktop, mobile } = typography;
+  const mobileByPath = byPath(mobile.docs);
+  const value = (t) => `\`${t.$value}\``;
+  const lines = [
+    '# Tipografi Cargo',
+    '',
+    '> Dibuat otomatis dari `packages/tokens/src/typography`. Jangan edit file ini langsung.',
+    '',
+    `Mode Desktop dan Mobile sama dengan collection Typography di Figma. Web memakai ukuran Mobile, lalu ukuran Desktop mulai lebar layar ${DESKTOP_MIN_WIDTH}. Aplikasi HP memakai ukuran Mobile.`,
+  ];
+  for (const group of NON_ROLE) {
+    lines.push(
+      '',
+      `## ${group}`,
+      '',
+      desktop.notes[group].$description ?? '',
+      '',
+      '| Token | Nilai | Dipakai untuk |',
+      '|---|---|---|',
+      ...desktop.docs.allTokens.filter((t) => t.path[0] === group).map((t) => `| \`${t.path.join('.')}\` | ${value(t)} | ${t.$description ?? ''} |`),
+    );
+  }
+  const roles = desktop.docs.allTokens.filter((t) => t.path[1] === 'font-size').map((t) => t.path[0]);
+  const at = (role, prop) => desktop.docs.allTokens.find((t) => t.path.join('.') === `${role}.${prop}`);
+  const cell = (dict, role) => ['font-size', 'line-height', 'letter-spacing'].map((prop) => (dict === 'desktop' ? at(role, prop) : mobileByPath.get(`${role}.${prop}`)).$value);
+  lines.push(
+    '',
+    '## Peran',
+    '',
+    'Setiap peran punya `font-size`, `line-height`, dan `letter-spacing`, misalnya `body.font-size`. Kolom berisi ukuran / tinggi baris / spasi huruf.',
+    '',
+    '| Peran | Dipakai untuk | Desktop | Mobile |',
+    '|---|---|---|---|',
+    ...roles.map((role) => `| \`${role}\` | ${desktop.notes[role].$description ?? ''} | ${cell('desktop', role).join(' / ')} | ${cell('mobile', role).join(' / ')} |`),
+    '',
+    '## Text style',
+    '',
+    `Sama dengan text style di Figma: setiap peran dalam setiap tebal, jadi ${textStyles(desktop.docs).length} style. \`display-1\` sampai \`display-3\` memakai \`font-family.display\`, peran lain memakai \`font-family.ui\`. Di CSS, text style menjadi class, misalnya \`body/medium\` menjadi \`.cargo-text-body-medium\`.`,
+  );
+  return collapseBlankLines(lines);
+}
+
 await mkdir('dist/docs', { recursive: true });
 await writeFile('dist/docs/colors.md', colorsMarkdown(docs.get(`${BRANDS[0].id}/light`)));
 await writeFile('dist/docs/semantic.md', semanticMarkdown());
 await writeFile('dist/docs/contrast.md', contrastMarkdown());
 await writeFile('dist/docs/dimension.md', dimensionMarkdown());
-console.log('✔︎ dist/docs/colors.md, semantic.md, contrast.md, dimension.md');
+await writeFile('dist/docs/typography.md', typographyMarkdown());
+console.log('✔︎ dist/docs/colors.md, semantic.md, contrast.md, dimension.md, typography.md');

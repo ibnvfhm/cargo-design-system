@@ -145,6 +145,41 @@
   --cargo-radius-full: 9999px; /** Bentuk pil dan lingkaran: badge, toggle, radio, avatar. */
   --cargo-border-width-1: 1px; /** Garis standar: input, kartu, dan pemisah. */
   --cargo-border-width-2: 2px; /** Garis tebal: input yang fokus atau terpilih, dan cincin fokus. */
+  --cargo-font-family-ui: Inter; /** Huruf untuk aplikasi: heading, title, body, small, dan extra-small. */
+  --cargo-font-family-display: Montserrat; /** Huruf untuk judul besar di website: display-1 sampai display-3. */
+  --cargo-font-weight-regular: 400; /** Tebal huruf normal (400). */
+  --cargo-font-weight-medium: 500; /** Tebal huruf sedang (500). */
+  --cargo-font-weight-bold: 700; /** Tebal huruf tebal (700). */
+  --cargo-heading-1-font-size: 24px; /** Judul halaman. Desktop 36px, mobile 24px. */
+  --cargo-heading-1-line-height: 34px; /** Tinggi baris heading-1. Desktop 54px, mobile 34px. */
+  --cargo-heading-1-letter-spacing: -0.48px; /** Spasi huruf heading-1. Desktop -1px, mobile -2% dari ukuran huruf. */
+  --cargo-heading-2-font-size: 18px; /** Judul bagian. Desktop 24px, mobile 18px. */
+  --cargo-heading-2-line-height: 24px; /** Tinggi baris heading-2. Desktop 34px, mobile 24px. */
+  --cargo-heading-2-letter-spacing: -0.18px; /** Spasi huruf heading-2. Desktop -2%, mobile -1% dari ukuran huruf. */
+  --cargo-heading-3-font-size: 16px; /** Judul kartu atau sub-bagian. Desktop 18px, mobile 16px. */
+  --cargo-heading-3-line-height: 22px; /** Tinggi baris heading-3. Desktop 24px, mobile 22px. */
+  --cargo-heading-3-letter-spacing: -0.16px; /** Spasi huruf heading-3. Desktop -1%, mobile -1% dari ukuran huruf. */
+  --cargo-title-font-size: 14px; /** Judul kecil dan label tombol besar. Desktop 16px, mobile 14px. */
+  --cargo-title-line-height: 20px; /** Tinggi baris title. Desktop 22px, mobile 20px. */
+  --cargo-title-letter-spacing: -0.14px; /** Spasi huruf title. Desktop -1%, mobile -1% dari ukuran huruf. */
+  --cargo-body-font-size: 12px; /** Teks isi dan label tombol. Desktop 14px, mobile 12px. */
+  --cargo-body-line-height: 16px; /** Tinggi baris body. Desktop 20px, mobile 16px. */
+  --cargo-body-letter-spacing: 0px; /** Spasi huruf body. Desktop -1%, mobile 0% dari ukuran huruf. */
+  --cargo-small-font-size: 10px; /** Teks pendukung: keterangan, teks bantuan, label kecil. Desktop 12px, mobile 10px. */
+  --cargo-small-line-height: 14px; /** Tinggi baris small. Desktop 16px, mobile 14px. */
+  --cargo-small-letter-spacing: 0.1px; /** Spasi huruf small. Desktop 0%, mobile +1% dari ukuran huruf. */
+  --cargo-extra-small-font-size: 8px; /** Teks paling kecil: badge dan label checkbox kecil. Desktop 10px, mobile 8px. */
+  --cargo-extra-small-line-height: 11px; /** Tinggi baris extra-small. Desktop 14px, mobile 11px. */
+  --cargo-extra-small-letter-spacing: 0.16px; /** Spasi huruf extra-small. Desktop +1%, mobile +2% dari ukuran huruf. */
+  --cargo-display-1-font-size: 48px; /** Judul hero di website. Desktop 60px, mobile 48px. */
+  --cargo-display-1-line-height: 50px; /** Tinggi baris display-1. Desktop 62px, mobile 50px. */
+  --cargo-display-1-letter-spacing: -0.48px; /** Spasi huruf display-1. Desktop -2%, mobile -1% dari ukuran huruf. */
+  --cargo-display-2-font-size: 38px; /** Judul bagian besar di website. Desktop 48px, mobile 38px. */
+  --cargo-display-2-line-height: 40px; /** Tinggi baris display-2. Desktop 50px, mobile 40px. */
+  --cargo-display-2-letter-spacing: -0.76px; /** Spasi huruf display-2. Desktop 0%, mobile -2% dari ukuran huruf. */
+  --cargo-display-3-font-size: 28px; /** Judul sub-bagian di website. Desktop 38px, mobile 28px. */
+  --cargo-display-3-line-height: 30px; /** Tinggi baris display-3. Desktop 40px, mobile 30px. */
+  --cargo-display-3-letter-spacing: 0px; /** Spasi huruf display-3. Desktop -1%, mobile 0% dari ukuran huruf. */
   --cargo-color-brand-light-fill: var(--cargo-color-tosca-50); /** Isi warna brand: tombol utama, toggle aktif, elemen terpilih. */
   --cargo-color-brand-light-fill-hover: var(--cargo-color-tosca-60); /** Isi brand saat kursor di atasnya. */
   --cargo-color-brand-light-fill-pressed: var(--cargo-color-tosca-70); /** Isi brand saat ditekan. */
@@ -344,4 +379,283 @@
     --cargo-color-border-brand: var(--cargo-color-brand-dark-border);
     --cargo-color-border-focus: var(--cargo-color-brand-dark-border);
   }
+}
+
+/* Tipografi: ukuran Mobile di atas, ukuran Desktop mulai lebar 768px. */
+
+@media (min-width: 768px) {
+  :root {
+    --cargo-heading-1-font-size: 36px;
+    --cargo-heading-1-line-height: 54px;
+    --cargo-heading-1-letter-spacing: -1px;
+    --cargo-heading-2-font-size: 24px;
+    --cargo-heading-2-line-height: 34px;
+    --cargo-heading-2-letter-spacing: -0.48px;
+    --cargo-heading-3-font-size: 18px;
+    --cargo-heading-3-line-height: 24px;
+    --cargo-heading-3-letter-spacing: -0.18px;
+    --cargo-title-font-size: 16px;
+    --cargo-title-line-height: 22px;
+    --cargo-title-letter-spacing: -0.16px;
+    --cargo-body-font-size: 14px;
+    --cargo-body-line-height: 20px;
+    --cargo-body-letter-spacing: -0.14px;
+    --cargo-small-font-size: 12px;
+    --cargo-small-line-height: 16px;
+    --cargo-small-letter-spacing: 0px;
+    --cargo-extra-small-font-size: 10px;
+    --cargo-extra-small-line-height: 14px;
+    --cargo-extra-small-letter-spacing: 0.1px;
+    --cargo-display-1-font-size: 60px;
+    --cargo-display-1-line-height: 62px;
+    --cargo-display-1-letter-spacing: -1.2px;
+    --cargo-display-2-font-size: 48px;
+    --cargo-display-2-line-height: 50px;
+    --cargo-display-2-letter-spacing: 0px;
+    --cargo-display-3-font-size: 38px;
+    --cargo-display-3-line-height: 40px;
+    --cargo-display-3-letter-spacing: -0.38px;
+  }
+}
+
+/* Text style, sama dengan di Figma: body/medium menjadi .cargo-text-body-medium. */
+
+.cargo-text-heading-1-regular {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-regular);
+  font-size: var(--cargo-heading-1-font-size);
+  line-height: var(--cargo-heading-1-line-height);
+  letter-spacing: var(--cargo-heading-1-letter-spacing);
+}
+
+.cargo-text-heading-1-medium {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-medium);
+  font-size: var(--cargo-heading-1-font-size);
+  line-height: var(--cargo-heading-1-line-height);
+  letter-spacing: var(--cargo-heading-1-letter-spacing);
+}
+
+.cargo-text-heading-1-bold {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-bold);
+  font-size: var(--cargo-heading-1-font-size);
+  line-height: var(--cargo-heading-1-line-height);
+  letter-spacing: var(--cargo-heading-1-letter-spacing);
+}
+
+.cargo-text-heading-2-regular {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-regular);
+  font-size: var(--cargo-heading-2-font-size);
+  line-height: var(--cargo-heading-2-line-height);
+  letter-spacing: var(--cargo-heading-2-letter-spacing);
+}
+
+.cargo-text-heading-2-medium {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-medium);
+  font-size: var(--cargo-heading-2-font-size);
+  line-height: var(--cargo-heading-2-line-height);
+  letter-spacing: var(--cargo-heading-2-letter-spacing);
+}
+
+.cargo-text-heading-2-bold {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-bold);
+  font-size: var(--cargo-heading-2-font-size);
+  line-height: var(--cargo-heading-2-line-height);
+  letter-spacing: var(--cargo-heading-2-letter-spacing);
+}
+
+.cargo-text-heading-3-regular {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-regular);
+  font-size: var(--cargo-heading-3-font-size);
+  line-height: var(--cargo-heading-3-line-height);
+  letter-spacing: var(--cargo-heading-3-letter-spacing);
+}
+
+.cargo-text-heading-3-medium {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-medium);
+  font-size: var(--cargo-heading-3-font-size);
+  line-height: var(--cargo-heading-3-line-height);
+  letter-spacing: var(--cargo-heading-3-letter-spacing);
+}
+
+.cargo-text-heading-3-bold {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-bold);
+  font-size: var(--cargo-heading-3-font-size);
+  line-height: var(--cargo-heading-3-line-height);
+  letter-spacing: var(--cargo-heading-3-letter-spacing);
+}
+
+.cargo-text-title-regular {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-regular);
+  font-size: var(--cargo-title-font-size);
+  line-height: var(--cargo-title-line-height);
+  letter-spacing: var(--cargo-title-letter-spacing);
+}
+
+.cargo-text-title-medium {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-medium);
+  font-size: var(--cargo-title-font-size);
+  line-height: var(--cargo-title-line-height);
+  letter-spacing: var(--cargo-title-letter-spacing);
+}
+
+.cargo-text-title-bold {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-bold);
+  font-size: var(--cargo-title-font-size);
+  line-height: var(--cargo-title-line-height);
+  letter-spacing: var(--cargo-title-letter-spacing);
+}
+
+.cargo-text-body-regular {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-regular);
+  font-size: var(--cargo-body-font-size);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+}
+
+.cargo-text-body-medium {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-medium);
+  font-size: var(--cargo-body-font-size);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+}
+
+.cargo-text-body-bold {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-bold);
+  font-size: var(--cargo-body-font-size);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+}
+
+.cargo-text-small-regular {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-regular);
+  font-size: var(--cargo-small-font-size);
+  line-height: var(--cargo-small-line-height);
+  letter-spacing: var(--cargo-small-letter-spacing);
+}
+
+.cargo-text-small-medium {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-medium);
+  font-size: var(--cargo-small-font-size);
+  line-height: var(--cargo-small-line-height);
+  letter-spacing: var(--cargo-small-letter-spacing);
+}
+
+.cargo-text-small-bold {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-bold);
+  font-size: var(--cargo-small-font-size);
+  line-height: var(--cargo-small-line-height);
+  letter-spacing: var(--cargo-small-letter-spacing);
+}
+
+.cargo-text-extra-small-regular {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-regular);
+  font-size: var(--cargo-extra-small-font-size);
+  line-height: var(--cargo-extra-small-line-height);
+  letter-spacing: var(--cargo-extra-small-letter-spacing);
+}
+
+.cargo-text-extra-small-medium {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-medium);
+  font-size: var(--cargo-extra-small-font-size);
+  line-height: var(--cargo-extra-small-line-height);
+  letter-spacing: var(--cargo-extra-small-letter-spacing);
+}
+
+.cargo-text-extra-small-bold {
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-weight: var(--cargo-font-weight-bold);
+  font-size: var(--cargo-extra-small-font-size);
+  line-height: var(--cargo-extra-small-line-height);
+  letter-spacing: var(--cargo-extra-small-letter-spacing);
+}
+
+.cargo-text-display-1-regular {
+  font-family: var(--cargo-font-family-display), sans-serif;
+  font-weight: var(--cargo-font-weight-regular);
+  font-size: var(--cargo-display-1-font-size);
+  line-height: var(--cargo-display-1-line-height);
+  letter-spacing: var(--cargo-display-1-letter-spacing);
+}
+
+.cargo-text-display-1-medium {
+  font-family: var(--cargo-font-family-display), sans-serif;
+  font-weight: var(--cargo-font-weight-medium);
+  font-size: var(--cargo-display-1-font-size);
+  line-height: var(--cargo-display-1-line-height);
+  letter-spacing: var(--cargo-display-1-letter-spacing);
+}
+
+.cargo-text-display-1-bold {
+  font-family: var(--cargo-font-family-display), sans-serif;
+  font-weight: var(--cargo-font-weight-bold);
+  font-size: var(--cargo-display-1-font-size);
+  line-height: var(--cargo-display-1-line-height);
+  letter-spacing: var(--cargo-display-1-letter-spacing);
+}
+
+.cargo-text-display-2-regular {
+  font-family: var(--cargo-font-family-display), sans-serif;
+  font-weight: var(--cargo-font-weight-regular);
+  font-size: var(--cargo-display-2-font-size);
+  line-height: var(--cargo-display-2-line-height);
+  letter-spacing: var(--cargo-display-2-letter-spacing);
+}
+
+.cargo-text-display-2-medium {
+  font-family: var(--cargo-font-family-display), sans-serif;
+  font-weight: var(--cargo-font-weight-medium);
+  font-size: var(--cargo-display-2-font-size);
+  line-height: var(--cargo-display-2-line-height);
+  letter-spacing: var(--cargo-display-2-letter-spacing);
+}
+
+.cargo-text-display-2-bold {
+  font-family: var(--cargo-font-family-display), sans-serif;
+  font-weight: var(--cargo-font-weight-bold);
+  font-size: var(--cargo-display-2-font-size);
+  line-height: var(--cargo-display-2-line-height);
+  letter-spacing: var(--cargo-display-2-letter-spacing);
+}
+
+.cargo-text-display-3-regular {
+  font-family: var(--cargo-font-family-display), sans-serif;
+  font-weight: var(--cargo-font-weight-regular);
+  font-size: var(--cargo-display-3-font-size);
+  line-height: var(--cargo-display-3-line-height);
+  letter-spacing: var(--cargo-display-3-letter-spacing);
+}
+
+.cargo-text-display-3-medium {
+  font-family: var(--cargo-font-family-display), sans-serif;
+  font-weight: var(--cargo-font-weight-medium);
+  font-size: var(--cargo-display-3-font-size);
+  line-height: var(--cargo-display-3-line-height);
+  letter-spacing: var(--cargo-display-3-letter-spacing);
+}
+
+.cargo-text-display-3-bold {
+  font-family: var(--cargo-font-family-display), sans-serif;
+  font-weight: var(--cargo-font-weight-bold);
+  font-size: var(--cargo-display-3-font-size);
+  line-height: var(--cargo-display-3-line-height);
+  letter-spacing: var(--cargo-display-3-letter-spacing);
 }

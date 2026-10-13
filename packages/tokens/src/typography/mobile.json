@@ -1,0 +1,190 @@
+{
+  "font-family": {
+    "$type": "fontFamily",
+    "$description": "Jenis huruf. Scoping di Figma: Font family.",
+    "ui": {
+      "$value": "Inter",
+      "$description": "Huruf untuk aplikasi: heading, title, body, small, dan extra-small."
+    },
+    "display": {
+      "$value": "Montserrat",
+      "$description": "Huruf untuk judul besar di website: display-1 sampai display-3."
+    }
+  },
+  "font-weight": {
+    "$type": "fontWeight",
+    "$description": "Tebal huruf. Scoping di Figma: Font weight.",
+    "regular": {
+      "$value": 400,
+      "$description": "Tebal huruf normal (400)."
+    },
+    "medium": {
+      "$value": 500,
+      "$description": "Tebal huruf sedang (500)."
+    },
+    "bold": {
+      "$value": 700,
+      "$description": "Tebal huruf tebal (700)."
+    }
+  },
+  "heading-1": {
+    "$type": "fontSize",
+    "$description": "Judul halaman.",
+    "font-size": {
+      "$value": "24px",
+      "$description": "Judul halaman. Desktop 36px, mobile 24px."
+    },
+    "line-height": {
+      "$value": "34px",
+      "$description": "Tinggi baris heading-1. Desktop 54px, mobile 34px."
+    },
+    "letter-spacing": {
+      "$value": "-0.48px",
+      "$description": "Spasi huruf heading-1. Desktop -1px, mobile -2% dari ukuran huruf."
+    }
+  },
+  "heading-2": {
+    "$type": "fontSize",
+    "$description": "Judul bagian.",
+    "font-size": {
+      "$value": "18px",
+      "$description": "Judul bagian. Desktop 24px, mobile 18px."
+    },
+    "line-height": {
+      "$value": "24px",
+      "$description": "Tinggi baris heading-2. Desktop 34px, mobile 24px."
+    },
+    "letter-spacing": {
+      "$value": "-0.18px",
+      "$description": "Spasi huruf heading-2. Desktop -2%, mobile -1% dari ukuran huruf."
+    }
+  },
+  "heading-3": {
+    "$type": "fontSize",
+    "$description": "Judul kartu atau sub-bagian.",
+    "font-size": {
+      "$value": "16px",
+      "$description": "Judul kartu atau sub-bagian. Desktop 18px, mobile 16px."
+    },
+    "line-height": {
+      "$value": "22px",
+      "$description": "Tinggi baris heading-3. Desktop 24px, mobile 22px."
+    },
+    "letter-spacing": {
+      "$value": "-0.16px",
+      "$description": "Spasi huruf heading-3. Desktop -1%, mobile -1% dari ukuran huruf."
+    }
+  },
+  "title": {
+    "$type": "fontSize",
+    "$description": "Judul kecil dan label tombol besar.",
+    "font-size": {
+      "$value": "14px",
+      "$description": "Judul kecil dan label tombol besar. Desktop 16px, mobile 14px."
+    },
+    "line-height": {
+      "$value": "20px",
+      "$description": "Tinggi baris title. Desktop 22px, mobile 20px."
+    },
+    "letter-spacing": {
+      "$value": "-0.14px",
+      "$description": "Spasi huruf title. Desktop -1%, mobile -1% dari ukuran huruf."
+    }
+  },
+  "body": {
+    "$type": "fontSize",
+    "$description": "Teks isi dan label tombol.",
+    "font-size": {
+      "$value": "12px",
+      "$description": "Teks isi dan label tombol. Desktop 14px, mobile 12px."
+    },
+    "line-height": {
+      "$value": "16px",
+      "$description": "Tinggi baris body. Desktop 20px, mobile 16px."
+    },
+    "letter-spacing": {
+      "$value": "0px",
+      "$description": "Spasi huruf body. Desktop -1%, mobile 0% dari ukuran huruf."
+    }
+  },
+  "small": {
+    "$type": "fontSize",
+    "$description": "Teks pendukung: keterangan, teks bantuan, label kecil.",
+    "font-size": {
+      "$value": "10px",
+      "$description": "Teks pendukung: keterangan, teks bantuan, label kecil. Desktop 12px, mobile 10px."
+    },
+    "line-height": {
+      "$value": "14px",
+      "$description": "Tinggi baris small. Desktop 16px, mobile 14px."
+    },
+    "letter-spacing": {
+      "$value": "0.1px",
+      "$description": "Spasi huruf small. Desktop 0%, mobile +1% dari ukuran huruf."
+    }
+  },
+  "extra-small": {
+    "$type": "fontSize",
+    "$description": "Teks paling kecil: badge dan label checkbox kecil.",
+    "font-size": {
+      "$value": "8px",
+      "$description": "Teks paling kecil: badge dan label checkbox kecil. Desktop 10px, mobile 8px."
+    },
+    "line-height": {
+      "$value": "11px",
+      "$description": "Tinggi baris extra-small. Desktop 14px, mobile 11px."
+    },
+    "letter-spacing": {
+      "$value": "0.16px",
+      "$description": "Spasi huruf extra-small. Desktop +1%, mobile +2% dari ukuran huruf."
+    }
+  },
+  "display-1": {
+    "$type": "fontSize",
+    "$description": "Judul hero di website.",
+    "font-size": {
+      "$value": "48px",
+      "$description": "Judul hero di website. Desktop 60px, mobile 48px."
+    },
+    "line-height": {
+      "$value": "50px",
+      "$description": "Tinggi baris display-1. Desktop 62px, mobile 50px."
+    },
+    "letter-spacing": {
+      "$value": "-0.48px",
+      "$description": "Spasi huruf display-1. Desktop -2%, mobile -1% dari ukuran huruf."
+    }
+  },
+  "display-2": {
+    "$type": "fontSize",
+    "$description": "Judul bagian besar di website.",
+    "font-size": {
+      "$value": "38px",
+      "$description": "Judul bagian besar di website. Desktop 48px, mobile 38px."
+    },
+    "line-height": {
+      "$value": "40px",
+      "$description": "Tinggi baris display-2. Desktop 50px, mobile 40px."
+    },
+    "letter-spacing": {
+      "$value": "-0.76px",
+      "$description": "Spasi huruf display-2. Desktop 0%, mobile -2% dari ukuran huruf."
+    }
+  },
+  "display-3": {
+    "$type": "fontSize",
+    "$description": "Judul sub-bagian di website.",
+    "font-size": {
+      "$value": "28px",
+      "$description": "Judul sub-bagian di website. Desktop 38px, mobile 28px."
+    },
+    "line-height": {
+      "$value": "30px",
+      "$description": "Tinggi baris display-3. Desktop 40px, mobile 30px."
+    },
+    "letter-spacing": {
+      "$value": "0px",
+      "$description": "Spasi huruf display-3. Desktop -1%, mobile 0% dari ukuran huruf."
+    }
+  }
+}
