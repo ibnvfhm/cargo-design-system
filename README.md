@@ -10,7 +10,7 @@ Satu sumber kebenaran untuk warna, tipografi, spacing, dan komponen di semua pro
 | 2 | Semantic colors: tugas tiap warna (latar, teks, ikon, garis, status) | Selesai |
 | 3 | Tema brand (UIC, INTI, InMeterai, InCivas, InCustoms) dan mode gelap | Selesai: 5 brand, mode Light dan Dark |
 | 4 | Token non-warna: tipografi, spacing, radius, shadow | Selesai: spacing, radius, tebal garis, tipografi, dan shadow |
-| 5 | Memasang token ke komponen Figma | Berikutnya |
+| 5 | Memasang token ke komponen Figma | Sedang direview: semua komponen dan ikon sudah memakai token, tinggal bersih-bersih style lama |
 | 6 | Paket developer dan situs dokumentasi | Belum |
 
 ## Cara kerjanya
