@@ -29,6 +29,7 @@ Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](htt
 - `color.black` dari `#212121` menjadi `#000000` (hitam murni). Warna teks utama tetap `#212121` lewat `color.neutral.100`.
 - Hasil build dipisah per brand dan mode: `dist/css/tokens.css` menjadi `dist/css/<brand>.css`, `dist/js/tokens.js` menjadi `dist/js/<brand>/<mode>.js`, dan kelas mobile `CargoTokens` menjadi `CargoTokensLight` dan `CargoTokensDark` di folder setiap brand. Export paket menjadi `@cargo/tokens/css/<brand>` dan `@cargo/tokens/js/<brand>/<mode>`.
 - Palet `sea` sekarang dicatat untuk brand InCustoms (sebelumnya tertulis InCustom).
+- Deskripsi `color.text.default`, `color.text.secondary`, dan `color.text.tertiary`: label form sekarang memakai `text/default` (sebelumnya disebut di `text/secondary`), sedangkan keterangan dan penghitung karakter memakai `text/tertiary`. Nilai warnanya tidak berubah. README punya tabel aturan teks di form.
 
 ### Diperbaiki
 

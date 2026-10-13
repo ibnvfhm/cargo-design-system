@@ -145,9 +145,9 @@ public enum CargoTokensDark {
     public static let colorBgWarningSubtle = colorYellow100 /** Latar pesan peringatan. Teks di atasnya: text/warning. */
     public static let colorBgInfo = colorBlue70 /** Badge informasi. Teks di atasnya: text/on-info. */
     public static let colorBgInfoSubtle = colorBlue100 /** Latar pesan informasi. Teks di atasnya: text/info. */
-    public static let colorTextDefault = colorWhite /** Teks utama: judul dan isi. */
-    public static let colorTextSecondary = colorNeutral40 /** Teks pendukung: subjudul dan label. */
-    public static let colorTextTertiary = colorNeutral50 /** Teks paling lembut yang masih terbaca: placeholder dan keterangan. */
+    public static let colorTextDefault = colorWhite /** Teks utama: judul, isi, dan label form. */
+    public static let colorTextSecondary = colorNeutral40 /** Teks pendukung: subjudul dan informasi tambahan, misalnya tanggal di kartu. */
+    public static let colorTextTertiary = colorNeutral50 /** Teks paling lembut yang masih terbaca: placeholder, keterangan, dan penghitung karakter. */
     public static let colorTextDisabled = colorNeutral70 /** Teks komponen yang tidak aktif (tidak wajib memenuhi kontras). */
     public static let colorTextInverse = colorNeutral100 /** Teks di atas bg/inverse. */
     public static let colorTextOnError = colorWhite /** Teks di atas bg/error. */

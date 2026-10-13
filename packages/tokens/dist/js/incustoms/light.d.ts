@@ -170,11 +170,11 @@ export const ColorBgWarningSubtle: string;
 export const ColorBgInfo: string;
 /** Latar pesan informasi. Teks di atasnya: text/info. */
 export const ColorBgInfoSubtle: string;
-/** Teks utama: judul dan isi. */
+/** Teks utama: judul, isi, dan label form. */
 export const ColorTextDefault: string;
-/** Teks pendukung: subjudul dan label. */
+/** Teks pendukung: subjudul dan informasi tambahan, misalnya tanggal di kartu. */
 export const ColorTextSecondary: string;
-/** Teks paling lembut yang masih terbaca: placeholder dan keterangan. */
+/** Teks paling lembut yang masih terbaca: placeholder, keterangan, dan penghitung karakter. */
 export const ColorTextTertiary: string;
 /** Teks komponen yang tidak aktif (tidak wajib memenuhi kontras). */
 export const ColorTextDisabled: string;

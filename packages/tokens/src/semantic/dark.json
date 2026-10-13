@@ -85,15 +85,15 @@
       "$description": "Teks. Scoping di Figma: Fill untuk Text.",
       "default": {
         "$value": "{color.white}",
-        "$description": "Teks utama: judul dan isi."
+        "$description": "Teks utama: judul, isi, dan label form."
       },
       "secondary": {
         "$value": "{color.neutral.40}",
-        "$description": "Teks pendukung: subjudul dan label."
+        "$description": "Teks pendukung: subjudul dan informasi tambahan, misalnya tanggal di kartu."
       },
       "tertiary": {
         "$value": "{color.neutral.50}",
-        "$description": "Teks paling lembut yang masih terbaca: placeholder dan keterangan."
+        "$description": "Teks paling lembut yang masih terbaca: placeholder, keterangan, dan penghitung karakter."
       },
       "disabled": {
         "$value": "{color.neutral.70}",

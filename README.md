@@ -144,6 +144,14 @@ Ditambah `white` (#FFFFFF) dan `black` (#000000, hitam murni). Warna teks utama 
 - **Tingkat penekanan**: `default`, `secondary`, `tertiary`. Kata "primary" sengaja tidak dipakai supaya tidak tertukar dengan warna brand.
 - **Status**: `success`, `warning`, `error`, `info`.
 - **Pasangan latar dan teks**: latar berwarna punya pasangan `text/on-…`, misalnya `bg/brand` dengan `text/on-brand`, atau `bg/warning` dengan `text/on-warning` (gelap).
+- **Teks di form**, sama di Text Fields, Text Area, Checkbox, Radio, dan Toggle:
+
+  | Teks | Token |
+  |---|---|
+  | Label dan isi yang diketik | `text/default` |
+  | Placeholder, keterangan, dan penghitung karakter | `text/tertiary` |
+  | Pesan error | `text/error` |
+
 - **Setiap token punya deskripsi.** Teksnya sama di Figma, di file token, dan sebagai komentar di semua hasil build.
 
 Daftar lengkapnya ada di [`dist/docs/semantic.md`](packages/tokens/dist/docs/semantic.md).

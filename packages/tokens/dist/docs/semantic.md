@@ -72,9 +72,9 @@ Teks. Scoping di Figma: Fill untuk Text.
 
 | Token | Light | Dark | Dipakai untuk |
 |---|---|---|---|
-| `color.text.default` | `neutral.100` `#212121` | `white` `#FFFFFF` | Teks utama: judul dan isi. |
-| `color.text.secondary` | `neutral.90` `#424242` | `neutral.40` `#E0E0E0` | Teks pendukung: subjudul dan label. |
-| `color.text.tertiary` | `neutral.80` `#616161` | `neutral.50` `#BDBDBD` | Teks paling lembut yang masih terbaca: placeholder dan keterangan. |
+| `color.text.default` | `neutral.100` `#212121` | `white` `#FFFFFF` | Teks utama: judul, isi, dan label form. |
+| `color.text.secondary` | `neutral.90` `#424242` | `neutral.40` `#E0E0E0` | Teks pendukung: subjudul dan informasi tambahan, misalnya tanggal di kartu. |
+| `color.text.tertiary` | `neutral.80` `#616161` | `neutral.50` `#BDBDBD` | Teks paling lembut yang masih terbaca: placeholder, keterangan, dan penghitung karakter. |
 | `color.text.disabled` | `neutral.60` `#9E9E9E` | `neutral.70` `#757575` | Teks komponen yang tidak aktif (tidak wajib memenuhi kontras). |
 | `color.text.inverse` | `white` `#FFFFFF` | `neutral.100` `#212121` | Teks di atas bg/inverse. |
 | `color.text.brand` | `brand.light.text` | `brand.dark.text` | Teks berwarna brand, misalnya tab yang aktif. |

@@ -148,9 +148,9 @@ class CargoTokensDark {
     static const colorBgWarningSubtle = colorYellow100; /** Latar pesan peringatan. Teks di atasnya: text/warning. */
     static const colorBgInfo = colorBlue70; /** Badge informasi. Teks di atasnya: text/on-info. */
     static const colorBgInfoSubtle = colorBlue100; /** Latar pesan informasi. Teks di atasnya: text/info. */
-    static const colorTextDefault = colorWhite; /** Teks utama: judul dan isi. */
-    static const colorTextSecondary = colorNeutral40; /** Teks pendukung: subjudul dan label. */
-    static const colorTextTertiary = colorNeutral50; /** Teks paling lembut yang masih terbaca: placeholder dan keterangan. */
+    static const colorTextDefault = colorWhite; /** Teks utama: judul, isi, dan label form. */
+    static const colorTextSecondary = colorNeutral40; /** Teks pendukung: subjudul dan informasi tambahan, misalnya tanggal di kartu. */
+    static const colorTextTertiary = colorNeutral50; /** Teks paling lembut yang masih terbaca: placeholder, keterangan, dan penghitung karakter. */
     static const colorTextDisabled = colorNeutral70; /** Teks komponen yang tidak aktif (tidak wajib memenuhi kontras). */
     static const colorTextInverse = colorNeutral100; /** Teks di atas bg/inverse. */
     static const colorTextOnError = colorWhite; /** Teks di atas bg/error. */

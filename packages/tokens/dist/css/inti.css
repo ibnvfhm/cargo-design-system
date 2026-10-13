@@ -221,9 +221,9 @@
   --cargo-color-bg-warning-subtle: var(--cargo-color-yellow-10); /** Latar pesan peringatan. Teks di atasnya: text/warning. */
   --cargo-color-bg-info: var(--cargo-color-blue-70); /** Badge informasi. Teks di atasnya: text/on-info. */
   --cargo-color-bg-info-subtle: var(--cargo-color-blue-10); /** Latar pesan informasi. Teks di atasnya: text/info. */
-  --cargo-color-text-default: var(--cargo-color-neutral-100); /** Teks utama: judul dan isi. */
-  --cargo-color-text-secondary: var(--cargo-color-neutral-90); /** Teks pendukung: subjudul dan label. */
-  --cargo-color-text-tertiary: var(--cargo-color-neutral-80); /** Teks paling lembut yang masih terbaca: placeholder dan keterangan. */
+  --cargo-color-text-default: var(--cargo-color-neutral-100); /** Teks utama: judul, isi, dan label form. */
+  --cargo-color-text-secondary: var(--cargo-color-neutral-90); /** Teks pendukung: subjudul dan informasi tambahan, misalnya tanggal di kartu. */
+  --cargo-color-text-tertiary: var(--cargo-color-neutral-80); /** Teks paling lembut yang masih terbaca: placeholder, keterangan, dan penghitung karakter. */
   --cargo-color-text-disabled: var(--cargo-color-neutral-60); /** Teks komponen yang tidak aktif (tidak wajib memenuhi kontras). */
   --cargo-color-text-inverse: var(--cargo-color-white); /** Teks di atas bg/inverse. */
   --cargo-color-text-on-error: var(--cargo-color-white); /** Teks di atas bg/error. */
