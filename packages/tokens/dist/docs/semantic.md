@@ -31,14 +31,14 @@ Dipakai oleh Semantic mode Dark.
 
 | Token | UIC | INTI | InMeterai | InCivas | InCustoms | Dipakai untuk |
 |---|---|---|---|---|---|---|
-| `color.brand.dark.fill` | `imperial.70` `#002D71` | `grape.50` `#843380` | `fuchsia.50` `#F5487C` | `tosca.50` `#0ABAB5` | `sea.50` `#458DFC` | Isi warna brand di mode Dark: tombol utama, toggle aktif, elemen terpilih. |
+| `color.brand.dark.fill` | `imperial.50` `#005AE2` | `grape.50` `#843380` | `fuchsia.50` `#F5487C` | `tosca.50` `#0ABAB5` | `sea.50` `#458DFC` | Isi warna brand di mode Dark: tombol utama, toggle aktif, elemen terpilih. |
 | `color.brand.dark.fill-hover` | `imperial.60` `#0044A9` | `grape.40` `#A640A1` | `fuchsia.40` `#F76E97` | `tosca.40` `#13F3EB` | `sea.40` `#6DA6FD` | Isi brand di mode Dark saat kursor di atasnya. |
-| `color.brand.dark.fill-pressed` | `imperial.50` `#005AE2` | `grape.30` `#BE57B9` | `fuchsia.30` `#FAA3BD` | `tosca.30` `#69F7F2` | `sea.30` `#A2C7FE` | Isi brand di mode Dark saat ditekan. |
+| `color.brand.dark.fill-pressed` | `imperial.70` `#002D71` | `grape.30` `#BE57B9` | `fuchsia.30` `#FAA3BD` | `tosca.30` `#69F7F2` | `sea.30` `#A2C7FE` | Isi brand di mode Dark saat ditekan. |
 | `color.brand.dark.fill-subtle` | `imperial.90` `#001A40` | `grape.90` `#260F25` | `fuchsia.90` `#2B020E` | `tosca.90` `#011A19` | `sea.90` `#011C44` | Latar brand yang lembut di mode Dark: chip atau item terpilih. |
 | `color.brand.dark.on-fill` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | Teks dan ikon di atas isi brand di mode Dark. |
-| `color.brand.dark.text` | `imperial.70` `#002D71` | `grape.50` `#843380` | `fuchsia.50` `#F5487C` | `tosca.50` `#0ABAB5` | `sea.50` `#458DFC` | Teks dan link berwarna brand di atas latar gelap. |
-| `color.brand.dark.text-hover` | `imperial.60` `#0044A9` | `grape.40` `#A640A1` | `fuchsia.40` `#F76E97` | `tosca.40` `#13F3EB` | `sea.40` `#6DA6FD` | Teks atau link brand di mode Dark saat kursor di atasnya. |
-| `color.brand.dark.border` | `imperial.70` `#002D71` | `grape.50` `#843380` | `fuchsia.50` `#F5487C` | `tosca.50` `#0ABAB5` | `sea.50` `#458DFC` | Garis brand di mode Dark: elemen terpilih dan cincin fokus. |
+| `color.brand.dark.text` | `imperial.30` `#8DBBFF` | `grape.50` `#843380` | `fuchsia.50` `#F5487C` | `tosca.50` `#0ABAB5` | `sea.50` `#458DFC` | Teks dan link berwarna brand di atas latar gelap. |
+| `color.brand.dark.text-hover` | `imperial.20` `#C6DDFF` | `grape.40` `#A640A1` | `fuchsia.40` `#F76E97` | `tosca.40` `#13F3EB` | `sea.40` `#6DA6FD` | Teks atau link brand di mode Dark saat kursor di atasnya. |
+| `color.brand.dark.border` | `imperial.30` `#8DBBFF` | `grape.50` `#843380` | `fuchsia.50` `#F5487C` | `tosca.50` `#0ABAB5` | `sea.50` `#458DFC` | Garis brand di mode Dark: elemen terpilih dan cincin fokus. |
 
 ## bg
 

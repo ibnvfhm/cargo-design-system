@@ -41,7 +41,7 @@
       "dark": {
         "$description": "Dipakai oleh Semantic mode Dark.",
         "fill": {
-          "$value": "{color.imperial.70}",
+          "$value": "{color.imperial.50}",
           "$description": "Isi warna brand di mode Dark: tombol utama, toggle aktif, elemen terpilih."
         },
         "fill-hover": {
@@ -49,7 +49,7 @@
           "$description": "Isi brand di mode Dark saat kursor di atasnya."
         },
         "fill-pressed": {
-          "$value": "{color.imperial.50}",
+          "$value": "{color.imperial.70}",
           "$description": "Isi brand di mode Dark saat ditekan."
         },
         "fill-subtle": {
@@ -61,15 +61,15 @@
           "$description": "Teks dan ikon di atas isi brand di mode Dark."
         },
         "text": {
-          "$value": "{color.imperial.70}",
+          "$value": "{color.imperial.30}",
           "$description": "Teks dan link berwarna brand di atas latar gelap."
         },
         "text-hover": {
-          "$value": "{color.imperial.60}",
+          "$value": "{color.imperial.20}",
           "$description": "Teks atau link brand di mode Dark saat kursor di atasnya."
         },
         "border": {
-          "$value": "{color.imperial.70}",
+          "$value": "{color.imperial.30}",
           "$description": "Garis brand di mode Dark: elemen terpilih dan cincin fokus."
         }
       }
