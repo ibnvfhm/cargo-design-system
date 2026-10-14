@@ -165,6 +165,7 @@ class CargoTokensDark {
     static const colorTextInfo = colorBlue30; /** Pesan informasi. */
     static const colorTextAccent = colorPurple30; /** Teks penanda kategori lain (ungu). */
     static const colorTextOnAccent = colorWhite; /** Teks di atas bg/accent. */
+    static const colorTextHoliday = colorRed40; /** Tanggal libur di kalender: hari Minggu dan libur nasional (tanggal merah). */
     static const colorIconDefault = colorWhite; /** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
     static const colorIconSecondary = colorNeutral50; /** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */
     static const colorIconDisabled = colorNeutral70; /** Ikon pada komponen yang tidak aktif. */

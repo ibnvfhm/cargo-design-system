@@ -162,6 +162,7 @@ public enum CargoTokensLight {
     public static let colorTextInfo = colorBlue70 /** Pesan informasi. */
     public static let colorTextAccent = colorPurple50 /** Teks penanda kategori lain (ungu). */
     public static let colorTextOnAccent = colorWhite /** Teks di atas bg/accent. */
+    public static let colorTextHoliday = colorRed80 /** Tanggal libur di kalender: hari Minggu dan libur nasional (tanggal merah). */
     public static let colorIconDefault = colorNeutral100 /** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
     public static let colorIconSecondary = colorNeutral80 /** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */
     public static let colorIconDisabled = colorNeutral60 /** Ikon pada komponen yang tidak aktif. */

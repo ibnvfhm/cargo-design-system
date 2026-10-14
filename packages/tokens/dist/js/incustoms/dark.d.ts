@@ -212,6 +212,8 @@ export const ColorTextInfo: string;
 export const ColorTextAccent: string;
 /** Teks di atas bg/accent. */
 export const ColorTextOnAccent: string;
+/** Tanggal libur di kalender: hari Minggu dan libur nasional (tanggal merah). */
+export const ColorTextHoliday: string;
 /** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
 export const ColorIconDefault: string;
 /** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */

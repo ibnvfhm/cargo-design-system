@@ -34,6 +34,9 @@ export const PAIRS = [
   ['text.info', 'bg.default', AA_TEXT],
   ['text.accent', 'bg.accent-subtle', AA_TEXT],
   ['text.accent', 'bg.default', AA_TEXT],
+  // Holiday dates sit on the page and inside a selected date range.
+  ['text.holiday', 'bg.default', AA_TEXT],
+  ['text.holiday', 'bg.brand-subtle', AA_TEXT],
   ['icon.default', 'bg.default', NON_TEXT],
   ['icon.secondary', 'bg.default', NON_TEXT],
   ['icon.inverse', 'bg.inverse', NON_TEXT],

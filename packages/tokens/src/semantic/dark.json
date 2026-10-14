@@ -166,6 +166,10 @@
       "on-accent": {
         "$value": "{color.white}",
         "$description": "Teks di atas bg/accent."
+      },
+      "holiday": {
+        "$value": "{color.red.40}",
+        "$description": "Tanggal libur di kalender: hari Minggu dan libur nasional (tanggal merah)."
       }
     },
     "icon": {

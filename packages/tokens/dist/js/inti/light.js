@@ -163,6 +163,7 @@ export const ColorTextWarning = "#8a6604"; // Pesan peringatan.
 export const ColorTextInfo = "#0c52a3"; // Pesan informasi.
 export const ColorTextAccent = "#7833d8"; // Teks penanda kategori lain (ungu).
 export const ColorTextOnAccent = "#ffffff"; // Teks di atas bg/accent.
+export const ColorTextHoliday = "#ac0000"; // Tanggal libur di kalender: hari Minggu dan libur nasional (tanggal merah).
 export const ColorIconDefault = "#212121"; // Ikon utama, misalnya ikon menu dan ikon di tombol teks.
 export const ColorIconSecondary = "#616161"; // Ikon pendukung, misalnya ikon cari atau kalender di dalam input.
 export const ColorIconDisabled = "#9e9e9e"; // Ikon pada komponen yang tidak aktif.

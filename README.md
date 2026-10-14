@@ -137,12 +137,12 @@ Ditambah `white` (#FFFFFF) dan `black` (#000000, hitam murni). Warna teks utama 
   | Kelompok | Isi | Scoping di Figma |
   |---|---|---|
   | `bg` (21) | latar | Fill: Frame dan Shape |
-  | `text` (19) | teks | Fill: Text |
+  | `text` (20) | teks | Fill: Text |
   | `icon` (16) | ikon | Fill: Shape, dan Stroke |
   | `border` (10) | garis | Stroke |
 
 - **Tingkat penekanan**: `default`, `secondary`, `tertiary`. Kata "primary" sengaja tidak dipakai supaya tidak tertukar dengan warna brand.
-- **Status**: `success`, `warning`, `error`, `info`. Ditambah `accent` (ungu) untuk penanda kategori lain, misalnya badge Accent.
+- **Status**: `success`, `warning`, `error`, `info`. Ditambah `accent` (ungu) untuk penanda kategori lain, misalnya badge Accent, dan `text/holiday` (merah) untuk tanggal libur di kalender, misalnya hari Minggu di Date Picker.
 - **Pasangan latar dan teks**: latar berwarna punya pasangan `text/on-…` dan `icon/on-…`, misalnya `bg/brand` dengan `text/on-brand` dan `icon/on-brand`, atau `bg/warning` dengan `text/on-warning` (gelap).
 - **Teks di form**, sama di Text Fields, Text Area, Checkbox, Radio, dan Toggle:
 
@@ -205,7 +205,7 @@ Daftar lengkapnya ada di [`dist/docs/shadow.md`](packages/tokens/dist/docs/shado
 
 ## Kontras
 
-Untuk setiap brand dan mode, 50 pasangan dicek: setiap teks, ikon, dan garis terhadap latar tempat ia biasa dipakai. Teks butuh kontras minimal 4.5:1, ikon dan garis 3:1 (WCAG 2.2 AA). Daftar pasangannya ada di `lib/pairs.mjs`, dan hasilnya di [`dist/docs/contrast.md`](packages/tokens/dist/docs/contrast.md).
+Untuk setiap brand dan mode, 52 pasangan dicek: setiap teks, ikon, dan garis terhadap latar tempat ia biasa dipakai. Teks butuh kontras minimal 4.5:1, ikon dan garis 3:1 (WCAG 2.2 AA). Daftar pasangannya ada di `lib/pairs.mjs`, dan hasilnya di [`dist/docs/contrast.md`](packages/tokens/dist/docs/contrast.md).
 
 Beberapa pasangan sengaja dibiarkan di bawah standar atas keputusan designer. Pasangan itu dicatat di [`contrast-exceptions.json`](packages/tokens/contrast-exceptions.json). `npm test` gagal kalau ada pasangan lain yang turun di bawah standar, atau kalau pasangan yang dicatat ternyata sudah lolos (hapus dari daftar).
 

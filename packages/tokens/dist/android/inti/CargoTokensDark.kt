@@ -171,6 +171,7 @@ object CargoTokensDark {
   val colorTextInfo = colorBlue30
   val colorTextAccent = colorPurple30
   val colorTextOnAccent = colorWhite
+  val colorTextHoliday = colorRed40
   val colorIconDefault = colorWhite
   val colorIconSecondary = colorNeutral50
   val colorIconDisabled = colorNeutral70

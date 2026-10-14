@@ -238,6 +238,7 @@
   --cargo-color-text-info: var(--cargo-color-blue-70); /** Pesan informasi. */
   --cargo-color-text-accent: var(--cargo-color-purple-50); /** Teks penanda kategori lain (ungu). */
   --cargo-color-text-on-accent: var(--cargo-color-white); /** Teks di atas bg/accent. */
+  --cargo-color-text-holiday: var(--cargo-color-red-80); /** Tanggal libur di kalender: hari Minggu dan libur nasional (tanggal merah). */
   --cargo-color-icon-default: var(--cargo-color-neutral-100); /** Ikon utama, misalnya ikon menu dan ikon di tombol teks. */
   --cargo-color-icon-secondary: var(--cargo-color-neutral-80); /** Ikon pendukung, misalnya ikon cari atau kalender di dalam input. */
   --cargo-color-icon-disabled: var(--cargo-color-neutral-60); /** Ikon pada komponen yang tidak aktif. */
@@ -310,6 +311,7 @@
   --cargo-color-text-info: var(--cargo-color-blue-30);
   --cargo-color-text-accent: var(--cargo-color-purple-30);
   --cargo-color-text-on-accent: var(--cargo-color-white);
+  --cargo-color-text-holiday: var(--cargo-color-red-40);
   --cargo-color-icon-default: var(--cargo-color-white);
   --cargo-color-icon-secondary: var(--cargo-color-neutral-50);
   --cargo-color-icon-disabled: var(--cargo-color-neutral-70);
@@ -383,6 +385,7 @@
     --cargo-color-text-info: var(--cargo-color-blue-30);
     --cargo-color-text-accent: var(--cargo-color-purple-30);
     --cargo-color-text-on-accent: var(--cargo-color-white);
+    --cargo-color-text-holiday: var(--cargo-color-red-40);
     --cargo-color-icon-default: var(--cargo-color-white);
     --cargo-color-icon-secondary: var(--cargo-color-neutral-50);
     --cargo-color-icon-disabled: var(--cargo-color-neutral-70);

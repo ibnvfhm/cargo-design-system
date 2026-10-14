@@ -93,6 +93,7 @@ Teks. Scoping di Figma: Fill untuk Text.
 | `color.text.info` | `blue.70` `#0C52A3` | `blue.30` `#60A5F3` | Pesan informasi. |
 | `color.text.accent` | `purple.50` `#7833D8` | `purple.30` `#9C74EC` | Teks penanda kategori lain (ungu). |
 | `color.text.on-accent` | `white` `#FFFFFF` | `white` `#FFFFFF` | Teks di atas bg/accent. |
+| `color.text.holiday` | `red.80` `#AC0000` | `red.40` `#FF5B5B` | Tanggal libur di kalender: hari Minggu dan libur nasional (tanggal merah). |
 
 ## icon
 
