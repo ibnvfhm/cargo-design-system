@@ -1,17 +1,5 @@
 {
   "$description": "Pasangan warna yang sengaja dibiarkan di bawah kontras minimum WCAG AA atas keputusan designer (12 Oktober 2026). Setiap pasangan ditulis [warna, latar] tanpa awalan color. Angka kontrasnya ada di dist/docs/contrast.md. Kalau warnanya diubah sampai lolos, hapus pasangannya dari sini.",
-  "inti": {
-    "dark": [
-      ["text.brand", "bg.default"],
-      ["text.brand", "bg.brand-subtle"],
-      ["text.link", "bg.secondary"],
-      ["text.link-hover", "bg.default"],
-      ["text.on-brand", "bg.brand-pressed"],
-      ["icon.brand", "bg.default"],
-      ["border.brand", "bg.default"],
-      ["border.focus", "bg.default"]
-    ]
-  },
   "inmeterai": {
     "light": [
       ["text.brand", "bg.default"],

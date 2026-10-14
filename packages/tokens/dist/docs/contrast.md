@@ -7,7 +7,7 @@ Setiap teks, ikon, dan garis dicek terhadap latar tempat ia biasa dipakai, untuk
 | Brand | Light | Dark |
 |---|---|---|
 | UIC | 50 dari 50 lolos | 50 dari 50 lolos |
-| INTI | 50 dari 50 lolos | 42 dari 50 lolos |
+| INTI | 50 dari 50 lolos | 50 dari 50 lolos |
 | InMeterai | 44 dari 50 lolos | 47 dari 50 lolos |
 | InCivas | 40 dari 50 lolos | 46 dari 50 lolos |
 | InCustoms | 46 dari 50 lolos | 47 dari 50 lolos |
@@ -15,19 +15,6 @@ Setiap teks, ikon, dan garis dicek terhadap latar tempat ia biasa dipakai, untuk
 ## Di bawah standar
 
 Pasangan berikut sengaja dibiarkan di bawah standar atas keputusan designer, dan dicatat di `contrast-exceptions.json`. `npm test` gagal kalau ada pasangan lain yang turun di bawah standar, atau kalau pasangan yang dicatat ternyata sudah lolos.
-
-### INTI, Dark
-
-| Warna | Latar | Kontras | Minimal | Catatan |
-|---|---|---|---|---|
-| `color.text.brand` | `color.bg.default` | 2.12:1 | 4.5:1 | disengaja |
-| `color.text.brand` | `color.bg.brand-subtle` | 2.35:1 | 4.5:1 | disengaja |
-| `color.text.link` | `color.bg.secondary` | 2.77:1 | 4.5:1 | disengaja |
-| `color.text.link-hover` | `color.bg.default` | 2.97:1 | 4.5:1 | disengaja |
-| `color.text.on-brand` | `color.bg.brand-pressed` | 4.00:1 | 4.5:1 | disengaja |
-| `color.icon.brand` | `color.bg.default` | 2.12:1 | 3:1 | disengaja |
-| `color.border.brand` | `color.bg.default` | 2.12:1 | 3:1 | disengaja |
-| `color.border.focus` | `color.bg.default` | 2.12:1 | 3:1 | disengaja |
 
 ### InMeterai, Light
 

@@ -193,14 +193,14 @@
   --cargo-color-brand-light-text: var(--cargo-color-grape-50); /** Teks dan link berwarna brand di atas latar terang. */
   --cargo-color-brand-light-text-hover: var(--cargo-color-grape-60); /** Teks atau link brand saat kursor di atasnya. */
   --cargo-color-brand-light-border: var(--cargo-color-grape-50); /** Garis brand: elemen terpilih dan cincin fokus. */
-  --cargo-color-brand-dark-fill: var(--cargo-color-grape-50); /** Isi warna brand di mode Dark: tombol utama, toggle aktif, elemen terpilih. */
-  --cargo-color-brand-dark-fill-hover: var(--cargo-color-grape-40); /** Isi brand di mode Dark saat kursor di atasnya. */
-  --cargo-color-brand-dark-fill-pressed: var(--cargo-color-grape-30); /** Isi brand di mode Dark saat ditekan. */
+  --cargo-color-brand-dark-fill: var(--cargo-color-grape-40); /** Isi warna brand di mode Dark: tombol utama, toggle aktif, elemen terpilih. */
+  --cargo-color-brand-dark-fill-hover: var(--cargo-color-grape-50); /** Isi brand di mode Dark saat kursor di atasnya. */
+  --cargo-color-brand-dark-fill-pressed: var(--cargo-color-grape-60); /** Isi brand di mode Dark saat ditekan. */
   --cargo-color-brand-dark-fill-subtle: var(--cargo-color-grape-90); /** Latar brand yang lembut di mode Dark: chip atau item terpilih. */
   --cargo-color-brand-dark-on-fill: var(--cargo-color-white); /** Teks dan ikon di atas isi brand di mode Dark. */
-  --cargo-color-brand-dark-text: var(--cargo-color-grape-50); /** Teks dan link berwarna brand di atas latar gelap. */
-  --cargo-color-brand-dark-text-hover: var(--cargo-color-grape-40); /** Teks atau link brand di mode Dark saat kursor di atasnya. */
-  --cargo-color-brand-dark-border: var(--cargo-color-grape-50); /** Garis brand di mode Dark: elemen terpilih dan cincin fokus. */
+  --cargo-color-brand-dark-text: var(--cargo-color-grape-20); /** Teks dan link berwarna brand di atas latar gelap. */
+  --cargo-color-brand-dark-text-hover: var(--cargo-color-grape-10); /** Teks atau link brand di mode Dark saat kursor di atasnya. */
+  --cargo-color-brand-dark-border: var(--cargo-color-grape-20); /** Garis brand di mode Dark: elemen terpilih dan cincin fokus. */
 }
 
 :root,

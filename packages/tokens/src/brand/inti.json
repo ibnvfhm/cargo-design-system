@@ -41,15 +41,15 @@
       "dark": {
         "$description": "Dipakai oleh Semantic mode Dark.",
         "fill": {
-          "$value": "{color.grape.50}",
+          "$value": "{color.grape.40}",
           "$description": "Isi warna brand di mode Dark: tombol utama, toggle aktif, elemen terpilih."
         },
         "fill-hover": {
-          "$value": "{color.grape.40}",
+          "$value": "{color.grape.50}",
           "$description": "Isi brand di mode Dark saat kursor di atasnya."
         },
         "fill-pressed": {
-          "$value": "{color.grape.30}",
+          "$value": "{color.grape.60}",
           "$description": "Isi brand di mode Dark saat ditekan."
         },
         "fill-subtle": {
@@ -61,15 +61,15 @@
           "$description": "Teks dan ikon di atas isi brand di mode Dark."
         },
         "text": {
-          "$value": "{color.grape.50}",
+          "$value": "{color.grape.20}",
           "$description": "Teks dan link berwarna brand di atas latar gelap."
         },
         "text-hover": {
-          "$value": "{color.grape.40}",
+          "$value": "{color.grape.10}",
           "$description": "Teks atau link brand di mode Dark saat kursor di atasnya."
         },
         "border": {
-          "$value": "{color.grape.50}",
+          "$value": "{color.grape.20}",
           "$description": "Garis brand di mode Dark: elemen terpilih dan cincin fokus."
         }
       }
