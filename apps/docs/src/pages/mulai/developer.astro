@@ -1,0 +1,140 @@
+---
+import CodeBlock from '../../components/CodeBlock.astro';
+import Icon from '../../components/Icon.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { SITE, url } from '../../lib/site.mjs';
+
+const css = `.button-primary {
+  padding: var(--cargo-space-12) var(--cargo-space-16);
+  border-radius: var(--cargo-radius-8);
+  background: var(--cargo-color-bg-brand);
+  color: var(--cargo-color-text-on-brand);
+}
+.button-primary:hover { background: var(--cargo-color-bg-brand-hover); }
+.button-primary:focus-visible { box-shadow: var(--cargo-focus-ring-default); }
+.card { box-shadow: var(--cargo-shadow-sm); }`;
+
+const html = `<h1 class="cargo-text-heading-1-bold">Pengajuan cuti</h1>
+<p class="cargo-text-body-regular">Permintaanmu sudah dikirim.</p>`;
+
+const js = `import { ColorBgBrand, ColorTextOnBrand } from '@cargo/tokens/js/uic/light';
+import { Space16, Radius8 } from '@cargo/tokens/js/dimension';
+import { BodyFontSize, BodyLineHeight } from '@cargo/tokens/js/typography/desktop';
+import { ShadowMd } from '@cargo/tokens/js/shadow';`;
+
+const dart = `final dark = MediaQuery.platformBrightnessOf(context) == Brightness.dark;
+Container(
+  padding: EdgeInsets.all(CargoDimension.space16),
+  color: dark ? CargoTokensDark.colorBgBrand : CargoTokensLight.colorBgBrand,
+)`;
+
+const kotlin = `val bgBrand = if (isSystemInDarkTheme()) CargoTokensDark.colorBgBrand else CargoTokensLight.colorBgBrand
+Box(Modifier.background(bgBrand).padding(CargoDimension.space16))`;
+
+const swift = `@Environment(\\.colorScheme) private var colorScheme
+
+Text("Kirim")
+  .padding(CargoDimension.space16)
+  .background(colorScheme == .dark ? CargoTokensDark.colorBgBrand : CargoTokensLight.colorBgBrand)`;
+
+const tree = `packages/tokens/dist/
+├── css/<brand>.css                        warna Light dan Dark, ukuran, tipografi, text style, shadow
+├── js/<brand>/light.js, dark.js           warna dan cincin fokus, beserta .d.ts
+├── js/dimension.js                        spacing, radius, tebal garis
+├── js/typography/desktop.js, mobile.js    tipografi
+├── js/shadow.js                           shadow
+├── flutter/<brand>/cargo_tokens_light.dart, cargo_tokens_dark.dart
+├── flutter/cargo_dimension.dart, cargo_typography_mobile.dart, cargo_shadow.dart, …
+├── android/<brand>/CargoTokensLight.kt, CargoTokensDark.kt
+├── android/CargoDimension.kt, CargoTypographyMobile.kt, CargoShadow.kt, …
+├── ios/<brand>/CargoTokensLight.swift, CargoTokensDark.swift
+└── ios/CargoDimension.swift, CargoTypographyMobile.swift, CargoShadow.swift, …`;
+---
+
+<Base title="Mulai mengembangkan" description="Cara memasang token Cargo di web, Flutter, Android, dan iOS.">
+  <PageHeader
+    eyebrow="Cara memulai"
+    title="Mulai mengembangkan"
+    lead="Memasang token Cargo di web, Flutter, Android (Compose), dan iOS (SwiftUI). Komponen kode menyusul; yang tersedia sekarang adalah token."
+  >
+    <a class="btn btn-outlined btn-sm" href={SITE.repo} target="_blank" rel="noopener">Buka repositori<Icon name="ArrowUpRight" size={16} /></a>
+  </PageHeader>
+
+  <div class="note">
+    <Icon name="Info" />
+    <p>
+      Paket <code class="inline-code">@cargo/tokens</code> belum dipublikasikan ke npm. Sementara itu, salin file yang dibutuhkan dari folder
+      <code class="inline-code">packages/tokens/dist/</code> di repositori.
+    </p>
+  </div>
+
+  <div class="prose">
+    <h2>Aturan utama</h2>
+    <ul>
+      <li>
+        Untuk warna, pakai <strong>token semantic</strong> (<code>--cargo-color-bg-brand</code>), bukan primitive (<code>--cargo-color-imperial-70</code>).
+        Dengan begitu brand dan mode Dark berganti tanpa mengubah kode.
+      </li>
+      <li>Untuk jarak dan sudut, pakai <code>space</code>, <code>radius</code>, dan <code>border-width</code>. Angkanya sama di semua platform: px di web, dp di Android, pt di iOS.</li>
+      <li>Untuk teks, pakai text style. Di web tersedia sebagai class, misalnya <code>.cargo-text-body-medium</code>.</li>
+    </ul>
+
+    <h2>Web (CSS, React, Next.js)</h2>
+    <p>Muat file brand-nya sekali, misalnya di <code>app/layout.tsx</code>:</p>
+  </div>
+  <div class="block"><CodeBlock code={`import '@cargo/tokens/css/uic';`} lang="ts" title="app/layout.tsx" /></div>
+  <div class="prose"><p>Lalu pakai token semantic dan ukuran di CSS:</p></div>
+  <div class="block"><CodeBlock code={css} lang="css" title="button.css" /></div>
+
+  <div class="prose">
+    <h3>Mode Dark</h3>
+    <p>
+      Mode Dark otomatis mengikuti setelan sistem. Untuk memilih sendiri, pasang <code>data-theme="dark"</code> atau <code>data-theme="light"</code>
+      di <code>&lt;html&gt;</code>, atau di elemen lain untuk satu bagian halaman saja.
+    </p>
+
+    <h3>Teks</h3>
+    <p>Pakai class text style. Ukurannya otomatis berganti dari Mobile ke Desktop mulai lebar 768px.</p>
+  </div>
+  <div class="block"><CodeBlock code={html} lang="html" title="HTML" /></div>
+  <div class="prose">
+    <p>Font Inter dan Montserrat perlu dimuat sendiri, misalnya dari Google Fonts atau paket Fontsource.</p>
+
+    <h2>JavaScript dan TypeScript</h2>
+    <p>Warna dan cincin fokus ada di satu modul untuk setiap brand dan mode. Ukuran, tipografi, dan shadow masing-masing punya modul sendiri.</p>
+  </div>
+  <div class="block"><CodeBlock code={js} lang="ts" title="TypeScript" /></div>
+
+  <div class="prose">
+    <h2>Aplikasi mobile</h2>
+    <p>Aplikasi mobile memakai ukuran tipografi Mobile. Salin folder brand-nya, lalu file ukuran, tipografi, dan shadow.</p>
+    <h3>Flutter</h3>
+    <p>Salin <code>dist/flutter/&lt;brand&gt;/</code>, lalu <code>cargo_dimension.dart</code>, <code>cargo_typography_mobile.dart</code>, dan <code>cargo_shadow.dart</code>.</p>
+  </div>
+  <div class="block"><CodeBlock code={dart} lang="dart" title="Flutter" /></div>
+  <div class="prose">
+    <h3>Android (Jetpack Compose)</h3>
+    <p>Salin <code>dist/android/&lt;brand&gt;/</code>, lalu <code>CargoDimension.kt</code>, <code>CargoTypographyMobile.kt</code>, dan <code>CargoShadow.kt</code>.</p>
+  </div>
+  <div class="block"><CodeBlock code={kotlin} lang="kotlin" title="Kotlin" /></div>
+  <div class="prose">
+    <h3>iOS (SwiftUI)</h3>
+    <p>Salin <code>dist/ios/&lt;brand&gt;/</code>, lalu <code>CargoDimension.swift</code>, <code>CargoTypographyMobile.swift</code>, dan <code>CargoShadow.swift</code>.</p>
+  </div>
+  <div class="block"><CodeBlock code={swift} lang="swift" title="Swift" /></div>
+
+  <div class="prose">
+    <h2>Isi paket</h2>
+    <p>
+      Semua file dibuat otomatis dari <code>packages/tokens/src</code> dengan <code>npm run build</code>. Jangan edit file di <code>dist</code> langsung.
+      Nama token di setiap platform ada di <a href={url('/mulai/')}>Pengenalan</a>.
+    </p>
+  </div>
+  <div class="block"><CodeBlock code={tree} lang="plaintext" title="packages/tokens/dist" /></div>
+</Base>
+
+<style>
+  .note { margin-bottom: var(--cargo-space-8); }
+  .block { margin-top: var(--cargo-space-16); }
+</style>

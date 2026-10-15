@@ -1,0 +1,183 @@
+---
+import PageHeader from '../../components/PageHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { FONT_FAMILIES, FONT_WEIGHTS, ROLES } from '../../lib/tokens.mjs';
+
+const FAMILY_SAMPLE = { ui: 'Aa Bb Cc 0123456789', display: 'Aa Bb Cc 0123456789' };
+const SAMPLE = {
+  'heading-1': 'Pengajuan cuti',
+  'heading-2': 'Riwayat pengajuan',
+  'heading-3': 'Detail karyawan',
+  title: 'Ringkasan bulan ini',
+  body: 'Permintaanmu sudah dikirim ke atasan.',
+  small: 'Terakhir diperbarui 2 jam lalu',
+  'extra-small': 'BARU',
+  'display-1': 'Satu sistem',
+  'display-2': 'Lima brand',
+  'display-3': 'Semua platform',
+};
+const metric = (m) => `${m.size} / ${m.lineHeight}`;
+---
+
+<Base title="Tipografi" width="wide" description="Jenis huruf, tebal huruf, peran, dan text style Cargo Design System.">
+  <PageHeader
+    eyebrow="Foundations · Teks dan ruang"
+    title="Tipografi"
+    lead="Dua jenis huruf, tiga tebal, dan sepuluh peran. Setiap peran punya ukuran Desktop dan Mobile dengan nama yang sama."
+  />
+
+  <div class="prose intro">
+    <ul>
+      <li>Web memakai ukuran Mobile di layar kecil, lalu ukuran Desktop mulai lebar 768px. Aplikasi HP memakai ukuran Mobile.</li>
+      <li>Di Figma, ukuran berganti lewat mode collection Typography (Desktop atau Mobile) pada frame.</li>
+      <li>Letter spacing ditulis dalam px, seperti di Figma. Nilainya berasal dari persen ukuran huruf, misalnya -2% × 24px = -0,48px.</li>
+    </ul>
+  </div>
+
+  <section class="section">
+    <div class="section-head"><h2 class="section-title">Jenis huruf</h2></div>
+    <div class="families">
+      {
+        FONT_FAMILIES.map((family) => (
+          <div class="family">
+            <p class="family-sample" style={`font-family: var(--cargo-font-family-${family.id}), sans-serif`}>{FAMILY_SAMPLE[family.id]}</p>
+            <p class="family-name">{family.value}</p>
+            <p class="family-desc">{family.description}</p>
+            <code class="family-token">font-family/{family.id}</code>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2 class="section-title">Tebal huruf</h2></div>
+    <div class="weights">
+      {
+        FONT_WEIGHTS.map((weight) => (
+          <div class="weight">
+            <span class="weight-sample" style={`font-weight: ${weight.value}`}>Aa</span>
+            <span>
+              <strong>{weight.id}</strong> <span class="muted">({weight.value})</span>
+              <code class="weight-token">font-weight/{weight.id}</code>
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">Peran</h2>
+      <p class="section-intro">Contoh teks memakai ukuran yang sedang berlaku di layar ini. Ukuran ditulis sebagai ukuran huruf / tinggi baris.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="table roles">
+        <thead>
+          <tr>
+            <th>Peran</th>
+            <th>Contoh</th>
+            <th>Desktop</th>
+            <th>Mobile</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            ROLES.map((role) => (
+              <tr id={role.role}>
+                <td class="role">
+                  <code class="role-name">{role.role}</code>
+                  <span class="role-desc">{role.description}</span>
+                </td>
+                <td class="sample-cell">
+                  <span class={`cargo-text-${role.role}-bold sample`}>{SAMPLE[role.role]}</span>
+                </td>
+                <td class="nowrap">
+                  <span class="metric">{metric(role.desktop)}</span>
+                  <span class="ls">spasi {role.desktop.letterSpacing}</span>
+                </td>
+                <td class="nowrap">
+                  <span class="metric">{metric(role.mobile)}</span>
+                  <span class="ls">spasi {role.mobile.letterSpacing}</span>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">Text style</h2>
+      <p class="section-intro">
+        {ROLES.length * FONT_WEIGHTS.length} text style = {ROLES.length} peran × {FONT_WEIGHTS.length} tebal. Nama di Figma <code class="inline-code">body/medium</code> menjadi class
+        <code class="inline-code">.cargo-text-body-medium</code> di CSS.
+      </p>
+    </div>
+    <div class="table-wrap">
+      <table class="table styles">
+        <thead>
+          <tr>
+            <th>Peran</th>
+            {FONT_WEIGHTS.map((weight) => <th>{weight.id}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            ROLES.map((role) => (
+              <tr>
+                <td class="nowrap"><code class="role-name">{role.role}</code></td>
+                {FONT_WEIGHTS.map((weight) => (
+                  <td>
+                    <span class={`cargo-text-${role.role}-${weight.id} style-sample`}>Cargo</span>
+                    <code class="style-name">{role.role}/{weight.id}</code>
+                  </td>
+                ))}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { margin-bottom: var(--cargo-space-8); }
+  .families { display: grid; gap: var(--cargo-space-16); grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+  .family {
+    padding: var(--cargo-space-24);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12);
+  }
+  .family-sample { margin: 0 0 var(--cargo-space-16); font-size: 32px; line-height: 40px; font-weight: var(--cargo-font-weight-bold); }
+  .family-name { margin: 0; font-weight: var(--cargo-font-weight-bold); }
+  .family-desc { margin: var(--cargo-space-4) 0 var(--cargo-space-12); color: var(--cargo-color-text-secondary); font-size: 14px; line-height: 20px; }
+  .family-token,
+  .weight-token { font-size: 12px; color: var(--cargo-color-text-tertiary); }
+  .weights { display: grid; gap: var(--cargo-space-12); grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); }
+  .weight {
+    display: flex;
+    align-items: center;
+    gap: var(--cargo-space-16);
+    padding: var(--cargo-space-16);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12);
+  }
+  .weight-sample { font-size: 36px; line-height: 1; }
+  .weight-token { display: block; }
+  .roles { min-width: 820px; }
+  .role { min-width: 220px; }
+  .role-name { font-size: 13px; font-weight: var(--cargo-font-weight-bold); }
+  .role-desc { display: block; color: var(--cargo-color-text-tertiary); font-size: 12px; line-height: 16px; }
+  .sample-cell { min-width: 320px; }
+  .sample { display: block; }
+  .metric { display: block; font-family: var(--site-font-mono); font-size: 13px; }
+  .ls { display: block; color: var(--cargo-color-text-tertiary); font-size: 12px; }
+  .styles { min-width: 720px; }
+  .style-sample { display: block; }
+  .style-name { display: block; margin-top: 2px; color: var(--cargo-color-text-tertiary); font-size: 11px; }
+</style>

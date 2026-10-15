@@ -1,0 +1,47 @@
+---
+import { SECTIONS, SIDEBAR, url } from '../lib/site.mjs';
+import { BRANDS } from '../lib/tokens.mjs';
+
+interface Props {
+  section: string;
+  /** Normalised path of the current page, with a trailing slash. */
+  path: string;
+}
+
+const { section, path } = Astro.props;
+const groups = SIDEBAR[section];
+const sectionLabel = SECTIONS.find((item) => item.id === section)?.label;
+---
+
+<aside class="sidebar" id="sidebar" data-sidebar>
+  <div class="sidebar-mobile">
+    <nav class="sections" aria-label="Bagian">
+      {SECTIONS.map((item) => <a href={url(item.href)} aria-current={item.id === section ? 'true' : undefined}>{item.label}</a>)}
+    </nav>
+    <label>
+      Brand
+      <select data-brand-select>
+        {BRANDS.map((brand) => <option value={brand.id}>{brand.name}</option>)}
+      </select>
+    </label>
+  </div>
+  <nav aria-label={`Halaman ${sectionLabel}`}>
+    {
+      groups.map((group) => (
+        <div class="side-group">
+          {group.title && <p class="side-title">{group.title}</p>}
+          <ul>
+            {group.items.map((item) => (
+              <li>
+                <a href={url(item.href)} aria-current={item.href === path ? 'page' : undefined}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </nav>
+</aside>
+<div class="sidebar-backdrop" hidden data-sidebar-backdrop></div>

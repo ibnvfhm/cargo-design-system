@@ -1,0 +1,98 @@
+---
+import PageHeader from '../../components/PageHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { url } from '../../lib/site.mjs';
+import { brandThemes } from '../../lib/tokens.mjs';
+
+const brands = brandThemes();
+const MODE_TITLE = { light: 'Grup light (dipakai mode Light)', dark: 'Grup dark (dipakai mode Dark)' };
+---
+
+<Base title="Tema brand" width="wide" description="Brand Theme Cargo: 16 token warna khas untuk setiap brand.">
+  <PageHeader
+    eyebrow="Foundations · Warna"
+    title="Tema brand"
+    lead="Brand Theme menyimpan warna khas setiap brand. Setiap brand punya 16 token dengan nama yang sama, jadi token semantic seperti bg/brand cocok untuk brand mana pun."
+  />
+
+  <div class="prose intro">
+    <ul>
+      <li>Di Figma, Brand Theme adalah satu collection dengan satu mode untuk setiap brand. Di kode, setiap brand punya file sendiri.</li>
+      <li>Grup <code>light</code> dipakai mode Light, grup <code>dark</code> dipakai mode Dark.</li>
+      <li>Tokennya selalu menunjuk ke primitive, dan tidak dipakai langsung di desain. Desain memakai <a href={url('/foundations/warna/')}>token semantic</a>.</li>
+    </ul>
+  </div>
+
+  {
+    ['light', 'dark'].map((mode, modeIndex) => (
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">{MODE_TITLE[mode]}</h2>
+        </div>
+        <div class="table-wrap">
+          <table class="table brand-table">
+            <thead>
+              <tr>
+                <th>Token</th>
+                {brands.map((brand) => (
+                  <th>{brand.name}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {brands[0].modes[modeIndex].tokens.map((first, row) => (
+                <tr>
+                  <td class="token">
+                    <code class="token-name">color/brand/{mode}/{first.key}</code>
+                    <span class="desc-line">{first.description}</span>
+                  </td>
+                  {brands.map((brand) => {
+                    const token = brand.modes[modeIndex].tokens[row];
+                    return (
+                      <td>
+                        <span class="cell">
+                          <span class="chip" style={`background: ${token.hex}`} />
+                          <span>
+                            <code>{token.ref}</code>
+                            <span class="hex">{token.hex}</span>
+                          </span>
+                        </span>
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="section prose">
+    <h2>Menambah brand</h2>
+    <ol>
+      <li>Di Figma, tambah satu mode di collection Brand Theme dan isi ke-16 tokennya dengan primitive.</li>
+      <li>Di repositori, tambah file <code>packages/tokens/src/brand/&lt;brand&gt;.json</code> dengan 16 token yang sama.</li>
+      <li>Tambah satu baris di <code>packages/tokens/lib/themes.mjs</code>, lalu jalankan <code>npm run build</code> dan <code>npm test</code>.</li>
+    </ol>
+    <p>Kalau brand baru butuh palet baru, tambahkan dulu paletnya di Primitive.</p>
+  </section>
+</Base>
+
+<style>
+  .intro { margin-bottom: var(--cargo-space-8); }
+  .brand-table { min-width: 980px; }
+  .token { min-width: 240px; }
+  .token-name { font-size: 13px; font-weight: var(--cargo-font-weight-bold); }
+  .desc-line { display: block; margin-top: 2px; color: var(--cargo-color-text-tertiary); font-size: 12px; line-height: 16px; }
+  .cell { display: inline-flex; align-items: flex-start; gap: var(--cargo-space-8); font-size: 13px; white-space: nowrap; }
+  .chip {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--cargo-radius-6);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12);
+  }
+  .hex { display: block; color: var(--cargo-color-text-tertiary); font-family: var(--site-font-mono); font-size: 11px; }
+</style>

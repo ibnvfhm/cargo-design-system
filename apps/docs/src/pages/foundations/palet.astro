@@ -1,0 +1,99 @@
+---
+import PageHeader from '../../components/PageHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { url } from '../../lib/site.mjs';
+import { AA_TEXT, palettes, ratioLabel, readableOn } from '../../lib/tokens.mjs';
+
+const all = palettes();
+const singles = all.filter((palette) => palette.steps.length === 1);
+const scales = all.filter((palette) => palette.steps.length > 1);
+const total = all.reduce((sum, palette) => sum + palette.steps.length, 0);
+---
+
+<Base title="Palet primitive" width="wide" description="Semua warna mentah Cargo Design System: palet system dan palet brand, skala 10 sampai 100.">
+  <PageHeader
+    eyebrow="Foundations · Warna"
+    title="Palet primitive"
+    lead={`${total} warna mentah, dinamai sesuai warnanya. Primitive tidak dipakai langsung di desain atau kode; token semantic yang menunjuk ke sini.`}
+  />
+
+  <div class="prose intro">
+    <ul>
+      <li><strong>Skala 10 sampai 100</strong>: 10 paling terang, 100 paling gelap.</li>
+      <li><strong>Nama palet adalah nama warna</strong>, bukan nama brand atau fungsi: <code>grape</code>, bukan <code>inti</code> atau <code>primary</code>.</li>
+      <li>
+        Setiap kotak menunjukkan warna teks yang paling terbaca di atasnya (putih atau <code>neutral.100</code>) beserta kontrasnya. Teks kecil
+        butuh minimal {AA_TEXT}:1; kotak yang belum mencapai angka itu diberi tanda <span class="low-mark">rendah</span>.
+      </li>
+    </ul>
+    <p>Untuk memilih warna di desain, pakai <a href={url('/foundations/warna/')}>Token warna</a>.</p>
+  </div>
+
+  <section class="section">
+    <div class="section-head"><h2 class="section-title">Putih dan hitam</h2></div>
+    <div class="singles">
+      {
+        singles.map((palette) => {
+          const step = palette.steps[0];
+          const text = readableOn(step.hex);
+          return (
+            <div class="step single" style={`background: ${step.hex}; color: ${text.color}`}>
+              <span class="step-name">color/{palette.name}</span>
+              <span class="step-hex">{step.hex}</span>
+              {palette.description && <span class="step-note">{palette.description}</span>}
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  {
+    scales.map((palette) => (
+      <section class="section palette">
+        <div class="section-head">
+          <h2 class="section-title" id={palette.name}>{palette.name}</h2>
+          <p class="section-intro">{palette.description}</p>
+        </div>
+        <div class="steps">
+          {palette.steps.map((step) => {
+            const text = readableOn(step.hex);
+            return (
+              <div class="step" style={`background: ${step.hex}; color: ${text.color}`}>
+                <span class="step-name">{step.step}</span>
+                <span class="step-hex">{step.hex}</span>
+                <span class:list={['step-ratio', { low: text.ratio < AA_TEXT }]} title={`Kontras teks ${ratioLabel(text.ratio)}`}>
+                  Aa {ratioLabel(text.ratio)}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .intro { margin-bottom: var(--cargo-space-8); }
+  .palette { margin-top: var(--cargo-space-40); }
+  .singles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: var(--cargo-space-12); }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-radius: var(--cargo-radius-12);
+    overflow: hidden;
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+  }
+  @media (min-width: 900px) {
+    .steps { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+  }
+  .step { display: grid; align-content: space-between; gap: var(--cargo-space-4); min-height: 104px; padding: var(--cargo-space-12) var(--cargo-space-8); }
+  .single { min-height: 96px; padding: var(--cargo-space-16); border-radius: var(--cargo-radius-12); border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle); }
+  .step-name { font-weight: var(--cargo-font-weight-bold); font-size: 14px; line-height: 20px; }
+  .step-hex { font-family: var(--site-font-mono); font-size: 11px; line-height: 16px; }
+  .step-note { font-size: 12px; line-height: 16px; opacity: 0.85; }
+  .step-ratio { font-size: 11px; line-height: 16px; font-weight: var(--cargo-font-weight-medium); }
+  .step-ratio.low { text-decoration: line-through; opacity: 0.8; }
+  .low-mark { text-decoration: line-through; color: var(--cargo-color-text-secondary); }
+</style>

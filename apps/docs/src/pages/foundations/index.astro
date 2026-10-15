@@ -1,0 +1,156 @@
+---
+import Icon from '../../components/Icon.astro';
+import LinkCard from '../../components/LinkCard.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { ICONS } from '../../lib/icons.mjs';
+import { url } from '../../lib/site.mjs';
+import {
+  BORDER_WIDTH,
+  BRANDS,
+  COUNTS,
+  FONT_FAMILIES,
+  FONT_WEIGHTS,
+  FOCUS_RINGS,
+  RADIUS,
+  ROLES,
+  SHADOWS,
+  SPACE,
+  brandRefs,
+  brandThemes,
+} from '../../lib/tokens.mjs';
+
+const brandTokens = brandThemes()[0].modes.reduce((total, mode) => total + mode.tokens.length, 0);
+const typographyTokens = FONT_FAMILIES.length + FONT_WEIGHTS.length + ROLES.length * 3;
+const collections = [
+  { name: 'Primitive', content: `${COUNTS.primitive} warna mentah`, modes: '—', page: '/foundations/palet/' },
+  { name: 'Brand Theme', content: `${brandTokens} token warna brand`, modes: BRANDS.map((brand) => brand.name).join(', '), page: '/foundations/brand/' },
+  { name: 'Semantic', content: `${COUNTS.semantic} token warna`, modes: 'Light, Dark', page: '/foundations/warna/' },
+  {
+    name: 'Dimension',
+    content: `${SPACE.tokens.length} spacing, ${RADIUS.tokens.length} radius, ${BORDER_WIDTH.tokens.length} tebal garis`,
+    modes: '—',
+    page: '/foundations/ukuran/',
+  },
+  { name: 'Typography', content: `${typographyTokens} token huruf`, modes: 'Desktop, Mobile', page: '/foundations/tipografi/' },
+];
+---
+
+<Base title="Foundations" description="Dasar visual Cargo Design System: warna, tipografi, ukuran, shadow, dan ikon.">
+  <PageHeader
+    eyebrow="Foundations"
+    title="Ringkasan"
+    lead="Foundations adalah keputusan dasar yang dipakai semua komponen: warna, huruf, jarak, sudut, bayangan, dan ikon. Semua halaman di bagian ini dibuat langsung dari file token, jadi selalu sama dengan Figma dan kode."
+  />
+
+  <div class="card-grid card-grid--2">
+    <LinkCard href={url('/foundations/warna/')} icon="Stack" title="Token warna" text={`${COUNTS.semantic} token semantic untuk latar, teks, ikon, dan garis.`} />
+    <LinkCard href={url('/foundations/palet/')} icon="SquareFour" title="Palet primitive" text={`${COUNTS.primitive} warna mentah, skala 10 sampai 100.`} />
+    <LinkCard href={url('/foundations/brand/')} icon="Building" title="Tema brand" text={`Warna khas ${BRANDS.length} brand dalam mode Light dan Dark.`} />
+    <LinkCard href={url('/foundations/kontras/')} icon="CheckSquareOffset" title="Kontras" text={`${COUNTS.pairs} pasangan warna dicek untuk setiap brand dan mode.`} />
+    <LinkCard href={url('/foundations/tipografi/')} icon="FileText" title="Tipografi" text={`${ROLES.length} peran dan ${COUNTS.textStyles} text style, ukuran Desktop dan Mobile.`} />
+    <LinkCard href={url('/foundations/ukuran/')} icon="Table" title="Spacing dan radius" text="Grid 4px untuk jarak, sudut, dan tebal garis." />
+    <LinkCard href={url('/foundations/shadow/')} icon="Images" title="Shadow dan elevasi" text={`${SHADOWS.tokens.length} shadow dan ${FOCUS_RINGS.tokens.length} cincin fokus.`} />
+    <LinkCard href={url('/foundations/ikon/')} icon="Sparkle" title="Ikonografi" text={`${ICONS.length} ikon, bisa dicari dengan kata kunci.`} />
+  </div>
+
+  <section class="section">
+    <div class="section-head prose">
+      <h2>Tiga lapis warna</h2>
+      <p>
+        Lapis kanan menunjuk ke lapis kirinya. Designer dan developer hanya memakai lapis Semantic; brand dan mode cukup diganti di satu tempat.
+        Contoh ini mengikuti brand dan mode yang sedang dipilih.
+      </p>
+    </div>
+    <div class="chain">
+      <div class="chain-step">
+        <span class="chain-swatch chain-brand"></span>
+        <span class="chain-layer">Primitive</span>
+        <code class="only-light">color/<span data-brand-ref="brand.light.fill" data-format="figma"></span></code>
+        <code class="only-dark">color/<span data-brand-ref="brand.dark.fill" data-format="figma"></span></code>
+      </div>
+      <Icon name="ArrowLeft" class="chain-arrow" />
+      <div class="chain-step">
+        <span class="chain-swatch chain-brand"></span>
+        <span class="chain-layer">Brand Theme</span>
+        <code class="only-light">color/brand/light/fill</code>
+        <code class="only-dark">color/brand/dark/fill</code>
+      </div>
+      <Icon name="ArrowLeft" class="chain-arrow" />
+      <div class="chain-step chain-semantic">
+        <span class="chain-swatch" style="background: var(--cargo-color-bg-brand)"></span>
+        <span class="chain-layer">Semantic</span>
+        <code>color/bg/brand</code>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head prose">
+      <h2>Collection di Figma</h2>
+      <p>Setiap collection Figma Variables punya pasangan file di <code>packages/tokens/src</code>, dan setiap mode menjadi satu file.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>Collection</th><th>Isi</th><th>Mode</th></tr>
+        </thead>
+        <tbody>
+          {
+            collections.map((collection) => (
+              <tr>
+                <td class="nowrap"><a href={url(collection.page)}>{collection.name}</a></td>
+                <td>{collection.content}</td>
+                <td class="muted">{collection.modes}</td>
+              </tr>
+            ))
+          }
+          <tr>
+            <td class="nowrap"><a href={url('/foundations/tipografi/')}>Text style</a></td>
+            <td>{COUNTS.textStyles} text style ({ROLES.length} peran × {FONT_WEIGHTS.length} tebal)</td>
+            <td class="muted">Ikut mode Typography</td>
+          </tr>
+          <tr>
+            <td class="nowrap"><a href={url('/foundations/shadow/')}>Effect style</a></td>
+            <td>{SHADOWS.tokens.length} shadow dan {FOCUS_RINGS.tokens.length} cincin fokus</td>
+            <td class="muted">Cincin fokus ikut brand dan mode</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <script is:inline type="application/json" id="brand-refs" set:html={JSON.stringify(brandRefs())} />
+</Base>
+
+<script>
+  import '../../scripts/live-tokens.js';
+</script>
+
+<style>
+  .chain { display: grid; gap: var(--cargo-space-12); }
+  @media (min-width: 900px) {
+    .chain { grid-template-columns: 1fr auto 1fr auto 1fr; align-items: stretch; }
+  }
+  .chain-step {
+    display: grid;
+    gap: var(--cargo-space-8);
+    padding: var(--cargo-space-16);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12);
+    background: var(--cargo-color-bg-secondary);
+  }
+  .chain-semantic { border-color: var(--cargo-color-border-brand); background: var(--cargo-color-bg-brand-subtle); }
+  .chain-swatch { height: 48px; border-radius: var(--cargo-radius-8); }
+  .chain-brand { background: var(--cargo-color-brand-light-fill); }
+  :global([data-theme='dark']) .chain-brand { background: var(--cargo-color-brand-dark-fill); }
+  .chain-layer { color: var(--cargo-color-text-tertiary); font-size: 12px; font-weight: var(--cargo-font-weight-bold); letter-spacing: 0.06em; text-transform: uppercase; }
+  .chain code { font-size: 13px; font-weight: var(--cargo-font-weight-medium); }
+  .chain-arrow { align-self: center; justify-self: center; color: var(--cargo-color-icon-secondary); transform: rotate(90deg); }
+  @media (min-width: 900px) {
+    .chain-arrow { transform: none; }
+  }
+  .only-dark { display: none; }
+  :global([data-theme='dark']) .only-dark { display: inline; }
+  :global([data-theme='dark']) .only-light { display: none; }
+</style>

@@ -1,0 +1,68 @@
+---
+import Icon from './Icon.astro';
+import { brandSwatches } from '../lib/tokens.mjs';
+
+const swatches = brandSwatches();
+---
+
+<div class="switcher">
+  <div class="switcher-brands" role="group" aria-label="Brand">
+    {
+      swatches.map((brand) => (
+        <button class="switcher-btn" type="button" data-set-brand={brand.id} aria-pressed="false">
+          <span class="dot" style={`--light: ${brand.light}; --dark: ${brand.dark}`} />
+          {brand.name}
+        </button>
+      ))
+    }
+  </div>
+  <div class="switcher-modes" role="group" aria-label="Mode">
+    <button class="switcher-btn" type="button" data-set-theme="light" aria-pressed="false"><Icon name="Sun" size={16} />Light</button>
+    <button class="switcher-btn" type="button" data-set-theme="dark" aria-pressed="false"><Icon name="Moon" size={16} />Dark</button>
+  </div>
+</div>
+
+<style>
+  .switcher {
+    position: sticky;
+    top: calc(var(--site-topbar-h) + var(--cargo-space-8));
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cargo-space-8);
+    margin-bottom: var(--cargo-space-32);
+    padding: var(--cargo-space-8);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12);
+    background: var(--cargo-color-bg-elevated);
+    box-shadow: var(--cargo-shadow-sm);
+  }
+  .switcher-brands,
+  .switcher-modes { display: flex; flex-wrap: wrap; gap: var(--cargo-space-4); }
+  .switcher-modes { padding: 2px; border-radius: var(--cargo-radius-8); background: var(--cargo-color-bg-secondary); }
+  .switcher-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--cargo-space-6);
+    height: 32px;
+    padding: 0 var(--cargo-space-12);
+    border: var(--cargo-border-width-1) solid transparent;
+    border-radius: var(--cargo-radius-6);
+    background: transparent;
+    color: var(--cargo-color-text-secondary);
+    font-size: 13px;
+    font-weight: var(--cargo-font-weight-medium);
+    cursor: pointer;
+  }
+  .switcher-btn:hover { background: var(--cargo-color-bg-tertiary); color: var(--cargo-color-text-default); }
+  .switcher-brands .switcher-btn[aria-pressed='true'] {
+    border-color: var(--cargo-color-border-brand);
+    background: var(--cargo-color-bg-brand-subtle);
+    color: var(--cargo-color-text-brand);
+  }
+  .switcher-modes .switcher-btn[aria-pressed='true'] { background: var(--cargo-color-bg-elevated); color: var(--cargo-color-text-default); box-shadow: var(--cargo-shadow-sm); }
+  .dot { width: 12px; height: 12px; border-radius: var(--cargo-radius-full); background: var(--light); }
+  :global([data-theme='dark']) .dot { background: var(--dark); }
+</style>

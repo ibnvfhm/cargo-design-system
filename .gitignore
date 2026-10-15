@@ -1,3 +1,7 @@
 node_modules/
 .DS_Store
 *.log
+
+# Situs dokumentasi
+apps/docs/dist/
+apps/docs/.astro/

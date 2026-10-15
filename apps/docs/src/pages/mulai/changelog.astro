@@ -1,0 +1,24 @@
+---
+import changelog from '@repo/CHANGELOG.md?raw';
+import PageHeader from '../../components/PageHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { renderMarkdown } from '../../lib/markdown.mjs';
+
+// The file's own "# Changelog" title is replaced by the page header; "##" versions become h2.
+const body = changelog.replace(/^# .*\n/, '');
+---
+
+<Base title="Changelog" description="Daftar perubahan token Cargo Design System.">
+  <PageHeader eyebrow="Pembaruan" title="Changelog" lead="Semua perubahan penting pada Cargo Design System, dari yang terbaru. Isinya sama dengan CHANGELOG.md di repositori." />
+  <div class="prose changelog" set:html={renderMarkdown(body)} />
+</Base>
+
+<style>
+  .changelog :global(h2) {
+    padding-top: var(--cargo-space-24);
+    border-top: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+  }
+  .changelog :global(h2:first-of-type) { margin-top: var(--cargo-space-32); }
+  .changelog :global(h3) { color: var(--cargo-color-text-secondary); }
+  .changelog :global(li) { color: var(--cargo-color-text-secondary); }
+</style>

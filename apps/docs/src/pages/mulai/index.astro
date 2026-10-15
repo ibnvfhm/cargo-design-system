@@ -1,0 +1,150 @@
+---
+import LinkCard from '../../components/LinkCard.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { components } from '../../lib/components.mjs';
+import { ICONS } from '../../lib/icons.mjs';
+import { url } from '../../lib/site.mjs';
+import { brandThemes } from '../../lib/tokens.mjs';
+
+// Brand palette = the primitive behind each brand's Light fill, e.g. imperial for UIC.
+const brands = brandThemes().map((brand) => {
+  const fill = brand.modes[0].tokens.find((token) => token.key === 'fill');
+  return { name: brand.name, palette: fill.ref.split('.')[0], hex: fill.hex };
+});
+---
+
+<Base title="Pengenalan">
+  <PageHeader
+    eyebrow="Cara memulai"
+    title="Pengenalan"
+    lead="Apa itu Cargo Design System, apa isinya, dan bagaimana bagian-bagiannya saling terhubung."
+  />
+
+  <div class="prose">
+    <h2>Apa itu Cargo Design System</h2>
+    <p>
+      Cargo Design System adalah satu sumber kebenaran untuk tampilan semua produk Cargo. Isinya keputusan desain yang sudah disepakati,
+      yaitu warna, huruf, jarak, sudut, bayangan, ikon, dan komponen, dalam bentuk yang bisa langsung dipakai di Figma maupun di kode.
+    </p>
+    <p>
+      Bayangkan satu kotak LEGO dengan satu buku petunjuk yang dipakai bersama. Designer menyusun layar dari balok yang sama dengan yang
+      dipakai developer, jadi hasil akhirnya sama dengan desainnya, dan perubahan cukup dilakukan di satu tempat.
+    </p>
+
+    <h2>Isi Cargo</h2>
+    <ul>
+      <li>
+        <strong>Token</strong>: nama untuk setiap warna, ukuran, huruf, dan bayangan. Ada di Figma Variables dan di paket kode
+        <code>@cargo/tokens</code>. Lihat <a href={url('/foundations/')}>Foundations</a>.
+      </li>
+      <li>
+        <strong>Komponen</strong>: {components.length} halaman komponen di library Figma, dari Button sampai Date Picker, lengkap dengan varian,
+        properti, dan cara pakainya. Lihat <a href={url('/komponen/')}>Komponen</a>.
+      </li>
+      <li>
+        <strong>Ikon</strong>: {ICONS.length} ikon dalam tujuh ukuran, gaya Regular dan Fill. Lihat <a href={url('/foundations/ikon/')}>Ikonografi</a>.
+      </li>
+      <li>
+        <strong>Paket kode</strong>: token untuk CSS, JavaScript/TypeScript, Flutter, Android (Compose), dan iOS (SwiftUI). Lihat
+        <a href={url('/mulai/developer/')}>Mulai mengembangkan</a>.
+      </li>
+      <li>
+        <strong>Situs ini</strong>: halamannya dibuat dari file token dan data Figma yang sama, jadi isinya selalu cocok dengan sumbernya.
+      </li>
+    </ul>
+
+    <h2>Tiga lapis token warna</h2>
+    <p>Setiap warna tersusun dalam tiga lapis. Lapis yang lebih atas menunjuk (alias) ke lapis di bawahnya.</p>
+    <ul>
+      <li><strong>Primitive</strong>: semua warna mentah, dinamai sesuai warnanya, misalnya <code>color/imperial/70</code>. Tidak dipakai langsung.</li>
+      <li>
+        <strong>Brand Theme</strong>: warna khas setiap brand, misalnya <code>color/brand/light/fill</code>. Di Figma ada satu mode untuk setiap
+        brand.
+      </li>
+      <li>
+        <strong>Semantic</strong>: tugas warna, misalnya <code>color/bg/brand</code> untuk latar tombol utama. Ada dua mode, Light dan Dark, dengan
+        nama yang sama. <strong>Inilah yang dipakai designer dan developer.</strong>
+      </li>
+    </ul>
+    <p>
+      Ukuran (Dimension), tipografi (Typography), dan shadow cukup satu lapis: designer langsung memakai <code>space/16</code>,
+      <code>radius/8</code>, atau text style <code>body/medium</code>. Contoh hidupnya ada di <a href={url('/foundations/')}>Ringkasan Foundations</a>.
+    </p>
+
+    <h2>Satu nama di semua tempat</h2>
+    <p>Token punya nama yang sama di Figma dan di setiap platform, jadi designer dan developer bisa saling menyebut nama token tanpa menerjemahkan.</p>
+  </div>
+
+  <div class="table-wrap block">
+    <table class="table">
+      <thead>
+        <tr><th>Tempat</th><th>Warna</th><th>Ukuran</th><th>Tipografi</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Figma</td><td><code class="inline-code">color/bg/brand</code></td><td><code class="inline-code">space/16</code></td><td><code class="inline-code">body/font-size</code></td></tr>
+        <tr><td>JSON</td><td><code class="inline-code">color.bg.brand</code></td><td><code class="inline-code">space.16</code></td><td><code class="inline-code">body.font-size</code></td></tr>
+        <tr><td>CSS</td><td><code class="inline-code">--cargo-color-bg-brand</code></td><td><code class="inline-code">--cargo-space-16</code></td><td><code class="inline-code">--cargo-body-font-size</code></td></tr>
+        <tr><td>JavaScript / TypeScript</td><td><code class="inline-code">ColorBgBrand</code></td><td><code class="inline-code">Space16</code></td><td><code class="inline-code">BodyFontSize</code></td></tr>
+        <tr>
+          <td>Flutter, Android, iOS</td>
+          <td><code class="inline-code">CargoTokensLight.colorBgBrand</code></td>
+          <td><code class="inline-code">CargoDimension.space16</code></td>
+          <td><code class="inline-code">CargoTypographyMobile.bodyFontSize</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <h2>Brand dan mode</h2>
+    <p>
+      Di Figma, setiap frame memilih satu brand (mode Brand Theme), satu mode warna (Light atau Dark), dan satu ukuran huruf (Desktop atau
+      Mobile). Komponen di dalamnya otomatis mengikuti. Di kode, brand dipilih dengan memakai file brand itu, dan mode dengan
+      <code>data-theme</code> di web atau kelas <code>Light</code>/<code>Dark</code> di mobile.
+    </p>
+  </div>
+
+  <div class="table-wrap block">
+    <table class="table">
+      <thead>
+        <tr><th>Brand</th><th>Palet primitive</th><th>Warna utama (Light)</th></tr>
+      </thead>
+      <tbody>
+        {
+          brands.map((brand) => (
+            <tr>
+              <td>{brand.name}</td>
+              <td><code class="inline-code">{brand.palette}</code></td>
+              <td>
+                <span class="brand-chip" style={`--chip: ${brand.hex}`} />
+                <span class="mono">{brand.hex}</span>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <h2>Langkah berikutnya</h2>
+  </div>
+  <div class="card-grid card-grid--2 block">
+    <LinkCard href={url('/mulai/designer/')} icon="NotePencil" title="Mulai mendesain" text="Mengaktifkan library Cargo di Figma dan memakai komponennya." />
+    <LinkCard href={url('/mulai/developer/')} icon="CPU" title="Mulai mengembangkan" text="Memasang token Cargo di web dan aplikasi mobile." />
+  </div>
+</Base>
+
+<style>
+  .block { margin-top: var(--cargo-space-16); }
+  .brand-chip {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: var(--cargo-space-8);
+    border-radius: var(--cargo-radius-4);
+    background: var(--chip);
+    vertical-align: -3px;
+  }
+</style>

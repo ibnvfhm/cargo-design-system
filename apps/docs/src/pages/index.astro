@@ -1,0 +1,459 @@
+---
+import Icon from '../components/Icon.astro';
+import LinkCard from '../components/LinkCard.astro';
+import Base from '../layouts/Base.astro';
+import { components } from '../lib/components.mjs';
+import { ICONS } from '../lib/icons.mjs';
+import { SITE, url } from '../lib/site.mjs';
+import { COUNTS, brandRefs, brandSwatches } from '../lib/tokens.mjs';
+
+const swatches = brandSwatches();
+const stats = [
+  { value: COUNTS.brands, label: 'brand dengan warna khasnya sendiri' },
+  { value: COUNTS.modes, label: 'mode warna: Light dan Dark' },
+  { value: COUNTS.semantic, label: 'token warna semantic' },
+  { value: COUNTS.textStyles, label: 'text style untuk desktop dan mobile' },
+  { value: components.length, label: 'halaman komponen di Figma' },
+  { value: ICONS.length, label: 'ikon Regular dan Fill' },
+];
+---
+
+<Base title="Beranda" toc={false}>
+  <section class="hero" data-theme="dark" slot="hero">
+    <div class="hero-copy">
+      <h1 class="hero-title">{SITE.name}</h1>
+      <p class="hero-tagline">{SITE.tagline}</p>
+      <p class="hero-text">
+        Warna, tipografi, ukuran, ikon, dan komponen dalam satu sumber. Designer memakainya di Figma, developer memakainya di kode, dengan
+        nama yang sama.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href={url('/mulai/')}>Mulai di sini<Icon name="ArrowRight" /></a>
+        <a class="btn btn-outlined" href={url('/komponen/')}>Lihat komponen</a>
+      </div>
+      <div class="hero-brands">
+        <span>Coba brand lain:</span>
+        {
+          swatches.map((brand) => (
+            <button class="brand-swatch" type="button" data-set-brand={brand.id} style={`--swatch: ${brand.dark}`} title={brand.name}>
+              <span class="sr-only">{brand.name}</span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="collage" aria-hidden="true">
+      <div class="panel form-card">
+        <p class="panel-title">Pengajuan cuti</p>
+        <div class="field">
+          <span class="field-label">Nama lengkap</span>
+          <span class="field-box">Rani Pratiwi</span>
+        </div>
+        <div class="field">
+          <span class="field-label">Jenis cuti</span>
+          <span class="field-box">Cuti tahunan<Icon name="CaretDown" size={18} class="field-icon" /></span>
+        </div>
+        <div class="form-actions">
+          <span class="c-btn c-btn-outlined">Batal</span>
+          <span class="c-btn c-btn-primary">Kirim<Icon name="PaperPlaneTilt" /></span>
+        </div>
+      </div>
+
+      <div class="panel toast">
+        <Icon name="CheckCircle" variant="fill" class="toast-icon" />
+        <div>
+          <p class="toast-title">Pengajuan terkirim</p>
+          <p class="toast-text">Atasanmu akan meninjaunya dalam 1×24 jam.</p>
+        </div>
+        <Icon name="X" class="toast-close" />
+      </div>
+
+      <div class="panel controls">
+        <span class="control-row"><span class="toggle"><span class="knob"></span></span>Notifikasi email</span>
+        <span class="control-row"><span class="checkbox"><Icon name="Check" size={16} /></span>Ingat saya</span>
+        <span class="badges">
+          <span class="c-badge c-badge-success">Disetujui</span>
+          <span class="c-badge c-badge-warning">Menunggu</span>
+          <span class="c-badge c-badge-danger">Ditolak</span>
+        </span>
+      </div>
+
+      <div class="panel progress">
+        <span class="progress-head"><span>Mengunggah dokumen</span><span class="progress-value">75%</span></span>
+        <span class="track"><span class="track-fill"></span></span>
+      </div>
+
+      <div class="avatars">
+        <span class="avatar">RP</span>
+        <span class="avatar">AD</span>
+        <span class="avatar">SN</span>
+        <span class="avatar avatar-more">+3</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section prose">
+    <h2>Ringkasan</h2>
+    <p>
+      <strong>Cargo Design System adalah kumpulan aset siap pakai</strong> (token, komponen, ikon, dan panduan) yang membuat semua produk
+      Cargo terlihat dan terasa sama, siapa pun yang membuatnya.
+    </p>
+    <p>
+      Dengan aset yang sama, <strong>tim tidak perlu membuat ulang</strong> tombol, form, atau warna di setiap proyek. Waktunya bisa dipakai
+      untuk menyelesaikan kebutuhan pengguna.
+    </p>
+    <p>
+      Satu sistem melayani <strong>lima brand</strong>: UIC, INTI, InMeterai, InCivas, dan InCustoms. Setiap brand punya warna khas dalam mode
+      Light dan Dark, sementara komponennya tetap sama. Coba ganti brand dan mode di bar atas: seluruh situs ini ikut berubah, karena situs
+      ini juga dibangun dengan token Cargo.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="section-head prose">
+      <h2>Mulai</h2>
+      <p>Selamat datang di Cargo. Pilih jalur sesuai pekerjaanmu.</p>
+    </div>
+    <div class="card-grid card-grid--2">
+      <LinkCard
+        href={url('/mulai/designer/')}
+        icon="NotePencil"
+        title="Mulai mendesain"
+        text="Mengaktifkan library Cargo di file Figma, mengatur brand dan mode, lalu memakai komponen dan variables."
+      />
+      <LinkCard
+        href={url('/mulai/developer/')}
+        icon="CPU"
+        title="Mulai mengembangkan"
+        text="Memasang token Cargo di web, Flutter, Android (Compose), dan iOS (SwiftUI)."
+      />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head prose">
+      <h2>Bahasa desain</h2>
+      <p>Dasar visual dan komponen yang membentuk semua produk Cargo.</p>
+    </div>
+    <div class="card-grid card-grid--2">
+      <LinkCard
+        href={url('/foundations/')}
+        icon="Stack"
+        title="Foundations"
+        text="Warna, tipografi, spacing, radius, dan shadow: dasar dari semua komponen."
+      />
+      <LinkCard
+        href={url('/komponen/')}
+        icon="SquareFour"
+        title="Komponen"
+        text={`${components.length} halaman komponen Figma, lengkap dengan varian, properti, dan cara pakainya.`}
+      />
+      <LinkCard
+        href={url('/foundations/ikon/')}
+        icon="Sparkle"
+        title="Ikonografi"
+        text={`${ICONS.length} ikon dalam gaya Regular dan Fill. Bisa dicari dengan kata kunci bahasa Indonesia.`}
+      />
+      <LinkCard
+        href={url('/foundations/kontras/')}
+        icon="CheckSquareOffset"
+        title="Kontras"
+        text={`${COUNTS.pairs} pasangan warna teks, ikon, dan garis dicek untuk setiap brand dan mode.`}
+      />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head prose">
+      <h2>Cara kerja token</h2>
+      <p>
+        Setiap warna tersusun dalam tiga lapis. Lapis kanan menunjuk ke lapis kirinya, jadi mengganti satu warna mentah langsung mengubah
+        semua yang memakainya. Contoh di bawah mengikuti brand dan mode yang sedang kamu pilih.
+      </p>
+    </div>
+    <div class="tiers">
+      <div class="tier">
+        <p class="tier-name">Primitive</p>
+        <span class="tier-swatch tier-swatch-brand"></span>
+        <code class="tier-token">
+          <span class="only-light">color/<span data-brand-ref="brand.light.fill" data-format="figma"></span></span>
+          <span class="only-dark">color/<span data-brand-ref="brand.dark.fill" data-format="figma"></span></span>
+        </code>
+        <p class="tier-text">Warna mentah, dinamai sesuai warnanya. Tidak dipakai langsung di desain.</p>
+      </div>
+      <Icon name="ArrowLeft" class="tier-arrow" />
+      <div class="tier">
+        <p class="tier-name">Brand Theme</p>
+        <span class="tier-swatch tier-swatch-brand"></span>
+        <code class="tier-token"><span class="only-light">color/brand/light/fill</span><span class="only-dark">color/brand/dark/fill</span></code>
+        <p class="tier-text">Warna khas setiap brand. Di Figma, satu mode untuk setiap brand.</p>
+      </div>
+      <Icon name="ArrowLeft" class="tier-arrow" />
+      <div class="tier tier-semantic">
+        <p class="tier-name">Semantic</p>
+        <span class="tier-swatch" style="background: var(--cargo-color-bg-brand)"></span>
+        <code class="tier-token">color/bg/brand</code>
+        <p class="tier-text">Tugas warna, misalnya latar tombol utama. Inilah yang dipakai designer dan developer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head prose">
+      <h2>Dalam angka</h2>
+    </div>
+    <dl class="stats">
+      {
+        stats.map((stat) => (
+          <div class="stat">
+            <dt class="stat-label">{stat.label}</dt>
+            <dd class="stat-value">{stat.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <script is:inline type="application/json" id="brand-refs" set:html={JSON.stringify(brandRefs())} />
+</Base>
+
+<script>
+  import '../scripts/live-tokens.js';
+</script>
+
+<style>
+  /* Hero: always dark. The glow takes the chosen brand's colour. */
+  .hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 460px;
+    overflow: hidden;
+    padding: var(--cargo-space-48) var(--site-gutter);
+    color: var(--cargo-color-white);
+    background:
+      radial-gradient(640px 420px at 82% 28%, color-mix(in srgb, var(--cargo-color-brand-dark-fill) 42%, transparent), transparent 70%),
+      radial-gradient(520px 360px at 8% 115%, color-mix(in srgb, var(--cargo-color-brand-dark-fill) 26%, transparent), transparent 72%),
+      linear-gradient(180deg, var(--cargo-color-midnight-100) 0%, #050b1c 100%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at 70% 40%, #000 20%, transparent 75%);
+    pointer-events: none;
+  }
+
+  .hero-copy { position: relative; z-index: 1; max-width: 520px; }
+  .hero-title {
+    font-family: var(--cargo-font-family-display), sans-serif;
+    font-size: var(--cargo-display-1-font-size);
+    line-height: var(--cargo-display-1-line-height);
+    letter-spacing: var(--cargo-display-1-letter-spacing);
+    font-weight: var(--cargo-font-weight-bold);
+  }
+  .hero-tagline {
+    margin: var(--cargo-space-16) 0 0;
+    color: var(--cargo-color-midnight-20);
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: var(--cargo-font-weight-medium);
+  }
+  .hero-text { margin: var(--cargo-space-20) 0 0; color: var(--cargo-color-midnight-30); font-size: 16px; line-height: 26px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: var(--cargo-space-12); margin-top: var(--cargo-space-32); }
+  .hero-brands {
+    display: flex;
+    align-items: center;
+    gap: var(--cargo-space-8);
+    margin-top: var(--cargo-space-32);
+    color: var(--cargo-color-midnight-30);
+    font-size: 13px;
+  }
+  .hero-brands span:first-child { margin-right: var(--cargo-space-4); }
+  .brand-swatch {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: var(--cargo-radius-full);
+    background: var(--swatch);
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 0.24);
+    cursor: pointer;
+  }
+  .brand-swatch[aria-pressed='true'] { box-shadow: 0 0 0 2px var(--cargo-color-midnight-100), 0 0 0 4px var(--cargo-color-white); }
+
+  /* Collage of live components, sized like their Figma counterparts. */
+  .collage { display: none; }
+  @media (min-width: 1100px) {
+    .collage { display: block; position: absolute; top: 0; bottom: 0; left: calc(var(--site-gutter) + 560px); width: 700px; }
+  }
+
+  .panel {
+    position: absolute;
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-default);
+    border-radius: var(--cargo-radius-8);
+    background: var(--cargo-color-bg-elevated);
+    color: var(--cargo-color-text-default);
+    box-shadow: var(--cargo-shadow-lg);
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .form-card { top: 48px; left: 0; width: 296px; padding: var(--cargo-space-20); display: grid; gap: var(--cargo-space-16); }
+  .panel-title { margin: 0; font-size: 16px; line-height: 22px; font-weight: var(--cargo-font-weight-bold); }
+  .field { display: grid; gap: var(--cargo-space-4); }
+  .field-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 44px;
+    padding: var(--cargo-space-12);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-strong);
+    border-radius: var(--cargo-radius-6);
+    background: var(--cargo-color-bg-default);
+  }
+  .field-icon { color: var(--cargo-color-icon-secondary); }
+  .form-actions { display: flex; justify-content: flex-end; gap: var(--cargo-space-8); margin-top: var(--cargo-space-4); }
+  .c-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--cargo-space-8);
+    height: 44px;
+    padding: var(--cargo-space-12) var(--cargo-space-16);
+    border-radius: var(--cargo-radius-8);
+    font-weight: var(--cargo-font-weight-bold);
+  }
+  .c-btn-primary { background: var(--cargo-color-bg-brand); color: var(--cargo-color-text-on-brand); }
+  .c-btn-outlined {
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-default);
+    background: var(--cargo-color-bg-default);
+    color: var(--cargo-color-text-secondary);
+    font-weight: var(--cargo-font-weight-medium);
+  }
+
+  .toast { top: 40px; left: 320px; width: 360px; display: flex; gap: var(--cargo-space-12); padding: var(--cargo-space-16); }
+  .toast-icon { color: var(--cargo-color-icon-success); }
+  .toast-close { color: var(--cargo-color-icon-secondary); margin-left: auto; }
+  .toast-title { margin: 0; font-weight: var(--cargo-font-weight-bold); }
+  .toast-text { margin: var(--cargo-space-4) 0 0; color: var(--cargo-color-text-secondary); }
+
+  .controls { top: 176px; left: 320px; width: 272px; padding: var(--cargo-space-16); display: grid; gap: var(--cargo-space-12); }
+  .control-row { display: flex; align-items: center; gap: var(--cargo-space-8); }
+  .toggle {
+    display: flex;
+    justify-content: flex-end;
+    width: 48px;
+    height: 24px;
+    padding: 2px;
+    border-radius: var(--cargo-radius-full);
+    background: var(--cargo-color-bg-brand);
+  }
+  .knob { width: 20px; height: 20px; border-radius: var(--cargo-radius-full); background: var(--cargo-color-icon-on-brand); }
+  .checkbox {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: var(--cargo-radius-4);
+    background: var(--cargo-color-bg-brand);
+    color: var(--cargo-color-icon-on-brand);
+  }
+  .badges { display: flex; flex-wrap: wrap; gap: var(--cargo-space-6); margin-top: var(--cargo-space-4); }
+  .c-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    padding: var(--cargo-space-4) var(--cargo-space-8);
+    border-radius: var(--cargo-radius-full);
+    font-weight: var(--cargo-font-weight-bold);
+  }
+  .c-badge-success { background: var(--cargo-color-bg-success-subtle); color: var(--cargo-color-text-success); }
+  .c-badge-warning { background: var(--cargo-color-bg-warning-subtle); color: var(--cargo-color-text-warning); }
+  .c-badge-danger { background: var(--cargo-color-bg-error-subtle); color: var(--cargo-color-text-error); }
+
+  .progress { top: 372px; left: 24px; width: 272px; padding: var(--cargo-space-16); display: grid; gap: var(--cargo-space-8); font-size: 12px; line-height: 16px; }
+  .progress-head { display: flex; justify-content: space-between; font-weight: var(--cargo-font-weight-medium); }
+  .progress-value { color: var(--cargo-color-text-secondary); font-weight: var(--cargo-font-weight-regular); }
+  .track { display: block; height: 8px; border-radius: var(--cargo-radius-full); background: var(--cargo-color-bg-tertiary); overflow: hidden; }
+  .track-fill { display: block; width: 75%; height: 100%; border-radius: inherit; background: var(--cargo-color-bg-brand); }
+
+  .avatars { position: absolute; top: 352px; left: 336px; display: flex; }
+  .avatar {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    margin-left: -8px;
+    border-radius: var(--cargo-radius-full);
+    background: var(--cargo-color-bg-brand-subtle);
+    color: var(--cargo-color-text-brand);
+    font-size: 14px;
+    font-weight: var(--cargo-font-weight-bold);
+    box-shadow: 0 0 0 2px var(--cargo-color-midnight-100);
+  }
+  .avatar:first-child { margin-left: 0; }
+  .avatar-more { background: var(--cargo-color-bg-tertiary); color: var(--cargo-color-text-secondary); }
+
+  /* Token tiers */
+  .tiers { display: grid; gap: var(--cargo-space-12); align-items: stretch; }
+  @media (min-width: 900px) {
+    .tiers { grid-template-columns: 1fr auto 1fr auto 1fr; }
+  }
+  .tier {
+    display: grid;
+    align-content: start;
+    gap: var(--cargo-space-8);
+    padding: var(--cargo-space-20);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12);
+    background: var(--cargo-color-bg-secondary);
+  }
+  .tier-semantic { border-color: var(--cargo-color-border-brand); background: var(--cargo-color-bg-brand-subtle); }
+  .tier-name {
+    margin: 0;
+    color: var(--cargo-color-text-tertiary);
+    font-size: 12px;
+    font-weight: var(--cargo-font-weight-bold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .tier-semantic .tier-name { color: var(--cargo-color-text-brand); }
+  .tier-swatch { height: 56px; border-radius: var(--cargo-radius-8); }
+  .tier-swatch-brand { background: var(--cargo-color-brand-light-fill); }
+  :global([data-theme='dark']) .tier-swatch-brand { background: var(--cargo-color-brand-dark-fill); }
+  .tier-token { font-size: 13px; font-weight: var(--cargo-font-weight-medium); }
+  .tier-text { margin: 0; color: var(--cargo-color-text-secondary); font-size: 14px; line-height: 20px; }
+  .tier-arrow { align-self: center; justify-self: center; color: var(--cargo-color-icon-secondary); transform: rotate(90deg); }
+  @media (min-width: 900px) {
+    .tier-arrow { transform: none; }
+  }
+  .only-dark { display: none; }
+  :global([data-theme='dark']) .only-dark { display: inline; }
+  :global([data-theme='dark']) .only-light { display: none; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: var(--cargo-space-16); margin: 0; }
+  .stat {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    gap: var(--cargo-space-4);
+    padding: var(--cargo-space-20);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12);
+  }
+  .stat-value {
+    margin: 0;
+    font-family: var(--cargo-font-family-display), sans-serif;
+    font-size: var(--cargo-display-3-font-size);
+    line-height: var(--cargo-display-3-line-height);
+    font-weight: var(--cargo-font-weight-bold);
+    color: var(--cargo-color-text-brand);
+  }
+  .stat-label { color: var(--cargo-color-text-secondary); font-size: 14px; line-height: 20px; }
+</style>

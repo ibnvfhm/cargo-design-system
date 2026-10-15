@@ -1,0 +1,149 @@
+---
+import PageHeader from '../../components/PageHeader.astro';
+import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
+import Base from '../../layouts/Base.astro';
+import { FOCUS_RINGS, SHADOWS } from '../../lib/tokens.mjs';
+
+const describe = (value) =>
+  `${value.inset ? 'inset ' : ''}x ${value.offsetX}, y ${value.offsetY}, blur ${value.blur}, spread ${value.spread}, ${value.color}`;
+---
+
+<Base title="Shadow dan elevasi" width="wide" description="Shadow, cincin fokus, dan lapisan latar Cargo Design System.">
+  <PageHeader
+    eyebrow="Foundations · Efek dan aset"
+    title="Shadow dan elevasi"
+    lead="Shadow menunjukkan elemen mana yang berada di atas elemen lain. Di Figma, shadow disimpan sebagai effect style karena belum bisa menjadi variable."
+  />
+
+  <ThemeSwitcher />
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">Shadow</h2>
+      <p class="section-intro">{SHADOWS.description}</p>
+    </div>
+    <div class="stage">
+      {
+        SHADOWS.tokens.map((token) => (
+          <figure class="shadow-card">
+            <span class="shadow-box" style={`box-shadow: var(${token.css})`} />
+            <figcaption>
+              <code class="token-name">{token.figma}</code>
+              <span class="shadow-desc">{token.description}</span>
+              <span class="shadow-value">{describe(token.value)}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">Lapisan di mode Dark</h2>
+      <p class="section-intro">
+        Di latar gelap, bayangan hampir tidak terlihat. Karena itu panel yang melayang (modal, dropdown, toast, bottom sheet, dan date picker) memakai
+        latar <code class="inline-code">bg/elevated</code>, yang sedikit lebih terang dari <code class="inline-code">bg/default</code> di mode Dark.
+        Di mode Light keduanya putih, dan shadow yang membedakan.
+      </p>
+    </div>
+    <div class="layers">
+      <div class="layer-page">
+        <span class="layer-label">bg/default · halaman</span>
+        <div class="layer-card">
+          <span class="layer-label">bg/default + shadow/sm · kartu</span>
+        </div>
+        <div class="layer-panel">
+          <span class="layer-label">bg/elevated + shadow/lg · modal</span>
+          <span class="layer-line" />
+          <span class="layer-line short" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">Cincin fokus</h2>
+      <p class="section-intro">{FOCUS_RINGS.description}</p>
+    </div>
+    <div class="rings">
+      {
+        FOCUS_RINGS.tokens.map((token) => (
+          <figure class="ring-card">
+            <span class:list={['ring-demo', token.key === 'error' ? 'ring-demo-error' : '']} style={`box-shadow: var(${token.css})`}>
+              {token.key === 'error' ? 'Hapus' : 'Simpan'}
+            </span>
+            <figcaption>
+              <code class="token-name">{token.figma}</code>
+              <span class="shadow-desc">{token.description}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+    <p class="muted note-line">Aplikasi mobile tidak memakai cincin fokus. Di web, pasang di <code class="inline-code">:focus-visible</code>.</p>
+  </section>
+</Base>
+
+<style>
+  .stage {
+    display: grid;
+    gap: var(--cargo-space-24);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+    padding: var(--cargo-space-32);
+    border-radius: var(--cargo-radius-12);
+    background: var(--cargo-color-bg-secondary);
+  }
+  .shadow-card,
+  .ring-card { margin: 0; display: grid; align-content: start; gap: var(--cargo-space-12); }
+  .shadow-box { display: block; height: 96px; border-radius: var(--cargo-radius-8); background: var(--cargo-color-bg-elevated); }
+  .token-name { font-size: 13px; font-weight: var(--cargo-font-weight-bold); }
+  .shadow-desc { display: block; color: var(--cargo-color-text-secondary); font-size: 13px; line-height: 18px; }
+  .shadow-value { display: block; margin-top: var(--cargo-space-4); color: var(--cargo-color-text-tertiary); font-family: var(--site-font-mono); font-size: 11px; line-height: 16px; }
+
+  .layers { padding: var(--cargo-space-24); border-radius: var(--cargo-radius-12); border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle); }
+  .layer-page { position: relative; display: grid; gap: var(--cargo-space-16); min-height: 260px; padding: var(--cargo-space-20); border-radius: var(--cargo-radius-8); background: var(--cargo-color-bg-default); }
+  .layer-label { color: var(--cargo-color-text-secondary); font-size: 12px; font-family: var(--site-font-mono); }
+  .layer-card {
+    width: min(100%, 360px);
+    min-height: 120px;
+    padding: var(--cargo-space-16);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-8);
+    background: var(--cargo-color-bg-default);
+    box-shadow: var(--cargo-shadow-sm);
+  }
+  .layer-panel {
+    display: grid;
+    align-content: start;
+    gap: var(--cargo-space-12);
+    width: min(100%, 320px);
+    padding: var(--cargo-space-16);
+    border-radius: var(--cargo-radius-8);
+    background: var(--cargo-color-bg-elevated);
+    box-shadow: var(--cargo-shadow-lg);
+  }
+  @media (min-width: 900px) {
+    .layer-panel { position: absolute; top: var(--cargo-space-48); left: 300px; }
+  }
+  .layer-line { display: block; height: 10px; border-radius: var(--cargo-radius-full); background: var(--cargo-color-bg-tertiary); }
+  .layer-line.short { width: 60%; }
+
+  .rings { display: flex; flex-wrap: wrap; gap: var(--cargo-space-32); padding: var(--cargo-space-32); border-radius: var(--cargo-radius-12); background: var(--cargo-color-bg-default); border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle); }
+  .ring-card { max-width: 320px; }
+  .ring-demo {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    padding: var(--cargo-space-12) var(--cargo-space-16);
+    border-radius: var(--cargo-radius-8);
+    background: var(--cargo-color-bg-brand);
+    color: var(--cargo-color-text-on-brand);
+    font-size: 14px;
+    font-weight: var(--cargo-font-weight-bold);
+  }
+  .ring-demo-error { background: var(--cargo-color-bg-error); color: var(--cargo-color-text-on-error); }
+  .note-line { margin-top: var(--cargo-space-12); font-size: 14px; }
+</style>

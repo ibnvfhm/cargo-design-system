@@ -1,0 +1,121 @@
+---
+import PageHeader from '../../components/PageHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { BORDER_WIDTH, RADIUS, SPACE } from '../../lib/tokens.mjs';
+---
+
+<Base title="Spacing dan radius" width="wide" description="Token spacing, radius, dan tebal garis Cargo Design System.">
+  <PageHeader
+    eyebrow="Foundations · Teks dan ruang"
+    title="Spacing dan radius"
+    lead="Ukuran ada di collection Dimension: spacing, radius, dan tebal garis. Satu lapis saja, sama untuk semua brand dan mode, dan namanya sama dengan nilainya dalam px."
+  />
+
+  <div class="prose intro">
+    <ul>
+      <li><strong>Grid 4px</strong>, ditambah 2 dan 6 untuk elemen kecil. Tidak ada 10.</li>
+      <li><strong>Nama = nilai</strong>: <code>space/16</code> bernilai 16px. Satu-satunya pengecualian adalah <code>radius/full</code> (9999) untuk bentuk pil dan lingkaran.</li>
+      <li>Angkanya sama di semua platform: px di web, dp di Android, pt di iOS.</li>
+    </ul>
+  </div>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title" id="space">Spacing</h2>
+      <p class="section-intro">{SPACE.tokens.length} token. {SPACE.description}</p>
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>Token</th><th>Nilai</th><th>Ukuran</th><th>Dipakai untuk</th></tr>
+        </thead>
+        <tbody>
+          {
+            SPACE.tokens.map((token) => (
+              <tr>
+                <td class="nowrap">
+                  <code class="token-name">{token.figma}</code>
+                  <code class="css">{token.css}</code>
+                </td>
+                <td class="nowrap mono">{token.value}</td>
+                <td class="bar-cell">
+                  <span class="bar" style={`width: var(${token.css})`} />
+                </td>
+                <td class="desc">{token.description}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title" id="radius">Radius</h2>
+      <p class="section-intro">{RADIUS.tokens.length} token. {RADIUS.description}</p>
+    </div>
+    <div class="radii">
+      {
+        RADIUS.tokens.map((token) => (
+          <div class="radius">
+            <span class="radius-box" style={`border-radius: var(${token.css})`} />
+            <code class="token-name">{token.figma}</code>
+            <span class="mono muted">{token.value}</span>
+            <span class="radius-desc">{token.description}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title" id="border-width">Tebal garis</h2>
+      <p class="section-intro">{BORDER_WIDTH.tokens.length} token. {BORDER_WIDTH.description}</p>
+    </div>
+    <div class="borders">
+      {
+        BORDER_WIDTH.tokens.map((token) => (
+          <div class="border-item">
+            <span class="border-box" style={`border-width: var(${token.css})`} />
+            <span>
+              <code class="token-name">{token.figma}</code>
+              <span class="mono muted"> {token.value}</span>
+              <span class="radius-desc">{token.description}</span>
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { margin-bottom: var(--cargo-space-8); }
+  .token-name { font-size: 13px; font-weight: var(--cargo-font-weight-bold); }
+  .css { display: block; color: var(--cargo-color-text-tertiary); font-size: 12px; }
+  .bar-cell { width: 160px; }
+  .bar { display: block; height: 16px; min-width: 1px; border-radius: var(--cargo-radius-2); background: var(--cargo-color-bg-brand); }
+  .radii { display: grid; gap: var(--cargo-space-16); grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr)); }
+  .radius,
+  .border-item {
+    display: grid;
+    gap: var(--cargo-space-4);
+    align-content: start;
+    padding: var(--cargo-space-16);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12);
+  }
+  .radius-box {
+    width: 72px;
+    height: 72px;
+    margin-bottom: var(--cargo-space-8);
+    border: var(--cargo-border-width-2) solid var(--cargo-color-border-brand);
+    background: var(--cargo-color-bg-brand-subtle);
+  }
+  .radius-desc { color: var(--cargo-color-text-secondary); font-size: 13px; line-height: 18px; display: block; }
+  .borders { display: grid; gap: var(--cargo-space-16); grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+  .border-item { grid-template-columns: auto 1fr; align-items: center; gap: var(--cargo-space-16); }
+  .border-box { width: 72px; height: 48px; border-style: solid; border-color: var(--cargo-color-border-strong); border-radius: var(--cargo-radius-8); }
+</style>

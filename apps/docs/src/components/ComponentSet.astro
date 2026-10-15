@@ -1,0 +1,169 @@
+---
+import { PREVIEW_SCALE, PROPERTY_TYPES } from '../lib/components.mjs';
+import { renderMarkdown } from '../lib/markdown.mjs';
+
+interface Props {
+  set: any;
+  /** Heading level for "Kapan dipakai", "Varian", and the other parts of the description. */
+  level?: 2 | 3 | 4;
+}
+
+const { set, level = 3 } = Astro.props;
+const Heading = `h${level}`;
+
+// The first paragraph is the summary, shown above; the rest holds "Kapan dipakai", "Cara pakai", and "Hindari".
+const body = set.md.split(/\n\s*\n/).slice(1).join('\n\n');
+const axes = Object.entries(set.axes ?? {});
+
+// "Icon-User (Type=Regular, Size=18)" → name "Icon-User", detail "Regular, 18".
+const swapDefault = (value) => {
+  const match = String(value).match(/^(.*?)\s*\((.*)\)$/);
+  if (!match) return { name: value, detail: '' };
+  return { name: match[1], detail: match[2].split(',').map((part) => part.split('=').pop().trim()).join(', ') };
+};
+---
+
+{
+  set.preview.light && (
+    <figure class="preview">
+      <div class="preview-stage">
+        <img
+          class="theme-img"
+          data-mode="light"
+          src={set.preview.light.src}
+          width={set.preview.light.width / PREVIEW_SCALE}
+          height={set.preview.light.height / PREVIEW_SCALE}
+          alt={`Pratinjau ${set.name}`}
+          loading="lazy"
+          decoding="async"
+        />
+        {set.preview.dark && (
+          <img
+            class="theme-img"
+            data-mode="dark"
+            src={set.preview.dark.src}
+            width={set.preview.dark.width / PREVIEW_SCALE}
+            height={set.preview.dark.height / PREVIEW_SCALE}
+            alt={`Pratinjau ${set.name}, mode Dark`}
+            loading="lazy"
+            decoding="async"
+          />
+        )}
+      </div>
+    </figure>
+  )
+}
+
+{body && <div class="prose description" set:html={renderMarkdown(body, { labels: true, labelLevel: level })} />}
+
+<div class="spec">
+  <Heading class="spec-title">Varian</Heading>
+  {
+    axes.length ? (
+      <>
+        <p class="spec-note">{set.variants} varian dari kombinasi properti berikut.</p>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Properti</th>
+                <th>Pilihan</th>
+              </tr>
+            </thead>
+            <tbody>
+              {axes.map(([axis, options]) => (
+                <tr>
+                  <td class="nowrap">
+                    <strong>{axis}</strong>
+                  </td>
+                  <td>
+                    <span class="options">
+                      {options.map((option) => (
+                        <span class="tag">{option}</span>
+                      ))}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </>
+    ) : (
+      <p class="spec-note">Komponen tunggal, tanpa varian.</p>
+    )
+  }
+</div>
+
+{
+  set.props.length > 0 && (
+    <div class="spec">
+      <Heading class="spec-title">Properti</Heading>
+      <p class="spec-note">Diatur di panel kanan Figma setelah komponen dipilih.</p>
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Properti</th>
+              <th>Jenis</th>
+              <th>Bawaan</th>
+            </tr>
+          </thead>
+          <tbody>
+            {set.props.map(([name, type, value]) => (
+              <tr>
+                <td>
+                  <strong>{name}</strong>
+                </td>
+                <td class="nowrap muted">{PROPERTY_TYPES[type] ?? type}</td>
+                <td>
+                  {type === 'BOOLEAN' && <span class:list={['tag', value ? 'tag-success' : '']}>{value ? 'Tampil' : 'Sembunyi'}</span>}
+                  {type === 'TEXT' && <span>“{value}”</span>}
+                  {type === 'INSTANCE_SWAP' && (
+                    <span class="swap">
+                      <code class="inline-code">{swapDefault(value).name}</code>
+                      {swapDefault(value).detail && <span class="muted"> {swapDefault(value).detail}</span>}
+                    </span>
+                  )}
+                  {!['BOOLEAN', 'TEXT', 'INSTANCE_SWAP'].includes(type) && <span>{String(value)}</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .preview { margin: 0 0 var(--cargo-space-24); }
+  .preview-stage {
+    display: grid;
+    place-items: center;
+    padding: var(--cargo-space-24);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12);
+    background: var(--cargo-color-bg-secondary);
+    overflow-x: auto;
+  }
+  /* In Dark the stage takes the page colour, so floating panels (bg/elevated) stand out as they do in products. */
+  :global([data-theme='dark']) .preview-stage { background: var(--cargo-color-bg-default); }
+  .preview-stage img { max-width: 100%; height: auto; }
+  .description :global(.md-label) { margin-top: var(--cargo-space-24); }
+  .description :global(.md-label:first-child) { margin-top: 0; }
+  .spec { margin-top: var(--cargo-space-32); }
+  .spec-title {
+    font-size: var(--cargo-heading-3-font-size);
+    line-height: var(--cargo-heading-3-line-height);
+    letter-spacing: var(--cargo-heading-3-letter-spacing);
+  }
+  h2.spec-title {
+    font-size: var(--cargo-heading-2-font-size);
+    line-height: var(--cargo-heading-2-line-height);
+    letter-spacing: var(--cargo-heading-2-letter-spacing);
+  }
+  .spec-note { margin: var(--cargo-space-4) 0 var(--cargo-space-12); color: var(--cargo-color-text-secondary); font-size: 14px; }
+  .options { display: flex; flex-wrap: wrap; gap: var(--cargo-space-4); }
+  .swap { white-space: nowrap; }
+</style>

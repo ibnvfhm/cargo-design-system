@@ -1,0 +1,27 @@
+---
+import { iconMarkup } from '../lib/icons.mjs';
+
+interface Props {
+  /** Icon name without the "Icon-" prefix, as on the Figma Iconography page, e.g. "MagnifyingGlass". */
+  name: string;
+  variant?: 'regular' | 'fill';
+  size?: number;
+  class?: string;
+  /** Accessible name. Leave empty for decorative icons next to visible text. */
+  label?: string;
+}
+
+const { name, variant = 'regular', size = 20, class: className, label } = Astro.props;
+---
+
+<svg
+  class:list={['icon', className]}
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="currentColor"
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  aria-hidden={label ? undefined : 'true'}
+  set:html={iconMarkup(name, variant)}
+/>

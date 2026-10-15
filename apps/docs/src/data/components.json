@@ -1,0 +1,2469 @@
+{
+ "source": "Figma coH5y39eGFKMWPdU1EtY6f",
+ "exported": "2026-10-15",
+ "pages": [
+  {
+   "pageId": "57:32",
+   "page": "Accordion",
+   "ready": true,
+   "sets": [
+    {
+     "id": "295:499",
+     "name": "Single Accordion",
+     "kind": "set",
+     "variants": 12,
+     "axes": {
+      "Condition": [
+       "Row 1 Close",
+       "Row 1 Open",
+       "Row 2 Close",
+       "Row 2 Open",
+       "Row 3 Close",
+       "Row 3 Open"
+      ],
+      "Hover": [
+       "Hover",
+       "Normal"
+      ]
+     },
+     "props": [],
+     "w": 466,
+     "h": 54,
+     "md": "Satu baris accordion yang bisa dibuka-tutup untuk menampilkan isi tambahan.\n\n**Kapan dipakai**\n- Merapikan isi panjang, misalnya FAQ atau rincian, supaya halaman tetap ringkas.\n- Komponen ini adalah satu baris di dalam grup. Biasanya cukup pakai Multi Accordion; pakai komponen ini kalau ingin menyusun grup sendiri.\n\n**Cara pakai**\n1. Pilih **Condition** sesuai posisi baris: Row 1 (paling atas, sudut atas membulat), Row 2 (tengah), Row 3 (paling bawah, sudut bawah membulat). Akhiran Close/Open menentukan baris tertutup atau terbuka.\n2. Pilih **Hover** = Hover untuk menunjukkan kursor di atas baris, misalnya di prototipe.\n3. Ubah judul dan isi langsung di layer teks.\n\n**Hindari**\n- Menyembunyikan informasi penting di dalam baris yang tertutup."
+    },
+    {
+     "id": "295:642",
+     "name": "Multi Accordion",
+     "kind": "set",
+     "variants": 6,
+     "axes": {
+      "Items": [
+       "3",
+       "4",
+       "5",
+       "6",
+       "7",
+       "8"
+      ]
+     },
+     "props": [],
+     "w": 466,
+     "h": 162,
+     "md": "Grup 3–8 baris accordion yang menempel.\n\n**Kapan dipakai**\n- FAQ, rincian produk, atau pengaturan yang dikelompokkan.\n\n**Cara pakai**\n1. Pilih **Items** sesuai banyaknya baris (3–8).\n2. Untuk membuka satu baris, pilih baris itu lalu ubah Condition-nya menjadi Open (Row 1 Open, Row 2 Open, atau Row 3 Open sesuai posisinya).\n3. Ubah judul dan isi setiap baris langsung di layer teks.\n\n**Hindari**\n- Membuka banyak baris sekaligus; cukup satu supaya mudah dibaca."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:2",
+   "page": "Avatar",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2074:47",
+     "name": "Avatar",
+     "kind": "set",
+     "variants": 15,
+     "axes": {
+      "Type": [
+       "Initials",
+       "Image",
+       "Icon"
+      ],
+      "Size": [
+       "xs",
+       "sm",
+       "md",
+       "lg",
+       "xl"
+      ]
+     },
+     "props": [
+      [
+       "Initials",
+       "TEXT",
+       "AB"
+      ],
+      [
+       "Status",
+       "BOOLEAN",
+       false
+      ]
+     ],
+     "w": 24,
+     "h": 24,
+     "md": "Foto, inisial, atau ikon yang mewakili pengguna.\n\n**Kapan dipakai**\n- Profil, daftar karyawan, tabel, komentar, dan Top Bar.\n\n**Cara pakai**\n1. Pilih **Type**: Image kalau ada foto, Initials kalau tidak ada foto, Icon untuk pengguna yang belum dikenal.\n2. Pilih **Size**: xs 24 atau sm 32 untuk daftar dan tabel, md 40 untuk kartu, lg 48 atau xl 64 untuk halaman profil.\n3. Isi **Initials** dengan maksimal 2 huruf, misalnya BS untuk Budi Santoso.\n4. Nyalakan **Status** untuk menandai pengguna yang sedang online.\n5. Untuk Type=Image, ganti foto lewat Fill pada layer gambar."
+    }
+   ]
+  },
+  {
+   "pageId": "57:33",
+   "page": "Badge",
+   "ready": true,
+   "sets": [
+    {
+     "id": "124:3337",
+     "name": "Badge",
+     "kind": "set",
+     "variants": 126,
+     "axes": {
+      "Type": [
+       "Dot",
+       "Counter",
+       "Label"
+      ],
+      "Variant": [
+       "Primary",
+       "Info",
+       "Warning",
+       "Success",
+       "Danger",
+       "Gray",
+       "Accent"
+      ],
+      "Size": [
+       "Md",
+       "Sm",
+       "Xs"
+      ],
+      "Style": [
+       "Subtle",
+       "Solid"
+      ]
+     },
+     "props": [
+      [
+       "Notification",
+       "TEXT",
+       "99"
+      ],
+      [
+       "Text",
+       "TEXT",
+       "Label"
+      ],
+      [
+       ".AddOn Left",
+       "BOOLEAN",
+       true
+      ],
+      [
+       ".AddOn Right",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Change Left Icon",
+       "INSTANCE_SWAP",
+       "Icon-Lightning (Type=Fill, Size=16)"
+      ],
+      [
+       "Change Right Icon",
+       "INSTANCE_SWAP",
+       "Icon-Lightning (Type=Fill, Size=16)"
+      ]
+     ],
+     "w": 93,
+     "h": 28,
+     "md": "Penanda kecil untuk status, kategori, atau jumlah.\n\n**Kapan dipakai**\n- Status data (Aktif, Cuti), kategori, atau jumlah notifikasi di ikon dan menu.\n\n**Cara pakai**\n1. Pilih **Type**: Label untuk teks status/kategori, Counter untuk angka, Dot untuk penanda tanpa teks.\n2. Pilih **Variant** sesuai makna: Success (berhasil/aktif), Warning (perlu perhatian), Danger (gagal/bahaya), Info (informasi), Gray (netral/nonaktif), Primary (brand), Accent (kategori lain).\n3. Pilih **Style**: Subtle untuk tampilan tenang (misalnya di tabel), Solid untuk penekanan.\n4. Pilih **Size** Md, Sm, atau Xs sesuai ukuran elemen di sekitarnya.\n5. Isi **Text** (untuk Label) atau **Notification** (untuk Counter; lebih dari 99 tulis 99+).\n6. Untuk ikon di samping teks Label, nyalakan **.AddOn Left** atau **.AddOn Right**, lalu ganti lewat **Change Left Icon** atau **Change Right Icon**.\n\n**Hindari**\n- Mengandalkan warna saja; teks harus tetap menjelaskan statusnya."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:3",
+   "page": "Bottom Sheet",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2097:71",
+     "name": "Bottom Sheet",
+     "kind": "set",
+     "variants": 2,
+     "axes": {
+      "Type": [
+       "Actions",
+       "List"
+      ]
+     },
+     "props": [
+      [
+       "Close",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Description",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Buttons",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Content",
+       "INSTANCE_SWAP",
+       "Bottom Sheet/.Slot"
+      ]
+     ],
+     "w": 375,
+     "h": 328,
+     "md": "Panel dari bawah layar (mobile, lebar 375) untuk tugas singkat tanpa pindah halaman.\n\n**Kapan dipakai**\n- Filter, form pendek, atau daftar aksi untuk satu data di aplikasi mobile.\n\n**Cara pakai**\n1. Pilih **Type**: Actions untuk filter atau form dengan tombol Batal (Outlined) dan Simpan (Primary), List untuk daftar aksi.\n2. Ubah judul langsung di instance; nyalakan **Description** bila perlu penjelasan.\n3. Type=Actions: buat komponen kontenmu (misalnya form filter), lalu tukar lewat **Content**. Matikan **Buttons** bila tidak perlu tombol.\n4. Type=List: atur teks dan ikon setiap baris (List Data); aksi berbahaya (Hapus) taruh paling bawah dengan teks dan ikon berwarna error.\n5. Matikan **Close** bila panel cukup ditutup dengan geser ke bawah atau tap latar.\n6. Tampilkan di atas latar gelap. Tinggi mengikuti isi, maksimal 90% layar.\n\n**Hindari**\n- Isi yang panjang atau bertingkat; pindahkan ke halaman baru."
+    },
+    {
+     "id": "2097:2",
+     "name": "Bottom Sheet/.Slot",
+     "kind": "single",
+     "variants": 1,
+     "axes": {},
+     "props": [],
+     "w": 343,
+     "h": 120,
+     "md": "Tempat konten sementara di dalam Bottom Sheet.\n\n**Cara pakai**\n1. Buat komponen kontenmu sendiri, misalnya form filter.\n2. Pilih Bottom Sheet-nya, lalu tukar slot ini lewat properti Content.\n\n**Hindari**\n- Membiarkan slot ini tampil di desain final."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:4",
+   "page": "Breadcrumb",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2083:64",
+     "name": "Breadcrumb",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      "Levels": [
+       "2",
+       "3",
+       "4",
+       "Truncated"
+      ]
+     },
+     "props": [],
+     "w": 145,
+     "h": 20,
+     "md": "Jejak lokasi halaman, misalnya Beranda › Karyawan › Detail Karyawan.\n\n**Kapan dipakai**\n- Halaman level 2 ke bawah di aplikasi desktop, diletakkan di bawah Top Bar.\n\n**Cara pakai**\n1. Pilih **Levels** sesuai kedalaman halaman: 2, 3, atau 4.\n2. Lebih dari 4 level: pilih Truncated, level tengah disembunyikan di balik ….\n3. Ubah nama setiap level lewat properti Label pada tiap item.\n4. Item terakhir adalah halaman yang sedang dibuka dan tidak bisa diklik.\n\n**Hindari**\n- Memakai Breadcrumb di mobile; pakai tombol kembali di Top Bar."
+    },
+    {
+     "id": "2083:14",
+     "name": ".Breadcrumb Item",
+     "kind": "set",
+     "variants": 5,
+     "axes": {
+      "Type": [
+       "Link",
+       "Ellipsis",
+       "Current"
+      ],
+      "State": [
+       "Default",
+       "Hover"
+      ]
+     },
+     "props": [
+      [
+       "Label",
+       "TEXT",
+       "Beranda"
+      ]
+     ],
+     "w": 55,
+     "h": 20,
+     "md": "Satu level di Breadcrumb.\n\n**Cara pakai**\n1. Pakai lewat komponen Breadcrumb, bukan berdiri sendiri.\n2. Pilih **Type**: Link untuk level sebelumnya, Current untuk halaman yang sedang dibuka, Ellipsis untuk level yang disembunyikan.\n3. Pilih **State** = Hover untuk Link yang sedang disorot (bergaris bawah).\n4. Isi **Label** dengan nama halaman."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:5",
+   "page": "Bulk Action Bar",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2087:91",
+     "name": "Bulk Action Bar",
+     "kind": "set",
+     "variants": 3,
+     "axes": {
+      "Type": [
+       "Inline",
+       "Floating"
+      ],
+      "Device": [
+       "Desktop",
+       "Mobile"
+      ]
+     },
+     "props": [
+      [
+       "Count Text",
+       "TEXT",
+       "3 data dipilih"
+      ],
+      [
+       "Select All",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 1000,
+     "h": 56,
+     "md": "Bar aksi massal yang muncul saat pengguna memilih beberapa baris.\n\n**Kapan dipakai**\n- Tabel atau daftar yang barisnya bisa dipilih untuk diekspor, diubah, atau dihapus sekaligus.\n\n**Cara pakai**\n1. Pilih **Type**: Inline untuk menggantikan toolbar tabel (desktop), Floating untuk bar yang melayang di tengah bawah layar.\n2. Pilih **Device**: Mobile hanya tersedia sebagai Floating, dengan aksi berupa ikon.\n3. Isi **Count Text** dengan jumlah yang dipilih, misalnya \"3 data dipilih\".\n4. Nyalakan **Select All** (Inline) untuk menawarkan \"Pilih semua …\".\n5. Ubah label dan ikon aksi di instance Button di dalamnya; aksi yang menghapus pakai tipe Danger.\n6. Tombol X membatalkan semua pilihan.\n\n**Hindari**\n- Lebih dari 3 aksi; sisanya masukkan ke menu Lainnya."
+    }
+   ]
+  },
+  {
+   "pageId": "57:34",
+   "page": "Button",
+   "ready": true,
+   "sets": [
+    {
+     "id": "1249:2271",
+     "name": "Button",
+     "kind": "set",
+     "variants": 240,
+     "axes": {
+      "Device": [
+       "Desktop",
+       "Mobile"
+      ],
+      "Type": [
+       "Borderless",
+       "Danger",
+       "Danger Borderless",
+       "Danger Outlined",
+       "Outlined",
+       "Primary",
+       "Secondary",
+       "Tertiary"
+      ],
+      "Size": [
+       "lg",
+       "md",
+       "sm"
+      ],
+      "State": [
+       "Default",
+       "Disabled",
+       "Focussed",
+       "Hover",
+       "Pressed"
+      ]
+     },
+     "props": [
+      [
+       "Text",
+       "TEXT",
+       "Button"
+      ],
+      [
+       "Left Icon",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Right Icon",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Show Text",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Desktop Lg Swap Left Icon",
+       "INSTANCE_SWAP",
+       "Icon-User (Type=Regular, Size=22)"
+      ],
+      [
+       "Desktop Lg Swap Right Icon",
+       "INSTANCE_SWAP",
+       "Icon-CaretCircleDown (Type=Regular, Size=22)"
+      ],
+      [
+       "Desktop Md Swap Left Icon",
+       "INSTANCE_SWAP",
+       "Icon-ArrowArcLeft (Type=Regular, Size=20)"
+      ],
+      [
+       "Desktop Md Swap Right Icon",
+       "INSTANCE_SWAP",
+       "Icon-CaretCircleUp (Type=Regular, Size=20)"
+      ],
+      [
+       "Desktop Sm Swap Left Icon",
+       "INSTANCE_SWAP",
+       "Icon-Save (Type=Regular, Size=16)"
+      ],
+      [
+       "Desktop Sm Swap Right Icon",
+       "INSTANCE_SWAP",
+       "Icon-TrashBin (Type=Regular, Size=16)"
+      ],
+      [
+       "Mobile Lg Swap Left Icon",
+       "INSTANCE_SWAP",
+       "Icon-Building (Type=Regular, Size=20)"
+      ],
+      [
+       "Mobile Lg Swap Right Icon",
+       "INSTANCE_SWAP",
+       "Icon-Plus (Type=Regular, Size=20)"
+      ],
+      [
+       "Mobile Md Swap Left Icon",
+       "INSTANCE_SWAP",
+       "Icon-Calendar (Type=Regular, Size=16)"
+      ],
+      [
+       "Mobile Md Swap Right Icon",
+       "INSTANCE_SWAP",
+       "Icon-PaperPlaneTilt (Type=Regular, Size=16)"
+      ],
+      [
+       "Mobile Sm Swap Left Icon",
+       "INSTANCE_SWAP",
+       "Icon-X (Type=Regular, Size=14)"
+      ],
+      [
+       "Mobile Sm Swap Right Icon",
+       "INSTANCE_SWAP",
+       "Icon-CaretDown (Type=Regular, Size=14)"
+      ]
+     ],
+     "w": 152,
+     "h": 54,
+     "md": "Tombol untuk menjalankan aksi.\n\n**Kapan dipakai**\n- Menyimpan, mengirim, membuka dialog, atau aksi lain yang dipicu pengguna.\n\n**Cara pakai**\n1. Pilih **Device** sesuai platform: Desktop atau Mobile.\n2. Pilih **Type** sesuai pentingnya aksi: Primary untuk aksi utama; Secondary atau Outlined untuk aksi pendamping; Tertiary atau Borderless untuk aksi ringan; Danger, Danger Outlined, atau Danger Borderless untuk aksi yang menghapus atau tidak bisa dibatalkan.\n3. Pilih **Size** lg, md, atau sm: Desktop 54 / 44 / 32 px, Mobile 44 / 36 / 26 px. Di desktop, Size md setinggi Text Field, Select, dan Search Bar (44 px), jadi sejajar dalam satu baris form.\n4. Isi **Text** dengan kata kerja singkat, misalnya Simpan atau Kirim.\n5. Untuk ikon, nyalakan **Left Icon** atau **Right Icon**, lalu ganti lewat properti swap yang sesuai Device dan Size (misalnya Desktop Md Swap Left Icon). Matikan **Show Text** untuk tombol ikon saja.\n6. Pilih **State** untuk menunjukkan Hover, Pressed, Focussed (fokus keyboard), atau Disabled.\n\n**Hindari**\n- Lebih dari satu tombol Primary dalam satu area. Letakkan aksi utama paling kanan."
+    }
+   ]
+  },
+  {
+   "pageId": "57:35",
+   "page": "Banner Info & Notif",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2090:38",
+     "name": "Toast",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      "Type": [
+       "Info",
+       "Success",
+       "Warning",
+       "Error"
+      ]
+     },
+     "props": [
+      [
+       "Title Text",
+       "TEXT",
+       "Judul notifikasi"
+      ],
+      [
+       "Description",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Description Text",
+       "TEXT",
+       "Pesan singkat yang menjelaskan apa yang terjadi."
+      ],
+      [
+       "Action",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Action Text",
+       "TEXT",
+       "Lihat detail"
+      ],
+      [
+       "Close",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 360,
+     "h": 98,
+     "md": "Notifikasi singkat yang muncul lalu hilang sendiri.\n\n**Kapan dipakai**\n- Memberi kabar hasil aksi (berhasil disimpan, gagal dikirim) atau kejadian di latar belakang.\n\n**Cara pakai**\n1. Pilih **Type** sesuai hasilnya: Success, Error, Warning, atau Info.\n2. Isi **Title Text**, maksimal satu baris.\n3. Nyalakan **Description** dan isi **Description Text** bila perlu penjelasan.\n4. Nyalakan **Action** dan isi **Action Text** untuk satu tautan lanjutan, misalnya \"Lihat detail\".\n5. Taruh di pojok kanan atas (desktop) atau atas layar (mobile). Toast hilang sendiri setelah 5 detik; Error tetap tampil sampai ditutup lewat **Close**.\n\n**Hindari**\n- Pesan yang harus terus terlihat; pakai Section Message."
+    },
+    {
+     "id": "2090:39",
+     "name": "Snackbar",
+     "kind": "single",
+     "variants": 1,
+     "axes": {},
+     "props": [
+      [
+       "Message Text",
+       "TEXT",
+       "Data dipindahkan ke sampah"
+      ],
+      [
+       "Action",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Action Text",
+       "TEXT",
+       "Urungkan"
+      ],
+      [
+       "Close",
+       "BOOLEAN",
+       false
+      ]
+     ],
+     "w": 360,
+     "h": 44,
+     "md": "Konfirmasi singkat satu baris setelah aksi, dengan satu aksi opsional.\n\n**Kapan dipakai**\n- Setelah aksi yang bisa dibatalkan, misalnya \"Data dipindahkan ke sampah — Urungkan\".\n\n**Cara pakai**\n1. Isi **Message Text** dengan pesan satu baris.\n2. Nyalakan **Action** dan isi **Action Text**, misalnya Urungkan.\n3. Nyalakan **Close** hanya untuk pesan yang tidak hilang sendiri.\n4. Taruh di tengah bawah layar (di atas Navigation Bottom di mobile). Snackbar hilang sendiri setelah 4–6 detik.\n\n**Hindari**\n- Pesan berstatus berhasil/gagal; pakai Toast."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:6",
+   "page": "Button Group",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2081:151",
+     "name": "Button Group",
+     "kind": "set",
+     "variants": 6,
+     "axes": {
+      "Items": [
+       "2",
+       "3",
+       "4"
+      ],
+      "Size": [
+       "md",
+       "sm"
+      ]
+     },
+     "props": [],
+     "w": 173,
+     "h": 44,
+     "md": "Beberapa tombol yang menempel untuk memilih satu tampilan atau rentang.\n\n**Kapan dipakai**\n- Mengganti tampilan data, misalnya Harian / Mingguan / Bulanan, atau Tabel / Grafik.\n\n**Cara pakai**\n1. Pilih **Items** sesuai jumlah pilihan: 2, 3, atau 4.\n2. Pilih **Size**: md (tombol 44 px) atau sm (tombol 32 px).\n3. Ubah label setiap item lewat item di dalamnya.\n4. Jadikan satu item Selected, yaitu pilihan yang sedang aktif.\n\n**Hindari**\n- Memakai untuk aksi seperti Simpan atau Hapus; pakai Button."
+    },
+    {
+     "id": "2081:66",
+     "name": ".Button Group Item",
+     "kind": "set",
+     "variants": 16,
+     "axes": {
+      "Position": [
+       "Default",
+       "Last"
+      ],
+      "State": [
+       "Default",
+       "Hover",
+       "Selected",
+       "Disabled"
+      ],
+      "Size": [
+       "md",
+       "sm"
+      ]
+     },
+     "props": [
+      [
+       "Label",
+       "TEXT",
+       "Label"
+      ],
+      [
+       "Icon",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Change Icon",
+       "INSTANCE_SWAP",
+       "Icon-Calendar (Type=Regular, Size=16)"
+      ]
+     ],
+     "w": 68,
+     "h": 44,
+     "md": "Satu tombol di Button Group.\n\n**Cara pakai**\n1. Pakai lewat komponen Button Group, bukan berdiri sendiri.\n2. Pilih **State**: Selected untuk pilihan yang aktif (hanya satu), atau Default, Hover, Disabled.\n3. Pilih **Size**: md (44 px) atau sm (32 px), sama untuk semua item dalam satu grup.\n4. Isi **Label**; nyalakan **Icon** dan ganti lewat **Change Icon** bila perlu ikon.\n5. Pilih **Position** = Last untuk item paling kanan (tanpa garis pemisah)."
+    }
+   ]
+  },
+  {
+   "pageId": "200:1849",
+   "page": "Cards",
+   "ready": true,
+   "sets": [
+    {
+     "id": "208:3400",
+     "name": "Cards",
+     "kind": "set",
+     "variants": 2,
+     "axes": {
+      "Type": [
+       "Mixed Button",
+       "Single Button"
+      ]
+     },
+     "props": [
+      [
+       "Title",
+       "TEXT",
+       "Judul"
+      ],
+      [
+       "Subtitle",
+       "TEXT",
+       "Subjudul"
+      ],
+      [
+       "Description Text",
+       "TEXT",
+       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non aliquam nunc etiam risus consequat vestibulum tellus eget orci."
+      ],
+      [
+       "Image",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Description",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Icon",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 355,
+     "h": 470,
+     "md": "Kartu ringkasan satu konten: gambar, judul, keterangan, dan aksi.\n\n**Kapan dipakai**\n- Menampilkan beberapa item setara dalam grid, misalnya daftar program atau dokumen.\n\n**Cara pakai**\n1. Pilih **Type**: Single Button untuk satu aksi, Mixed Button untuk dua aksi.\n2. Isi **Title** dan **Subtitle**.\n3. Nyalakan **Description** dan isi **Description Text** bila perlu keterangan.\n4. Matikan **Image** bila tidak ada gambar sampul; ganti gambar lewat Fill pada layer gambar.\n5. Matikan **Icon** bila tidak perlu ikon aksi di kanan judul.\n6. Ubah label tombol di instance Button di dalamnya."
+    }
+   ]
+  },
+  {
+   "pageId": "57:37",
+   "page": "Checkbox & Radio Button",
+   "ready": true,
+   "sets": [
+    {
+     "id": "133:568",
+     "name": "Checkbox",
+     "kind": "set",
+     "variants": 24,
+     "axes": {
+      "State": [
+       "Normal",
+       "Hover",
+       "Focussed",
+       "Disabled"
+      ],
+      "Type": [
+       "Default",
+       "Indeterminate",
+       "Checked"
+      ],
+      "Size": [
+       "md",
+       "sm"
+      ]
+     },
+     "props": [
+      [
+       "Label Text",
+       "TEXT",
+       "Label"
+      ],
+      [
+       "Label",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Placeholder Text",
+       "TEXT",
+       "Placeholder"
+      ],
+      [
+       "Placeholder",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Description Text",
+       "TEXT",
+       "Description"
+      ],
+      [
+       "Description",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Error Text",
+       "TEXT",
+       "Error"
+      ],
+      [
+       "Error",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Check Only",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Required Object",
+       "BOOLEAN",
+       false
+      ]
+     ],
+     "w": 105,
+     "h": 60,
+     "md": "Kotak centang untuk memilih satu atau beberapa pilihan, atau untuk menyetujui sesuatu.\n\n**Kapan dipakai**\n- Memilih banyak opsi dari daftar, menyetujui syarat, atau memilih baris di tabel.\n\n**Cara pakai**\n1. Pilih **Type**: Default (belum dipilih), Checked (dipilih), atau Indeterminate (sebagian dipilih, misalnya di judul kolom tabel).\n2. Isi **Placeholder Text** dengan teks pilihan di samping kotak.\n3. Untuk judul kelompok, nyalakan **Label** dan isi **Label Text**; nyalakan **Required Object** bila wajib diisi.\n4. Nyalakan **Description** atau **Error**, lalu isi **Description Text** atau **Error Text**.\n5. Pilih **Size** md atau sm, dan **State** untuk Hover, Focussed, atau Disabled.\n6. Untuk kotak saja (di tabel atau menu), matikan Label, Placeholder, Description, dan Error. Biarkan **Check Only** menyala.\n\n**Hindari**\n- Memakai untuk pilihan yang saling meniadakan; pakai Radio Button."
+    },
+    {
+     "id": "133:1176",
+     "name": "Radio Button",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      "State": [
+       "Normal",
+       "Hover",
+       "Focussed",
+       "Selected"
+      ]
+     },
+     "props": [
+      [
+       "Label Text",
+       "TEXT",
+       "Label"
+      ],
+      [
+       "Label",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Placeholder Text",
+       "TEXT",
+       "Placeholder"
+      ],
+      [
+       "Description Text",
+       "TEXT",
+       "Description"
+      ],
+      [
+       "Description",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Error Text",
+       "TEXT",
+       "Error"
+      ],
+      [
+       "Error",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Placeholder",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Required",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 105,
+     "h": 84,
+     "md": "Pilihan tunggal dari beberapa opsi yang saling meniadakan.\n\n**Kapan dipakai**\n- Memilih satu opsi dari 2–5 pilihan, misalnya jenis kelamin atau metode pembayaran.\n\n**Cara pakai**\n1. Susun beberapa radio dalam satu kelompok; hanya satu yang terpilih.\n2. Pilih **State** = Selected untuk radio yang terpilih, Normal untuk yang belum; Hover dan Focussed untuk interaksi.\n3. Isi **Placeholder Text** dengan teks pilihan.\n4. Untuk judul kelompok, nyalakan **Label** dan isi **Label Text**; nyalakan **Required** bila wajib.\n5. Nyalakan **Description** atau **Error**, lalu isi **Description Text** atau **Error Text** bila perlu.\n\n**Hindari**\n- Lebih dari 5 pilihan; pakai Select."
+    }
+   ]
+  },
+  {
+   "pageId": "57:38",
+   "page": "Chips",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2077:113",
+     "name": "Chip",
+     "kind": "set",
+     "variants": 14,
+     "axes": {
+      "Type": [
+       "Filter",
+       "Input"
+      ],
+      "State": [
+       "Default",
+       "Hover",
+       "Selected",
+       "Disabled"
+      ],
+      "Size": [
+       "md",
+       "sm"
+      ]
+     },
+     "props": [
+      [
+       "Label",
+       "TEXT",
+       "Label"
+      ],
+      [
+       "Icon",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Change Icon",
+       "INSTANCE_SWAP",
+       "Icon-Filter (Type=Regular, Size=16)"
+      ]
+     ],
+     "w": 60,
+     "h": 28,
+     "md": "Pilihan kecil berbentuk pil.\n\n**Kapan dipakai**\n- Filter cepat di atas daftar, atau menampilkan nilai yang sudah dipilih (misalnya di Select Multi).\n\n**Cara pakai**\n1. Pilih **Type**: Filter untuk pilihan yang bisa dinyalakan/dimatikan, Input untuk nilai terpilih yang bisa dihapus dengan X.\n2. Pilih **State**: Selected untuk Filter yang aktif (diberi centang); Hover dan Disabled sesuai kondisi.\n3. Pilih **Size**: md (28 px) atau sm (24 px).\n4. Isi **Label**; nyalakan **Icon** dan ganti lewat **Change Icon** bila perlu ikon.\n5. Susun beberapa Chip dalam satu baris dengan jarak 8 px.\n\n**Hindari**\n- Memakai Chip sebagai tombol aksi; pakai Button."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:7",
+   "page": "Data Table",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2088:23",
+     "name": "Table Header Cell",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      "Type": [
+       "Text",
+       "Checkbox"
+      ],
+      "Sort": [
+       "None",
+       "Ascending",
+       "Descending"
+      ]
+     },
+     "props": [
+      [
+       "Label",
+       "TEXT",
+       "Nama"
+      ],
+      [
+       "Sort Icon",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 200,
+     "h": 44,
+     "md": "Judul kolom tabel, tinggi 44 px.\n\n**Cara pakai**\n1. Pilih **Type**: Text untuk judul kolom, Checkbox untuk kolom pilih-semua di paling kiri.\n2. Isi **Label** dengan nama kolom.\n3. Pilih **Sort**: Ascending atau Descending untuk kolom yang sedang dipakai mengurutkan; None untuk kolom lain yang bisa diurutkan.\n4. Matikan **Sort Icon** untuk kolom yang tidak bisa diurutkan, misalnya Aksi.\n5. Saat sebagian baris dipilih, ubah Checkbox di dalamnya menjadi Indeterminate.\n6. Atur lebarnya Fill supaya mengikuti lebar kolom; pastikan nama kolom dan ikon urut tidak terpotong."
+    },
+    {
+     "id": "2088:127",
+     "name": "Table Cell",
+     "kind": "set",
+     "variants": 18,
+     "axes": {
+      "Type": [
+       "Text",
+       "Two Line",
+       "Avatar",
+       "Badge",
+       "Checkbox",
+       "Actions"
+      ],
+      "State": [
+       "Default",
+       "Hover",
+       "Selected"
+      ]
+     },
+     "props": [
+      [
+       "Text",
+       "TEXT",
+       "Budi Santoso"
+      ],
+      [
+       "Subtext",
+       "TEXT",
+       "budi.santoso@cargo.co.id"
+      ]
+     ],
+     "w": 200,
+     "h": 52,
+     "md": "Isi sel tabel, tinggi 52 px. Semua tipe sel punya tinggi yang sama, jadi baris selalu sejajar.\n\n**Cara pakai**\n1. Susun tabel per kolom: Table Header Cell di atas, lalu Table Cell di bawahnya dengan lebar Fill.\n2. Pilih **Type** sesuai isi kolom: Text, Two Line (teks + keterangan), Avatar (nama dengan avatar), Badge (status), Checkbox (pilih baris), atau Actions (menu aksi).\n3. Isi **Text** dan **Subtext** (Subtext untuk Two Line dan Avatar).\n4. Atur Avatar, Badge, atau Checkbox di dalamnya langsung dari panel properti.\n5. Pilih **State** Selected untuk baris yang dipilih, atau Hover untuk baris yang disorot; ubah semua sel dalam satu baris sekaligus.\n\n**Hindari**\n- Teks lebih dari satu baris di Type=Text. Teks panjang otomatis terpotong dengan …."
+    }
+   ]
+  },
+  {
+   "pageId": "1158:2",
+   "page": "Date Picker",
+   "ready": true,
+   "sets": [
+    {
+     "id": "1206:1992",
+     "name": "Date Picker",
+     "kind": "set",
+     "variants": 8,
+     "axes": {
+      "List Duration": [
+       "Custom",
+       "Month",
+       "Quarter",
+       "Year"
+      ],
+      "Type": [
+       "Compared",
+       "NotCompare"
+      ]
+     },
+     "props": [],
+     "w": 600,
+     "h": 353,
+     "md": "Panel pemilih periode untuk laporan dan dashboard.\n\n**Kapan dipakai**\n- Memilih bulan, kuartal, tahun, atau rentang tanggal untuk menyaring data, termasuk membandingkan dua periode.\n\n**Cara pakai**\n1. Pilih **List Duration** sesuai jenis periode: Month, Quarter, Year, atau Custom (rentang tanggal di dua kalender).\n2. Pilih **Type**: NotCompare untuk satu periode, Compared untuk membandingkan dua periode berdampingan.\n3. Tandai periode terpilih di grid; ringkasannya tampil di bagian bawah, lalu pengguna menekan Apply.\n4. Hari Minggu dan libur nasional memakai warna text/holiday."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:8",
+   "page": "Empty State",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2091:116",
+     "name": "Empty State",
+     "kind": "set",
+     "variants": 6,
+     "axes": {
+      "Type": [
+       "No Data",
+       "No Results",
+       "Error"
+      ],
+      "Size": [
+       "Default",
+       "Compact"
+      ]
+     },
+     "props": [
+      [
+       "Button",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 400,
+     "h": 192,
+     "md": "Tampilan saat area konten belum punya isi.\n\n**Kapan dipakai**\n- Tabel, daftar, atau halaman yang kosong, pencarian yang tidak menemukan hasil, atau data yang gagal dimuat.\n\n**Cara pakai**\n1. Pilih **Type**: No Data (belum ada data), No Results (pencarian/filter tidak menemukan apa pun), atau Error (gagal memuat).\n2. Pilih **Size**: Default untuk halaman dan tabel, Compact untuk kartu, panel, dan dropdown.\n3. Ubah judul dan deskripsi langsung di instance: jelaskan apa yang terjadi dan apa yang bisa dilakukan.\n4. Atur tombol lewat Button di dalamnya (misalnya Tambah data, Hapus filter, Coba lagi), atau matikan **Button**.\n5. Ganti ikon atau warnanya lewat Featured Icon di dalamnya."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:9",
+   "page": "File Upload",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2092:138",
+     "name": "File Upload",
+     "kind": "set",
+     "variants": 8,
+     "axes": {
+      "State": [
+       "Default",
+       "Hover",
+       "Disabled",
+       "Error"
+      ],
+      "Device": [
+       "Desktop",
+       "Mobile"
+      ]
+     },
+     "props": [
+      [
+       "Label",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Label Text",
+       "TEXT",
+       "Dokumen pendukung"
+      ],
+      [
+       "Required",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Helper Text",
+       "TEXT",
+       "PDF, JPG, atau PNG. Maksimal 10 MB."
+      ],
+      [
+       "Error Text",
+       "TEXT",
+       "Ukuran file melebihi 10 MB. Pilih file yang lebih kecil."
+      ]
+     ],
+     "w": 480,
+     "h": 162,
+     "md": "Area untuk mengunggah file di form.\n\n**Kapan dipakai**\n- Mengunggah dokumen pendukung, foto, atau lampiran.\n\n**Cara pakai**\n1. Pilih **Device**: Desktop (lebar 480; seret-lepas atau klik \"pilih file\") atau Mobile (lebar 343; tombol Pilih file).\n2. Isi **Label Text**; nyalakan **Required** bila file wajib diunggah, atau matikan **Label** bila label sudah ada di luar.\n3. Isi **Helper Text** dengan format dan ukuran maksimal, misalnya \"PDF, JPG, atau PNG. Maksimal 10 MB.\"\n4. Pilih **State**: Hover saat file diseret di atas area, Disabled bila tidak bisa dipakai, atau Error bila file ditolak (tulis alasannya di **Error Text**).\n5. Tampilkan file yang sudah dipilih di bawahnya dengan File Item.\n\n**Hindari**\n- Menyembunyikan format dan ukuran maksimal file."
+    },
+    {
+     "id": "2092:177",
+     "name": "File Item",
+     "kind": "set",
+     "variants": 3,
+     "axes": {
+      "State": [
+       "Uploading",
+       "Success",
+       "Error"
+      ]
+     },
+     "props": [
+      [
+       "File Name",
+       "TEXT",
+       "Surat_Keterangan_Kerja.pdf"
+      ]
+     ],
+     "w": 480,
+     "h": 74,
+     "md": "Satu file yang sudah dipilih di File Upload.\n\n**Cara pakai**\n1. Taruh di bawah File Upload dengan lebar Fill, satu File Item untuk setiap file.\n2. Pilih **State**: Uploading (sedang diunggah; X membatalkan), Success (selesai; ikon tempat sampah menghapus), atau Error (gagal).\n3. Isi **File Name**; nama yang panjang terpotong dengan ….\n4. Ubah teks ukuran, progres, atau alasan gagal langsung di instance."
+    }
+   ]
+  },
+  {
+   "pageId": "1204:2",
+   "page": "List Data",
+   "ready": true,
+   "sets": [
+    {
+     "id": "1286:409",
+     "name": "List Data",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      "State": [
+       "Default",
+       "Hover",
+       "Focussed",
+       "Pressed"
+      ]
+     },
+     "props": [
+      [
+       ".Addon Left",
+       "BOOLEAN",
+       true
+      ],
+      [
+       ".Addon Right",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Text",
+       "TEXT",
+       "Jowowi Soebianto"
+      ]
+     ],
+     "w": 230,
+     "h": 36,
+     "md": "Satu baris daftar dengan teks dan elemen tambahan di kiri/kanan.\n\n**Kapan dipakai**\n- Daftar yang bisa dipilih atau dibuka, misalnya daftar karyawan, pilihan di dalam panel, atau daftar aksi di Bottom Sheet.\n\n**Cara pakai**\n1. Isi **Text** dengan teks baris.\n2. Nyalakan **.Addon Left** atau **.Addon Right**, lalu pilih jenisnya di instance add-on: Checkbox, Radio Button, Badge, atau ikon.\n3. Pilih **State**: Hover saat disorot, Focussed untuk fokus keyboard, Pressed saat ditekan."
+    },
+    {
+     "id": "1215:525",
+     "name": ".Addon Left",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      ".Addon Left": [
+       "Badge",
+       "Checkbox",
+       "Icon-CaretCircleDown",
+       "Radio Button"
+      ]
+     },
+     "props": [
+      [
+       "Change Icon",
+       "INSTANCE_SWAP",
+       "Icon-CaretCircleDown (Type=Regular, Size=20)"
+      ]
+     ],
+     "w": 20,
+     "h": 20,
+     "md": "Elemen tambahan di kiri List Data.\n\n**Cara pakai**\n1. Pakai lewat List Data (properti .Addon Left), bukan berdiri sendiri.\n2. Pilih jenisnya: Checkbox, Radio Button, Badge, atau ikon (Icon-CaretCircleDown).\n3. Untuk ikon, ganti lewat **Change Icon**."
+    },
+    {
+     "id": "1215:526",
+     "name": ".Addon Right",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      ".Addon Right": [
+       "Badge",
+       "Checkbox",
+       "Icon-CaretCircleDown",
+       "Radio Button"
+      ]
+     },
+     "props": [
+      [
+       "Change Icon",
+       "INSTANCE_SWAP",
+       "Icon-CaretCircleDown (Type=Regular, Size=20)"
+      ]
+     ],
+     "w": 20,
+     "h": 20,
+     "md": "Elemen tambahan di kanan List Data.\n\n**Cara pakai**\n1. Pakai lewat List Data (properti .Addon Right), bukan berdiri sendiri.\n2. Pilih jenisnya: Checkbox, Radio Button, Badge, atau ikon (Icon-CaretCircleDown).\n3. Untuk ikon, ganti lewat **Change Icon**."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:10",
+   "page": "Loading",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2075:20",
+     "name": "Spinner",
+     "kind": "set",
+     "variants": 6,
+     "axes": {
+      "Size": [
+       "sm",
+       "md",
+       "lg"
+      ],
+      "Color": [
+       "Brand",
+       "On Brand"
+      ]
+     },
+     "props": [],
+     "w": 16,
+     "h": 16,
+     "md": "Penanda proses yang sedang berjalan tanpa persentase.\n\n**Kapan dipakai**\n- Proses singkat, misalnya saat tombol Simpan memproses atau data kecil sedang dimuat.\n\n**Cara pakai**\n1. Pilih **Size**: sm 16 (di dalam tombol atau teks), md 24, atau lg 32 (di tengah area).\n2. Pilih **Color**: Brand untuk latar terang, On Brand (putih) di atas warna brand, misalnya di dalam tombol Primary.\n\n**Hindari**\n- Proses yang bisa dihitung (pakai Progress Bar) atau memuat isi halaman (pakai Skeleton)."
+    },
+    {
+     "id": "2075:201",
+     "name": "Progress Bar",
+     "kind": "set",
+     "variants": 30,
+     "axes": {
+      "Size": [
+       "md",
+       "sm"
+      ],
+      "Status": [
+       "Default",
+       "Success",
+       "Error"
+      ],
+      "Value": [
+       "0",
+       "25",
+       "50",
+       "75",
+       "100"
+      ]
+     },
+     "props": [
+      [
+       "Label",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Label Text",
+       "TEXT",
+       "Mengunggah dokumen"
+      ]
+     ],
+     "w": 320,
+     "h": 32,
+     "md": "Kemajuan proses yang bisa dihitung.\n\n**Kapan dipakai**\n- Unggah file, impor data, atau proses lain yang persentasenya diketahui.\n\n**Cara pakai**\n1. Pilih **Value** sesuai progres: 0, 25, 50, 75, atau 100.\n2. Pilih **Status**: Default saat berjalan, Success saat selesai, Error saat gagal.\n3. Pilih **Size**: md (bar 8 px) untuk berdiri sendiri, sm (bar 4 px) di dalam komponen lain seperti File Item.\n4. Nyalakan **Label** dan isi **Label Text** untuk nama proses beserta persentasenya.\n5. Lebar bebas diubah; isi bar ikut menyesuaikan."
+    },
+    {
+     "id": "2075:206",
+     "name": "Skeleton",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      "Type": [
+       "Text",
+       "Heading",
+       "Circle",
+       "Rectangle"
+      ]
+     },
+     "props": [],
+     "w": 240,
+     "h": 12,
+     "md": "Bentuk abu-abu pengganti konten yang sedang dimuat.\n\n**Kapan dipakai**\n- Saat halaman atau daftar sedang dimuat, supaya pengguna melihat gambaran tata letaknya.\n\n**Cara pakai**\n1. Pilih **Type** sesuai konten aslinya: Text (baris teks), Heading (judul), Circle (avatar/ikon), atau Rectangle (gambar/kartu).\n2. Susun beberapa Skeleton mengikuti tata letak konten aslinya, lalu sesuaikan lebarnya.\n3. Untuk pola umum, pakai Skeleton List Item atau Skeleton Card."
+    },
+    {
+     "id": "2075:207",
+     "name": "Skeleton List Item",
+     "kind": "single",
+     "variants": 1,
+     "axes": {},
+     "props": [],
+     "w": 343,
+     "h": 64,
+     "md": "Skeleton siap pakai untuk baris daftar: avatar dan dua baris teks.\n\n**Cara pakai**\n- Ulangi beberapa kali sebagai pengganti daftar yang sedang dimuat. Lebarnya boleh diubah."
+    },
+    {
+     "id": "2075:212",
+     "name": "Skeleton Card",
+     "kind": "single",
+     "variants": 1,
+     "axes": {},
+     "props": [],
+     "w": 320,
+     "h": 234,
+     "md": "Skeleton siap pakai untuk kartu: gambar, judul, dan dua baris teks.\n\n**Cara pakai**\n- Pakai di grid kartu selama data dimuat; samakan ukurannya dengan kartu aslinya."
+    }
+   ]
+  },
+  {
+   "pageId": "210:4973",
+   "page": "Modals",
+   "ready": true,
+   "sets": [
+    {
+     "id": "213:1120",
+     "name": "Modals",
+     "kind": "set",
+     "variants": 5,
+     "axes": {
+      "Device": [
+       "Mobile",
+       "Desktop"
+      ],
+      "Button Count": [
+       "3",
+       "2",
+       "1"
+      ]
+     },
+     "props": [
+      [
+       "Title",
+       "TEXT",
+       "Judul"
+      ],
+      [
+       "Description",
+       "TEXT",
+       "Description"
+      ],
+      [
+       "Close",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Buttons",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 500,
+     "h": 146,
+     "md": "Jendela dialog di atas halaman untuk konfirmasi atau informasi yang perlu ditanggapi.\n\n**Kapan dipakai**\n- Konfirmasi sebelum aksi penting (hapus, kirim) atau informasi yang harus dibaca sebelum lanjut.\n\n**Cara pakai**\n1. Pilih **Device**: Desktop (lebar 500) atau Mobile (lebar 248).\n2. Pilih **Button Count** sesuai jumlah aksi. Desktop: 1 (Primary), 2 (Secondary + Primary), atau 3 (Borderless + Secondary + Primary). Mobile: 1 (Primary) atau 2 (Borderless + Primary).\n3. Isi **Title** dengan kalimat singkat dan **Description** dengan penjelasannya.\n4. Ubah label tombol di instance Button di dalamnya. Aksi utama selalu paling kanan; untuk aksi yang menghapus, ganti Type tombol utama ke Danger.\n5. Matikan **Close** (tombol X) hanya bila pengguna wajib memilih salah satu aksi; matikan **Buttons** bila dialog hanya berisi informasi.\n6. Tampilkan di tengah layar di atas latar gelap.\n\n**Hindari**\n- Isi panjang atau form rumit di dalam modal; pakai halaman tersendiri.\n- Membuka modal di atas modal lain."
+    },
+    {
+     "id": "213:397",
+     "name": "Semantic",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      "Type": [
+       "Information",
+       "Alert",
+       "Error",
+       "Success"
+      ]
+     },
+     "props": [
+      [
+       "Title",
+       "TEXT",
+       "Judul"
+      ],
+      [
+       "Description",
+       "TEXT",
+       "Description"
+      ],
+      [
+       "Buttons",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Icon",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 250,
+     "h": 174,
+     "md": "Dialog kecil berstatus dengan ikon di bagian atas.\n\n**Kapan dipakai**\n- Memberi tahu hasil penting (berhasil, gagal) atau peringatan yang perlu dikonfirmasi pengguna.\n\n**Cara pakai**\n1. Pilih **Type**: Information, Alert (peringatan), Error, atau Success; ikon dan warnanya mengikuti.\n2. Isi **Title** dan **Description**: jelaskan apa yang terjadi dan apa yang perlu dilakukan.\n3. Ubah label tombol di instance Button di dalamnya (Borderless untuk aksi kedua, Primary untuk aksi utama), atau matikan **Buttons**.\n4. Matikan **Icon** bila ikon status tidak diperlukan.\n5. Tampilkan di tengah layar di atas latar gelap.\n\n**Hindari**\n- Memakai untuk notifikasi sesaat; pakai Toast."
+    }
+   ]
+  },
+  {
+   "pageId": "57:40",
+   "page": "Navigation Bottom",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2093:140",
+     "name": "Navigation Bottom",
+     "kind": "set",
+     "variants": 3,
+     "axes": {
+      "Items": [
+       "3",
+       "4",
+       "5"
+      ]
+     },
+     "props": [],
+     "w": 375,
+     "h": 58,
+     "md": "Navigasi utama aplikasi mobile, menempel di bawah layar.\n\n**Kapan dipakai**\n- Aplikasi mobile dengan 3–5 menu utama yang sering dibuka.\n\n**Cara pakai**\n1. Pilih **Items** sesuai jumlah menu: 3, 4, atau 5.\n2. Pada setiap item di dalamnya, isi Label dan pilih ikon (Icon untuk menu tidak aktif, Icon Active untuk menu aktif).\n3. Jadikan satu item State=Active sesuai halaman yang sedang dibuka.\n4. Nyalakan Badge pada item yang punya notifikasi belum dibaca.\n5. Lebar mengikuti layar (375 di desain); tambahkan area aman bawah iPhone (34) bila ada.\n\n**Hindari**\n- Lebih dari 5 menu. Untuk desktop, pakai Side Menu."
+    },
+    {
+     "id": "2093:19",
+     "name": ".Nav Bottom Item",
+     "kind": "set",
+     "variants": 2,
+     "axes": {
+      "State": [
+       "Active",
+       "Inactive"
+      ]
+     },
+     "props": [
+      [
+       "Label",
+       "TEXT",
+       "Beranda"
+      ],
+      [
+       "Icon",
+       "INSTANCE_SWAP",
+       "Icon-Home (Type=Regular, Size=24)"
+      ],
+      [
+       "Icon Active",
+       "INSTANCE_SWAP",
+       "Icon-Home (Type=Fill, Size=24)"
+      ],
+      [
+       "Badge",
+       "BOOLEAN",
+       false
+      ]
+     ],
+     "w": 80,
+     "h": 58,
+     "md": "Satu menu di Navigation Bottom.\n\n**Cara pakai**\n1. Pakai lewat komponen Navigation Bottom, bukan berdiri sendiri.\n2. Pilih **State**: Active untuk halaman yang sedang dibuka (hanya satu), Inactive untuk lainnya.\n3. Isi **Label** dengan satu kata pendek.\n4. Pilih ikon lewat **Icon** (versi Regular, untuk Inactive) dan **Icon Active** (versi Fill, untuk Active).\n5. Nyalakan **Badge** untuk jumlah notifikasi; ubah angkanya di Badge di dalamnya."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:11",
+   "page": "Pagination",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2086:96",
+     "name": "Pagination",
+     "kind": "set",
+     "variants": 2,
+     "axes": {
+      "Device": [
+       "Desktop",
+       "Mobile"
+      ]
+     },
+     "props": [
+      [
+       "Info Text",
+       "TEXT",
+       "Menampilkan 1–10 dari 120 data"
+      ],
+      [
+       "Rows per Page",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Page Text",
+       "TEXT",
+       "Halaman 1 dari 12"
+      ]
+     ],
+     "w": 1000,
+     "h": 32,
+     "md": "Navigasi antarhalaman untuk tabel dan daftar panjang.\n\n**Cara pakai**\n1. Taruh di bawah tabel dengan lebar mengikuti tabel.\n2. Pilih **Device**: Desktop atau Mobile.\n3. Desktop: isi **Info Text**, misalnya \"Menampilkan 1–10 dari 120 data\"; matikan **Rows per Page** bila jumlah baris tetap.\n4. Mobile: isi **Page Text**, misalnya \"Halaman 1 dari 12\".\n5. Atur nomor halaman dan halaman aktif lewat item di dalamnya. Tampilkan maksimal 7 nomor; sisanya jadi ….\n6. Jadikan Previous Disabled di halaman pertama, dan Next Disabled di halaman terakhir."
+    },
+    {
+     "id": "2086:56",
+     "name": ".Page Item",
+     "kind": "set",
+     "variants": 20,
+     "axes": {
+      "Type": [
+       "Number",
+       "Previous",
+       "Next",
+       "Ellipsis"
+      ],
+      "State": [
+       "Default",
+       "Hover",
+       "Selected",
+       "Disabled"
+      ],
+      "Size": [
+       "md",
+       "lg"
+      ]
+     },
+     "props": [
+      [
+       "Number",
+       "TEXT",
+       "1"
+      ]
+     ],
+     "w": 32,
+     "h": 32,
+     "md": "Satu tombol di Pagination.\n\n**Cara pakai**\n1. Pakai lewat komponen Pagination, bukan berdiri sendiri.\n2. Pilih **Type**: Number, Previous, Next, atau Ellipsis.\n3. Pilih **State**: Selected untuk halaman yang sedang dibuka; Disabled untuk Previous/Next yang tidak bisa dipakai.\n4. Pilih **Size**: md (32) untuk desktop, lg (40) untuk mobile.\n5. Isi **Number** dengan angka halaman."
+    }
+   ]
+  },
+  {
+   "pageId": "220:1372",
+   "page": "Search Bar",
+   "ready": true,
+   "sets": [
+    {
+     "id": "226:1058",
+     "name": "Search Bar",
+     "kind": "set",
+     "variants": 16,
+     "axes": {
+      "Device": [
+       "Desktop",
+       "Mobile"
+      ],
+      "Type": [
+       "Primary",
+       "Secondary"
+      ],
+      "State": [
+       "Default",
+       "Hover",
+       "Focussed",
+       "Pressed"
+      ]
+     },
+     "props": [],
+     "w": 300,
+     "h": 44,
+     "md": "Kolom pencarian dengan ikon kaca pembesar.\n\n**Kapan dipakai**\n- Mencari data di halaman atau tabel, dan pencarian global di Top Bar.\n\n**Cara pakai**\n1. Pilih **Device**: Desktop (tinggi 44, sama dengan Button md dan kolom form desktop) atau Mobile (tinggi 32, sama dengan Text Field dan Select mobile).\n2. Pilih **Type** yang kontras dengan latarnya: Primary (latar berwarna tanpa garis) atau Secondary (latar putih dengan garis).\n3. Ubah teks placeholder langsung di instance dan sebutkan apa yang dicari, misalnya \"Cari nama karyawan\".\n4. Pilih **State**: Hover, Focussed (sedang mengetik), atau Pressed (sudah berisi, dengan tombol X untuk menghapus).\n5. Lebar bebas diubah sesuai tempatnya."
+    }
+   ]
+  },
+  {
+   "pageId": "135:5771",
+   "page": "Section Message",
+   "ready": true,
+   "sets": [
+    {
+     "id": "136:5055",
+     "name": "Section Message",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      "Type": [
+       "Error",
+       "Info",
+       "Success",
+       "Warning"
+      ]
+     },
+     "props": [
+      [
+       "Close Button",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Action Button",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 662,
+     "h": 112,
+     "md": "Pesan yang menempel di halaman atau di dalam bagian tertentu.\n\n**Kapan dipakai**\n- Informasi, peringatan, atau hasil yang perlu tetap terlihat sampai dibaca, misalnya \"Dokumen belum lengkap\".\n\n**Cara pakai**\n1. Pilih **Type**: Info, Warning, Success, atau Error.\n2. Ubah isi pesan langsung di instance; jelaskan apa yang perlu dilakukan.\n3. Nyalakan **Action Button** untuk aksi lanjutan (maksimal 3) dan ubah labelnya di instance Button di dalamnya.\n4. Matikan **Close Button** bila pesan tidak boleh ditutup.\n\n**Hindari**\n- Notifikasi sesaat setelah aksi; pakai Toast."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:12",
+   "page": "Select & Dropdown",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2080:576",
+     "name": "Select",
+     "kind": "set",
+     "variants": 24,
+     "axes": {
+      "Device": [
+       "Desktop",
+       "Mobile"
+      ],
+      "Type": [
+       "Single",
+       "Multi"
+      ],
+      "State": [
+       "Default",
+       "Filled",
+       "Hover",
+       "Focussed",
+       "Disabled",
+       "Error"
+      ]
+     },
+     "props": [
+      [
+       "Label",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Label Text",
+       "TEXT",
+       "Label"
+      ],
+      [
+       "Required",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Placeholder Text",
+       "TEXT",
+       "Pilih status"
+      ],
+      [
+       "Value Text",
+       "TEXT",
+       "Aktif"
+      ],
+      [
+       "Helper",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Helper Text",
+       "TEXT",
+       "Teks bantuan"
+      ],
+      [
+       "Icon",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Desktop Change Icon",
+       "INSTANCE_SWAP",
+       "Icon-User (Type=Regular, Size=18)"
+      ],
+      [
+       "Mobile Change Icon",
+       "INSTANCE_SWAP",
+       "Icon-User (Type=Regular, Size=16)"
+      ]
+     ],
+     "w": 320,
+     "h": 88,
+     "md": "Kolom pilihan yang membuka Dropdown Menu.\n\n**Kapan dipakai**\n- Memilih satu atau beberapa nilai dari daftar yang panjang (lebih dari 5 pilihan).\n\n**Cara pakai**\n1. Pilih **Device**: Desktop (kolom 44 px) atau Mobile (kolom 32 px).\n2. Pilih **Type**: Single untuk satu nilai, Multi untuk banyak nilai (tampil sebagai Chip Input).\n3. Isi **Label Text**; nyalakan **Required** bila wajib, atau matikan **Label** bila label sudah ada di luar.\n4. Isi **Placeholder Text** (teks saat kosong) dan **Value Text** (nilai terpilih, untuk Single).\n5. Pilih **State**: Default (kosong), Filled (sudah dipilih), Hover, Focussed (menu terbuka; taruh Dropdown Menu tepat di bawahnya), Disabled, atau Error.\n6. Nyalakan **Helper** dan isi **Helper Text** untuk teks bantuan atau pesan error; nyalakan **Icon** dan ganti lewat **Desktop Change Icon** (18 px) atau **Mobile Change Icon** (16 px) sesuai Device bila perlu ikon di kiri.\n\n**Hindari**\n- Pilihan yang sedikit (2–5); pakai Radio Button atau Chip."
+    },
+    {
+     "id": "2079:250",
+     "name": "Dropdown Menu",
+     "kind": "set",
+     "variants": 3,
+     "axes": {
+      "Type": [
+       "Single",
+       "Multi",
+       "Action"
+      ]
+     },
+     "props": [],
+     "w": 240,
+     "h": 230,
+     "md": "Daftar pilihan yang muncul di bawah Select atau tombol.\n\n**Cara pakai**\n1. Pilih **Type**: Single (pilih satu, diberi centang), Multi (pilih banyak dengan checkbox), atau Action (daftar aksi).\n2. Taruh tepat di bawah Select atau tombol pemicunya; samakan lebarnya dengan Select (bawaan 240 px).\n3. Atur teks, ikon, dan state setiap baris lewat Menu Item di dalamnya.\n4. Di Type=Action, taruh aksi berbahaya di bawah garis pemisah dengan Menu Item tipe Danger.\n\n**Hindari**\n- Daftar panjang tanpa pencarian; bila pilihannya lebih dari 8, tambahkan Search Bar di atas daftar."
+    },
+    {
+     "id": "2079:96",
+     "name": "Menu Item",
+     "kind": "set",
+     "variants": 11,
+     "axes": {
+      "Type": [
+       "Default",
+       "Checkbox",
+       "Danger"
+      ],
+      "State": [
+       "Default",
+       "Hover",
+       "Selected",
+       "Disabled"
+      ]
+     },
+     "props": [
+      [
+       "Label",
+       "TEXT",
+       "Menu item"
+      ],
+      [
+       "Icon",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Change Icon",
+       "INSTANCE_SWAP",
+       "Icon-Copy (Type=Regular, Size=20)"
+      ]
+     ],
+     "w": 232,
+     "h": 44,
+     "md": "Satu baris pilihan di Dropdown Menu atau Select, tinggi 44 px.\n\n**Cara pakai**\n1. Pilih **Type**: Default (pilih satu), Checkbox (pilih banyak), atau Danger (aksi berbahaya, misalnya Hapus).\n2. Isi **Label**.\n3. Pilih **State**: Selected untuk pilihan yang dipilih (Type=Default diberi centang), Hover, atau Disabled.\n4. Nyalakan **Icon** dan ganti lewat **Change Icon** bila perlu ikon."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:13",
+   "page": "Side Menu",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2096:156",
+     "name": "Side Menu",
+     "kind": "set",
+     "variants": 2,
+     "axes": {
+      "Collapsed": [
+       "False",
+       "True"
+      ]
+     },
+     "props": [],
+     "w": 240,
+     "h": 800,
+     "md": "Navigasi utama aplikasi desktop di sisi kiri layar.\n\n**Kapan dipakai**\n- Aplikasi desktop dengan banyak menu; taruh di kiri di bawah Top Bar, tinggi mengikuti layar.\n\n**Cara pakai**\n1. Pilih **Collapsed**: False (lebar 240, ikon dan nama menu) atau True (lebar 72, ikon saja). Pengguna menciutkannya lewat tombol menu di Top Bar.\n2. Atur setiap menu lewat Side Menu Item di dalamnya: label, ikon, dan satu item Active.\n3. Kelompokkan menu dengan label kelompok; Pengaturan dan Keluar diletakkan di bagian bawah.\n\n**Hindari**\n- Memakai di mobile; pakai Navigation Bottom."
+    },
+    {
+     "id": "2096:46",
+     "name": "Side Menu Item",
+     "kind": "set",
+     "variants": 8,
+     "axes": {
+      "State": [
+       "Default",
+       "Hover",
+       "Active",
+       "Disabled"
+      ],
+      "Collapsed": [
+       "False",
+       "True"
+      ]
+     },
+     "props": [
+      [
+       "Label",
+       "TEXT",
+       "Dashboard"
+      ],
+      [
+       "Icon",
+       "INSTANCE_SWAP",
+       "Icon-Home (Type=Regular, Size=20)"
+      ],
+      [
+       "Badge",
+       "BOOLEAN",
+       false
+      ]
+     ],
+     "w": 224,
+     "h": 44,
+     "md": "Satu menu di Side Menu, tinggi 44 px.\n\n**Cara pakai**\n1. Isi **Label** dan pilih **Icon**.\n2. Pilih **State**: Active untuk halaman yang sedang dibuka (hanya satu), Hover, atau Disabled.\n3. Pilih **Collapsed** = True bila Side Menu diciutkan (ikon saja), lalu tampilkan nama menu lewat Tooltip saat hover.\n4. Nyalakan **Badge** untuk jumlah yang perlu ditindaklanjuti, misalnya pengajuan cuti."
+    }
+   ]
+  },
+  {
+   "pageId": "132:874",
+   "page": "Stepper",
+   "ready": true,
+   "sets": [
+    {
+     "id": "136:3025",
+     "name": "Stepper Item / Vertical",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      "State": [
+       "Active",
+       "Default",
+       "Done",
+       "Error"
+      ]
+     },
+     "props": [
+      [
+       "Title",
+       "TEXT",
+       "Title"
+      ],
+      [
+       "Description Text",
+       "TEXT",
+       "Description"
+      ],
+      [
+       "Date Time",
+       "TEXT",
+       "dd/mm/yyyy - hh.mm"
+      ],
+      [
+       "Number",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Description",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 212,
+     "h": 88,
+     "md": "Satu langkah di Stepper vertikal.\n\n**Cara pakai**\n1. Pakai lewat Stepper (Type=Vertical).\n2. Pilih **State**: Done (selesai), Active (langkah sekarang), Default (berikutnya), atau Error (bermasalah).\n3. Isi **Title** dan **Date Time** (tanggal dan jam).\n4. Nyalakan **Description** dan isi **Description Text** bila perlu penjelasan, misalnya catatan dari atasan.\n5. Matikan **Number** bila lingkaran langkah tidak perlu nomor."
+    },
+    {
+     "id": "136:3067",
+     "name": "Stepper Item / Horizontal",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      "State": [
+       "Default",
+       "Active",
+       "Done",
+       "Error"
+      ]
+     },
+     "props": [
+      [
+       "Title",
+       "TEXT",
+       "Title"
+      ],
+      [
+       "Number",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Date Time",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 332,
+     "h": 40,
+     "md": "Satu langkah di Stepper horizontal.\n\n**Cara pakai**\n1. Pakai lewat Stepper (Type=Horizontal).\n2. Pilih **State**: Done (selesai), Active (langkah sekarang), Default (berikutnya), atau Error (bermasalah).\n3. Isi **Title**; matikan **Date Time** bila tanggal dan jam tidak diperlukan.\n4. Matikan **Number** bila lingkaran langkah tidak perlu nomor."
+    },
+    {
+     "id": "136:3823",
+     "name": "Stepper",
+     "kind": "set",
+     "variants": 14,
+     "axes": {
+      "Type": [
+       "Horizontal",
+       "Vertical"
+      ],
+      "Steps": [
+       "2",
+       "3",
+       "4",
+       "5",
+       "6",
+       "7",
+       "8"
+      ]
+     },
+     "props": [],
+     "w": 212,
+     "h": 188,
+     "md": "Penunjuk langkah dalam proses berurutan.\n\n**Kapan dipakai**\n- Proses bertahap, misalnya pengajuan cuti atau pendaftaran, dan riwayat status pengajuan.\n\n**Cara pakai**\n1. Pilih **Type**: Horizontal (berjajar, untuk form bertahap) atau Vertical (bersusun, dengan deskripsi dan waktu).\n2. Pilih **Steps** sesuai jumlah langkah (2–8).\n3. Atur status, judul, dan waktu setiap langkah lewat Stepper Item di dalamnya: Done untuk langkah selesai, Active untuk langkah sekarang, Default untuk langkah berikutnya, Error bila bermasalah.\n\n**Hindari**\n- Lebih dari 8 langkah; pecah prosesnya menjadi beberapa bagian."
+    }
+   ]
+  },
+  {
+   "pageId": "57:41",
+   "page": "Tabs",
+   "ready": true,
+   "sets": [
+    {
+     "id": "133:1370",
+     "name": "Tabs",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      "State": [
+       "Default",
+       "Active"
+      ],
+      "Type": [
+       "Default",
+       "No Underline"
+      ]
+     },
+     "props": [
+      [
+       "Label Text",
+       "TEXT",
+       "Tabbing 1"
+      ],
+      [
+       "Label",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Number",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Icon",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 177,
+     "h": 67,
+     "md": "Satu item tab untuk berpindah antarbagian konten di halaman yang sama.\n\n**Kapan dipakai**\n- Membagi konten satu halaman menjadi beberapa bagian setara, misalnya Data Diri / Dokumen / Riwayat.\n\n**Cara pakai**\n1. Susun beberapa Tabs berdampingan dalam satu baris.\n2. Pilih **State** = Active untuk bagian yang sedang dibuka (hanya satu), Default untuk lainnya.\n3. Pilih **Type**: Default (dengan garis bawah) atau No Underline (tanpa garis, misalnya di dalam kartu); samakan dalam satu baris.\n4. Isi **Label Text** dengan nama bagian (biarkan **Label** menyala); nyalakan **Icon** atau **Number** (badge angka) bila perlu.\n\n**Hindari**\n- Memakai tab untuk langkah berurutan; pakai Stepper."
+    },
+    {
+     "id": "1009:382",
+     "name": ".Tab",
+     "kind": "single",
+     "variants": 1,
+     "axes": {},
+     "props": [
+      [
+       "Label",
+       "TEXT",
+       "Text"
+      ],
+      [
+       "Left Icon",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Right Icon",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Notification",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Close Icon",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Change Left Icon",
+       "INSTANCE_SWAP",
+       "Icon-Clock (Type=Regular, Size=20)"
+      ],
+      [
+       "Change Right Icon",
+       "INSTANCE_SWAP",
+       "Icon-Bell (Type=Regular, Size=20)"
+      ],
+      [
+       "Change Close Icon",
+       "INSTANCE_SWAP",
+       "Icon-XCircle (Type=Regular, Size=20)"
+      ]
+     ],
+     "w": 160,
+     "h": 54,
+     "md": "Master item tab dengan ikon, label notifikasi, dan tombol tutup.\n\n**Cara pakai**\n1. Isi **Label**.\n2. Nyalakan **Left Icon** atau **Right Icon**, lalu ganti lewat **Change Left Icon** atau **Change Right Icon**.\n3. Nyalakan **Notification** untuk label kecil di samping teks.\n4. Nyalakan **Close Icon** untuk tab yang bisa ditutup; ganti ikonnya lewat **Change Close Icon**."
+    }
+   ]
+  },
+  {
+   "pageId": "124:3449",
+   "page": "Text Area",
+   "ready": true,
+   "sets": [
+    {
+     "id": "133:3680",
+     "name": "Text Area",
+     "kind": "set",
+     "variants": 4,
+     "axes": {
+      "State": [
+       "Normal",
+       "Focussed",
+       "Pressed",
+       "Danger"
+      ]
+     },
+     "props": [
+      [
+       "Label Text",
+       "TEXT",
+       "Label"
+      ],
+      [
+       "Label",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Placeholder Text",
+       "TEXT",
+       "Placeholder"
+      ],
+      [
+       "Description Text",
+       "TEXT",
+       "Description"
+      ],
+      [
+       "Description",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Error Text",
+       "TEXT",
+       "Error Message"
+      ],
+      [
+       "Error",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Counter",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 288,
+     "h": 244,
+     "md": "Kolom isian teks panjang.\n\n**Kapan dipakai**\n- Alamat, catatan, alasan pengajuan, atau masukan pengguna.\n\n**Cara pakai**\n1. Isi **Label Text** (biarkan **Label** menyala) dan **Placeholder Text**.\n2. Nyalakan **Description** dan isi **Description Text** untuk teks bantuan.\n3. Nyalakan **Counter** untuk menampilkan batas jumlah karakter (0/100).\n4. Pilih **State**: Focussed (sedang mengetik), Pressed (sudah berisi), atau Danger (error; nyalakan **Error** dan isi **Error Text**).\n\n**Hindari**\n- Isian satu baris; pakai Text Field."
+    }
+   ]
+  },
+  {
+   "pageId": "57:42",
+   "page": "Text Fields",
+   "ready": true,
+   "sets": [
+    {
+     "id": "114:649",
+     "name": "Text Field",
+     "kind": "set",
+     "variants": 30,
+     "axes": {
+      "Device": [
+       "Desktop",
+       "Mobile"
+      ],
+      "State": [
+       "Default",
+       "Hover",
+       "Focussed",
+       "Pressed",
+       "Disabled"
+      ],
+      "Type": [
+       "Normal",
+       "Prefix",
+       "Suffix"
+      ]
+     },
+     "props": [
+      [
+       "Placeholder Text",
+       "TEXT",
+       "Placeholder"
+      ],
+      [
+       "Label Text",
+       "TEXT",
+       "Label"
+      ],
+      [
+       "Required Object",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Label",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Left Placeholder Icon",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Right Placeholder Icon",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Desktop Change Left Placeholder Icon",
+       "INSTANCE_SWAP",
+       "Icon-User (Type=Regular, Size=18)"
+      ],
+      [
+       "Desktop Change Right Placeholder Icon",
+       "INSTANCE_SWAP",
+       "Icon-CaretDown (Type=Regular, Size=18)"
+      ],
+      [
+       "Left Prefix Icon",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Prefix Text",
+       "TEXT",
+       "Prefix"
+      ],
+      [
+       "Prefix",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Right Prefix Icon",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Desktop Change Left Prefix Icon",
+       "INSTANCE_SWAP",
+       "Icon-Building (Type=Regular, Size=20)"
+      ],
+      [
+       "Desktop Change Right Prefix Icon",
+       "INSTANCE_SWAP",
+       "Icon-CheckCircle (Type=Regular, Size=20)"
+      ],
+      [
+       "Left Suffix Icon",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Right Suffix Icon",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Suffix Text",
+       "TEXT",
+       "Suffix"
+      ],
+      [
+       "Suffix",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Desktop Change Left Suffix Icon",
+       "INSTANCE_SWAP",
+       "Icon-Save (Type=Regular, Size=20)"
+      ],
+      [
+       "Desktop Change Right Suffix Icon",
+       "INSTANCE_SWAP",
+       "Icon-TrashBin (Type=Regular, Size=20)"
+      ],
+      [
+       "Description",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Remember Account",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Forget Text",
+       "TEXT",
+       "Lupa kata sandi?"
+      ],
+      [
+       "Forget Password",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Support",
+       "BOOLEAN",
+       false
+      ],
+      [
+       "Mobile Change Left Prefix Icon",
+       "INSTANCE_SWAP",
+       "Icon-Building (Type=Regular, Size=16)"
+      ],
+      [
+       "Mobile Change Right Prefix Icon",
+       "INSTANCE_SWAP",
+       "Icon-CheckCircle (Type=Regular, Size=16)"
+      ],
+      [
+       "Mobile Change Left Placeholder Icon",
+       "INSTANCE_SWAP",
+       "Icon-User (Type=Regular, Size=16)"
+      ],
+      [
+       "Mobile Change Right Placeholder Icon",
+       "INSTANCE_SWAP",
+       "Icon-CaretDown (Type=Regular, Size=16)"
+      ],
+      [
+       "Mobile Change Left Suffix Icon",
+       "INSTANCE_SWAP",
+       "Icon-Save (Type=Regular, Size=16)"
+      ],
+      [
+       "Mobile Change Right Suffix Icon",
+       "INSTANCE_SWAP",
+       "Icon-TrashBin (Type=Regular, Size=16)"
+      ]
+     ],
+     "w": 350,
+     "h": 68,
+     "md": "Kolom isian teks satu baris untuk form.\n\n**Kapan dipakai**\n- Nama, email, nomor telepon, kata sandi, dan isian pendek lainnya.\n\n**Cara pakai**\n1. Pilih **Device**: Desktop (kolom 44) atau Mobile (kolom 32).\n2. Pilih **Type**: Normal, Prefix (kotak awalan di kiri, misalnya +62), atau Suffix (kotak akhiran di kanan, misalnya kg); isi **Prefix Text** atau **Suffix Text**.\n3. Isi **Label Text** dan **Placeholder Text**; matikan **Required Object** bila tidak wajib.\n4. Untuk ikon di dalam kolom, nyalakan **Left Placeholder Icon** atau **Right Placeholder Icon** dan ganti lewat properti **Desktop Change …** atau **Mobile Change …** sesuai Device.\n5. Untuk teks bantuan atau pesan error di bawah kolom, nyalakan **Description**, lalu atur Type (Normal atau Error) dan Description Text-nya langsung di panel properti.\n6. Pilih **State**: Hover, Focussed (sedang mengetik), Pressed (sudah berisi, dengan tombol hapus), atau Disabled.\n7. Form login: nyalakan **Support** untuk baris **Remember Account** (Ingat akun) dan **Forget Password** (isi **Forget Text**).\n\n**Hindari**\n- Teks panjang (pakai Text Area) atau pilihan dari daftar (pakai Select)."
+    },
+    {
+     "id": "1269:2868",
+     "name": "Required Object",
+     "kind": "set",
+     "variants": 2,
+     "axes": {
+      "Type": [
+       "Symbol",
+       "Text"
+      ]
+     },
+     "props": [],
+     "w": 69,
+     "h": 20,
+     "md": "Penanda wajib isi di samping label form.\n\n**Cara pakai**\n1. Penanda ini sudah ada di dalam Text Field, Checkbox, Radio Button, Select, dan File Upload; nyalakan lewat properti Required di komponen itu.\n2. Pilih **Type**: Text (\"(Required)\") atau Symbol (tanda \\*). Pakai satu jenis yang sama di seluruh produk."
+    },
+    {
+     "id": "1535:321",
+     "name": "Description",
+     "kind": "set",
+     "variants": 2,
+     "axes": {
+      "Type": [
+       "Error",
+       "Normal"
+      ]
+     },
+     "props": [
+      [
+       "Description Text",
+       "TEXT",
+       "Description"
+      ]
+     ],
+     "w": 350,
+     "h": 16,
+     "md": "Teks bantuan atau pesan kesalahan di bawah kolom form.\n\n**Cara pakai**\n1. Dipakai di dalam Text Field lewat properti Description.\n2. Pilih **Type**: Normal untuk teks bantuan, Error untuk pesan kesalahan.\n3. Isi **Description Text** dengan singkat; untuk Error, jelaskan cara memperbaikinya."
+    }
+   ]
+  },
+  {
+   "pageId": "132:288",
+   "page": "Toggle",
+   "ready": true,
+   "sets": [
+    {
+     "id": "133:3886",
+     "name": "Toggle",
+     "kind": "set",
+     "variants": 2,
+     "axes": {
+      "State": [
+       "Active",
+       "Inactive"
+      ]
+     },
+     "props": [
+      [
+       "Label Text",
+       "TEXT",
+       "Label"
+      ],
+      [
+       "Label",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Description Text",
+       "TEXT",
+       "Description"
+      ],
+      [
+       "Description",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Error Text",
+       "TEXT",
+       "Error Message"
+      ],
+      [
+       "Error",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Placeholder Text",
+       "TEXT",
+       "Text"
+      ],
+      [
+       "Placeholder",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 89,
+     "h": 88,
+     "md": "Saklar untuk menyalakan atau mematikan satu pengaturan yang langsung berlaku.\n\n**Kapan dipakai**\n- Pengaturan on/off yang langsung tersimpan tanpa tombol Simpan, misalnya notifikasi email.\n\n**Cara pakai**\n1. Pilih **State**: Active (menyala) atau Inactive (mati).\n2. Isi **Placeholder Text** dengan teks di samping saklar (biarkan **Placeholder** menyala).\n3. Bila perlu, nyalakan **Label**, **Description**, atau **Error**, lalu isi **Label Text**, **Description Text**, atau **Error Text**.\n\n**Hindari**\n- Pilihan yang baru berlaku setelah tombol Simpan; pakai Checkbox."
+    }
+   ]
+  },
+  {
+   "pageId": "57:43",
+   "page": "Tooltip",
+   "ready": true,
+   "sets": [
+    {
+     "id": "200:1825",
+     "name": "Tooltips",
+     "kind": "set",
+     "variants": 12,
+     "axes": {
+      "Side": [
+       "Top",
+       "Bottom",
+       "Right",
+       "Left"
+      ],
+      "Arrow": [
+       "Left",
+       "Center",
+       "Right",
+       "Top",
+       "Bottom"
+      ]
+     },
+     "props": [
+      [
+       "Title Text",
+       "TEXT",
+       "Judul"
+      ],
+      [
+       "Description",
+       "TEXT",
+       "Deskripsi"
+      ],
+      [
+       "Title",
+       "BOOLEAN",
+       true
+      ]
+     ],
+     "w": 340,
+     "h": 68,
+     "md": "Keterangan singkat yang muncul saat kursor diarahkan ke elemen.\n\n**Kapan dipakai**\n- Menjelaskan ikon tanpa teks, singkatan, atau istilah.\n\n**Cara pakai**\n1. Pilih **Side**, yaitu sisi tooltip tempat panah berada: Top, Bottom, Left, atau Right.\n2. Pilih **Arrow** untuk posisi panah di sepanjang sisi itu, lalu arahkan panah ke elemen yang dijelaskan.\n3. Isi **Description**; nyalakan **Title** dan isi **Title Text** bila perlu judul.\n\n**Hindari**\n- Informasi penting atau tombol di dalam tooltip. Tulis maksimal dua baris."
+    }
+   ]
+  },
+  {
+   "pageId": "2071:14",
+   "page": "Top Bar",
+   "ready": true,
+   "sets": [
+    {
+     "id": "2095:54",
+     "name": "Top Bar",
+     "kind": "set",
+     "variants": 3,
+     "axes": {
+      "Device": [
+       "Desktop",
+       "Mobile"
+      ],
+      "Type": [
+       "Default",
+       "Root"
+      ]
+     },
+     "props": [
+      [
+       "Title Text",
+       "TEXT",
+       "Detail Karyawan"
+      ],
+      [
+       "Action",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Search",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Menu Button",
+       "BOOLEAN",
+       true
+      ],
+      [
+       "Name Text",
+       "TEXT",
+       "Budi Santoso"
+      ],
+      [
+       "Role Text",
+       "TEXT",
+       "Admin HR"
+      ]
+     ],
+     "w": 1440,
+     "h": 64,
+     "md": "Bar paling atas aplikasi.\n\n**Cara pakai**\n1. Pilih **Device** dan **Type**: Desktop/Default untuk aplikasi desktop; Mobile/Root untuk halaman utama di mobile (menu di Navigation Bottom); Mobile/Default untuk halaman turunan dengan tombol kembali.\n2. Desktop: isi **Name Text** dan **Role Text**; matikan **Search** atau **Menu Button** bila tidak dipakai.\n3. Mobile/Default: isi **Title Text** (satu baris); matikan **Action** bila tidak ada aksi di kanan.\n4. Ganti Logo Mark dan nama produk sesuai brand.\n5. Lebar mengikuti lebar layar."
+    }
+   ]
+  },
+  {
+   "pageId": "94:478",
+   "page": "Featured Icon",
+   "ready": true,
+   "sets": [
+    {
+     "id": "1260:850",
+     "name": "Featured Icon",
+     "kind": "set",
+     "variants": 30,
+     "axes": {
+      "Type": [
+       "Danger",
+       "Gray",
+       "Info",
+       "Success",
+       "Warning"
+      ],
+      "Size": [
+       "32",
+       "40",
+       "56"
+      ],
+      "Shape": [
+       "Circle",
+       "Cube"
+      ]
+     },
+     "props": [],
+     "w": 32,
+     "h": 32,
+     "md": "Ikon di dalam latar bulat atau kotak untuk menarik perhatian.\n\n**Kapan dipakai**\n- Empty State, dialog berstatus, atau kartu fitur.\n\n**Cara pakai**\n1. Pilih **Type** sesuai makna: Info, Success, Warning, Danger, atau Gray (netral).\n2. Pilih **Size**: 32, 40, atau 56 px.\n3. Pilih **Shape**: Circle (bulat) atau Cube (kotak dengan sudut membulat); samakan dalam satu halaman.\n4. Tukar ikon di dalamnya (swap) bila perlu ikon lain."
+    }
+   ]
+  }
+ ]
+}

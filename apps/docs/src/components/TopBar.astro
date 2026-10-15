@@ -1,0 +1,64 @@
+---
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+import { SECTIONS, url } from '../lib/site.mjs';
+import { BRANDS } from '../lib/tokens.mjs';
+
+interface Props {
+  section: string;
+}
+
+const { section } = Astro.props;
+---
+
+<header class="topbar" data-topbar>
+  <button
+    class="icon-btn topbar-menu"
+    type="button"
+    aria-label="Buka menu navigasi"
+    aria-controls="sidebar"
+    aria-expanded="false"
+    data-sidebar-toggle
+  >
+    <Icon name="List" />
+  </button>
+  <a class="brandmark" href={url('/')}><Logo /><span class="sr-only">, ke beranda</span></a>
+  <nav class="topnav" aria-label="Bagian">
+    {SECTIONS.map((item) => <a href={url(item.href)} aria-current={item.id === section ? 'true' : undefined}>{item.label}</a>)}
+  </nav>
+  <div class="topbar-tools">
+    <div class="search" data-search data-index={url('/search.json')}>
+      <div class="search-field">
+        <Icon name="MagnifyingGlass" size={18} />
+        <input
+          type="search"
+          placeholder="Cari komponen, token, ikon"
+          aria-label="Cari di dokumentasi"
+          autocomplete="off"
+          spellcheck="false"
+          role="combobox"
+          aria-expanded="false"
+          aria-controls="search-results"
+          aria-autocomplete="list"
+          data-search-input
+        />
+        <kbd aria-hidden="true">/</kbd>
+      </div>
+      <button class="icon-btn search-close" type="button" aria-label="Tutup pencarian" data-search-close><Icon name="X" /></button>
+      <div class="search-results" id="search-results" role="listbox" aria-label="Hasil pencarian" hidden data-search-results></div>
+    </div>
+    <button class="icon-btn search-toggle" type="button" aria-label="Cari" data-search-open><Icon name="MagnifyingGlass" /></button>
+    <label class="brand-picker">
+      <span class="sr-only">Brand</span>
+      <span class="brand-dot" aria-hidden="true"></span>
+      <select data-brand-select>
+        {BRANDS.map((brand) => <option value={brand.id}>{brand.name}</option>)}
+      </select>
+      <Icon class="caret" name="CaretDown" size={16} />
+    </label>
+    <button class="icon-btn theme-toggle" type="button" aria-label="Ganti mode terang atau gelap" data-theme-toggle>
+      <Icon class="icon-moon" name="Moon" />
+      <Icon class="icon-sun" name="Sun" />
+    </button>
+  </div>
+</header>

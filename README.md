@@ -10,8 +10,8 @@ Satu sumber kebenaran untuk warna, tipografi, spacing, dan komponen di semua pro
 | 2 | Semantic colors: tugas tiap warna (latar, teks, ikon, garis, status) | Selesai |
 | 3 | Tema brand (UIC, INTI, InMeterai, InCivas, InCustoms) dan mode gelap | Selesai: 5 brand, mode Light dan Dark |
 | 4 | Token non-warna: tipografi, spacing, radius, shadow | Selesai: spacing, radius, tebal garis, tipografi, dan shadow |
-| 5 | Memasang token ke komponen Figma | Sedang direview: semua komponen dan ikon memakai token, style lama sudah dihapus, dan 14 kelompok komponen baru (Select, Data Table, Toast, navigasi, dan lain-lain) menunggu review |
-| 6 | Paket developer dan situs dokumentasi | Belum |
+| 5 | Memasang token ke komponen Figma | Selesai: semua komponen dan ikon memakai token, style lama sudah dihapus, dan 33 halaman komponen sudah direview |
+| 6 | Paket developer dan situs dokumentasi | Berjalan: situs dokumentasi sudah bisa dijalankan di komputer sendiri (lihat [Situs dokumentasi](#situs-dokumentasi)); paket token belum dipublikasikan |
 
 ## Cara kerjanya
 
@@ -53,9 +53,40 @@ Text style `body/medium` di Figma menjadi class `.cargo-text-body-medium` di CSS
 
 Brand dipilih dengan memakai file brand itu. Mode dipilih dengan `data-theme` di web, atau dengan kelas `Light`/`Dark` di mobile. Ukuran, tipografi, dan shadow sama di semua brand: di CSS sudah ikut di setiap file brand, sedangkan di JavaScript dan mobile ada di file tersendiri.
 
+## Situs dokumentasi
+
+Situs dokumentasi ada di `apps/docs`, dibuat dengan [Astro](https://astro.build). Tampilannya mengikuti Soul Design System: bar atas gelap, menu samping, dan beranda dengan hero. Situs ini juga memakai token Cargo, jadi brand (5 brand) dan mode Light/Dark bisa diganti langsung dari bar atas.
+
+Isinya:
+- **Beranda dan Mulai**: pengenalan, panduan memakai library Figma, panduan memasang token, status, dan changelog.
+- **Foundations**: token warna, palet primitive, tema brand, kontras, tipografi, spacing dan radius, shadow, dan 186 ikon yang bisa dicari. Semuanya dibaca langsung dari `packages/tokens/src`, jadi selalu sama dengan file token.
+- **Komponen**: satu halaman per halaman komponen di Figma, berisi gambar pratinjau (Light dan Dark), Kapan dipakai, Cara pakai, Hindari, varian, dan properti.
+
+Menjalankan di komputer sendiri (butuh Node.js 22.12 atau lebih baru):
+```sh
+npm install          # sekali saja
+npm run docs         # buka http://localhost:4321
+npm run docs:build   # membuat situs statis di apps/docs/dist
+```
+
+Data dari Figma disimpan di repo, karena situs tidak membaca Figma secara langsung:
+
+| File | Isi |
+|---|---|
+| `apps/docs/src/data/components.json` | Halaman, component set, varian, properti, dan deskripsi komponen |
+| `apps/docs/src/data/icons.json` | 186 ikon (SVG 24px, Regular dan Fill) beserta kata kuncinya |
+| `apps/docs/src/assets/komponen/` | Gambar pratinjau setiap component set, brand UIC, mode Light dan Dark |
+
+Kalau komponen, deskripsi, atau ikon di Figma berubah, data ini perlu diekspor ulang dari Figma. Perubahan token cukup lewat `packages/tokens/src`, tanpa ekspor ulang.
+
 ## Isi repo
 
 ```
+apps/docs/                      situs dokumentasi (Astro)
+├── src/pages/                   halaman: Beranda, Mulai, Foundations, Komponen
+├── src/data/                    data dari Figma: komponen dan ikon
+└── src/assets/komponen/         gambar pratinjau komponen dari Figma
+
 packages/tokens/
 ├── src/
 │   ├── primitive/color.json     collection Primitive di Figma

@@ -1,0 +1,112 @@
+---
+import PageHeader from '../../components/PageHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { CATEGORIES, PREVIEW_SCALE, components } from '../../lib/components.mjs';
+import { url } from '../../lib/site.mjs';
+---
+
+<Base title="Semua komponen" width="wide" description="Daftar komponen Cargo Design System, dikelompokkan menurut fungsinya.">
+  <PageHeader
+    eyebrow="Komponen"
+    title="Semua komponen"
+    lead={`${components.length} halaman komponen di library Figma, dikelompokkan menurut fungsinya. Setiap halaman berisi kapan dipakai, cara pakai, varian, dan properti.`}
+  />
+
+  {
+    CATEGORIES.map((category) => (
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title" id={category.id}>{category.name}</h2>
+          <p class="section-intro">{category.description}</p>
+        </div>
+        <div class="component-grid">
+          {components
+            .filter((component) => component.category.id === category.id)
+            .map((component) => (
+              <a class="component-card" href={url(`/komponen/${component.slug}/`)}>
+                <span class="component-preview">
+                  {component.main.preview.light ? (
+                    <>
+                      <img
+                        class="theme-img"
+                        data-mode="light"
+                        src={component.main.preview.light.src}
+                        width={component.main.preview.light.width / PREVIEW_SCALE}
+                        height={component.main.preview.light.height / PREVIEW_SCALE}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      {component.main.preview.dark && (
+                        <img
+                          class="theme-img"
+                          data-mode="dark"
+                          src={component.main.preview.dark.src}
+                          width={component.main.preview.dark.width / PREVIEW_SCALE}
+                          height={component.main.preview.dark.height / PREVIEW_SCALE}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      )}
+                    </>
+                  ) : (
+                    <span class="component-initial" aria-hidden="true">
+                      {component.page.slice(0, 1)}
+                    </span>
+                  )}
+                </span>
+                <span class="component-body">
+                  <span class="component-name">{component.page}</span>
+                  <span class="component-summary">{component.summary}</span>
+                  <span class="component-meta">{component.variants} varian</span>
+                </span>
+              </a>
+            ))}
+        </div>
+      </section>
+    ))
+  }
+</Base>
+
+<style>
+  .component-grid { display: grid; gap: var(--cargo-space-16); grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+  .component-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12);
+    background: var(--cargo-color-bg-default);
+    color: var(--cargo-color-text-default);
+    text-decoration: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .component-card:hover { border-color: var(--cargo-color-border-default); box-shadow: var(--cargo-shadow-sm); color: var(--cargo-color-text-default); }
+  .component-preview {
+    display: grid;
+    place-items: center;
+    height: 152px;
+    padding: var(--cargo-space-16);
+    background: var(--cargo-color-bg-secondary);
+    border-bottom: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+  }
+  :global([data-theme='dark']) .component-preview { background: var(--cargo-color-bg-default); }
+  .component-preview img { max-width: 100%; max-height: 120px; width: auto; height: auto; object-fit: contain; }
+  .component-initial {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--cargo-radius-12);
+    background: var(--cargo-color-bg-brand-subtle);
+    color: var(--cargo-color-text-brand);
+    font-family: var(--cargo-font-family-display), sans-serif;
+    font-size: 24px;
+    font-weight: var(--cargo-font-weight-bold);
+  }
+  .component-body { display: grid; gap: var(--cargo-space-4); padding: var(--cargo-space-16); }
+  .component-name { font-weight: var(--cargo-font-weight-bold); font-size: 15px; line-height: 22px; }
+  .component-summary { color: var(--cargo-color-text-secondary); font-size: 13px; line-height: 18px; }
+  .component-meta { margin-top: var(--cargo-space-4); color: var(--cargo-color-text-tertiary); font-size: 12px; }
+</style>

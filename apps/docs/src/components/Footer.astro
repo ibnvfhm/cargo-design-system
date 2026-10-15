@@ -1,0 +1,28 @@
+---
+import { SITE, formatDate, url } from '../lib/site.mjs';
+
+const updated = formatDate(new Date());
+---
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <p class="footer-title">{SITE.name}</p>
+      <p>
+        Token, komponen, dan panduan yang dipakai bersama oleh designer dan developer untuk semua produk Cargo: UIC, INTI, InMeterai,
+        InCivas, dan InCustoms.
+      </p>
+    </div>
+    <ul>
+      <li><a href={SITE.figma} target="_blank" rel="noopener">Library Figma</a></li>
+      <li><a href={SITE.repo} target="_blank" rel="noopener">Repositori kode</a></li>
+      <li><a href={url('/mulai/changelog/')}>Changelog</a></li>
+    </ul>
+    <ul>
+      <li><a href={url('/mulai/designer/')}>Mulai mendesain</a></li>
+      <li><a href={url('/mulai/developer/')}>Mulai mengembangkan</a></li>
+      <li><a href={url('/mulai/status/')}>Status</a></li>
+    </ul>
+  </div>
+  <p class="footer-meta">© {new Date().getFullYear()} {SITE.name}. Halaman ini dibuat pada {updated}.</p>
+</footer>

@@ -1,0 +1,153 @@
+---
+import Icon from '../../components/Icon.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
+import Base from '../../layouts/Base.astro';
+import { url } from '../../lib/site.mjs';
+import { brandRefs, primitiveHex, semanticGroups } from '../../lib/tokens.mjs';
+
+const TITLES = { bg: 'Latar (bg)', text: 'Teks (text)', icon: 'Ikon (icon)', border: 'Garis (border)' };
+
+// Text and icons meant for a coloured background are shown on that background.
+const PAIRED_BG = { inverse: 'inverse', 'on-brand': 'brand', 'on-error': 'error', 'on-success': 'success', 'on-warning': 'warning', 'on-info': 'info', 'on-accent': 'accent' };
+const sampleBg = (name) => `var(--cargo-color-bg-${PAIRED_BG[name] ?? 'default'})`;
+const PROPERTY = { bg: 'background-color', text: 'color', icon: 'color', border: 'border-top-color' };
+const anchor = (path) => path.replace(/\./g, '-');
+---
+
+<Base title="Token warna" width="wide" description="Token warna semantic Cargo untuk latar, teks, ikon, dan garis, dalam mode Light dan Dark.">
+  <PageHeader
+    eyebrow="Foundations · Warna"
+    title="Token warna"
+    lead="Token semantic memberi setiap warna sebuah tugas: latar, teks, ikon, atau garis. Nama tokennya sama di mode Light dan Dark; yang berbeda hanya warna yang dituju."
+  />
+
+  <ThemeSwitcher />
+
+  <div class="prose intro">
+    <p>
+      Contoh dan kode hex di halaman ini mengikuti brand dan mode yang kamu pilih. Kolom Light dan Dark menunjukkan primitive yang dituju setiap
+      token. Token yang menunjuk ke <code>brand.…</code> berganti warna mengikuti brand; tanda panah menunjukkan primitive untuk brand yang sedang
+      dipilih. Warna mentahnya ada di <a href={url('/foundations/palet/')}>Palet primitive</a>, dan pasangan yang dicek kontrasnya ada di
+      <a href={url('/foundations/kontras/')}>Kontras</a>.
+    </p>
+  </div>
+
+  {
+    semanticGroups().map((group) => (
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title" id={group.id}>{TITLES[group.id] ?? group.id}</h2>
+          <p class="section-intro">
+            {group.tokens.length} token. {group.description}
+          </p>
+        </div>
+        <div class="table-wrap">
+          <table class="table token-table">
+            <thead>
+              <tr>
+                <th>Token</th>
+                <th>Light</th>
+                <th>Dark</th>
+              </tr>
+            </thead>
+            <tbody>
+              {group.tokens.map((token) => (
+                <tr id={anchor(token.path)}>
+                  <td>
+                    <div class="token-cell" data-live>
+                      {group.id === 'bg' && <span class="sample sample-bg" data-swatch style={`background: var(${token.css})`} />}
+                      {group.id === 'text' && (
+                        <span class="sample" style={`background: ${sampleBg(token.name)}`}>
+                          <span class="sample-text" data-swatch style={`color: var(${token.css})`}>Aa</span>
+                        </span>
+                      )}
+                      {group.id === 'icon' && (
+                        <span class="sample" style={`background: ${sampleBg(token.name)}`}>
+                          <span class="sample-icon" data-swatch style={`color: var(${token.css})`}>
+                            <Icon name="Bell" variant="fill" size={18} />
+                          </span>
+                        </span>
+                      )}
+                      {group.id === 'border' && <span class="sample sample-border" data-swatch style={`border-color: var(${token.css})`} />}
+                      <span class="token-names">
+                        <code class="token-name">{token.figma}</code>
+                        <span class="token-desc">{token.description}</span>
+                        <span class="token-meta">
+                          <code>{token.css}</code>
+                          <span class="token-hex" data-hex={PROPERTY[group.id]} />
+                        </span>
+                      </span>
+                    </div>
+                  </td>
+                  {[token.light, token.dark].map((ref, index) => (
+                    <td class="nowrap">
+                      {ref.startsWith('brand.') ? (
+                        <span class="ref">
+                          <span class="ref-chip" style={`background: var(--cargo-color-${ref.replace(/\./g, '-')})`} />
+                          <span>
+                            <code>{ref}</code>
+                            <span class="ref-brand">
+                              <Icon name="ArrowRight" size={12} />
+                              <code data-brand-ref={ref} />
+                            </span>
+                          </span>
+                        </span>
+                      ) : (
+                        <span class="ref">
+                          <span class="ref-chip" style={`background: ${primitiveHex(ref)}`} />
+                          <code>{ref}</code>
+                        </span>
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    ))
+  }
+
+  <script is:inline type="application/json" id="brand-refs" set:html={JSON.stringify(brandRefs())} />
+</Base>
+
+<script>
+  import '../../scripts/live-tokens.js';
+</script>
+
+<style>
+  .intro { margin-bottom: var(--cargo-space-8); }
+  .token-table { min-width: 680px; }
+  .token-table tr:target td { background: var(--cargo-color-bg-brand-subtle); }
+  .token-cell { display: flex; align-items: flex-start; gap: var(--cargo-space-12); min-width: 320px; }
+  .sample {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 48px;
+    height: 36px;
+    border-radius: var(--cargo-radius-8);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+  }
+  .sample-text { font-size: 16px; font-weight: var(--cargo-font-weight-bold); line-height: 1; }
+  .sample-icon { display: grid; }
+  .sample-border { border: var(--cargo-border-width-2) solid; background: var(--cargo-color-bg-default); }
+  .token-names { display: grid; gap: var(--cargo-space-4); min-width: 0; }
+  .token-desc { color: var(--cargo-color-text-secondary); font-size: 13px; line-height: 18px; }
+  .token-name { font-size: 13px; font-weight: var(--cargo-font-weight-bold); }
+  .token-meta { display: flex; flex-wrap: wrap; gap: var(--cargo-space-8); color: var(--cargo-color-text-tertiary); font-size: 12px; }
+  .token-meta code { font-size: 12px; }
+  .token-hex { font-family: var(--site-font-mono); }
+  .ref { display: inline-flex; align-items: flex-start; gap: var(--cargo-space-8); font-size: 13px; }
+  .ref-chip {
+    flex: none;
+    width: 14px;
+    height: 14px;
+    margin-top: 3px;
+    border-radius: var(--cargo-radius-4);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12);
+  }
+  .ref-brand { display: flex; align-items: center; gap: 2px; color: var(--cargo-color-text-tertiary); font-size: 12px; }
+</style>

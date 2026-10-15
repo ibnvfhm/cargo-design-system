@@ -28,6 +28,8 @@ Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](htt
 - Palet primitive `midnight` (10 step, `#F1F4F8` sampai `#000211`): netral kebiruan yang diturunkan dari latar mode Dark yang baru. Di Figma ada di collection Primitive sebagai `color/midnight/10` sampai `color/midnight/100`.
 - `color.bg.elevated` untuk panel yang melayang: modal, dialog, bottom sheet, dropdown, toast, dan date picker. Warnanya putih di Light (sama dengan `bg/default`) dan `color.midnight.90` (#161E2C) di Dark, supaya tepi panel terlihat di latar #000211. Ditambah 3 pasangan kontras untuk latar ini: teks default, teks secondary, dan ikon default.
 
+- Situs dokumentasi di `apps/docs` (Astro), dijalankan dengan `npm run docs`. Berisi Beranda, panduan Mulai (designer dan developer), Foundations yang dibaca langsung dari file token (warna, palet, tema brand, kontras, tipografi, spacing, radius, shadow, dan 186 ikon), serta satu halaman untuk setiap halaman komponen Figma dengan gambar pratinjau Light dan Dark. Brand dan mode Light/Dark bisa diganti langsung di situs.
+
 ### Diubah
 
 - Deskripsi `color.bg.default` menjadi "Latar halaman dan kartu." karena modal sekarang memakai `bg/elevated`.

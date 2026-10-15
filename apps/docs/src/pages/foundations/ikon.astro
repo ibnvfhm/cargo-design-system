@@ -1,0 +1,302 @@
+---
+import Icon from '../../components/Icon.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { figmaUrl } from '../../lib/components.mjs';
+import { ICONS, ICON_SIZES } from '../../lib/icons.mjs';
+
+const sections = [...new Set(ICONS.map((icon) => icon.section))].map((name) => ({
+  name,
+  icons: ICONS.filter((icon) => icon.section === name),
+}));
+const fillCount = ICONS.filter((icon) => icon.fill).length;
+const fold = (text) => text.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '');
+// Fill shapes are swapped in on demand, so only the Regular ones are in the markup.
+const fills = Object.fromEntries(ICONS.filter((icon) => icon.fill).map((icon) => [icon.name, icon.fill]));
+const details = Object.fromEntries(
+  ICONS.map((icon) => [icon.name, { label: icon.label, keywords: icon.keywords, section: icon.section, figma: figmaUrl(icon.id), fill: Boolean(icon.fill) }]),
+);
+---
+
+<Base title="Ikonografi" width="wide" toc={false} description="Semua ikon Cargo Design System, bisa dicari dengan kata kunci bahasa Indonesia.">
+  <PageHeader
+    eyebrow="Foundations · Efek dan aset"
+    title="Ikonografi"
+    lead={`${ICONS.length} ikon dalam ${sections.length} kelompok. Setiap ikon tersedia dalam ${ICON_SIZES.length} ukuran (${ICON_SIZES.join(', ')} px), dan ${fillCount} di antaranya punya gaya Regular dan Fill.`}
+  />
+
+  <div class="prose intro">
+    <ul>
+      <li>Di Figma, ikon bernama <code>Icon-Nama</code>, misalnya <code>Icon-MagnifyingGlass</code>, dengan properti <strong>Type</strong> (Regular atau Fill) dan <strong>Size</strong>.</li>
+      <li>Warna ikon memakai token <code>icon/…</code>, misalnya <code>icon/default</code> atau <code>icon/brand</code>. Di komponen, ganti ikon lewat properti swap ikon.</li>
+      <li>Klik ikon untuk melihat kata kunci, menyalin nama, atau mengunduh SVG.</li>
+    </ul>
+  </div>
+
+  <div class="icon-tools" data-icon-tools>
+    <label class="icon-search">
+      <Icon name="MagnifyingGlass" size={18} />
+      <span class="sr-only">Cari ikon</span>
+      <input type="search" placeholder="Cari ikon, misalnya hapus, kalender, atau panah" autocomplete="off" data-icon-search />
+    </label>
+    <div class="segmented" role="group" aria-label="Gaya ikon">
+      <button type="button" aria-pressed="true" data-icon-style="regular">Regular</button>
+      <button type="button" aria-pressed="false" data-icon-style="fill">Fill</button>
+    </div>
+    <label class="size-pick">
+      <span>Ukuran</span>
+      <select data-icon-size>
+        {[16, 20, 24, 32].map((size) => <option value={size} selected={size === 24}>{size}px</option>)}
+      </select>
+    </label>
+    <p class="icon-count" aria-live="polite" data-icon-count>{ICONS.length} ikon</p>
+  </div>
+
+  <div class="icon-sections" data-icons style="--icon-size: 24px">
+    {
+      sections.map((section) => (
+        <section class="icon-section" data-icon-section>
+          <h2 class="icon-section-title">
+            {section.name} <span class="muted">{section.icons.length}</span>
+          </h2>
+          <ul class="icon-grid">
+            {section.icons.map((icon) => (
+              <li data-icon-item data-name={icon.name} data-search={fold(`${icon.name} ${icon.label} ${icon.keywords.join(' ')}`)}>
+                <button type="button" class="icon-tile" data-icon-open={icon.name}>
+                  <svg class="icon-glyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" set:html={icon.regular} />
+                  <span class="icon-name">{icon.name}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+    <p class="icon-empty" hidden data-icon-empty>Tidak ada ikon yang cocok. Coba kata lain, atau usulkan ikon baru ke tim design system.</p>
+  </div>
+
+  <dialog class="icon-dialog" data-icon-dialog aria-labelledby="icon-dialog-title">
+    <div class="dialog-head">
+      <h2 class="dialog-title" id="icon-dialog-title" data-dialog-name></h2>
+      <button class="icon-btn" type="button" aria-label="Tutup" data-dialog-close><Icon name="X" /></button>
+    </div>
+    <div class="dialog-body">
+      <div class="dialog-preview">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" data-dialog-glyph></svg>
+      </div>
+      <div class="dialog-info">
+        <p class="dialog-label" data-dialog-label></p>
+        <p class="dialog-meta"><span class="muted">Kelompok</span> <span data-dialog-section></span></p>
+        <p class="dialog-meta"><span class="muted">Gaya</span> <span data-dialog-styles></span></p>
+        <div class="dialog-keywords" data-dialog-keywords></div>
+      </div>
+    </div>
+    <div class="dialog-actions">
+      <button class="btn btn-outlined btn-sm" type="button" data-copy="" data-dialog-copy><Icon name="Copy" size={16} /><span data-copy-label>Salin nama</span></button>
+      <button class="btn btn-outlined btn-sm" type="button" data-dialog-download><Icon name="Download" size={16} />Unduh SVG</button>
+      <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener" data-dialog-figma>Buka di Figma<Icon name="ArrowUpRight" size={16} /></a>
+    </div>
+  </dialog>
+
+  <script is:inline type="application/json" id="icon-fills" set:html={JSON.stringify(fills)} />
+  <script is:inline type="application/json" id="icon-details" set:html={JSON.stringify(details)} />
+</Base>
+
+<script>
+  const fills = JSON.parse(document.getElementById('icon-fills').textContent);
+  const details = JSON.parse(document.getElementById('icon-details').textContent);
+  const container = document.querySelector('[data-icons]');
+  const items = [...container.querySelectorAll('[data-icon-item]')];
+  const sections = [...container.querySelectorAll('[data-icon-section]')];
+  const search = document.querySelector('[data-icon-search]');
+  const count = document.querySelector('[data-icon-count]');
+  const empty = document.querySelector('[data-icon-empty]');
+  const regular = new Map(items.map((item) => [item.dataset.name, item.querySelector('svg').innerHTML]));
+  let style = 'regular';
+
+  const fold = (text) => text.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '');
+  const markup = (name) => (style === 'fill' && fills[name]) || regular.get(name);
+
+  function filter() {
+    const terms = fold(search.value).split(/\s+/).filter(Boolean);
+    let shown = 0;
+    for (const item of items) {
+      const match = terms.every((term) => item.dataset.search.includes(term));
+      item.hidden = !match;
+      if (match) shown += 1;
+    }
+    for (const section of sections) section.hidden = !section.querySelector('[data-icon-item]:not([hidden])');
+    empty.hidden = shown > 0;
+    count.textContent = shown === items.length ? `${items.length} ikon` : `${shown} dari ${items.length} ikon`;
+  }
+
+  search.addEventListener('input', filter);
+  const query = new URLSearchParams(window.location.search).get('q');
+  if (query) {
+    search.value = query;
+    filter();
+  }
+
+  document.querySelectorAll('[data-icon-style]').forEach((button) =>
+    button.addEventListener('click', () => {
+      style = button.dataset.iconStyle;
+      document.querySelectorAll('[data-icon-style]').forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
+      for (const item of items) item.querySelector('svg').innerHTML = markup(item.dataset.name);
+    }),
+  );
+
+  document.querySelector('[data-icon-size]').addEventListener('change', (event) => {
+    container.style.setProperty('--icon-size', `${event.target.value}px`);
+  });
+
+  /* Detail dialog */
+  const dialog = document.querySelector('[data-icon-dialog]');
+  let current = null;
+
+  function open(name) {
+    current = name;
+    const info = details[name];
+    dialog.querySelector('[data-dialog-name]').textContent = `Icon-${name}`;
+    dialog.querySelector('[data-dialog-glyph]').innerHTML = markup(name);
+    dialog.querySelector('[data-dialog-label]').textContent = info.label.charAt(0).toUpperCase() + info.label.slice(1);
+    dialog.querySelector('[data-dialog-section]').textContent = info.section;
+    dialog.querySelector('[data-dialog-styles]').textContent = info.fill ? 'Regular dan Fill' : 'Regular';
+    const keywords = dialog.querySelector('[data-dialog-keywords]');
+    keywords.replaceChildren(
+      ...info.keywords.map((keyword) => {
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = keyword;
+        return tag;
+      }),
+    );
+    dialog.querySelector('[data-dialog-copy]').dataset.copy = `Icon-${name}`;
+    dialog.querySelector('[data-dialog-figma]').href = info.figma;
+    dialog.showModal();
+  }
+
+  container.addEventListener('click', (event) => {
+    const tile = event.target.closest('[data-icon-open]');
+    if (tile) open(tile.dataset.iconOpen);
+  });
+  dialog.querySelector('[data-dialog-close]').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog.querySelector('[data-dialog-download]').addEventListener('click', () => {
+    const variant = style === 'fill' && fills[current] ? 'Fill' : 'Regular';
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">${markup(current)}</svg>\n`;
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
+    link.download = `Icon-${current}-${variant}.svg`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+  });
+</script>
+
+<style>
+  .intro { margin-bottom: var(--cargo-space-24); }
+  .icon-tools {
+    position: sticky;
+    top: calc(var(--site-topbar-h) + var(--cargo-space-8));
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--cargo-space-8) var(--cargo-space-12);
+    margin-bottom: var(--cargo-space-24);
+    padding: var(--cargo-space-8);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12);
+    background: var(--cargo-color-bg-elevated);
+    box-shadow: var(--cargo-shadow-sm);
+  }
+  .icon-search {
+    display: flex;
+    align-items: center;
+    gap: var(--cargo-space-8);
+    flex: 1 1 260px;
+    height: 40px;
+    padding: 0 var(--cargo-space-12);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-strong);
+    border-radius: var(--cargo-radius-6);
+    background: var(--cargo-color-bg-default);
+    color: var(--cargo-color-icon-secondary);
+  }
+  .icon-search:focus-within { box-shadow: var(--cargo-focus-ring-default); }
+  .icon-search input { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--cargo-color-text-default); font-size: 14px; outline: none; }
+  .icon-search input::placeholder { color: var(--cargo-color-text-tertiary); }
+  .segmented { display: flex; gap: 2px; padding: 2px; border-radius: var(--cargo-radius-8); background: var(--cargo-color-bg-secondary); }
+  .segmented button {
+    height: 34px;
+    padding: 0 var(--cargo-space-12);
+    border: 0;
+    border-radius: var(--cargo-radius-6);
+    background: transparent;
+    color: var(--cargo-color-text-secondary);
+    font-size: 13px;
+    font-weight: var(--cargo-font-weight-medium);
+    cursor: pointer;
+  }
+  .segmented button[aria-pressed='true'] { background: var(--cargo-color-bg-elevated); color: var(--cargo-color-text-default); box-shadow: var(--cargo-shadow-sm); }
+  .size-pick { display: flex; align-items: center; gap: var(--cargo-space-8); color: var(--cargo-color-text-secondary); font-size: 13px; }
+  .size-pick select {
+    height: 38px;
+    padding: 0 var(--cargo-space-8);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-strong);
+    border-radius: var(--cargo-radius-6);
+    background: var(--cargo-color-bg-default);
+    font-size: 13px;
+  }
+  .icon-count { margin: 0 0 0 auto; color: var(--cargo-color-text-tertiary); font-size: 13px; }
+
+  .icon-section + .icon-section { margin-top: var(--cargo-space-40); }
+  .icon-section-title { margin-bottom: var(--cargo-space-12); font-size: 16px; line-height: 22px; }
+  .icon-grid { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--cargo-space-8); grid-template-columns: repeat(auto-fill, minmax(116px, 1fr)); }
+  .icon-tile {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: var(--cargo-space-8);
+    width: 100%;
+    min-height: 104px;
+    padding: var(--cargo-space-16) var(--cargo-space-8) var(--cargo-space-12);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-8);
+    background: var(--cargo-color-bg-default);
+    color: var(--cargo-color-icon-default);
+    cursor: pointer;
+  }
+  .icon-tile:hover { border-color: var(--cargo-color-border-brand); color: var(--cargo-color-icon-brand); background: var(--cargo-color-bg-brand-subtle); }
+  .icon-glyph { width: var(--icon-size); height: var(--icon-size); }
+  .icon-name { max-width: 100%; color: var(--cargo-color-text-secondary); font-size: 11px; line-height: 14px; text-align: center; overflow-wrap: anywhere; }
+  .icon-empty { padding: var(--cargo-space-32); text-align: center; color: var(--cargo-color-text-tertiary); }
+
+  .icon-dialog {
+    width: min(480px, calc(100vw - 2 * var(--cargo-space-16)));
+    padding: 0;
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-default);
+    border-radius: var(--cargo-radius-12);
+    background: var(--cargo-color-bg-elevated);
+    color: var(--cargo-color-text-default);
+    box-shadow: var(--cargo-shadow-lg);
+  }
+  .icon-dialog::backdrop { background: rgb(0 2 17 / 0.56); }
+  .dialog-head { display: flex; align-items: center; justify-content: space-between; padding: var(--cargo-space-16) var(--cargo-space-16) 0 var(--cargo-space-24); }
+  .dialog-title { font-size: 18px; line-height: 24px; overflow-wrap: anywhere; }
+  .dialog-body { display: grid; grid-template-columns: auto 1fr; gap: var(--cargo-space-20); padding: var(--cargo-space-16) var(--cargo-space-24); }
+  .dialog-preview {
+    display: grid;
+    place-items: center;
+    width: 112px;
+    height: 112px;
+    border-radius: var(--cargo-radius-12);
+    background: var(--cargo-color-bg-secondary);
+    color: var(--cargo-color-icon-default);
+  }
+  .dialog-preview svg { width: 64px; height: 64px; }
+  .dialog-label { margin: 0 0 var(--cargo-space-8); font-weight: var(--cargo-font-weight-bold); }
+  .dialog-meta { margin: 0; font-size: 14px; line-height: 22px; }
+  .dialog-keywords { display: flex; flex-wrap: wrap; gap: var(--cargo-space-4); margin-top: var(--cargo-space-12); }
+  .dialog-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--cargo-space-8); padding: var(--cargo-space-16) var(--cargo-space-24) var(--cargo-space-24); }
+</style>

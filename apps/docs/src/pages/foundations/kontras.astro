@@ -1,0 +1,148 @@
+---
+import Icon from '../../components/Icon.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
+import Base from '../../layouts/Base.astro';
+import { AA_TEXT, NON_TEXT, contrastResults, ratioLabel } from '../../lib/tokens.mjs';
+
+const results = contrastResults();
+const status = (row) => (row.pass ? 'pass' : row.excepted ? 'excepted' : 'fail');
+const LABEL = { pass: 'Lolos', excepted: 'Pengecualian', fail: 'Tidak lolos' };
+const TAG = { pass: 'tag-success', excepted: 'tag-warning', fail: 'tag-error' };
+const count = (set, kind) => set.rows.filter((row) => status(row) === kind).length;
+const brands = [...new Map(results.map((set) => [set.brand, set.brandName])).entries()];
+
+// Only the table for the brand and mode picked in the top bar is shown.
+const visibility = results
+  .map((set) => `html[data-brand="${set.brand}"][data-theme="${set.mode}"] .contrast-set[data-set="${set.brand}-${set.mode}"]{display:block}`)
+  .join('');
+---
+
+<Base title="Kontras" width="wide" description="Hasil cek kontras warna Cargo Design System untuk setiap brand dan mode (WCAG 2.2 AA).">
+  <PageHeader
+    eyebrow="Foundations · Warna"
+    title="Kontras"
+    lead={`Untuk setiap brand dan mode, ${results[0].rows.length} pasangan warna dicek: setiap teks, ikon, dan garis terhadap latar tempat ia biasa dipakai.`}
+  />
+
+  <div class="prose intro">
+    <ul>
+      <li>Teks butuh kontras minimal <strong>{AA_TEXT}:1</strong>, ikon dan garis minimal <strong>{NON_TEXT}:1</strong> (WCAG 2.2 AA).</li>
+      <li>
+        <strong>Pengecualian</strong> adalah pasangan yang sengaja dibiarkan di bawah standar atas keputusan designer, dan dicatat di
+        <code>packages/tokens/contrast-exceptions.json</code>.
+      </li>
+      <li>Tes otomatis (<code>npm test</code>) gagal kalau ada pasangan lain yang turun di bawah standar.</li>
+    </ul>
+  </div>
+
+  <section class="section">
+    <div class="section-head"><h2 class="section-title">Ringkasan</h2></div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>Brand</th><th>Light</th><th>Dark</th></tr>
+        </thead>
+        <tbody>
+          {
+            brands.map(([id, name]) => (
+              <tr>
+                <td><strong>{name}</strong></td>
+                {['light', 'dark'].map((mode) => {
+                  const set = results.find((item) => item.brand === id && item.mode === mode);
+                  return (
+                    <td>
+                      <span class="summary">
+                        <span class="tag tag-success">{count(set, 'pass')} lolos</span>
+                        {count(set, 'excepted') > 0 && <span class="tag tag-warning">{count(set, 'excepted')} pengecualian</span>}
+                        {count(set, 'fail') > 0 && <span class="tag tag-error">{count(set, 'fail')} tidak lolos</span>}
+                      </span>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">Detail per pasangan</h2>
+      <p class="section-intro">Tabel di bawah mengikuti brand dan mode yang kamu pilih.</p>
+    </div>
+    <ThemeSwitcher />
+    {
+      results.map((set) => (
+        <div class="contrast-set" data-set={`${set.brand}-${set.mode}`}>
+          <p class="set-title">
+            {set.brandName} · {set.modeName}
+          </p>
+          <div class="table-wrap">
+            <table class="table contrast-table">
+              <thead>
+                <tr>
+                  <th>Contoh</th>
+                  <th>Warna</th>
+                  <th>Latar</th>
+                  <th>Kontras</th>
+                  <th>Minimum</th>
+                  <th>Hasil</th>
+                </tr>
+              </thead>
+              <tbody>
+                {set.rows.map((row) => (
+                  <tr>
+                    <td>
+                      <span class="sample" style={`background: ${row.bgHex}; color: ${row.fgHex}`}>
+                        {row.fg.startsWith('text') && <span class="sample-text">Aa</span>}
+                        {row.fg.startsWith('icon') && <Icon name="Bell" variant="fill" size={18} />}
+                        {row.fg.startsWith('border') && <span class="sample-border" style={`border-color: ${row.fgHex}`} />}
+                      </span>
+                    </td>
+                    <td class="nowrap">
+                      <code>{row.fg.replace('.', '/')}</code>
+                      <span class="hex">{row.fgHex}</span>
+                    </td>
+                    <td class="nowrap">
+                      <code>{row.bg.replace('.', '/')}</code>
+                      <span class="hex">{row.bgHex}</span>
+                    </td>
+                    <td class="nowrap ratio">{ratioLabel(row.ratio)}</td>
+                    <td class="nowrap muted">{row.min}:1</td>
+                    <td class="nowrap">
+                      <span class:list={['tag', TAG[status(row)]]}>{LABEL[status(row)]}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <Fragment set:html={`<style>.contrast-set{display:none}${visibility}</style>`} />
+</Base>
+
+<style>
+  .intro { margin-bottom: var(--cargo-space-8); }
+  .summary { display: flex; flex-wrap: wrap; gap: var(--cargo-space-6); }
+  .set-title { margin: 0 0 var(--cargo-space-12); font-weight: var(--cargo-font-weight-bold); }
+  .contrast-table { min-width: 760px; }
+  .sample {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 36px;
+    border-radius: var(--cargo-radius-8);
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.08);
+  }
+  .sample-text { font-size: 16px; font-weight: var(--cargo-font-weight-bold); line-height: 1; }
+  .sample-border { width: 28px; height: 20px; border: var(--cargo-border-width-2) solid; border-radius: var(--cargo-radius-4); }
+  .hex { display: block; color: var(--cargo-color-text-tertiary); font-family: var(--site-font-mono); font-size: 11px; }
+  .ratio { font-weight: var(--cargo-font-weight-bold); font-variant-numeric: tabular-nums; }
+</style>

@@ -1,0 +1,137 @@
+---
+import Icon from '../../components/Icon.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Base from '../../layouts/Base.astro';
+import { components } from '../../lib/components.mjs';
+import { ICONS } from '../../lib/icons.mjs';
+import { SITE, url } from '../../lib/site.mjs';
+import { BRANDS, COUNTS, FOCUS_RINGS, SHADOWS } from '../../lib/tokens.mjs';
+
+// Sets whose name starts with a dot are building blocks: Figma does not publish them.
+const publishedSets = components.flatMap((component) => component.sets).filter((set) => !set.helper).length;
+const effectStyles = SHADOWS.tokens.length + FOCUS_RINGS.tokens.length;
+---
+
+<Base title="Mulai mendesain" description="Cara memakai library Cargo Design System di file Figma baru.">
+  <PageHeader
+    eyebrow="Cara memulai"
+    title="Mulai mendesain"
+    lead="Memakai library Cargo di file Figma baru: mengaktifkan library, mengatur brand dan mode, lalu memakai komponen, variables, dan style."
+  >
+    <a class="btn btn-primary btn-sm" href={SITE.figma} target="_blank" rel="noopener">Buka library di Figma<Icon name="ArrowUpRight" size={16} /></a>
+  </PageHeader>
+
+  <div class="note">
+    <Icon name="Info" />
+    <p>Di Figma tidak ada proses impor. File Cargo dipublikasikan sebagai <strong>library</strong>, lalu library itu diaktifkan di file lain.</p>
+  </div>
+
+  <div class="prose">
+    <h2>1. Publikasikan library</h2>
+    <p>Langkah ini cukup dilakukan sekali oleh pemilik file Cargo, lalu diulang setiap kali ada perubahan.</p>
+    <ol>
+      <li>Pastikan file Cargo berada di <strong>project tim</strong> (bukan Drafts) dengan paket berbayar, Professional ke atas.</li>
+      <li>Buka panel <strong>Assets</strong>, klik ikon <strong>Libraries</strong> (ikon buku), lalu pilih <strong>Publish</strong>.</li>
+      <li>Tulis catatan perubahan singkat, lalu publikasikan.</li>
+    </ol>
+    <p>Yang ikut terbit:</p>
+    <ul>
+      <li>
+        <strong>Komponen</strong>: {publishedSets} component set dari {components.length} halaman komponen, ditambah {ICONS.length} ikon. Komponen yang
+        namanya diawali titik, misalnya <code>.Page Item</code>, adalah bagian penyusun dan memang tidak ikut terbit.
+      </li>
+      <li>
+        <strong>Variables</strong>: Primitive, Brand Theme ({BRANDS.map((brand) => brand.name).join(', ')}), Semantic (Light dan Dark), Dimension,
+        dan Typography (Desktop dan Mobile).
+      </li>
+      <li><strong>Styles</strong>: {COUNTS.textStyles} text style dan {effectStyles} effect style ({SHADOWS.tokens.length} shadow dan {FOCUS_RINGS.tokens.length} cincin fokus).</li>
+    </ul>
+
+    <h2>2. Aktifkan di file baru</h2>
+    <ol>
+      <li>Di file baru, buka panel <strong>Assets</strong>, lalu <strong>Libraries</strong>.</li>
+      <li>Nyalakan <strong>Cargo Design System</strong>. Semua komponen, ikon, warna, dan text style langsung tersedia.</li>
+      <li>Font Inter dan Montserrat sudah tersedia di Figma, jadi tidak perlu diinstal.</li>
+    </ol>
+    <p>Kalau timmu memakai paket Organization atau Enterprise, admin bisa membuat Cargo aktif otomatis di semua file baru.</p>
+
+    <h2>3. Atur mode di frame</h2>
+    <p>
+      Pilih frame halaman, lalu atur <strong>variable mode</strong> di panel kanan. Semua komponen di dalam frame itu otomatis mengikuti, jadi
+      cukup diatur di frame paling luar.
+    </p>
+  </div>
+
+  <div class="table-wrap block">
+    <table class="table">
+      <thead>
+        <tr><th>Collection</th><th>Pilihan mode</th><th>Kapan diganti</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Brand Theme</td><td>{BRANDS.map((brand) => brand.name).join(', ')}</td><td class="desc">Sesuai produk yang sedang didesain.</td></tr>
+        <tr><td>Semantic</td><td>Light, Dark</td><td class="desc">Mode warna terang atau gelap.</td></tr>
+        <tr><td>Typography</td><td>Desktop, Mobile</td><td class="desc">Ukuran huruf untuk layar lebar atau HP.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="prose">
+    <h2>4. Pakai komponen</h2>
+    <ul>
+      <li>Ambil komponen dari panel <strong>Assets</strong>, supaya tetap tersambung ke library.</li>
+      <li>
+        Atur tampilannya lewat properti di panel kanan, misalnya <strong>Device</strong> (Desktop atau Mobile), <strong>Type</strong>,
+        <strong>Size</strong>, dan <strong>State</strong>.
+      </li>
+      <li>
+        Setiap varian punya deskripsi berisi <strong>Kapan dipakai</strong>, <strong>Cara pakai</strong>, dan <strong>Hindari</strong>. Deskripsi
+        itu tampil di panel kanan saat varian dipilih, dan juga ada di halaman <a href={url('/komponen/')}>Komponen</a>.
+      </li>
+      <li>Jangan detach instance. Kalau butuh variasi baru, catat dan usulkan supaya ditambahkan ke library.</li>
+    </ul>
+
+    <h2>5. Pakai variables dan style</h2>
+    <ul>
+      <li>
+        <strong>Warna</strong>: pilih token Semantic, bukan kode hex. Kelompok <code>bg</code> untuk latar, <code>text</code> untuk teks,
+        <code>icon</code> untuk ikon, dan <code>border</code> untuk garis. Scoping di Figma memastikan hanya token yang cocok yang muncul. Lihat
+        <a href={url('/foundations/warna/')}>Token warna</a>.
+      </li>
+      <li>
+        <strong>Panel yang melayang</strong> (modal, dropdown, toast, bottom sheet, date picker) memakai <code>bg/elevated</code>, supaya tepinya
+        terlihat di mode Dark.
+      </li>
+      <li>
+        <strong>Ukuran</strong>: <code>space/…</code> untuk gap dan padding, <code>radius/…</code> untuk sudut, dan <code>border-width/…</code> untuk
+        tebal garis. Nama token sama dengan nilainya dalam px. Lihat <a href={url('/foundations/ukuran/')}>Spacing dan radius</a>.
+      </li>
+      <li>
+        <strong>Teks</strong>: text style bernama <code>peran/tebal</code>, misalnya <code>heading-1/bold</code> atau <code>body/regular</code>.
+        Ukurannya berganti otomatis mengikuti mode Typography frame-nya. Lihat <a href={url('/foundations/tipografi/')}>Tipografi</a>.
+      </li>
+      <li>
+        <strong>Bayangan</strong>: effect style <code>shadow/sm</code>, <code>md</code>, <code>lg</code>, <code>top</code>, dan <code>inner</code>.
+        Lihat <a href={url('/foundations/shadow/')}>Shadow dan elevasi</a>.
+      </li>
+    </ul>
+
+    <h2>Kebiasaan yang perlu dijaga</h2>
+    <ul>
+      <li>Selalu ambil komponen dari panel Assets, dan jangan detach instance.</li>
+      <li>Pakai variables untuk warna dan ukuran, bukan nilai yang diketik manual.</li>
+      <li>Pakai text style untuk semua teks, supaya ukuran Desktop dan Mobile ikut berganti.</li>
+      <li>Untuk teks di form, label dan isian memakai <code>text/default</code>, placeholder dan keterangan <code>text/tertiary</code>, dan pesan error <code>text/error</code>.</li>
+    </ul>
+
+    <h2>Menerima pembaruan</h2>
+    <p>
+      Setiap kali Cargo dipublikasikan ulang, file yang memakai library akan mendapat notifikasi pembaruan. Klik <strong>Update</strong> untuk
+      menerima perubahannya. Daftar perubahan token ada di <a href={url('/mulai/changelog/')}>Changelog</a>.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .note { margin-bottom: var(--cargo-space-8); }
+  .block { margin-top: var(--cargo-space-16); }
+</style>

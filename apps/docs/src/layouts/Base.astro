@@ -1,0 +1,77 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/700.css';
+import '@cargo/tokens/css/uic';
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+import Sidebar from '../components/Sidebar.astro';
+import TopBar from '../components/TopBar.astro';
+import { SITE, normalize, sectionOf, url } from '../lib/site.mjs';
+import { BRANDS, brandCss } from '../lib/tokens.mjs';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** "wide" for pages with large tables or grids. */
+  width?: 'normal' | 'wide';
+  /** Builds "Di halaman ini" from the h2 headings on wide screens. */
+  toc?: boolean;
+}
+
+const { title, description = SITE.description, width = 'normal', toc = true } = Astro.props;
+const path = normalize(Astro.url.pathname);
+const section = sectionOf(path);
+const fullTitle = path === '/' ? `${SITE.name}: ${SITE.tagline}` : `${title} · ${SITE.name}`;
+---
+
+<!doctype html>
+<html lang="id" data-brand="uic" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
+    <script is:inline define:vars={{ brands: BRANDS.map((brand) => brand.id) }}>
+      // Apply the saved brand and mode before the first paint.
+      let brand = 'uic';
+      let theme = null;
+      try {
+        brand = localStorage.getItem('cargo-docs-brand') || brand;
+        theme = localStorage.getItem('cargo-docs-theme');
+      } catch {}
+      if (!brands.includes(brand)) brand = 'uic';
+      if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.brand = brand;
+      document.documentElement.dataset.theme = theme;
+    </script>
+    <Fragment set:html={`<style>${brandCss()}</style>`} />
+  </head>
+  <body>
+    <a class="skip-link" href="#isi">Langsung ke isi</a>
+    <TopBar section={section} />
+    <div class="shell">
+      <Sidebar section={section} path={path} />
+      <main class:list={['main', `main--${width}`]} id="isi">
+        <slot name="hero" />
+        <div class="page">
+          <div class="page-body" data-page-body><slot /></div>
+          {
+            toc && (
+              <nav class="toc" aria-label="Di halaman ini" hidden data-toc>
+                <p class="toc-title">Di halaman ini</p>
+                <ul />
+              </nav>
+            )
+          }
+        </div>
+        <Footer />
+      </main>
+    </div>
+    <script>
+      import '../scripts/site.js';
+    </script>
+  </body>
+</html>
