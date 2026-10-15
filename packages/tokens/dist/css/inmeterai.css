@@ -19,6 +19,16 @@
   --cargo-color-neutral-80: #616161;
   --cargo-color-neutral-90: #424242;
   --cargo-color-neutral-100: #212121;
+  --cargo-color-midnight-10: #f1f4f8;
+  --cargo-color-midnight-20: #dce0e6;
+  --cargo-color-midnight-30: #c0c6cf;
+  --cargo-color-midnight-40: #a4aab6;
+  --cargo-color-midnight-50: #838b98;
+  --cargo-color-midnight-60: #5c6573;
+  --cargo-color-midnight-70: #495260;
+  --cargo-color-midnight-80: #29313f;
+  --cargo-color-midnight-90: #161e2c;
+  --cargo-color-midnight-100: #000211;
   --cargo-color-yellow-10: #fef8e6;
   --cargo-color-yellow-20: #fdedc1;
   --cargo-color-yellow-30: #fce29c;
@@ -279,10 +289,10 @@
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --cargo-color-bg-default: var(--cargo-color-neutral-100);
-  --cargo-color-bg-secondary: var(--cargo-color-black);
-  --cargo-color-bg-tertiary: var(--cargo-color-neutral-90);
-  --cargo-color-bg-disabled: var(--cargo-color-neutral-90);
+  --cargo-color-bg-default: var(--cargo-color-midnight-100);
+  --cargo-color-bg-secondary: var(--cargo-color-midnight-90);
+  --cargo-color-bg-tertiary: var(--cargo-color-midnight-80);
+  --cargo-color-bg-disabled: var(--cargo-color-midnight-80);
   --cargo-color-bg-inverse: var(--cargo-color-white);
   --cargo-color-bg-error: var(--cargo-color-red-70);
   --cargo-color-bg-error-hover: var(--cargo-color-red-80);
@@ -300,7 +310,7 @@
   --cargo-color-text-secondary: var(--cargo-color-neutral-40);
   --cargo-color-text-tertiary: var(--cargo-color-neutral-50);
   --cargo-color-text-disabled: var(--cargo-color-neutral-70);
-  --cargo-color-text-inverse: var(--cargo-color-neutral-100);
+  --cargo-color-text-inverse: var(--cargo-color-midnight-100);
   --cargo-color-text-on-error: var(--cargo-color-white);
   --cargo-color-text-on-success: var(--cargo-color-white);
   --cargo-color-text-on-warning: var(--cargo-color-neutral-100);
@@ -315,7 +325,7 @@
   --cargo-color-icon-default: var(--cargo-color-white);
   --cargo-color-icon-secondary: var(--cargo-color-neutral-50);
   --cargo-color-icon-disabled: var(--cargo-color-neutral-70);
-  --cargo-color-icon-inverse: var(--cargo-color-neutral-100);
+  --cargo-color-icon-inverse: var(--cargo-color-midnight-100);
   --cargo-color-icon-error: var(--cargo-color-red-50);
   --cargo-color-icon-success: var(--cargo-color-green-60);
   --cargo-color-icon-warning: var(--cargo-color-yellow-70);
@@ -326,10 +336,10 @@
   --cargo-color-icon-on-info: var(--cargo-color-white);
   --cargo-color-icon-accent: var(--cargo-color-purple-30);
   --cargo-color-icon-on-accent: var(--cargo-color-white);
-  --cargo-color-border-subtle: var(--cargo-color-neutral-90);
-  --cargo-color-border-default: var(--cargo-color-neutral-80);
-  --cargo-color-border-strong: var(--cargo-color-neutral-60);
-  --cargo-color-border-disabled: var(--cargo-color-neutral-70);
+  --cargo-color-border-subtle: var(--cargo-color-midnight-80);
+  --cargo-color-border-default: var(--cargo-color-midnight-70);
+  --cargo-color-border-strong: var(--cargo-color-midnight-50);
+  --cargo-color-border-disabled: var(--cargo-color-midnight-60);
   --cargo-color-border-error: var(--cargo-color-red-50);
   --cargo-color-border-success: var(--cargo-color-green-60);
   --cargo-color-border-warning: var(--cargo-color-yellow-70);
@@ -353,10 +363,10 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --cargo-color-bg-default: var(--cargo-color-neutral-100);
-    --cargo-color-bg-secondary: var(--cargo-color-black);
-    --cargo-color-bg-tertiary: var(--cargo-color-neutral-90);
-    --cargo-color-bg-disabled: var(--cargo-color-neutral-90);
+    --cargo-color-bg-default: var(--cargo-color-midnight-100);
+    --cargo-color-bg-secondary: var(--cargo-color-midnight-90);
+    --cargo-color-bg-tertiary: var(--cargo-color-midnight-80);
+    --cargo-color-bg-disabled: var(--cargo-color-midnight-80);
     --cargo-color-bg-inverse: var(--cargo-color-white);
     --cargo-color-bg-error: var(--cargo-color-red-70);
     --cargo-color-bg-error-hover: var(--cargo-color-red-80);
@@ -374,7 +384,7 @@
     --cargo-color-text-secondary: var(--cargo-color-neutral-40);
     --cargo-color-text-tertiary: var(--cargo-color-neutral-50);
     --cargo-color-text-disabled: var(--cargo-color-neutral-70);
-    --cargo-color-text-inverse: var(--cargo-color-neutral-100);
+    --cargo-color-text-inverse: var(--cargo-color-midnight-100);
     --cargo-color-text-on-error: var(--cargo-color-white);
     --cargo-color-text-on-success: var(--cargo-color-white);
     --cargo-color-text-on-warning: var(--cargo-color-neutral-100);
@@ -389,7 +399,7 @@
     --cargo-color-icon-default: var(--cargo-color-white);
     --cargo-color-icon-secondary: var(--cargo-color-neutral-50);
     --cargo-color-icon-disabled: var(--cargo-color-neutral-70);
-    --cargo-color-icon-inverse: var(--cargo-color-neutral-100);
+    --cargo-color-icon-inverse: var(--cargo-color-midnight-100);
     --cargo-color-icon-error: var(--cargo-color-red-50);
     --cargo-color-icon-success: var(--cargo-color-green-60);
     --cargo-color-icon-warning: var(--cargo-color-yellow-70);
@@ -400,10 +410,10 @@
     --cargo-color-icon-on-info: var(--cargo-color-white);
     --cargo-color-icon-accent: var(--cargo-color-purple-30);
     --cargo-color-icon-on-accent: var(--cargo-color-white);
-    --cargo-color-border-subtle: var(--cargo-color-neutral-90);
-    --cargo-color-border-default: var(--cargo-color-neutral-80);
-    --cargo-color-border-strong: var(--cargo-color-neutral-60);
-    --cargo-color-border-disabled: var(--cargo-color-neutral-70);
+    --cargo-color-border-subtle: var(--cargo-color-midnight-80);
+    --cargo-color-border-default: var(--cargo-color-midnight-70);
+    --cargo-color-border-strong: var(--cargo-color-midnight-50);
+    --cargo-color-border-disabled: var(--cargo-color-midnight-60);
     --cargo-color-border-error: var(--cargo-color-red-50);
     --cargo-color-border-success: var(--cargo-color-green-60);
     --cargo-color-border-warning: var(--cargo-color-yellow-70);

@@ -22,6 +22,19 @@
       "90": { "$value": "#424242" },
       "100": { "$value": "#212121" }
     },
+    "midnight": {
+      "$description": "System: Midnight. Netral kebiruan untuk mode Dark, diturunkan dari latar #000211 (midnight.100).",
+      "10": { "$value": "#F1F4F8" },
+      "20": { "$value": "#DCE0E6" },
+      "30": { "$value": "#C0C6CF" },
+      "40": { "$value": "#A4AAB6" },
+      "50": { "$value": "#838B98" },
+      "60": { "$value": "#5C6573" },
+      "70": { "$value": "#495260" },
+      "80": { "$value": "#29313F" },
+      "90": { "$value": "#161E2C" },
+      "100": { "$value": "#000211" }
+    },
     "yellow": {
       "$description": "System: Warning",
       "10": { "$value": "#FEF8E6" },

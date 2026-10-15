@@ -26,6 +26,23 @@ System: Neutral
 | `color.neutral.90` | `#424242` | 10.0 | 1.6 | putih |
 | `color.neutral.100` | `#212121` | 16.1 | 1.0 | putih |
 
+## midnight
+
+System: Midnight. Netral kebiruan untuk mode Dark, diturunkan dari latar #000211 (midnight.100).
+
+| Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
+|---|---|---|---|---|
+| `color.midnight.10` | `#F1F4F8` | 1.1 | 14.6 | gelap |
+| `color.midnight.20` | `#DCE0E6` | 1.3 | 12.2 | gelap |
+| `color.midnight.30` | `#C0C6CF` | 1.7 | 9.4 | gelap |
+| `color.midnight.40` | `#A4AAB6` | 2.3 | 6.9 | gelap |
+| `color.midnight.50` | `#838B98` | 3.4 | 4.7 | gelap |
+| `color.midnight.60` | `#5C6573` | 5.9 | 2.7 | putih |
+| `color.midnight.70` | `#495260` | 7.9 | 2.0 | putih |
+| `color.midnight.80` | `#29313F` | 13.1 | 1.2 | putih |
+| `color.midnight.90` | `#161E2C` | 16.7 | 1.0 | putih |
+| `color.midnight.100` | `#000211` | 20.7 | 1.3 | putih |
+
 ## yellow
 
 System: Warning

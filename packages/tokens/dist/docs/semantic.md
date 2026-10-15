@@ -46,10 +46,10 @@ Latar. Scoping di Figma: Fill untuk Frame dan Shape.
 
 | Token | Light | Dark | Dipakai untuk |
 |---|---|---|---|
-| `color.bg.default` | `white` `#FFFFFF` | `neutral.100` `#212121` | Latar halaman, kartu, dan modal. |
-| `color.bg.secondary` | `neutral.20` `#F5F5F5` | `black` `#000000` | Latar bagian yang dibedakan, misalnya sidebar. |
-| `color.bg.tertiary` | `neutral.30` `#EEEEEE` | `neutral.90` `#424242` | Latar lapis ketiga, misalnya hover pada daftar. |
-| `color.bg.disabled` | `neutral.40` `#E0E0E0` | `neutral.90` `#424242` | Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. |
+| `color.bg.default` | `white` `#FFFFFF` | `midnight.100` `#000211` | Latar halaman, kartu, dan modal. |
+| `color.bg.secondary` | `neutral.20` `#F5F5F5` | `midnight.90` `#161E2C` | Latar bagian yang dibedakan, misalnya sidebar. |
+| `color.bg.tertiary` | `neutral.30` `#EEEEEE` | `midnight.80` `#29313F` | Latar lapis ketiga, misalnya hover pada daftar. |
+| `color.bg.disabled` | `neutral.40` `#E0E0E0` | `midnight.80` `#29313F` | Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. |
 | `color.bg.inverse` | `neutral.100` `#212121` | `white` `#FFFFFF` | Latar yang berlawanan dengan bg/default (gelap di mode Light, terang di mode Dark): tooltip dan snackbar. Teks di atasnya: text/inverse. |
 | `color.bg.brand` | `brand.light.fill` | `brand.dark.fill` | Tombol utama dan elemen brand. Teks di atasnya: text/on-brand. |
 | `color.bg.brand-hover` | `brand.light.fill-hover` | `brand.dark.fill-hover` | Tombol utama saat kursor di atasnya. |
@@ -78,7 +78,7 @@ Teks. Scoping di Figma: Fill untuk Text.
 | `color.text.secondary` | `neutral.90` `#424242` | `neutral.40` `#E0E0E0` | Teks pendukung: subjudul dan informasi tambahan, misalnya tanggal di kartu. |
 | `color.text.tertiary` | `neutral.80` `#616161` | `neutral.50` `#BDBDBD` | Teks paling lembut yang masih terbaca: placeholder, keterangan, dan penghitung karakter. |
 | `color.text.disabled` | `neutral.60` `#9E9E9E` | `neutral.70` `#757575` | Teks komponen yang tidak aktif (tidak wajib memenuhi kontras). |
-| `color.text.inverse` | `white` `#FFFFFF` | `neutral.100` `#212121` | Teks di atas bg/inverse. |
+| `color.text.inverse` | `white` `#FFFFFF` | `midnight.100` `#000211` | Teks di atas bg/inverse. |
 | `color.text.brand` | `brand.light.text` | `brand.dark.text` | Teks berwarna brand, misalnya tab yang aktif. |
 | `color.text.link` | `brand.light.text` | `brand.dark.text` | Link di dalam teks. |
 | `color.text.link-hover` | `brand.light.text-hover` | `brand.dark.text-hover` | Link saat kursor di atasnya. |
@@ -104,7 +104,7 @@ Ikon. Scoping di Figma: Fill untuk Shape, dan Stroke.
 | `color.icon.default` | `neutral.100` `#212121` | `white` `#FFFFFF` | Ikon utama, misalnya ikon menu dan ikon di tombol teks. |
 | `color.icon.secondary` | `neutral.80` `#616161` | `neutral.50` `#BDBDBD` | Ikon pendukung, misalnya ikon cari atau kalender di dalam input. |
 | `color.icon.disabled` | `neutral.60` `#9E9E9E` | `neutral.70` `#757575` | Ikon pada komponen yang tidak aktif. |
-| `color.icon.inverse` | `white` `#FFFFFF` | `neutral.100` `#212121` | Ikon di atas bg/inverse, misalnya di tooltip atau snackbar. |
+| `color.icon.inverse` | `white` `#FFFFFF` | `midnight.100` `#000211` | Ikon di atas bg/inverse, misalnya di tooltip atau snackbar. |
 | `color.icon.brand` | `brand.light.text` | `brand.dark.text` | Ikon berwarna brand, misalnya ikon tab yang aktif. |
 | `color.icon.on-brand` | `brand.light.on-fill` | `brand.dark.on-fill` | Ikon di atas bg/brand, misalnya ikon panah di tombol Kirim. |
 | `color.icon.error` | `red.70` `#D70000` | `red.50` `#FF2D2D` | Ikon error, misalnya tanda seru di pesan error. |
@@ -124,10 +124,10 @@ Garis. Scoping di Figma: Stroke.
 
 | Token | Light | Dark | Dipakai untuk |
 |---|---|---|---|
-| `color.border.subtle` | `neutral.40` `#E0E0E0` | `neutral.90` `#424242` | Garis pemisah yang sangat halus, misalnya di antara item daftar. Dekoratif. |
-| `color.border.default` | `neutral.50` `#BDBDBD` | `neutral.80` `#616161` | Garis kartu dan pembatas bagian. Dekoratif, jangan jadi satu-satunya penanda batas input. |
-| `color.border.strong` | `neutral.80` `#616161` | `neutral.60` `#9E9E9E` | Garis input, checkbox, dan kontrol lain yang harus terlihat jelas. |
-| `color.border.disabled` | `neutral.60` `#9E9E9E` | `neutral.70` `#757575` | Garis komponen yang tidak aktif. |
+| `color.border.subtle` | `neutral.40` `#E0E0E0` | `midnight.80` `#29313F` | Garis pemisah yang sangat halus, misalnya di antara item daftar. Dekoratif. |
+| `color.border.default` | `neutral.50` `#BDBDBD` | `midnight.70` `#495260` | Garis kartu dan pembatas bagian. Dekoratif, jangan jadi satu-satunya penanda batas input. |
+| `color.border.strong` | `neutral.80` `#616161` | `midnight.50` `#838B98` | Garis input, checkbox, dan kontrol lain yang harus terlihat jelas. |
+| `color.border.disabled` | `neutral.60` `#9E9E9E` | `midnight.60` `#5C6573` | Garis komponen yang tidak aktif. |
 | `color.border.brand` | `brand.light.border` | `brand.dark.border` | Garis elemen terpilih, misalnya kartu terpilih atau tombol outline Batal. |
 | `color.border.focus` | `brand.light.border` | `brand.dark.border` | Cincin fokus saat berpindah elemen dengan keyboard. |
 | `color.border.error` | `red.70` `#D70000` | `red.50` `#FF2D2D` | Garis input yang error. |

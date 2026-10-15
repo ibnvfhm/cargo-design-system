@@ -118,8 +118,9 @@ packages/tokens/
 | `fuchsia` | Brand InMeterai |
 | `tosca` | Brand InCivas |
 | `sea` | Brand InCustoms |
+| `midnight` | Netral kebiruan untuk mode Dark, diturunkan dari latar #000211 (`midnight.100`) |
 
-Ditambah `white` (#FFFFFF) dan `black` (#000000, hitam murni). Warna teks utama memakai `neutral.100` (#212121), bukan `black`.
+Ditambah `white` (#FFFFFF) dan `black` (#000000, hitam murni). Warna teks utama memakai `neutral.100` (#212121), bukan `black`. Latar mode Dark memakai `midnight.100` (#000211), dan lapisan di atasnya (sidebar, hover, garis) memakai step `midnight` yang lebih terang.
 
 ## Aturan Brand Theme
 

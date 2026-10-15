@@ -4,19 +4,19 @@
       "$type": "color",
       "$description": "Latar. Scoping di Figma: Fill untuk Frame dan Shape.",
       "default": {
-        "$value": "{color.neutral.100}",
+        "$value": "{color.midnight.100}",
         "$description": "Latar halaman, kartu, dan modal."
       },
       "secondary": {
-        "$value": "{color.black}",
+        "$value": "{color.midnight.90}",
         "$description": "Latar bagian yang dibedakan, misalnya sidebar."
       },
       "tertiary": {
-        "$value": "{color.neutral.90}",
+        "$value": "{color.midnight.80}",
         "$description": "Latar lapis ketiga, misalnya hover pada daftar."
       },
       "disabled": {
-        "$value": "{color.neutral.90}",
+        "$value": "{color.midnight.80}",
         "$description": "Latar komponen yang tidak aktif. Teks di atasnya: text/disabled."
       },
       "inverse": {
@@ -108,7 +108,7 @@
         "$description": "Teks komponen yang tidak aktif (tidak wajib memenuhi kontras)."
       },
       "inverse": {
-        "$value": "{color.neutral.100}",
+        "$value": "{color.midnight.100}",
         "$description": "Teks di atas bg/inverse."
       },
       "brand": {
@@ -188,7 +188,7 @@
         "$description": "Ikon pada komponen yang tidak aktif."
       },
       "inverse": {
-        "$value": "{color.neutral.100}",
+        "$value": "{color.midnight.100}",
         "$description": "Ikon di atas bg/inverse, misalnya di tooltip atau snackbar."
       },
       "brand": {
@@ -244,19 +244,19 @@
       "$type": "color",
       "$description": "Garis. Scoping di Figma: Stroke.",
       "subtle": {
-        "$value": "{color.neutral.90}",
+        "$value": "{color.midnight.80}",
         "$description": "Garis pemisah yang sangat halus, misalnya di antara item daftar. Dekoratif."
       },
       "default": {
-        "$value": "{color.neutral.80}",
+        "$value": "{color.midnight.70}",
         "$description": "Garis kartu dan pembatas bagian. Dekoratif, jangan jadi satu-satunya penanda batas input."
       },
       "strong": {
-        "$value": "{color.neutral.60}",
+        "$value": "{color.midnight.50}",
         "$description": "Garis input, checkbox, dan kontrol lain yang harus terlihat jelas."
       },
       "disabled": {
-        "$value": "{color.neutral.70}",
+        "$value": "{color.midnight.60}",
         "$description": "Garis komponen yang tidak aktif."
       },
       "brand": {

@@ -25,6 +25,16 @@ class CargoTokensLight {
     static const colorNeutral80 = Color(0xFF616161);
     static const colorNeutral90 = Color(0xFF424242);
     static const colorNeutral100 = Color(0xFF212121);
+    static const colorMidnight10 = Color(0xFFF1F4F8);
+    static const colorMidnight20 = Color(0xFFDCE0E6);
+    static const colorMidnight30 = Color(0xFFC0C6CF);
+    static const colorMidnight40 = Color(0xFFA4AAB6);
+    static const colorMidnight50 = Color(0xFF838B98);
+    static const colorMidnight60 = Color(0xFF5C6573);
+    static const colorMidnight70 = Color(0xFF495260);
+    static const colorMidnight80 = Color(0xFF29313F);
+    static const colorMidnight90 = Color(0xFF161E2C);
+    static const colorMidnight100 = Color(0xFF000211);
     static const colorYellow10 = Color(0xFFFEF8E6);
     static const colorYellow20 = Color(0xFFFDEDC1);
     static const colorYellow30 = Color(0xFFFCE29C);
