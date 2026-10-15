@@ -50,6 +50,7 @@ const swapDefault = (value) => {
           />
         )}
       </div>
+      <figcaption class="preview-note">Gambar dari Figma dengan brand UIC, mengikuti mode Light atau Dark yang dipilih.</figcaption>
     </figure>
   )
 }
@@ -150,6 +151,7 @@ const swapDefault = (value) => {
   /* In Dark the stage takes the page colour, so floating panels (bg/elevated) stand out as they do in products. */
   :global([data-theme='dark']) .preview-stage { background: var(--cargo-color-bg-default); }
   .preview-stage img { max-width: 100%; height: auto; }
+  .preview-note { margin-top: var(--cargo-space-8); color: var(--cargo-color-text-tertiary); font-size: 12px; line-height: 16px; }
   .description :global(.md-label) { margin-top: var(--cargo-space-24); }
   .description :global(.md-label:first-child) { margin-top: 0; }
   .spec { margin-top: var(--cargo-space-32); }
