@@ -6,6 +6,9 @@ export const NON_TEXT = 3;
 // [foreground, the background it is normally used on, minimum contrast], checked for every brand and mode.
 export const PAIRS = [
   ['text.default', 'bg.default', AA_TEXT],
+  // Floating panels (modal, dropdown, toast, bottom sheet, date picker) sit on bg/elevated.
+  ['text.default', 'bg.elevated', AA_TEXT],
+  ['text.secondary', 'bg.elevated', AA_TEXT],
   ['text.secondary', 'bg.tertiary', AA_TEXT],
   ['text.tertiary', 'bg.tertiary', AA_TEXT],
   ['text.inverse', 'bg.inverse', AA_TEXT],
@@ -38,6 +41,7 @@ export const PAIRS = [
   ['text.holiday', 'bg.default', AA_TEXT],
   ['text.holiday', 'bg.brand-subtle', AA_TEXT],
   ['icon.default', 'bg.default', NON_TEXT],
+  ['icon.default', 'bg.elevated', NON_TEXT],
   ['icon.secondary', 'bg.default', NON_TEXT],
   ['icon.inverse', 'bg.inverse', NON_TEXT],
   ['icon.brand', 'bg.default', NON_TEXT],

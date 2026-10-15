@@ -142,6 +142,7 @@ object CargoTokensDark {
   val colorBrandDarkTextHover = colorFuchsia40
   val colorBrandDarkBorder = colorFuchsia50
   val colorBgDefault = colorMidnight100
+  val colorBgElevated = colorMidnight90
   val colorBgSecondary = colorMidnight90
   val colorBgTertiary = colorMidnight80
   val colorBgDisabled = colorMidnight80

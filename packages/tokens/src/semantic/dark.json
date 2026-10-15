@@ -5,7 +5,11 @@
       "$description": "Latar. Scoping di Figma: Fill untuk Frame dan Shape.",
       "default": {
         "$value": "{color.midnight.100}",
-        "$description": "Latar halaman, kartu, dan modal."
+        "$description": "Latar halaman dan kartu."
+      },
+      "elevated": {
+        "$value": "{color.midnight.90}",
+        "$description": "Latar panel yang melayang di atas halaman: modal, dialog, bottom sheet, dropdown, toast, dan date picker. Di mode Dark sedikit lebih terang dari bg/default supaya tepinya terlihat."
       },
       "secondary": {
         "$value": "{color.midnight.90}",

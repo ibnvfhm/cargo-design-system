@@ -143,7 +143,8 @@ class CargoTokensDark {
     static const colorBrandDarkText = colorSea50; /** Teks dan link berwarna brand di atas latar gelap. */
     static const colorBrandDarkTextHover = colorSea40; /** Teks atau link brand di mode Dark saat kursor di atasnya. */
     static const colorBrandDarkBorder = colorSea50; /** Garis brand di mode Dark: elemen terpilih dan cincin fokus. */
-    static const colorBgDefault = colorMidnight100; /** Latar halaman, kartu, dan modal. */
+    static const colorBgDefault = colorMidnight100; /** Latar halaman dan kartu. */
+    static const colorBgElevated = colorMidnight90; /** Latar panel yang melayang di atas halaman: modal, dialog, bottom sheet, dropdown, toast, dan date picker. Di mode Dark sedikit lebih terang dari bg/default supaya tepinya terlihat. */
     static const colorBgSecondary = colorMidnight90; /** Latar bagian yang dibedakan, misalnya sidebar. */
     static const colorBgTertiary = colorMidnight80; /** Latar lapis ketiga, misalnya hover pada daftar. */
     static const colorBgDisabled = colorMidnight80; /** Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. */

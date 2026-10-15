@@ -140,7 +140,8 @@ public enum CargoTokensDark {
     public static let colorBrandDarkText = colorGrape20 /** Teks dan link berwarna brand di atas latar gelap. */
     public static let colorBrandDarkTextHover = colorGrape10 /** Teks atau link brand di mode Dark saat kursor di atasnya. */
     public static let colorBrandDarkBorder = colorGrape20 /** Garis brand di mode Dark: elemen terpilih dan cincin fokus. */
-    public static let colorBgDefault = colorMidnight100 /** Latar halaman, kartu, dan modal. */
+    public static let colorBgDefault = colorMidnight100 /** Latar halaman dan kartu. */
+    public static let colorBgElevated = colorMidnight90 /** Latar panel yang melayang di atas halaman: modal, dialog, bottom sheet, dropdown, toast, dan date picker. Di mode Dark sedikit lebih terang dari bg/default supaya tepinya terlihat. */
     public static let colorBgSecondary = colorMidnight90 /** Latar bagian yang dibedakan, misalnya sidebar. */
     public static let colorBgTertiary = colorMidnight80 /** Latar lapis ketiga, misalnya hover pada daftar. */
     public static let colorBgDisabled = colorMidnight80 /** Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. */

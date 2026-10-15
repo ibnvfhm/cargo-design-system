@@ -216,7 +216,8 @@
 :root,
 [data-theme="light"] {
   color-scheme: light;
-  --cargo-color-bg-default: var(--cargo-color-white); /** Latar halaman, kartu, dan modal. */
+  --cargo-color-bg-default: var(--cargo-color-white); /** Latar halaman dan kartu. */
+  --cargo-color-bg-elevated: var(--cargo-color-white); /** Latar panel yang melayang di atas halaman: modal, dialog, bottom sheet, dropdown, toast, dan date picker. Di mode Dark sedikit lebih terang dari bg/default supaya tepinya terlihat. */
   --cargo-color-bg-secondary: var(--cargo-color-neutral-20); /** Latar bagian yang dibedakan, misalnya sidebar. */
   --cargo-color-bg-tertiary: var(--cargo-color-neutral-30); /** Latar lapis ketiga, misalnya hover pada daftar. */
   --cargo-color-bg-disabled: var(--cargo-color-neutral-40); /** Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. */
@@ -290,6 +291,7 @@
 [data-theme="dark"] {
   color-scheme: dark;
   --cargo-color-bg-default: var(--cargo-color-midnight-100);
+  --cargo-color-bg-elevated: var(--cargo-color-midnight-90);
   --cargo-color-bg-secondary: var(--cargo-color-midnight-90);
   --cargo-color-bg-tertiary: var(--cargo-color-midnight-80);
   --cargo-color-bg-disabled: var(--cargo-color-midnight-80);
@@ -364,6 +366,7 @@
   :root:not([data-theme="light"]) {
     color-scheme: dark;
     --cargo-color-bg-default: var(--cargo-color-midnight-100);
+    --cargo-color-bg-elevated: var(--cargo-color-midnight-90);
     --cargo-color-bg-secondary: var(--cargo-color-midnight-90);
     --cargo-color-bg-tertiary: var(--cargo-color-midnight-80);
     --cargo-color-bg-disabled: var(--cargo-color-midnight-80);

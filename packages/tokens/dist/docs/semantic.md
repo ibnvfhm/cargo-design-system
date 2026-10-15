@@ -46,7 +46,8 @@ Latar. Scoping di Figma: Fill untuk Frame dan Shape.
 
 | Token | Light | Dark | Dipakai untuk |
 |---|---|---|---|
-| `color.bg.default` | `white` `#FFFFFF` | `midnight.100` `#000211` | Latar halaman, kartu, dan modal. |
+| `color.bg.default` | `white` `#FFFFFF` | `midnight.100` `#000211` | Latar halaman dan kartu. |
+| `color.bg.elevated` | `white` `#FFFFFF` | `midnight.90` `#161E2C` | Latar panel yang melayang di atas halaman: modal, dialog, bottom sheet, dropdown, toast, dan date picker. Di mode Dark sedikit lebih terang dari bg/default supaya tepinya terlihat. |
 | `color.bg.secondary` | `neutral.20` `#F5F5F5` | `midnight.90` `#161E2C` | Latar bagian yang dibedakan, misalnya sidebar. |
 | `color.bg.tertiary` | `neutral.30` `#EEEEEE` | `midnight.80` `#29313F` | Latar lapis ketiga, misalnya hover pada daftar. |
 | `color.bg.disabled` | `neutral.40` `#E0E0E0` | `midnight.80` `#29313F` | Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. |

@@ -142,8 +142,10 @@ export const ColorBrandLightText: string;
 export const ColorBrandLightTextHover: string;
 /** Garis brand: elemen terpilih dan cincin fokus. */
 export const ColorBrandLightBorder: string;
-/** Latar halaman, kartu, dan modal. */
+/** Latar halaman dan kartu. */
 export const ColorBgDefault: string;
+/** Latar panel yang melayang di atas halaman: modal, dialog, bottom sheet, dropdown, toast, dan date picker. Di mode Dark sedikit lebih terang dari bg/default supaya tepinya terlihat. */
+export const ColorBgElevated: string;
 /** Latar bagian yang dibedakan, misalnya sidebar. */
 export const ColorBgSecondary: string;
 /** Latar lapis ketiga, misalnya hover pada daftar. */

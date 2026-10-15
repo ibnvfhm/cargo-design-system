@@ -142,6 +142,7 @@ object CargoTokensLight {
   val colorBrandLightTextHover = colorImperial80
   val colorBrandLightBorder = colorImperial70
   val colorBgDefault = colorWhite
+  val colorBgElevated = colorWhite
   val colorBgSecondary = colorNeutral20
   val colorBgTertiary = colorNeutral30
   val colorBgDisabled = colorNeutral40

@@ -143,7 +143,8 @@ class CargoTokensLight {
     static const colorBrandLightText = colorSea50; /** Teks dan link berwarna brand di atas latar terang. */
     static const colorBrandLightTextHover = colorSea60; /** Teks atau link brand saat kursor di atasnya. */
     static const colorBrandLightBorder = colorSea50; /** Garis brand: elemen terpilih dan cincin fokus. */
-    static const colorBgDefault = colorWhite; /** Latar halaman, kartu, dan modal. */
+    static const colorBgDefault = colorWhite; /** Latar halaman dan kartu. */
+    static const colorBgElevated = colorWhite; /** Latar panel yang melayang di atas halaman: modal, dialog, bottom sheet, dropdown, toast, dan date picker. Di mode Dark sedikit lebih terang dari bg/default supaya tepinya terlihat. */
     static const colorBgSecondary = colorNeutral20; /** Latar bagian yang dibedakan, misalnya sidebar. */
     static const colorBgTertiary = colorNeutral30; /** Latar lapis ketiga, misalnya hover pada daftar. */
     static const colorBgDisabled = colorNeutral40; /** Latar komponen yang tidak aktif. Teks di atasnya: text/disabled. */
