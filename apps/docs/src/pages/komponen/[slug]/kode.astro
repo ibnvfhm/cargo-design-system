@@ -1,0 +1,21 @@
+---
+import '@cargo/react/styles.css';
+import { KODE } from '../../../components/kode/index.mjs';
+import ComponentPage from '../../../layouts/ComponentPage.astro';
+import { hasCode } from '../../../lib/code.mjs';
+import { components } from '../../../lib/components.mjs';
+
+// Only pages whose components exist in @cargo/react get a Kode tab.
+export function getStaticPaths() {
+  return components.flatMap((component, index) => (hasCode(component) ? [{ params: { slug: component.slug }, props: { index } }] : []));
+}
+
+const { index } = Astro.props;
+const component = components[index];
+const Content = KODE[component.slug];
+if (!Content) throw new Error(`Tab Kode ${component.page} belum punya isi di src/components/kode/index.mjs`);
+---
+
+<ComponentPage index={index} tab="kode">
+  <Content />
+</ComponentPage>

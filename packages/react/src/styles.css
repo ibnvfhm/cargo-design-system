@@ -1,0 +1,3 @@
+/* Every component style in one file: import '@cargo/react/styles.css' once, after a @cargo/tokens brand file. */
+@import './styles/base.css';
+@import './badge/badge.css';

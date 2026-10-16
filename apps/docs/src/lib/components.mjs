@@ -129,10 +129,12 @@ if (strayShots.length) {
   throw new Error(`Baris variant-shots.json tanpa component set: ${strayShots.map((row) => `${row.page} / ${row.set}`).join(', ')}`);
 }
 
-// Every component page has these tabs, each at its own address under /komponen/<slug>/.
+// Tabs of a component page, each at its own address under /komponen/<slug>/. Kode appears only on pages whose
+// components exist in @cargo/react; use tabsOf() from lib/code.mjs to get the tabs of one page.
 export const COMPONENT_TABS = [
   { id: 'penggunaan', label: 'Penggunaan', path: '' },
   { id: 'properti-desain', label: 'Properti desain', path: 'properti-desain/' },
+  { id: 'kode', label: 'Kode', path: 'kode/' },
 ];
 
 export const PROPERTY_TYPES = {

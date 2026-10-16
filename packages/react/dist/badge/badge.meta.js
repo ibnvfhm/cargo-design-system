@@ -1,0 +1,34 @@
+export const badgeMeta = {
+    name: 'Badge',
+    figmaSet: 'Badge',
+    figmaNode: '124:3337',
+    client: false,
+    props: [
+        { name: 'type', type: "'label' | 'counter' | 'dot'", default: "'label'", figma: 'Type', description: 'Label berisi teks, Counter berisi angka dalam lingkaran, Dot hanya titik.' },
+        { name: 'variant', type: "'primary' | 'info' | 'warning' | 'success' | 'danger' | 'gray' | 'accent'", default: "'primary'", figma: 'Variant', description: 'Warna dan maknanya.' },
+        { name: 'size', type: "'md' | 'sm' | 'xs'", default: "'md'", figma: 'Size', description: 'Ukuran.' },
+        { name: 'appearance', type: "'subtle' | 'solid'", default: "'subtle'", figma: 'Style', description: 'Subtle berlatar lembut, Solid berlatar penuh. Namanya bukan style karena style sudah dipakai React.' },
+        { name: 'children', type: 'ReactNode', figma: 'Text, Notification', description: 'Teks Label atau angka Counter. Pada Dot, teks ini hanya dibaca screen reader.' },
+        { name: 'leftIcon', type: 'ReactNode', figma: '.AddOn Left, Change Left Icon', description: 'Ikon di kiri teks, khusus Label. Ukurannya otomatis 16px.' },
+        { name: 'rightIcon', type: 'ReactNode', figma: '.AddOn Right, Change Right Icon', description: 'Ikon di kanan teks, khusus Label.' },
+    ],
+    axes: {
+        Type: { prop: 'type', values: { Label: 'label', Counter: 'counter', Dot: 'dot' } },
+        Variant: { prop: 'variant', values: { Primary: 'primary', Info: 'info', Warning: 'warning', Success: 'success', Danger: 'danger', Gray: 'gray', Accent: 'accent' } },
+        Size: { prop: 'size', values: { Md: 'md', Sm: 'sm', Xs: 'xs' } },
+        Style: { prop: 'appearance', values: { Subtle: 'subtle', Solid: 'solid' } },
+    },
+    properties: {
+        Text: { prop: 'children' },
+        Notification: { prop: 'children', note: 'Angka pada Counter.' },
+        '.AddOn Left': { prop: 'leftIcon', note: 'Ikon tampil kalau leftIcon diisi.' },
+        '.AddOn Right': { prop: 'rightIcon', note: 'Ikon tampil kalau rightIcon diisi.' },
+        'Change Left Icon': { prop: 'leftIcon' },
+        'Change Right Icon': { prop: 'rightIcon' },
+    },
+    accessibility: [
+        'Badge hanya teks, tidak bisa diklik atau difokus.',
+        'Jangan mengandalkan warna saja: tulis maknanya di teks, misalnya "Disetujui".',
+        'Dot tanpa teks dianggap hiasan dan disembunyikan dari screen reader. Beri teks kalau titik itu punya arti, misalnya "Ada pesan baru".',
+    ],
+};

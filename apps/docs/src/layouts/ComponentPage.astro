@@ -1,13 +1,14 @@
 ---
 import Icon from '../components/Icon.astro';
-import { COMPONENT_TABS, components, figmaUrl } from '../lib/components.mjs';
+import { tabsOf } from '../lib/code.mjs';
+import { components, figmaUrl } from '../lib/components.mjs';
 import { url } from '../lib/site.mjs';
 import Base from './Base.astro';
 
 interface Props {
   /** Position of the component in `components`, for the previous and next links. */
   index: number;
-  /** The tab this page shows, from COMPONENT_TABS. */
+  /** The tab this page shows: an id from COMPONENT_TABS. */
   tab: string;
 }
 
@@ -16,10 +17,15 @@ const component = components[index];
 const previous = components[index - 1];
 const next = components[index + 1];
 const mainSets = component.sets.filter((set) => !set.helper);
-const current = COMPONENT_TABS.find((item) => item.id === tab);
-const first = current === COMPONENT_TABS[0];
+const tabs = tabsOf(component);
+const current = tabs.find((item) => item.id === tab);
+const first = current === tabs[0];
 const title = first ? component.page : `${component.page}: ${current.label}`;
-const description = first ? `${component.page}: ${component.summary}` : `${current.label} ${component.page}: varian dan properti komponennya di Figma.`;
+const DESCRIPTIONS = {
+  'properti-desain': `Properti desain ${component.page}: varian dan properti komponennya di Figma.`,
+  kode: `Kode ${component.page}: komponen React, contoh yang bisa dicoba, dan padanan propertinya dengan Figma.`,
+};
+const description = first ? `${component.page}: ${component.summary}` : DESCRIPTIONS[tab];
 ---
 
 <Base title={title} description={description} tocDepth={3}>
@@ -38,7 +44,7 @@ const description = first ? `${component.page}: ${component.summary}` : `${curre
 
   <nav class="tabs" aria-label={`Bagian halaman ${component.page}`}>
     {
-      COMPONENT_TABS.map((item) => (
+      tabs.map((item) => (
         <a href={url(`/komponen/${component.slug}/${item.path}`)} aria-current={item === current ? 'page' : undefined}>
           {item.label}
         </a>

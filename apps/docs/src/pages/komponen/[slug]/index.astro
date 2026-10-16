@@ -2,7 +2,9 @@
 import ComponentSet from '../../../components/ComponentSet.astro';
 import Icon from '../../../components/Icon.astro';
 import ComponentPage from '../../../layouts/ComponentPage.astro';
+import { REACT_PACKAGE, hasCode } from '../../../lib/code.mjs';
 import { components, figmaUrl } from '../../../lib/components.mjs';
+import { url } from '../../../lib/site.mjs';
 
 export function getStaticPaths() {
   return components.map((component, index) => ({ params: { slug: component.slug }, props: { index } }));
@@ -33,7 +35,18 @@ const several = mainSets.length > 1;
     </div>
     <div>
       <dt>Komponen kode</dt>
-      <dd><span class="tag tag-warning">Belum tersedia</span></dd>
+      <dd>
+        {
+          hasCode(component) ? (
+            <a class="tag tag-success" href={url(`/komponen/${component.slug}/kode/`)}>
+              <Icon name="CheckCircle" variant="fill" size={14} />
+              Tersedia · {REACT_PACKAGE.name} {REACT_PACKAGE.version}
+            </a>
+          ) : (
+            <span class="tag tag-warning">Belum tersedia</span>
+          )
+        }
+      </dd>
     </div>
   </dl>
 

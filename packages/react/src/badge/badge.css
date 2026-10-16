@@ -1,0 +1,161 @@
+/* Badge. Figma: Badge (124:3337). Label: padding 4/8 (Xs 2/6), gap 4, pill. Counter and Dot: fixed circles. */
+.cargo-badge {
+  --_subtle-bg: var(--cargo-color-bg-brand-subtle);
+  --_subtle-fg: var(--cargo-color-text-brand);
+  --_subtle-icon: var(--cargo-color-icon-brand);
+  --_solid-bg: var(--cargo-color-bg-brand);
+  --_solid-fg: var(--cargo-color-text-on-brand);
+  --_solid-icon: var(--cargo-color-icon-on-brand);
+  --_bg: var(--_subtle-bg);
+  --_fg: var(--_subtle-fg);
+  --_icon: var(--_subtle-icon);
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cargo-space-4);
+  border-radius: var(--cargo-radius-full);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.cargo-badge[data-appearance='solid'] {
+  --_bg: var(--_solid-bg);
+  --_fg: var(--_solid-fg);
+  --_icon: var(--_solid-icon);
+}
+
+/* Variant: subtle uses the -subtle background with the matching text colour; solid the full colour with on-… text. */
+.cargo-badge[data-variant='info'] {
+  --_subtle-bg: var(--cargo-color-bg-info-subtle);
+  --_subtle-fg: var(--cargo-color-text-info);
+  --_subtle-icon: var(--cargo-color-icon-info);
+  --_solid-bg: var(--cargo-color-bg-info);
+  --_solid-fg: var(--cargo-color-text-on-info);
+  --_solid-icon: var(--cargo-color-icon-on-info);
+}
+.cargo-badge[data-variant='warning'] {
+  --_subtle-bg: var(--cargo-color-bg-warning-subtle);
+  --_subtle-fg: var(--cargo-color-text-warning);
+  --_subtle-icon: var(--cargo-color-icon-warning);
+  --_solid-bg: var(--cargo-color-bg-warning);
+  --_solid-fg: var(--cargo-color-text-on-warning);
+  --_solid-icon: var(--cargo-color-icon-on-warning);
+}
+.cargo-badge[data-variant='success'] {
+  --_subtle-bg: var(--cargo-color-bg-success-subtle);
+  --_subtle-fg: var(--cargo-color-text-success);
+  --_subtle-icon: var(--cargo-color-icon-success);
+  --_solid-bg: var(--cargo-color-bg-success);
+  --_solid-fg: var(--cargo-color-text-on-success);
+  --_solid-icon: var(--cargo-color-icon-on-success);
+}
+.cargo-badge[data-variant='danger'] {
+  --_subtle-bg: var(--cargo-color-bg-error-subtle);
+  --_subtle-fg: var(--cargo-color-text-error);
+  --_subtle-icon: var(--cargo-color-icon-error);
+  --_solid-bg: var(--cargo-color-bg-error);
+  --_solid-fg: var(--cargo-color-text-on-error);
+  --_solid-icon: var(--cargo-color-icon-on-error);
+}
+.cargo-badge[data-variant='gray'] {
+  --_subtle-bg: var(--cargo-color-bg-secondary);
+  --_subtle-fg: var(--cargo-color-text-secondary);
+  --_subtle-icon: var(--cargo-color-icon-secondary);
+  --_solid-bg: var(--cargo-color-bg-inverse);
+  --_solid-fg: var(--cargo-color-text-inverse);
+  --_solid-icon: var(--cargo-color-icon-inverse);
+}
+.cargo-badge[data-variant='accent'] {
+  --_subtle-bg: var(--cargo-color-bg-accent-subtle);
+  --_subtle-fg: var(--cargo-color-text-accent);
+  --_subtle-icon: var(--cargo-color-icon-accent);
+  --_solid-bg: var(--cargo-color-bg-accent);
+  --_solid-fg: var(--cargo-color-text-on-accent);
+  --_solid-icon: var(--cargo-color-icon-on-accent);
+}
+
+/* Type=Label. Md uses body/bold, Sm and Xs small/bold. */
+.cargo-badge[data-type='label'] {
+  padding: var(--cargo-space-4) var(--cargo-space-8);
+  font-size: var(--cargo-body-font-size);
+  font-weight: var(--cargo-font-weight-bold);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+}
+.cargo-badge[data-type='label']:is([data-size='sm'], [data-size='xs']) {
+  font-size: var(--cargo-small-font-size);
+  line-height: var(--cargo-small-line-height);
+  letter-spacing: var(--cargo-small-letter-spacing);
+}
+.cargo-badge[data-type='label'][data-size='xs'] {
+  padding: var(--cargo-space-2) var(--cargo-space-6);
+}
+.cargo-badge__icon {
+  display: inline-flex;
+  flex: none;
+  color: var(--_icon);
+}
+.cargo-badge__icon > svg {
+  /* Figma: 16px icons at every size. */
+  width: 16px;
+  height: 16px;
+}
+
+/* Type=Counter: a 22, 20 or 18px circle (Figma has no token for these sizes) that grows into a pill for longer text.
+   Md uses body/medium, Sm small/medium, Xs extra-small/medium. */
+.cargo-badge[data-type='counter'] {
+  --_size: 22px;
+  min-width: var(--_size);
+  height: var(--_size);
+  padding: 0 var(--cargo-space-2);
+  font-size: var(--cargo-body-font-size);
+  font-weight: var(--cargo-font-weight-medium);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+}
+.cargo-badge[data-type='counter'][data-size='sm'] {
+  --_size: 20px;
+  font-size: var(--cargo-small-font-size);
+  line-height: var(--cargo-small-line-height);
+  letter-spacing: var(--cargo-small-letter-spacing);
+}
+.cargo-badge[data-type='counter'][data-size='xs'] {
+  --_size: 18px;
+  font-size: var(--cargo-extra-small-font-size);
+  line-height: var(--cargo-extra-small-line-height);
+  letter-spacing: var(--cargo-extra-small-letter-spacing);
+}
+
+/* Type=Dot: an 8px dot centred in a 20, 18 or 16px box. */
+.cargo-badge[data-type='dot'] {
+  --_size: 20px;
+  width: var(--_size);
+  height: var(--_size);
+  background: none;
+}
+.cargo-badge[data-type='dot'][data-size='sm'] {
+  --_size: 18px;
+}
+.cargo-badge[data-type='dot'][data-size='xs'] {
+  --_size: 16px;
+}
+.cargo-badge__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--cargo-radius-full);
+  background: var(--_bg);
+}
+
+/* Windows high contrast drops background colours: outline the label and counter, and keep the dot visible. */
+@media (forced-colors: active) {
+  .cargo-badge:not([data-type='dot']) {
+    border: var(--cargo-border-width-1) solid CanvasText;
+  }
+  .cargo-badge__dot {
+    forced-color-adjust: none;
+    background: CanvasText;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  // The tests also run in Node (file checks, server rendering), so they get Node's types; the source does not.
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["../src", "."]
+}

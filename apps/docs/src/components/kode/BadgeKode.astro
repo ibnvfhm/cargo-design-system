@@ -1,0 +1,36 @@
+---
+import { META } from '@cargo/react/meta';
+import Sizes from '../../demos/badge/Sizes.tsx';
+import sizesSource from '../../demos/badge/Sizes.tsx?raw';
+import Types from '../../demos/badge/Types.tsx';
+import typesSource from '../../demos/badge/Types.tsx?raw';
+import Variants from '../../demos/badge/Variants.tsx';
+import variantsSource from '../../demos/badge/Variants.tsx?raw';
+import WithIcons from '../../demos/badge/WithIcons.tsx';
+import withIconsSource from '../../demos/badge/WithIcons.tsx?raw';
+import Example from './Example.astro';
+import Install from './Install.astro';
+import Reference from './Reference.astro';
+
+const meta = META.Badge;
+---
+
+<Install names={['Badge']} />
+
+<section class="kode-section">
+  <h2 class="section-title" id="contoh">Contoh</h2>
+  <Example id="jenis" title="Jenis" description="Label berisi teks, Counter berisi angka, Dot hanya titik. Dot diberi teks kalau titiknya punya arti, supaya terbaca screen reader." source={typesSource}>
+    <Types />
+  </Example>
+  <Example id="warna" title="Warna" description="Tujuh variant, masing-masing dengan appearance subtle (bawaan) dan solid." source={variantsSource}>
+    <Variants />
+  </Example>
+  <Example id="ukuran" title="Ukuran" description="md (bawaan), sm, dan xs." source={sizesSource}>
+    <Sizes />
+  </Example>
+  <Example id="ikon" title="Dengan ikon" description="leftIcon dan rightIcon menerima ikon apa saja; ukurannya otomatis 16px dan warnanya mengikuti variant." source={withIconsSource}>
+    <WithIcons />
+  </Example>
+</section>
+
+<Reference meta={meta} page="Badge" />

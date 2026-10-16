@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { flatten, load } from '../lib/resolve.mjs';
 
@@ -58,5 +59,30 @@ test('no role is smaller on desktop than on mobile', () => {
   for (const role of roles) {
     const [desktop, mobile] = MODES.map((mode) => px(files[mode][role]['font-size'].$value, role));
     assert.ok(desktop >= mobile, `${role}: desktop ${desktop}px < mobile ${mobile}px`);
+  }
+});
+
+// The built CSS switches to Desktop sizes from 768px, and data-device="desktop" or "mobile" forces one of the two for
+// an element and everything inside it (dist/ is committed with src/, so it is checked here too).
+test('every brand CSS file has the Desktop media block and both data-device scopes, with every role', () => {
+  const css = readFileSync(new URL('../dist/css/uic.css', import.meta.url), 'utf8');
+  const block = (selector) => {
+    const start = css.indexOf(`${selector} {`);
+    assert.ok(start >= 0, `${selector} is missing`);
+    return css.slice(start, css.indexOf('}', start));
+  };
+  const scopes = {
+    desktop: [block(':root:not([data-device="mobile"])'), block('[data-device="desktop"]')],
+    mobile: [block('[data-device="mobile"]')],
+  };
+  assert.ok(css.includes('@media (min-width: 768px) {\n  :root:not([data-device="mobile"]) {'), 'Desktop sizes start at 768px');
+  for (const [mode, blocks] of Object.entries(scopes)) {
+    for (const text of blocks) {
+      for (const role of roles) {
+        for (const prop of PROPS) {
+          assert.ok(text.includes(`--cargo-${role}-${prop}: ${files[mode][role][prop].$value};`), `${mode}: ${role}.${prop}`);
+        }
+      }
+    }
   }
 });

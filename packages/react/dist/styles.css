@@ -1,0 +1,185 @@
+/*
+ * Jangan edit file ini langsung.
+ * Dibuat otomatis dari packages/react/src dengan `npm run build`.
+ */
+.cargo-visually-hidden {
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+.cargo-badge {
+  --_subtle-bg: var(--cargo-color-bg-brand-subtle);
+  --_subtle-fg: var(--cargo-color-text-brand);
+  --_subtle-icon: var(--cargo-color-icon-brand);
+  --_solid-bg: var(--cargo-color-bg-brand);
+  --_solid-fg: var(--cargo-color-text-on-brand);
+  --_solid-icon: var(--cargo-color-icon-on-brand);
+  --_bg: var(--_subtle-bg);
+  --_fg: var(--_subtle-fg);
+  --_icon: var(--_subtle-icon);
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  gap: var(--cargo-space-4);
+  border-radius: var(--cargo-radius-full);
+  background: var(--_bg);
+  color: var(--_fg);
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  white-space: nowrap;
+  vertical-align: middle;
+  display: inline-flex;
+}
+
+.cargo-badge[data-appearance="solid"] {
+  --_bg: var(--_solid-bg);
+  --_fg: var(--_solid-fg);
+  --_icon: var(--_solid-icon);
+}
+
+.cargo-badge[data-variant="info"] {
+  --_subtle-bg: var(--cargo-color-bg-info-subtle);
+  --_subtle-fg: var(--cargo-color-text-info);
+  --_subtle-icon: var(--cargo-color-icon-info);
+  --_solid-bg: var(--cargo-color-bg-info);
+  --_solid-fg: var(--cargo-color-text-on-info);
+  --_solid-icon: var(--cargo-color-icon-on-info);
+}
+
+.cargo-badge[data-variant="warning"] {
+  --_subtle-bg: var(--cargo-color-bg-warning-subtle);
+  --_subtle-fg: var(--cargo-color-text-warning);
+  --_subtle-icon: var(--cargo-color-icon-warning);
+  --_solid-bg: var(--cargo-color-bg-warning);
+  --_solid-fg: var(--cargo-color-text-on-warning);
+  --_solid-icon: var(--cargo-color-icon-on-warning);
+}
+
+.cargo-badge[data-variant="success"] {
+  --_subtle-bg: var(--cargo-color-bg-success-subtle);
+  --_subtle-fg: var(--cargo-color-text-success);
+  --_subtle-icon: var(--cargo-color-icon-success);
+  --_solid-bg: var(--cargo-color-bg-success);
+  --_solid-fg: var(--cargo-color-text-on-success);
+  --_solid-icon: var(--cargo-color-icon-on-success);
+}
+
+.cargo-badge[data-variant="danger"] {
+  --_subtle-bg: var(--cargo-color-bg-error-subtle);
+  --_subtle-fg: var(--cargo-color-text-error);
+  --_subtle-icon: var(--cargo-color-icon-error);
+  --_solid-bg: var(--cargo-color-bg-error);
+  --_solid-fg: var(--cargo-color-text-on-error);
+  --_solid-icon: var(--cargo-color-icon-on-error);
+}
+
+.cargo-badge[data-variant="gray"] {
+  --_subtle-bg: var(--cargo-color-bg-secondary);
+  --_subtle-fg: var(--cargo-color-text-secondary);
+  --_subtle-icon: var(--cargo-color-icon-secondary);
+  --_solid-bg: var(--cargo-color-bg-inverse);
+  --_solid-fg: var(--cargo-color-text-inverse);
+  --_solid-icon: var(--cargo-color-icon-inverse);
+}
+
+.cargo-badge[data-variant="accent"] {
+  --_subtle-bg: var(--cargo-color-bg-accent-subtle);
+  --_subtle-fg: var(--cargo-color-text-accent);
+  --_subtle-icon: var(--cargo-color-icon-accent);
+  --_solid-bg: var(--cargo-color-bg-accent);
+  --_solid-fg: var(--cargo-color-text-on-accent);
+  --_solid-icon: var(--cargo-color-icon-on-accent);
+}
+
+.cargo-badge[data-type="label"] {
+  padding: var(--cargo-space-4) var(--cargo-space-8);
+  font-size: var(--cargo-body-font-size);
+  font-weight: var(--cargo-font-weight-bold);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+}
+
+.cargo-badge[data-type="label"]:is([data-size="sm"], [data-size="xs"]) {
+  font-size: var(--cargo-small-font-size);
+  line-height: var(--cargo-small-line-height);
+  letter-spacing: var(--cargo-small-letter-spacing);
+}
+
+.cargo-badge[data-type="label"][data-size="xs"] {
+  padding: var(--cargo-space-2) var(--cargo-space-6);
+}
+
+.cargo-badge__icon {
+  color: var(--_icon);
+  flex: none;
+  display: inline-flex;
+}
+
+.cargo-badge__icon > svg {
+  width: 16px;
+  height: 16px;
+}
+
+.cargo-badge[data-type="counter"] {
+  --_size: 22px;
+  min-width: var(--_size);
+  height: var(--_size);
+  padding: 0 var(--cargo-space-2);
+  font-size: var(--cargo-body-font-size);
+  font-weight: var(--cargo-font-weight-medium);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+}
+
+.cargo-badge[data-type="counter"][data-size="sm"] {
+  --_size: 20px;
+  font-size: var(--cargo-small-font-size);
+  line-height: var(--cargo-small-line-height);
+  letter-spacing: var(--cargo-small-letter-spacing);
+}
+
+.cargo-badge[data-type="counter"][data-size="xs"] {
+  --_size: 18px;
+  font-size: var(--cargo-extra-small-font-size);
+  line-height: var(--cargo-extra-small-line-height);
+  letter-spacing: var(--cargo-extra-small-letter-spacing);
+}
+
+.cargo-badge[data-type="dot"] {
+  --_size: 20px;
+  width: var(--_size);
+  height: var(--_size);
+  background: none;
+}
+
+.cargo-badge[data-type="dot"][data-size="sm"] {
+  --_size: 18px;
+}
+
+.cargo-badge[data-type="dot"][data-size="xs"] {
+  --_size: 16px;
+}
+
+.cargo-badge__dot {
+  border-radius: var(--cargo-radius-full);
+  background: var(--_bg);
+  width: 8px;
+  height: 8px;
+}
+
+@media (forced-colors: active) {
+  .cargo-badge:not([data-type="dot"]) {
+    border: var(--cargo-border-width-1) solid CanvasText;
+  }
+
+  .cargo-badge__dot {
+    forced-color-adjust: none;
+    background: canvastext;
+  }
+}

@@ -1,5 +1,6 @@
 ---
-import { COMPONENT_TABS } from '../lib/components.mjs';
+import { tabsOf as tabsOfComponent } from '../lib/code.mjs';
+import { components } from '../lib/components.mjs';
 import { SECTIONS, SIDEBAR, url } from '../lib/site.mjs';
 import { BRAND_GROUPS } from '../lib/tokens.mjs';
 
@@ -16,10 +17,14 @@ const sectionLabel = SECTIONS.find((item) => item.id === section)?.label;
 // A page two levels deep, such as /komponen/button/, also holds its tabs below it.
 const holds = (href) => href !== path && href.split('/').filter(Boolean).length >= 2 && path.startsWith(href);
 // The open component lists its other tabs under its name, as Soul does.
-const tabsOf = (href) =>
-  section === 'komponen' && href !== '/komponen/' && (href === path || holds(href))
-    ? COMPONENT_TABS.filter((tab) => tab.path).map((tab) => ({ label: tab.label, href: `${href}${tab.path}` }))
+const tabsOf = (href) => {
+  const component = components.find((item) => href === `/komponen/${item.slug}/`);
+  return section === 'komponen' && component && (href === path || holds(href))
+    ? tabsOfComponent(component)
+        .filter((tab) => tab.path)
+        .map((tab) => ({ label: tab.label, href: `${href}${tab.path}` }))
     : [];
+};
 ---
 
 <aside class="sidebar" id="sidebar" data-sidebar>

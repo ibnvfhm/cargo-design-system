@@ -1,0 +1,25 @@
+---
+import CodeBlock from '../CodeBlock.astro';
+import { REACT_PACKAGE } from '../../lib/code.mjs';
+import { url } from '../../lib/site.mjs';
+
+interface Props {
+  /** The components this page imports. */
+  names: string[];
+}
+
+const { names } = Astro.props;
+const code = `import '@cargo/tokens/css/uic';
+import '@cargo/react/styles.css';
+import { ${names.join(', ')} } from '@cargo/react';`;
+---
+
+<section class="kode-section">
+  <h2 class="section-title" id="pemasangan">Pemasangan</h2>
+  <p class="section-intro">
+    Bagian dari paket <code class="inline-code">{REACT_PACKAGE.name}</code> versi {REACT_PACKAGE.version}. Muat file brand dan
+    <code class="inline-code">styles.css</code> sekali untuk seluruh aplikasi, misalnya di <code class="inline-code">app/layout.tsx</code>. Caranya
+    ada di <a href={url('/mulai/developer/#komponen-react')}>Mulai mengembangkan</a>.
+  </p>
+  <div class="kode-block"><CodeBlock code={code} lang="tsx" title="TSX" /></div>
+</section>

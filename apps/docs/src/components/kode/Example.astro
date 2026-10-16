@@ -1,0 +1,102 @@
+---
+import CodeBlock from '../CodeBlock.astro';
+
+interface Props {
+  /** Anchor of the example heading. */
+  id: string;
+  title: string;
+  description?: string;
+  /** The demo file's source (import it with ?raw), shown below the demo so it can be copied. */
+  source: string;
+}
+
+const { id, title, description, source } = Astro.props;
+// The demo files live in the docs; in an app the icons come from the app's own icon component.
+const code = source.replace("from '../icons';", "from './icons'; // ikon dari set ikon Cargo");
+---
+
+<section class="example">
+  <h3 class="example-title" id={id}>{title}</h3>
+  {description && <p class="example-text">{description}</p>}
+  <div class="demo" data-demo>
+    <div class="demo-bar">
+      <span class="demo-label" id={`${id}-device`}>Device</span>
+      <div class="demo-devices" role="group" aria-labelledby={`${id}-device`}>
+        <button type="button" data-demo-device="" aria-pressed="true">Otomatis</button>
+        <button type="button" data-demo-device="desktop" aria-pressed="false">Desktop</button>
+        <button type="button" data-demo-device="mobile" aria-pressed="false">Mobile</button>
+      </div>
+    </div>
+    <div class="demo-stage" data-demo-stage>
+      <slot />
+    </div>
+  </div>
+  <div class="example-code"><CodeBlock code={code} lang="tsx" title="TSX" /></div>
+</section>
+
+<script>
+  // Device switch: data-device on the stage forces Desktop or Mobile sizes, like Figma's Device property. Otomatis
+  // follows the screen width (Desktop from 768px).
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-demo-device]')) {
+    button.addEventListener('click', () => {
+      const demo = button.closest('[data-demo]');
+      const stage = demo?.querySelector<HTMLElement>('[data-demo-stage]');
+      if (!demo || !stage) return;
+      const device = button.dataset.demoDevice;
+      if (device) stage.dataset.device = device;
+      else delete stage.dataset.device;
+      demo.querySelectorAll('[data-demo-device]').forEach((other) => other.setAttribute('aria-pressed', String(other === button)));
+    });
+  }
+</script>
+
+<style>
+  /* Every example gets the same gap; the first one after a heading is set in global.css. */
+  .example { margin-top: var(--cargo-space-40); }
+  .example-title {
+    margin: 0 0 var(--cargo-space-8);
+    font-size: var(--cargo-title-font-size);
+    font-weight: var(--cargo-font-weight-bold);
+    line-height: var(--cargo-title-line-height);
+  }
+  .example-text { max-width: 680px; margin: 0 0 var(--cargo-space-16); color: var(--cargo-color-text-secondary); }
+  .demo {
+    overflow: hidden;
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12) var(--cargo-radius-12) 0 0;
+  }
+  .demo-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--cargo-space-8);
+    padding: var(--cargo-space-8) var(--cargo-space-12);
+    border-bottom: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    background: var(--cargo-color-bg-secondary);
+  }
+  .demo-label { color: var(--cargo-color-text-tertiary); font-size: 12px; }
+  .demo-devices { display: flex; gap: 2px; padding: 2px; border-radius: var(--cargo-radius-6); background: var(--cargo-color-bg-tertiary); }
+  .demo-devices button {
+    padding: var(--cargo-space-2) var(--cargo-space-8);
+    border: 0;
+    border-radius: var(--cargo-radius-4);
+    background: none;
+    color: var(--cargo-color-text-secondary);
+    font-size: 12px;
+    line-height: 18px;
+    cursor: pointer;
+  }
+  .demo-devices button[aria-pressed='true'] { background: var(--cargo-color-bg-elevated); color: var(--cargo-color-text-default); box-shadow: var(--cargo-shadow-sm); }
+  /* The stage is the product surface: bg/default, so the demo shows what an app page shows. */
+  .demo-stage {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--cargo-space-16);
+    padding: var(--cargo-space-24);
+    background: var(--cargo-color-bg-default);
+    color: var(--cargo-color-text-default);
+  }
+  .example-code :global(.code-block) { margin: 0; border-top: 0; border-radius: 0 0 var(--cargo-radius-12) var(--cargo-radius-12); }
+</style>

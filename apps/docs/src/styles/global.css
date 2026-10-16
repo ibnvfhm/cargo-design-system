@@ -56,7 +56,8 @@ button,
 input,
 select { font: inherit; color: inherit; }
 
-:focus-visible {
+/* :where() keeps this rule at zero specificity, so the @cargo/react components keep their own focus styles. */
+:where(:focus-visible) {
   outline: none;
   box-shadow: var(--cargo-focus-ring-default);
   border-radius: var(--cargo-radius-4);
@@ -538,6 +539,21 @@ h1, h2, h3, h4 { margin: 0; font-weight: var(--cargo-font-weight-bold); }
   border-radius: var(--cargo-radius-12);
   font-size: 14px;
 }
+/* Kode tab */
+.kode-section + .kode-section { margin-top: var(--cargo-space-48); }
+.kode-section > .section-title + .example,
+.kode-section > .kode-subtitle + .example { margin-top: var(--cargo-space-20); }
+.kode-block { margin-top: var(--cargo-space-16); }
+.kode-note { max-width: 680px; margin: var(--cargo-space-8) 0 0; color: var(--cargo-color-text-secondary); font-size: 14px; line-height: 20px; }
+.kode-subtitle {
+  margin: 0;
+  font-size: var(--cargo-title-font-size);
+  font-weight: var(--cargo-font-weight-bold);
+  line-height: var(--cargo-title-line-height);
+}
+.kode-list { margin: var(--cargo-space-12) 0 0; padding-left: var(--cargo-space-20); color: var(--cargo-color-text-secondary); }
+.kode-list li + li { margin-top: var(--cargo-space-6); }
+
 /* From 1280px the outline on the right lists the same sections. */
 @media (min-width: 1280px) {
   .set-nav { display: none; }

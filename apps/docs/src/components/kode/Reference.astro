@@ -1,0 +1,127 @@
+---
+import type { ComponentMeta } from '@cargo/react/meta';
+import data from '../../data/components.json';
+import { PROPERTY_TYPES } from '../../lib/components.mjs';
+
+interface Props {
+  meta: ComponentMeta;
+  /** The Figma page the component lives on. */
+  page: string;
+  /** h2 on a page with one component, h3 under the component's own h2 on a page with several. */
+  level?: 2 | 3;
+  idPrefix?: string;
+}
+
+const { meta, page, level = 2, idPrefix = '' } = Astro.props;
+const Heading = level === 2 ? 'h2' : 'h3';
+const headingClass = level === 2 ? 'section-title' : 'kode-subtitle';
+const figmaPage = data.pages.find((item) => item.page === page);
+
+// One row per Figma variant property and component property, for the set and the helper sets it covers.
+const rowsOf = (setName, axes, properties) => {
+  const set = figmaPage?.sets.find((item) => item.name === setName);
+  const propTypes = new Map((set?.props ?? []).map(([name, type]) => [name, type]));
+  return [
+    ...Object.entries(axes).map(([name, axis]) => ({
+      figma: name,
+      kind: PROPERTY_TYPES.VARIANT,
+      code: 'figmaOnly' in axis ? null : axis.prop,
+      values: 'figmaOnly' in axis ? [] : Object.entries(axis.values),
+      note: 'figmaOnly' in axis ? axis.figmaOnly : (axis.note ?? ''),
+    })),
+    ...Object.entries(properties).map(([name, property]) => ({
+      figma: name,
+      kind: PROPERTY_TYPES[propTypes.get(name)] ?? '',
+      code: 'figmaOnly' in property ? null : property.prop,
+      values: [],
+      note: 'figmaOnly' in property ? property.figmaOnly : (property.note ?? ''),
+    })),
+  ];
+};
+const groups = [
+  { set: meta.figmaSet, rows: rowsOf(meta.figmaSet, meta.axes, meta.properties) },
+  ...Object.entries(meta.helperSets ?? {}).map(([name, helper]) => ({ set: name, rows: rowsOf(name, helper.axes, helper.properties) })),
+];
+---
+
+<section class="kode-section">
+  <Heading class={headingClass} id={`${idPrefix}properti`}>Properti</Heading>
+  <div class="table-wrap kode-block">
+    <table class="table">
+      <thead>
+        <tr><th>Prop</th><th>Tipe</th><th>Bawaan</th><th>Dari Figma</th><th>Keterangan</th></tr>
+      </thead>
+      <tbody>
+        {
+          meta.props.map((prop) => (
+            <tr>
+              <td class="nowrap"><code>{prop.name}</code></td>
+              <td><code class="type">{prop.type}</code></td>
+              <td class="nowrap">{prop.default ? <code>{prop.default}</code> : <span class="muted">–</span>}</td>
+              <td>{prop.figma ?? <span class="muted">Hanya di kode</span>}</td>
+              <td class="desc">{prop.description}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <p class="kode-note">Atribut HTML lain, seperti <code>id</code> dan <code>onClick</code>, juga bisa dipakai. <code>className</code> ditambahkan ke elemen terluar.</p>
+</section>
+
+<section class="kode-section">
+  <Heading class={headingClass} id={`${idPrefix}figma-ke-kode`}>Figma ke kode</Heading>
+  <p class="kode-note">Setiap variant property dan properti komponen di Figma, dan padanannya di kode.</p>
+  {
+    groups.map((group) => (
+      <div class="table-wrap kode-block">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Figma{groups.length > 1 ? `: ${group.set}` : ''}</th>
+              <th>Jenis</th>
+              <th>Kode</th>
+              <th>Catatan</th>
+            </tr>
+          </thead>
+          <tbody>
+            {group.rows.map((row) => (
+              <tr>
+                <td class="nowrap">{row.figma}</td>
+                <td class="nowrap muted">{row.kind}</td>
+                <td class="nowrap">{row.code ? <code>{row.code}</code> : <span class="muted">Hanya di Figma</span>}</td>
+                <td class="desc">
+                  {row.values.length > 0 && (
+                    <span class="values">
+                      {row.values.map(([figma, code]) => (
+                        <span class="value">
+                          {figma} → <code>{code}</code>
+                        </span>
+                      ))}
+                    </span>
+                  )}
+                  {row.note && <span class="value-note">{row.note}</span>}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ))
+  }
+</section>
+
+<section class="kode-section">
+  <Heading class={headingClass} id={`${idPrefix}aksesibilitas`}>Aksesibilitas</Heading>
+  <ul class="kode-list">
+    {meta.accessibility.map((item) => <li>{item}</li>)}
+  </ul>
+</section>
+
+<style>
+  .type { white-space: normal; }
+  .values { display: flex; flex-wrap: wrap; gap: var(--cargo-space-4) var(--cargo-space-12); }
+  .value { white-space: nowrap; }
+  .value-note { display: block; }
+  .values + .value-note { margin-top: var(--cargo-space-4); }
+</style>

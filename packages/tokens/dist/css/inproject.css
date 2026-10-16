@@ -518,10 +518,11 @@
   }
 }
 
-/* Tipografi: ukuran Mobile di atas, ukuran Desktop mulai lebar 768px. */
+/* Tipografi: ukuran Mobile di atas, ukuran Desktop mulai lebar 768px. data-device="desktop" atau
+   data-device="mobile" memaksa salah satunya untuk elemen itu dan isinya, seperti data-theme untuk mode warna. */
 
 @media (min-width: 768px) {
-  :root {
+  :root:not([data-device="mobile"]) {
     --cargo-heading-1-font-size: 36px;
     --cargo-heading-1-line-height: 54px;
     --cargo-heading-1-letter-spacing: -1px;
@@ -553,6 +554,72 @@
     --cargo-display-3-line-height: 40px;
     --cargo-display-3-letter-spacing: -0.38px;
   }
+}
+
+[data-device="desktop"] {
+  --cargo-heading-1-font-size: 36px;
+  --cargo-heading-1-line-height: 54px;
+  --cargo-heading-1-letter-spacing: -1px;
+  --cargo-heading-2-font-size: 24px;
+  --cargo-heading-2-line-height: 34px;
+  --cargo-heading-2-letter-spacing: -0.48px;
+  --cargo-heading-3-font-size: 18px;
+  --cargo-heading-3-line-height: 24px;
+  --cargo-heading-3-letter-spacing: -0.18px;
+  --cargo-title-font-size: 16px;
+  --cargo-title-line-height: 22px;
+  --cargo-title-letter-spacing: -0.16px;
+  --cargo-body-font-size: 14px;
+  --cargo-body-line-height: 20px;
+  --cargo-body-letter-spacing: -0.14px;
+  --cargo-small-font-size: 12px;
+  --cargo-small-line-height: 16px;
+  --cargo-small-letter-spacing: 0px;
+  --cargo-extra-small-font-size: 10px;
+  --cargo-extra-small-line-height: 14px;
+  --cargo-extra-small-letter-spacing: 0.1px;
+  --cargo-display-1-font-size: 60px;
+  --cargo-display-1-line-height: 62px;
+  --cargo-display-1-letter-spacing: -1.2px;
+  --cargo-display-2-font-size: 48px;
+  --cargo-display-2-line-height: 50px;
+  --cargo-display-2-letter-spacing: 0px;
+  --cargo-display-3-font-size: 38px;
+  --cargo-display-3-line-height: 40px;
+  --cargo-display-3-letter-spacing: -0.38px;
+}
+
+[data-device="mobile"] {
+  --cargo-heading-1-font-size: 24px;
+  --cargo-heading-1-line-height: 34px;
+  --cargo-heading-1-letter-spacing: -0.48px;
+  --cargo-heading-2-font-size: 18px;
+  --cargo-heading-2-line-height: 24px;
+  --cargo-heading-2-letter-spacing: -0.18px;
+  --cargo-heading-3-font-size: 16px;
+  --cargo-heading-3-line-height: 22px;
+  --cargo-heading-3-letter-spacing: -0.16px;
+  --cargo-title-font-size: 14px;
+  --cargo-title-line-height: 20px;
+  --cargo-title-letter-spacing: -0.14px;
+  --cargo-body-font-size: 12px;
+  --cargo-body-line-height: 16px;
+  --cargo-body-letter-spacing: 0px;
+  --cargo-small-font-size: 10px;
+  --cargo-small-line-height: 14px;
+  --cargo-small-letter-spacing: 0.1px;
+  --cargo-extra-small-font-size: 8px;
+  --cargo-extra-small-line-height: 11px;
+  --cargo-extra-small-letter-spacing: 0.16px;
+  --cargo-display-1-font-size: 48px;
+  --cargo-display-1-line-height: 50px;
+  --cargo-display-1-letter-spacing: -0.48px;
+  --cargo-display-2-font-size: 38px;
+  --cargo-display-2-line-height: 40px;
+  --cargo-display-2-letter-spacing: -0.76px;
+  --cargo-display-3-font-size: 28px;
+  --cargo-display-3-line-height: 30px;
+  --cargo-display-3-letter-spacing: 0px;
 }
 
 /* Text style, sama dengan di Figma: body/medium menjadi .cargo-text-body-medium. */

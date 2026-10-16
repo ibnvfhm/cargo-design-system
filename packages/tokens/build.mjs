@@ -52,6 +52,10 @@ StyleDictionary.registerFormat({
   format: async ({ dictionary, options, file }) => {
     const dark = darkCss.get(options.brand.id);
     const darkVariables = (indentation) => cssVariables(dark, dark.allTokens.filter(isSemantic), indentation, false);
+    // Size, line height and letter spacing of every typography role; font family and weight are the same in both modes.
+    const desktopRoles = (indentation) =>
+      cssVariables(desktopTypographyCss, desktopTypographyCss.allTokens.filter((t) => !NON_ROLE.includes(t.path[0])), indentation, false);
+    const isMobileRole = (token) => fromFolder('typography')(token) && !NON_ROLE.includes(token.path[0]);
     return (
       (await fileHeader({ file })) +
       [
@@ -60,13 +64,10 @@ StyleDictionary.registerFormat({
         `:root,\n[data-theme="light"] {\n  color-scheme: light;\n${cssVariables(dictionary, dictionary.allTokens.filter(isSemantic), '  ')}\n}`,
         `[data-theme="dark"] {\n  color-scheme: dark;\n${darkVariables('  ')}\n}`,
         `@media (prefers-color-scheme: dark) {\n  :root:not([data-theme="light"]) {\n    color-scheme: dark;\n${darkVariables('    ')}\n  }\n}`,
-        `/* Tipografi: ukuran Mobile di atas, ukuran Desktop mulai lebar ${DESKTOP_MIN_WIDTH}. */`,
-        `@media (min-width: ${DESKTOP_MIN_WIDTH}) {\n  :root {\n${cssVariables(
-          desktopTypographyCss,
-          desktopTypographyCss.allTokens.filter((t) => !NON_ROLE.includes(t.path[0])),
-          '    ',
-          false,
-        )}\n  }\n}`,
+        `/* Tipografi: ukuran Mobile di atas, ukuran Desktop mulai lebar ${DESKTOP_MIN_WIDTH}. data-device="desktop" atau\n   data-device="mobile" memaksa salah satunya untuk elemen itu dan isinya, seperti data-theme untuk mode warna. */`,
+        `@media (min-width: ${DESKTOP_MIN_WIDTH}) {\n  :root:not([data-device="mobile"]) {\n${desktopRoles('    ')}\n  }\n}`,
+        `[data-device="desktop"] {\n${desktopRoles('  ')}\n}`,
+        `[data-device="mobile"] {\n${cssVariables(dictionary, dictionary.allTokens.filter(isMobileRole), '  ', false)}\n}`,
         '/* Text style, sama dengan di Figma: body/medium menjadi .cargo-text-body-medium. */',
         ...textStyles(dictionary).map(({ role, weight, family }) => {
           const name = (path) => `var(--${dictionary.allTokens.find((t) => t.path.join('.') === path).name})`;
