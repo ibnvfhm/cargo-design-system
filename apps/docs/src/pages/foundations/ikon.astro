@@ -185,7 +185,9 @@ const details = Object.fromEntries(
   });
   dialog.querySelector('[data-dialog-download]').addEventListener('click', () => {
     const variant = style === 'fill' && fills[current] ? 'Fill' : 'Regular';
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">${markup(current)}</svg>\n`;
+    // A saved file has no Cargo CSS variables, so parts drawn in icon/inverse get its Light value.
+    const body = markup(current).replaceAll('var(--cargo-color-icon-inverse)', '#FFFFFF');
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">${body}</svg>\n`;
     const link = document.createElement('a');
     link.href = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
     link.download = `Icon-${current}-${variant}.svg`;
