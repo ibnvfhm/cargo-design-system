@@ -11,18 +11,22 @@ const LABEL = { pass: 'Lolos', excepted: 'Pengecualian', fail: 'Tidak lolos' };
 const TAG = { pass: 'tag-success', excepted: 'tag-warning', fail: 'tag-error' };
 const count = (set, kind) => set.rows.filter((row) => status(row) === kind).length;
 const brands = [...new Map(results.map((set) => [set.brand, set.brandName])).entries()];
+const title = (set) => `${set.brandName} · ${set.modeName}`;
 
-// Only the table for the brand and mode picked in the top bar is shown.
-const visibility = results
-  .map((set) => `html[data-brand="${set.brand}"][data-theme="${set.mode}"] .contrast-set[data-set="${set.brand}-${set.mode}"]{display:block}`)
-  .join('');
+// One detail table, filled with the first brand and mode. Every brand and mode has the same pairs in the same order,
+// so the script below only swaps the colours, ratios and results when the brand or mode changes. Rendering a table
+// for each of the brands and modes would make this page several megabytes.
+const initial = results[0];
+const data = Object.fromEntries(
+  results.map((set) => [`${set.brand}-${set.mode}`, { title: title(set), rows: set.rows.map((row) => [row.fgHex, row.bgHex, ratioLabel(row.ratio), status(row)]) }]),
+);
 ---
 
 <Base title="Kontras" width="wide" description="Hasil cek kontras warna Cargo Design System untuk setiap brand dan mode (WCAG 2.2 AA).">
   <PageHeader
     eyebrow="Foundations · Warna"
     title="Kontras"
-    lead={`Untuk setiap brand dan mode, ${results[0].rows.length} pasangan warna dicek: setiap teks, ikon, dan garis terhadap latar tempat ia biasa dipakai.`}
+    lead={`Untuk setiap brand dan mode, ${initial.rows.length} pasangan warna dicek: setiap teks, ikon, dan garis terhadap latar tempat ia biasa dipakai.`}
   />
 
   <div class="prose intro">
@@ -74,58 +78,80 @@ const visibility = results
       <p class="section-intro">Tabel di bawah mengikuti brand dan mode yang kamu pilih.</p>
     </div>
     <ThemeSwitcher />
-    {
-      results.map((set) => (
-        <div class="contrast-set" data-set={`${set.brand}-${set.mode}`}>
-          <p class="set-title">
-            {set.brandName} · {set.modeName}
-          </p>
-          <div class="table-wrap">
-            <table class="table contrast-table">
-              <thead>
-                <tr>
-                  <th>Contoh</th>
-                  <th>Warna</th>
-                  <th>Latar</th>
-                  <th>Kontras</th>
-                  <th>Minimum</th>
-                  <th>Hasil</th>
+    <div class="contrast-set">
+      <p class="set-title" data-set-title>{title(initial)}</p>
+      <div class="table-wrap">
+        <table class="table contrast-table">
+          <thead>
+            <tr>
+              <th>Contoh</th>
+              <th>Warna</th>
+              <th>Latar</th>
+              <th>Kontras</th>
+              <th>Minimum</th>
+              <th>Hasil</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              initial.rows.map((row) => (
+                <tr data-row>
+                  <td>
+                    <span class="sample" style={`background: ${row.bgHex}; color: ${row.fgHex}`} data-sample>
+                      {row.fg.startsWith('text') && <span class="sample-text">Aa</span>}
+                      {row.fg.startsWith('icon') && <Icon name="Bell" variant="fill" size={18} />}
+                      {row.fg.startsWith('border') && <span class="sample-border" style={`border-color: ${row.fgHex}`} data-sample-border />}
+                    </span>
+                  </td>
+                  <td class="nowrap">
+                    <code>{row.fg.replace('.', '/')}</code>
+                    <span class="hex" data-fg-hex>{row.fgHex}</span>
+                  </td>
+                  <td class="nowrap">
+                    <code>{row.bg.replace('.', '/')}</code>
+                    <span class="hex" data-bg-hex>{row.bgHex}</span>
+                  </td>
+                  <td class="nowrap ratio" data-ratio>{ratioLabel(row.ratio)}</td>
+                  <td class="nowrap muted">{row.min}:1</td>
+                  <td class="nowrap">
+                    <span class:list={['tag', TAG[status(row)]]} data-tag>{LABEL[status(row)]}</span>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {set.rows.map((row) => (
-                  <tr>
-                    <td>
-                      <span class="sample" style={`background: ${row.bgHex}; color: ${row.fgHex}`}>
-                        {row.fg.startsWith('text') && <span class="sample-text">Aa</span>}
-                        {row.fg.startsWith('icon') && <Icon name="Bell" variant="fill" size={18} />}
-                        {row.fg.startsWith('border') && <span class="sample-border" style={`border-color: ${row.fgHex}`} />}
-                      </span>
-                    </td>
-                    <td class="nowrap">
-                      <code>{row.fg.replace('.', '/')}</code>
-                      <span class="hex">{row.fgHex}</span>
-                    </td>
-                    <td class="nowrap">
-                      <code>{row.bg.replace('.', '/')}</code>
-                      <span class="hex">{row.bgHex}</span>
-                    </td>
-                    <td class="nowrap ratio">{ratioLabel(row.ratio)}</td>
-                    <td class="nowrap muted">{row.min}:1</td>
-                    <td class="nowrap">
-                      <span class:list={['tag', TAG[status(row)]]}>{LABEL[status(row)]}</span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      ))
-    }
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script is:inline type="application/json" id="contrast-data" set:html={JSON.stringify(data)} />
+    <script is:inline define:vars={{ LABEL, TAG }}>
+      // Shows the detail table for the brand and mode picked on the page. Runs right after the table, so a saved choice
+      // never flashes the first brand's values.
+      const sets = JSON.parse(document.getElementById('contrast-data').textContent);
+      const render = () => {
+        const { brand, theme } = document.documentElement.dataset;
+        const set = sets[`${brand}-${theme}`];
+        if (!set) return;
+        document.querySelector('[data-set-title]').textContent = set.title;
+        document.querySelectorAll('[data-row]').forEach((row, i) => {
+          const [fg, bg, ratio, result] = set.rows[i];
+          const sample = row.querySelector('[data-sample]');
+          sample.style.background = bg;
+          sample.style.color = fg;
+          row.querySelector('[data-sample-border]')?.style.setProperty('border-color', fg);
+          row.querySelector('[data-fg-hex]').textContent = fg;
+          row.querySelector('[data-bg-hex]').textContent = bg;
+          row.querySelector('[data-ratio]').textContent = ratio;
+          const tag = row.querySelector('[data-tag]');
+          tag.classList.remove(...Object.values(TAG));
+          tag.classList.add(TAG[result]);
+          tag.textContent = LABEL[result];
+        });
+      };
+      render();
+      document.addEventListener('cargo:theme', render);
+    </script>
   </section>
-
-  <Fragment set:html={`<style>.contrast-set{display:none}${visibility}</style>`} />
 </Base>
 
 <style>

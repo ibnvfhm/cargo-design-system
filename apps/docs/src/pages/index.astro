@@ -5,11 +5,12 @@ import Base from '../layouts/Base.astro';
 import { components } from '../lib/components.mjs';
 import { ICONS } from '../lib/icons.mjs';
 import { SITE, url } from '../lib/site.mjs';
-import { COUNTS, brandRefs, brandSwatches } from '../lib/tokens.mjs';
+import { BRAND_GROUPS, BRAND_SUMMARY, COUNTS, brandRefs, brandSwatches, listed } from '../lib/tokens.mjs';
 
-const swatches = brandSwatches();
+const swatches = new Map(brandSwatches().map((brand) => [brand.id, brand]));
+const [brandTheme, ...productGroups] = BRAND_GROUPS;
 const stats = [
-  { value: COUNTS.brands, label: 'brand dengan warna khasnya sendiri' },
+  { value: COUNTS.brands, label: 'brand dan produk dengan warna khasnya sendiri' },
   { value: COUNTS.modes, label: 'mode warna: Light dan Dark' },
   { value: COUNTS.semantic, label: 'token warna semantic' },
   { value: COUNTS.textStyles, label: 'text style untuk desktop dan mobile' },
@@ -34,10 +35,15 @@ const stats = [
       <div class="hero-brands">
         <span>Coba brand lain:</span>
         {
-          swatches.map((brand) => (
-            <button class="brand-swatch" type="button" data-set-brand={brand.id} style={`--swatch: ${brand.dark}`} title={brand.name}>
-              <span class="sr-only">{brand.name}</span>
-            </button>
+          BRAND_GROUPS.map((group, index) => (
+            <Fragment>
+              {index > 0 && <span class="swatch-divider" aria-hidden="true" />}
+              {group.brands.map((brand) => (
+                <button class="brand-swatch" type="button" data-set-brand={brand.id} style={`--swatch: ${swatches.get(brand.id).dark}`} title={brand.name}>
+                  <span class="sr-only">{brand.name}</span>
+                </button>
+              ))}
+            </Fragment>
           ))
         }
       </div>
@@ -104,8 +110,8 @@ const stats = [
       untuk menyelesaikan kebutuhan pengguna.
     </p>
     <p>
-      Satu sistem melayani <strong>lima brand</strong>: UIC, INTI, InMeterai, InCivas, dan InCustoms. Setiap brand punya warna khas dalam mode
-      Light dan Dark, sementara komponennya tetap sama. Coba ganti brand dan mode di bar atas: seluruh situs ini ikut berubah, karena situs
+      Satu sistem melayani <strong>{BRAND_SUMMARY}</strong>: {listed(brandTheme.brands.map((brand) => brand.name))}{productGroups.map((group) => `, serta produk ${group.parent.name}: ${listed(group.brands.map((brand) => brand.name))}`)}.
+      Setiap brand dan produk punya warna khas dalam mode Light dan Dark, sementara komponennya tetap sama. Coba ganti brand dan mode di bar atas: seluruh situs ini ikut berubah, karena situs
       ini juga dibangun dengan token Cargo.
     </p>
   </section>
@@ -187,7 +193,7 @@ const stats = [
         <p class="tier-name">Brand Theme</p>
         <span class="tier-swatch tier-swatch-brand"></span>
         <code class="tier-token"><span class="only-light">color/brand/light/fill</span><span class="only-dark">color/brand/dark/fill</span></code>
-        <p class="tier-text">Warna khas setiap brand. Di Figma, satu mode untuk setiap brand.</p>
+        <p class="tier-text">Warna khas setiap brand dan produk. Di Figma, satu mode untuk setiap brand dan produk.</p>
       </div>
       <Icon name="ArrowLeft" class="tier-arrow" />
       <div class="tier tier-semantic">
@@ -268,13 +274,15 @@ const stats = [
   .hero-actions { display: flex; flex-wrap: wrap; gap: var(--cargo-space-12); margin-top: var(--cargo-space-32); }
   .hero-brands {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: var(--cargo-space-8);
     margin-top: var(--cargo-space-32);
     color: var(--cargo-color-midnight-30);
     font-size: 13px;
   }
-  .hero-brands span:first-child { margin-right: var(--cargo-space-4); }
+  /* The label gets its own line, so the swatches of every brand and product stay together below it. */
+  .hero-brands span:first-child { flex-basis: 100%; }
   .brand-swatch {
     width: 24px;
     height: 24px;
@@ -286,6 +294,7 @@ const stats = [
     cursor: pointer;
   }
   .brand-swatch[aria-pressed='true'] { box-shadow: 0 0 0 2px var(--cargo-color-midnight-100), 0 0 0 4px var(--cargo-color-white); }
+  .swatch-divider { width: 1px; height: 16px; margin: 0 var(--cargo-space-4); background: var(--cargo-color-midnight-70); }
 
   /* Collage of live components, sized like their Figma counterparts. */
   .collage { display: none; }

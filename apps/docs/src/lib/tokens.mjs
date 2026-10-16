@@ -1,7 +1,7 @@
 // Reads the token sources in packages/tokens/src, the same files the token build uses,
 // so every Foundations page matches Figma and the generated code.
 import { flatten, resolve } from '@tokens/lib/resolve.mjs';
-import { BRANDS, MODES } from '@tokens/lib/themes.mjs';
+import { BRANDS, FIGMA_MAX_MODES, MODES } from '@tokens/lib/themes.mjs';
 import { AA_TEXT, contrast } from '@tokens/lib/contrast.mjs';
 import { NON_TEXT, PAIRS } from '@tokens/lib/pairs.mjs';
 import exceptions from '@tokens/contrast-exceptions.json';
@@ -16,7 +16,27 @@ import desktop from '@tokens/src/typography/desktop.json';
 import mobile from '@tokens/src/typography/mobile.json';
 import shadow from '@tokens/src/shadow/shadow.json';
 
-export { AA_TEXT, BRANDS, MODES, NON_TEXT, contrast };
+export { AA_TEXT, BRANDS, FIGMA_MAX_MODES, MODES, NON_TEXT, contrast };
+
+// "UIC dan INTI", "UIC, INTI, dan InCivas".
+export const listed = (names) =>
+  names.length > 2 ? `${names.slice(0, -1).join(', ')}, dan ${names.at(-1)}` : names.join(' dan ');
+
+// Brands grouped as in Figma: the modes of the Brand Theme collection, then the products of each brand that has them
+// (the INTI Product collection). Brand pickers and the Brand Theme page follow these groups.
+export const BRAND_GROUPS = [
+  { id: 'brand', label: 'Brand', collection: 'Brand Theme', brands: BRANDS.filter((brand) => !brand.parent) },
+  ...BRANDS.filter((parent) => !parent.parent && BRANDS.some((brand) => brand.parent === parent.id)).map((parent) => ({
+    id: parent.id,
+    label: `Produk ${parent.name}`,
+    collection: `${parent.name} Product`,
+    parent,
+    brands: BRANDS.filter((brand) => brand.parent === parent.id),
+  })),
+];
+
+// "5 brand dan 8 produk INTI".
+export const BRAND_SUMMARY = listed(BRAND_GROUPS.map((group) => (group.parent ? `${group.brands.length} produk ${group.parent.name}` : `${group.brands.length} brand`)));
 
 const brandFiles = import.meta.glob('@tokens/src/brand/*.json', { eager: true, import: 'default' });
 const brandJson = (id) => {

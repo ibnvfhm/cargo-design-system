@@ -7,7 +7,8 @@ import { ICONS } from '../../lib/icons.mjs';
 import { url } from '../../lib/site.mjs';
 import {
   BORDER_WIDTH,
-  BRANDS,
+  BRAND_GROUPS,
+  BRAND_SUMMARY,
   COUNTS,
   FONT_FAMILIES,
   FONT_WEIGHTS,
@@ -24,7 +25,12 @@ const brandTokens = brandThemes()[0].modes.reduce((total, mode) => total + mode.
 const typographyTokens = FONT_FAMILIES.length + FONT_WEIGHTS.length + ROLES.length * 3;
 const collections = [
   { name: 'Primitive', content: `${COUNTS.primitive} warna mentah`, modes: '—', page: '/foundations/palet/' },
-  { name: 'Brand Theme', content: `${brandTokens} token warna brand`, modes: BRANDS.map((brand) => brand.name).join(', '), page: '/foundations/brand/' },
+  ...BRAND_GROUPS.map((group) => ({
+    name: group.collection,
+    content: group.parent ? `${brandTokens} token warna produk ${group.parent.name}, dipakai lewat Brand Theme mode ${group.parent.name}` : `${brandTokens} token warna brand`,
+    modes: [...(group.parent ? [`${group.parent.name} (bawaan)`] : []), ...group.brands.map((brand) => brand.name)].join(', '),
+    page: '/foundations/brand/',
+  })),
   { name: 'Semantic', content: `${COUNTS.semantic} token warna`, modes: 'Light, Dark', page: '/foundations/warna/' },
   {
     name: 'Dimension',
@@ -46,7 +52,7 @@ const collections = [
   <div class="card-grid card-grid--2">
     <LinkCard href={url('/foundations/warna/')} icon="Stack" title="Token warna" text={`${COUNTS.semantic} token semantic untuk latar, teks, ikon, dan garis.`} />
     <LinkCard href={url('/foundations/palet/')} icon="SquareFour" title="Palet primitive" text={`${COUNTS.primitive} warna mentah, skala 10 sampai 100.`} />
-    <LinkCard href={url('/foundations/brand/')} icon="Building" title="Tema brand" text={`Warna khas ${BRANDS.length} brand dalam mode Light dan Dark.`} />
+    <LinkCard href={url('/foundations/brand/')} icon="Building" title="Tema brand" text={`Warna khas ${BRAND_SUMMARY} dalam mode Light dan Dark.`} />
     <LinkCard href={url('/foundations/kontras/')} icon="CheckSquareOffset" title="Kontras" text={`${COUNTS.pairs} pasangan warna dicek untuk setiap brand dan mode.`} />
     <LinkCard href={url('/foundations/tipografi/')} icon="FileText" title="Tipografi" text={`${ROLES.length} peran dan ${COUNTS.textStyles} text style, ukuran Desktop dan Mobile.`} />
     <LinkCard href={url('/foundations/ukuran/')} icon="Table" title="Spacing dan radius" text="Grid 4px untuk jarak, sudut, dan tebal garis." />

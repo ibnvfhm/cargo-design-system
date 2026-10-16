@@ -1,21 +1,27 @@
 ---
 import Icon from './Icon.astro';
-import { brandSwatches } from '../lib/tokens.mjs';
-
-const swatches = brandSwatches();
+import { BRAND_GROUPS } from '../lib/tokens.mjs';
 ---
 
 <div class="switcher">
-  <div class="switcher-brands" role="group" aria-label="Brand">
-    {
-      swatches.map((brand) => (
-        <button class="switcher-btn" type="button" data-set-brand={brand.id} aria-pressed="false">
-          <span class="dot" style={`--light: ${brand.light}; --dark: ${brand.dark}`} />
-          {brand.name}
-        </button>
-      ))
-    }
-  </div>
+  <label class="switcher-brand">
+    <span>Brand</span>
+    <span class="field">
+      <span class="dot" aria-hidden="true"></span>
+      <select data-brand-select>
+        {
+          BRAND_GROUPS.map((group) => (
+            <optgroup label={group.label}>
+              {group.brands.map((brand) => (
+                <option value={brand.id}>{brand.name}</option>
+              ))}
+            </optgroup>
+          ))
+        }
+      </select>
+      <Icon class="caret" name="CaretDown" size={16} />
+    </span>
+  </label>
   <div class="switcher-modes" role="group" aria-label="Mode">
     <button class="switcher-btn" type="button" data-set-theme="light" aria-pressed="false"><Icon name="Sun" size={16} />Light</button>
     <button class="switcher-btn" type="button" data-set-theme="dark" aria-pressed="false"><Icon name="Moon" size={16} />Dark</button>
@@ -39,9 +45,43 @@ const swatches = brandSwatches();
     background: var(--cargo-color-bg-elevated);
     box-shadow: var(--cargo-shadow-sm);
   }
-  .switcher-brands,
-  .switcher-modes { display: flex; flex-wrap: wrap; gap: var(--cargo-space-4); }
-  .switcher-modes { padding: 2px; border-radius: var(--cargo-radius-8); background: var(--cargo-color-bg-secondary); }
+  .switcher-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--cargo-space-8);
+    padding-left: var(--cargo-space-4);
+    color: var(--cargo-color-text-secondary);
+    font-size: 13px;
+    font-weight: var(--cargo-font-weight-medium);
+  }
+  .field { position: relative; display: flex; align-items: center; }
+  .field select {
+    appearance: none;
+    min-width: 168px;
+    height: 36px;
+    padding: 0 var(--cargo-space-32) 0 34px;
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-default);
+    border-radius: var(--cargo-radius-8);
+    background: var(--cargo-color-bg-default);
+    color: var(--cargo-color-text-default);
+    font-size: 14px;
+    font-weight: var(--cargo-font-weight-medium);
+    cursor: pointer;
+  }
+  .field select:hover { border-color: var(--cargo-color-border-strong); }
+  .field select:focus-visible { outline: none; box-shadow: var(--cargo-focus-ring-default); }
+  /* The dot always shows the chosen brand's main fill in the current mode. */
+  .dot {
+    position: absolute;
+    left: var(--cargo-space-12);
+    width: 14px;
+    height: 14px;
+    border-radius: var(--cargo-radius-full);
+    background: var(--cargo-color-bg-brand);
+    pointer-events: none;
+  }
+  .field :global(.caret) { position: absolute; right: var(--cargo-space-8); color: var(--cargo-color-icon-secondary); pointer-events: none; }
+  .switcher-modes { display: flex; flex-wrap: wrap; gap: var(--cargo-space-4); padding: 2px; border-radius: var(--cargo-radius-8); background: var(--cargo-color-bg-secondary); }
   .switcher-btn {
     display: inline-flex;
     align-items: center;
@@ -57,12 +97,5 @@ const swatches = brandSwatches();
     cursor: pointer;
   }
   .switcher-btn:hover { background: var(--cargo-color-bg-tertiary); color: var(--cargo-color-text-default); }
-  .switcher-brands .switcher-btn[aria-pressed='true'] {
-    border-color: var(--cargo-color-border-brand);
-    background: var(--cargo-color-bg-brand-subtle);
-    color: var(--cargo-color-text-brand);
-  }
   .switcher-modes .switcher-btn[aria-pressed='true'] { background: var(--cargo-color-bg-elevated); color: var(--cargo-color-text-default); box-shadow: var(--cargo-shadow-sm); }
-  .dot { width: 12px; height: 12px; border-radius: var(--cargo-radius-full); background: var(--light); }
-  :global([data-theme='dark']) .dot { background: var(--dark); }
 </style>

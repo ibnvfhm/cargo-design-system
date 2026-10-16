@@ -2,66 +2,70 @@
 import PageHeader from '../../components/PageHeader.astro';
 import Base from '../../layouts/Base.astro';
 import { url } from '../../lib/site.mjs';
-import { brandThemes } from '../../lib/tokens.mjs';
+import { BRAND_GROUPS, BRAND_SUMMARY, FIGMA_MAX_MODES, brandThemes, listed } from '../../lib/tokens.mjs';
 
-const brands = brandThemes();
+const themes = new Map(brandThemes().map((brand) => [brand.id, brand]));
+// One table per Figma collection: Brand Theme, then the product collection of each brand that has products.
+const groups = BRAND_GROUPS.map((group) => ({ ...group, themes: group.brands.map((brand) => themes.get(brand.id)) }));
+const [top, ...productGroups] = groups;
 const MODE_TITLE = { light: 'Grup light (dipakai mode Light)', dark: 'Grup dark (dipakai mode Dark)' };
 ---
 
-<Base title="Tema brand" width="wide" description="Brand Theme Cargo: 16 token warna khas untuk setiap brand.">
+<Base title="Tema brand" width="wide" description={`Brand Theme Cargo: 16 token warna khas untuk ${BRAND_SUMMARY}.`}>
   <PageHeader
     eyebrow="Foundations · Warna"
     title="Tema brand"
-    lead="Brand Theme menyimpan warna khas setiap brand. Setiap brand punya 16 token dengan nama yang sama, jadi token semantic seperti bg/brand cocok untuk brand mana pun."
+    lead={`Brand Theme menyimpan warna khas ${BRAND_SUMMARY}. Semuanya punya 16 token dengan nama yang sama, jadi token semantic seperti bg/brand cocok untuk brand dan produk mana pun.`}
   />
 
   <div class="prose intro">
     <ul>
-      <li>Di Figma, Brand Theme adalah satu collection dengan satu mode untuk setiap brand. Di kode, setiap brand punya file sendiri.</li>
+      <li>
+        Di Figma, {listed(top.brands.map((brand) => brand.name))} adalah mode di collection <strong>Brand Theme</strong>.
+        {
+          productGroups.map((group) => (
+            <Fragment>
+              Produk {group.parent.name} ({listed(group.brands.map((brand) => brand.name))}) adalah mode di collection <strong>{group.collection}</strong>,
+              yang dipakai lewat Brand Theme mode {group.parent.name}.
+            </Fragment>
+          ))
+        }
+        Satu collection Figma memuat maksimal {FIGMA_MAX_MODES} mode.
+      </li>
+      <li>Di kode, setiap brand dan produk punya file sendiri, misalnya <code>packages/tokens/src/brand/inbot.json</code>.</li>
       <li>Grup <code>light</code> dipakai mode Light, grup <code>dark</code> dipakai mode Dark.</li>
       <li>Tokennya selalu menunjuk ke primitive, dan tidak dipakai langsung di desain. Desain memakai <a href={url('/foundations/warna/')}>token semantic</a>.</li>
     </ul>
   </div>
 
   {
-    ['light', 'dark'].map((mode, modeIndex) => (
+    productGroups.map((group) => (
       <section class="section">
-        <div class="section-head">
-          <h2 class="section-title">{MODE_TITLE[mode]}</h2>
+        <div class="section-head prose">
+          <h2>Memakai produk {group.parent.name} di Figma</h2>
+          <p>Atur mode di frame paling luar. Komponen di dalamnya otomatis mengikuti.</p>
         </div>
         <div class="table-wrap">
-          <table class="table brand-table">
+          <table class="table">
             <thead>
-              <tr>
-                <th>Token</th>
-                {brands.map((brand) => (
-                  <th>{brand.name}</th>
-                ))}
-              </tr>
+              <tr><th>Mendesain</th><th>Brand Theme</th><th>{group.collection}</th></tr>
             </thead>
             <tbody>
-              {brands[0].modes[modeIndex].tokens.map((first, row) => (
-                <tr>
-                  <td class="token">
-                    <code class="token-name">color/brand/{mode}/{first.key}</code>
-                    <span class="desc-line">{first.description}</span>
-                  </td>
-                  {brands.map((brand) => {
-                    const token = brand.modes[modeIndex].tokens[row];
-                    return (
-                      <td>
-                        <span class="cell">
-                          <span class="chip" style={`background: ${token.hex}`} />
-                          <span>
-                            <code>{token.ref}</code>
-                            <span class="hex">{token.hex}</span>
-                          </span>
-                        </span>
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
+              <tr>
+                <td>{listed(group.brands.map((brand) => brand.name))}</td>
+                <td>{group.parent.name}</td>
+                <td>Produknya, misalnya {group.brands[0].name}</td>
+              </tr>
+              <tr>
+                <td>{group.parent.name}</td>
+                <td>{group.parent.name}</td>
+                <td class="muted">{group.parent.name} (bawaan), tidak perlu diatur</td>
+              </tr>
+              <tr>
+                <td>{listed(top.brands.filter((brand) => brand.id !== group.parent.id).map((brand) => brand.name))}</td>
+                <td>Brand masing-masing</td>
+                <td class="muted">Tidak berpengaruh, biarkan saja</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -69,20 +73,89 @@ const MODE_TITLE = { light: 'Grup light (dipakai mode Light)', dark: 'Grup dark 
     ))
   }
 
+  {
+    ['light', 'dark'].map((mode, modeIndex) => (
+      <section class="section">
+        <div class="section-head">
+          <h2 class="section-title">{MODE_TITLE[mode]}</h2>
+        </div>
+        {groups.map((group) => (
+          <div class="group">
+            <h3 class="group-title">{group.collection}</h3>
+            <div class="table-wrap">
+              <table class="table brand-table" style={`min-width: ${260 + group.themes.length * 150}px`}>
+                <thead>
+                  <tr>
+                    <th>Token</th>
+                    {group.themes.map((brand) => (
+                      <th>{brand.name}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {group.themes[0].modes[modeIndex].tokens.map((first, row) => (
+                    <tr>
+                      <td class="token">
+                        <code class="token-name">color/brand/{mode}/{first.key}</code>
+                        <span class="desc-line">{first.description}</span>
+                      </td>
+                      {group.themes.map((brand) => {
+                        const token = brand.modes[modeIndex].tokens[row];
+                        return (
+                          <td>
+                            <span class="cell">
+                              <span class="chip" style={`background: ${token.hex}`} />
+                              <span>
+                                <code>{token.ref}</code>
+                                <span class="hex">{token.hex}</span>
+                              </span>
+                            </span>
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        ))}
+      </section>
+    ))
+  }
+
   <section class="section prose">
-    <h2>Menambah brand</h2>
+    <h2>Menambah brand atau produk</h2>
+    <p>
+      <strong>Brand baru</strong> menjadi mode di Brand Theme, yang sekarang memakai {top.brands.length} dari {FIGMA_MAX_MODES} mode.
+    </p>
     <ol>
       <li>Di Figma, tambah satu mode di collection Brand Theme dan isi ke-16 tokennya dengan primitive.</li>
       <li>Di repositori, tambah file <code>packages/tokens/src/brand/&lt;brand&gt;.json</code> dengan 16 token yang sama.</li>
       <li>Tambah satu baris di <code>packages/tokens/lib/themes.mjs</code>, lalu jalankan <code>npm run build</code> dan <code>npm test</code>.</li>
     </ol>
-    <p>Kalau brand baru butuh palet baru, tambahkan dulu paletnya di Primitive.</p>
+    {
+      productGroups.map((group) => (
+        <Fragment>
+          <p>
+            <strong>Produk {group.parent.name} baru</strong> menjadi mode di {group.collection}, yang sekarang memakai {group.brands.length + 1} dari{' '}
+            {FIGMA_MAX_MODES} mode (termasuk mode {group.parent.name}).
+          </p>
+          <ol>
+            <li>Di Figma, tambah satu mode di collection {group.collection} dan isi ke-16 tokennya dengan primitive.</li>
+            <li>Di repositori, tambah file brand seperti di atas, dan di <code>themes.mjs</code> beri baris barunya <code>parent: '{group.parent.id}'</code>.</li>
+          </ol>
+        </Fragment>
+      ))
+    }
+    <p>Kalau brand atau produk baru butuh palet baru, tambahkan dulu paletnya di Primitive. Tes otomatis gagal kalau sebuah collection butuh lebih dari {FIGMA_MAX_MODES} mode.</p>
   </section>
 </Base>
 
 <style>
   .intro { margin-bottom: var(--cargo-space-8); }
-  .brand-table { min-width: 980px; }
+  .group + .group { margin-top: var(--cargo-space-24); }
+  .group-title { margin: 0 0 var(--cargo-space-12); font-size: 16px; font-weight: var(--cargo-font-weight-bold); }
   .token { min-width: 240px; }
   .token-name { font-size: 13px; font-weight: var(--cargo-font-weight-bold); }
   .desc-line { display: block; margin-top: 2px; color: var(--cargo-color-text-tertiary); font-size: 12px; line-height: 16px; }

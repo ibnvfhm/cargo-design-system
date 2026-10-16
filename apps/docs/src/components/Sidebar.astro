@@ -1,7 +1,7 @@
 ---
 import { COMPONENT_TABS } from '../lib/components.mjs';
 import { SECTIONS, SIDEBAR, url } from '../lib/site.mjs';
-import { BRANDS } from '../lib/tokens.mjs';
+import { BRAND_GROUPS } from '../lib/tokens.mjs';
 
 interface Props {
   section: string;
@@ -30,7 +30,15 @@ const tabsOf = (href) =>
     <label>
       Brand
       <select data-brand-select>
-        {BRANDS.map((brand) => <option value={brand.id}>{brand.name}</option>)}
+        {
+          BRAND_GROUPS.map((group) => (
+            <optgroup label={group.label}>
+              {group.brands.map((brand) => (
+                <option value={brand.id}>{brand.name}</option>
+              ))}
+            </optgroup>
+          ))
+        }
       </select>
     </label>
   </div>

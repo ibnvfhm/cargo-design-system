@@ -2,7 +2,7 @@
 import Icon from './Icon.astro';
 import Logo from './Logo.astro';
 import { SECTIONS, url } from '../lib/site.mjs';
-import { BRANDS } from '../lib/tokens.mjs';
+import { BRAND_GROUPS } from '../lib/tokens.mjs';
 
 interface Props {
   section: string;
@@ -52,7 +52,15 @@ const { section } = Astro.props;
       <span class="sr-only">Brand</span>
       <span class="brand-dot" aria-hidden="true"></span>
       <select data-brand-select>
-        {BRANDS.map((brand) => <option value={brand.id}>{brand.name}</option>)}
+        {
+          BRAND_GROUPS.map((group) => (
+            <optgroup label={group.label}>
+              {group.brands.map((brand) => (
+                <option value={brand.id}>{brand.name}</option>
+              ))}
+            </optgroup>
+          ))
+        }
       </select>
       <Icon class="caret" name="CaretDown" size={16} />
     </label>

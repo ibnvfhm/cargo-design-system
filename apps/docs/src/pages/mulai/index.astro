@@ -59,8 +59,8 @@ const brands = brandThemes().map((brand) => {
     <ul>
       <li><strong>Primitive</strong>: semua warna mentah, dinamai sesuai warnanya, misalnya <code>color/imperial/70</code>. Tidak dipakai langsung.</li>
       <li>
-        <strong>Brand Theme</strong>: warna khas setiap brand, misalnya <code>color/brand/light/fill</code>. Di Figma ada satu mode untuk setiap
-        brand.
+        <strong>Brand Theme</strong>: warna khas setiap brand dan produk, misalnya <code>color/brand/light/fill</code>. Di Figma ada satu mode
+        untuk setiap brand; produk INTI ada di collection INTI Product, yang dipakai lewat mode INTI.
       </li>
       <li>
         <strong>Semantic</strong>: tugas warna, misalnya <code>color/bg/brand</code> untuk latar tombol utama. Ada dua mode, Light dan Dark, dengan
@@ -100,7 +100,7 @@ const brands = brandThemes().map((brand) => {
     <h2>Brand dan mode</h2>
     <p>
       Di Figma, setiap frame memilih satu brand (mode Brand Theme), satu mode warna (Light atau Dark), dan satu ukuran huruf (Desktop atau
-      Mobile). Komponen di dalamnya otomatis mengikuti. Di kode, brand dipilih dengan memakai file brand itu, dan mode dengan
+      Mobile). Untuk produk INTI, pilih INTI di Brand Theme, lalu produknya di INTI Product. Komponen di dalamnya otomatis mengikuti. Di kode, brand dipilih dengan memakai file brand itu, dan mode dengan
       <code>data-theme</code> di web atau kelas <code>Light</code>/<code>Dark</code> di mobile.
     </p>
   </div>

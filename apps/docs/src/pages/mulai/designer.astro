@@ -5,11 +5,13 @@ import Base from '../../layouts/Base.astro';
 import { components } from '../../lib/components.mjs';
 import { ICONS } from '../../lib/icons.mjs';
 import { SITE, url } from '../../lib/site.mjs';
-import { BRANDS, COUNTS, FOCUS_RINGS, SHADOWS } from '../../lib/tokens.mjs';
+import { BRAND_GROUPS, COUNTS, FOCUS_RINGS, SHADOWS } from '../../lib/tokens.mjs';
 
 // Sets whose name starts with a dot are building blocks: Figma does not publish them.
 const publishedSets = components.flatMap((component) => component.sets).filter((set) => !set.helper).length;
 const effectStyles = SHADOWS.tokens.length + FOCUS_RINGS.tokens.length;
+const names = (brands) => brands.map((brand) => brand.name).join(', ');
+const [brandTheme, ...productCollections] = BRAND_GROUPS;
 ---
 
 <Base title="Mulai mendesain" description="Cara memakai library Cargo Design System di file Figma baru.">
@@ -41,7 +43,7 @@ const effectStyles = SHADOWS.tokens.length + FOCUS_RINGS.tokens.length;
         namanya diawali titik, misalnya <code>.Page Item</code>, adalah bagian penyusun dan memang tidak ikut terbit.
       </li>
       <li>
-        <strong>Variables</strong>: Primitive, Brand Theme ({BRANDS.map((brand) => brand.name).join(', ')}), Semantic (Light dan Dark), Dimension,
+        <strong>Variables</strong>: Primitive, Brand Theme ({names(brandTheme.brands)}),{productCollections.map((group) => ` ${group.collection} (${group.parent.name}, ${names(group.brands)}),`)} Semantic (Light dan Dark), Dimension,
         dan Typography (Desktop dan Mobile).
       </li>
       <li><strong>Styles</strong>: {COUNTS.textStyles} text style dan {effectStyles} effect style ({SHADOWS.tokens.length} shadow dan {FOCUS_RINGS.tokens.length} cincin fokus).</li>
@@ -68,7 +70,16 @@ const effectStyles = SHADOWS.tokens.length + FOCUS_RINGS.tokens.length;
         <tr><th>Collection</th><th>Pilihan mode</th><th>Kapan diganti</th></tr>
       </thead>
       <tbody>
-        <tr><td>Brand Theme</td><td>{BRANDS.map((brand) => brand.name).join(', ')}</td><td class="desc">Sesuai produk yang sedang didesain.</td></tr>
+        <tr><td>Brand Theme</td><td>{names(brandTheme.brands)}</td><td class="desc">Sesuai brand yang sedang didesain.</td></tr>
+        {
+          productCollections.map((group) => (
+            <tr>
+              <td>{group.collection}</td>
+              <td>{group.parent.name} (bawaan), {names(group.brands)}</td>
+              <td class="desc">Untuk produk {group.parent.name}. Pilih {group.parent.name} di Brand Theme dulu, lalu produknya di sini.</td>
+            </tr>
+          ))
+        }
         <tr><td>Semantic</td><td>Light, Dark</td><td class="desc">Mode warna terang atau gelap.</td></tr>
         <tr><td>Typography</td><td>Desktop, Mobile</td><td class="desc">Ukuran huruf untuk layar lebar atau HP.</td></tr>
       </tbody>

@@ -5,6 +5,10 @@ import PageHeader from '../../components/PageHeader.astro';
 import Base from '../../layouts/Base.astro';
 import tokensPackage from '@tokens/package.json';
 import { SITE, url } from '../../lib/site.mjs';
+import { BRAND_GROUPS } from '../../lib/tokens.mjs';
+
+// "<code>uic</code>, …; produk INTI: <code>inaccount</code>, …": the folder and file name of every brand.
+const brandIds = BRAND_GROUPS.map((group) => (group.parent ? `produk ${group.parent.name}: ` : '') + group.brands.map((brand) => `<code>${brand.id}</code>`).join(', ')).join('; ');
 
 const css = `.button-primary {
   padding: var(--cargo-space-12) var(--cargo-space-16);
@@ -83,6 +87,7 @@ const tree = `packages/tokens/dist/
     </ul>
 
     <h2>Web (CSS, React, Next.js)</h2>
+    <p>Setiap brand dan produk punya file sendiri. Namanya <Fragment set:html={brandIds} />.</p>
     <p>Muat file brand-nya sekali, misalnya di <code>app/layout.tsx</code>:</p>
   </div>
   <div class="block"><CodeBlock code={`import '@cargo/tokens/css/uic';`} lang="ts" title="app/layout.tsx" /></div>

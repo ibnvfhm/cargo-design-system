@@ -3,13 +3,14 @@ import Icon from '../../components/Icon.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Base from '../../layouts/Base.astro';
 import tokensPackage from '@tokens/package.json';
+import { BRAND_SUMMARY } from '../../lib/tokens.mjs';
 import { components, figmaUrl } from '../../lib/components.mjs';
 import { url } from '../../lib/site.mjs';
 
 const steps = [
   { step: 1, name: 'Primitive colors', detail: 'Semua warna mentah, di Figma dan di kode.', status: 'done' },
   { step: 2, name: 'Semantic colors', detail: 'Tugas tiap warna: latar, teks, ikon, garis, dan status.', status: 'done' },
-  { step: 3, name: 'Tema brand dan mode gelap', detail: 'Lima brand, mode Light dan Dark.', status: 'done' },
+  { step: 3, name: 'Tema brand dan mode gelap', detail: `${BRAND_SUMMARY}, mode Light dan Dark.`, status: 'done' },
   { step: 4, name: 'Token non-warna', detail: 'Spacing, radius, tebal garis, tipografi, dan shadow.', status: 'done' },
   { step: 5, name: 'Token di komponen Figma', detail: 'Semua komponen dan ikon memakai token, dan setiap halaman komponen sudah direview.', status: 'done' },
   { step: 6, name: 'Paket developer dan situs dokumentasi', detail: `Token versi ${tokensPackage.version} dirilis, dan situs ini online serta diperbarui otomatis setiap ada perubahan di repo. Paket belum diterbitkan di npm.`, status: 'done' },

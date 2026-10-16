@@ -4,7 +4,7 @@ export const SITE = {
   name: 'Cargo Design System',
   tagline: 'Satu bahasa desain untuk semua produk Cargo.',
   description:
-    'Cargo Design System adalah kumpulan token, komponen, dan panduan yang dipakai bersama oleh designer dan developer untuk membangun produk UIC, INTI, InMeterai, InCivas, dan InCustoms.',
+    'Cargo Design System adalah kumpulan token, komponen, dan panduan yang dipakai bersama oleh designer dan developer untuk membangun produk UIC, INTI beserta produk-produknya, InMeterai, InCivas, dan InCustoms.',
   figma: 'https://www.figma.com/design/coH5y39eGFKMWPdU1EtY6f/Cargo-Design-System',
   repo: 'https://github.com/ibnvfhm/cargo-design-system',
 };
