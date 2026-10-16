@@ -1,0 +1,20 @@
+---
+import LinkCard from '../components/LinkCard.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Base from '../layouts/Base.astro';
+import { components } from '../lib/components.mjs';
+import { url } from '../lib/site.mjs';
+---
+
+<Base title="Halaman tidak ditemukan" toc={false}>
+  <PageHeader
+    eyebrow="404"
+    title="Halaman tidak ditemukan"
+    lead="Alamat ini tidak ada atau halamannya sudah dipindah. Coba cari lewat kotak pencarian di bar atas, atau mulai dari salah satu halaman berikut."
+  />
+  <div class="card-grid card-grid--2">
+    <LinkCard href={url('/')} icon="Home" title="Beranda" text="Pengenalan Cargo Design System dan cara memulai." />
+    <LinkCard href={url('/foundations/')} icon="Stack" title="Foundations" text="Warna, tipografi, spacing, shadow, dan ikon." />
+    <LinkCard href={url('/komponen/')} icon="SquareFour" title="Komponen" text={`${components.length} halaman komponen dari library Figma.`} />
+  </div>
+</Base>

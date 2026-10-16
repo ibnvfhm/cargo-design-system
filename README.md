@@ -69,6 +69,8 @@ npm run docs         # buka http://localhost:4321
 npm run docs:build   # membuat situs statis di apps/docs/dist
 ```
 
+Terbit online lewat [Vercel](https://vercel.com). Pengaturannya ada di `vercel.json`, jadi saat repo ini diimpor di Vercel tidak ada pengaturan yang perlu diubah. Vercel menjalankan `npm ci` dan `npm run docs:build`, lalu menerbitkan `apps/docs/dist`. Setiap perubahan di branch utama repo (saat ini `claude/ecstatic-cannon-vg2an8`) diterbitkan ulang otomatis dalam beberapa menit. Header `X-Robots-Tag: noindex` membuat situs tidak muncul di mesin pencari; hapus header itu kalau situs ini mau dibuka untuk umum.
+
 Data dari Figma disimpan di repo, karena situs tidak membaca Figma secara langsung:
 
 | File | Isi |
