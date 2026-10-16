@@ -11,8 +11,9 @@ Satu sumber kebenaran untuk warna, tipografi, spacing, dan komponen di semua pro
 | 3 | Tema brand (UIC, INTI, InMeterai, InCivas, InCustoms, dan 8 produk INTI) dan mode gelap | Selesai: 5 brand dan 8 produk INTI, mode Light dan Dark |
 | 4 | Token non-warna: tipografi, spacing, radius, shadow | Selesai: spacing, radius, tebal garis, tipografi, dan shadow |
 | 5 | Memasang token ke komponen Figma | Selesai: semua komponen dan ikon memakai token, style lama sudah dihapus, dan 33 halaman komponen sudah direview |
-| 6 | Paket developer dan situs dokumentasi | Selesai: token versi 0.3.0 dirilis (tag `v0.3.0`, lihat [CHANGELOG](CHANGELOG.md)) dan situs dokumentasi online di [cargo-design-system-docs.vercel.app](https://cargo-design-system-docs.vercel.app) (lihat [Situs dokumentasi](#situs-dokumentasi)). Paket belum diterbitkan di npm; file token diambil dari `packages/tokens/dist` |
+| 6 | Paket developer dan situs dokumentasi | Selesai: token versi 0.4.0 (tag `tokens-v0.4.0`, lihat [CHANGELOG](CHANGELOG.md)) dan situs dokumentasi online di [cargo-design-system-docs.vercel.app](https://cargo-design-system-docs.vercel.app) (lihat [Situs dokumentasi](#situs-dokumentasi)). Paket belum diterbitkan di npm; file token diambil dari `packages/tokens/dist` |
 | 7 | Menerbitkan library Figma | Siap diterbitkan: 363 variable di 6 collection, 7 effect style, dan 30 text style di Figma sudah sama persis dengan token 0.3.0 |
+| 8 | Komponen kode (React) | Berjalan: `@cargo/react` 0.1.0 berisi Badge, Button, Text Field, Text Area, Checkbox, Radio Button, Toggle, Chip, Tabs, dan Tooltip, masing-masing dengan tab Kode di situs dokumentasi (lihat [Komponen React](#komponen-react-untuk-developer)) |
 
 ## Cara kerjanya
 
@@ -62,7 +63,7 @@ Situs dokumentasi ada di `apps/docs`, dibuat dengan [Astro](https://astro.build)
 Isinya:
 - **Beranda dan Mulai**: pengenalan, panduan memakai library Figma, panduan memasang token, status, dan changelog.
 - **Foundations**: token warna, palet primitive, tema brand, kontras, tipografi, spacing dan radius, shadow, dan 186 ikon yang bisa dicari. Semuanya dibaca langsung dari `packages/tokens/src`, jadi selalu sama dengan file token.
-- **Komponen**: satu halaman per halaman komponen di Figma, dengan dua tab seperti Soul. Tab **Penggunaan** berisi status, gambar pratinjau (Light dan Dark), Kapan dipakai, Cara pakai, dan Hindari. Tab **Properti desain** (`/komponen/<nama>/properti-desain/`) berisi gambar setiap pilihan Size dan State, varian, properti, dan bagian penyusun. Panel kanan menampilkan daftar isi halaman.
+- **Komponen**: satu halaman per halaman komponen di Figma, dengan tab seperti Soul. Tab **Penggunaan** berisi status, gambar pratinjau (Light dan Dark), Kapan dipakai, Cara pakai, dan Hindari. Tab **Properti desain** (`/komponen/<nama>/properti-desain/`) berisi gambar setiap pilihan Size dan State, varian, properti, dan bagian penyusun. Halaman yang sudah punya komponen React mendapat tab **Kode** (`/komponen/<nama>/kode/`): pemasangan, contoh hidup dengan pilihan Device, properti, padanan Figma ke kode, dan aksesibilitas. Panel kanan menampilkan daftar isi halaman.
 
 Menjalankan di komputer sendiri (butuh Node.js 22.12 atau lebih baru):
 ```sh
@@ -85,13 +86,25 @@ Data dari Figma disimpan di repo, karena situs tidak membaca Figma secara langsu
 
 Kalau komponen, deskripsi, atau ikon di Figma berubah, data ini perlu diekspor ulang dari Figma. Perubahan token cukup lewat `packages/tokens/src`, tanpa ekspor ulang.
 
+Tab Kode membaca komponen langsung dari `packages/react/src`, sama seperti token. Build situs gagal kalau ada variant property, nilai, atau properti komponen di `components.json` yang belum punya padanan di file `*.meta.ts` komponennya.
+
 ## Isi repo
 
 ```
 apps/docs/                      situs dokumentasi (Astro)
 ├── src/pages/                   halaman: Beranda, Mulai, Foundations, Komponen
+├── src/components/kode/         isi tab Kode, satu file per halaman komponen
+├── src/demos/                   contoh di tab Kode, tampil hidup dan sebagai kode
 ├── src/data/                    data dari Figma: komponen dan ikon
 └── src/assets/komponen/         gambar pratinjau komponen dari Figma
+
+packages/react/                 komponen React (@cargo/react)
+├── src/<komponen>/              satu folder per komponen: Button.tsx, button.css, button.meta.ts, Button.test.tsx
+├── src/internal/                bagian bersama: label dan pesan field, ikon
+├── src/styles/                  gaya bersama: label field, teks untuk screen reader
+├── test/                        cek otomatis: render di server, hydration, CSS hanya token, 'use client', tipe
+├── scripts/build.mjs            tsc untuk JavaScript dan .d.ts, lightningcss untuk styles.css
+└── dist/                        hasil build, jangan diedit langsung
 
 packages/tokens/
 ├── src/
@@ -225,7 +238,7 @@ Daftar lengkapnya ada di [`dist/docs/dimension.md`](packages/tokens/dist/docs/di
 
 ## Aturan tipografi
 
-- **Dua mode, nama sama**: Desktop dan Mobile. Web memakai ukuran Mobile di layar kecil, lalu ukuran Desktop mulai lebar 768px. Aplikasi HP memakai ukuran Mobile.
+- **Dua mode, nama sama**: Desktop dan Mobile. Web memakai ukuran Mobile di layar kecil, lalu ukuran Desktop mulai lebar 768px. `data-device="mobile"` atau `data-device="desktop"` memaksa salah satunya untuk sebuah elemen dan isinya. Aplikasi HP memakai ukuran Mobile.
 - **10 peran**: `heading-1`, `heading-2`, `heading-3`, `title`, `body`, `small`, dan `extra-small` (huruf Inter, untuk aplikasi), serta `display-1` sampai `display-3` (huruf Montserrat, untuk judul besar di website).
 - **Setiap peran punya tiga token**: `font-size`, `line-height`, dan `letter-spacing`, semuanya dalam px. Letter spacing ditulis dalam px karena begitulah Figma menyimpannya; nilainya berasal dari persen ukuran huruf, misalnya -2% × 24px = -0.48px.
 - **Tebal huruf**: `regular` (400), `medium` (500), `bold` (700).
@@ -271,6 +284,44 @@ Beberapa pasangan sengaja dibiarkan di bawah standar atas keputusan designer. Pa
    ```
 4. Commit `src` dan `dist` bersama-sama, lalu catat perubahannya di [`CHANGELOG.md`](CHANGELOG.md).
 
+## Mengubah atau menambah komponen React
+
+1. Baca komponennya di Figma: ukuran, jarak, warna, text style, dan setiap variant property dan properti komponen.
+2. Tulis empat file di `packages/react/src/<komponen>/`:
+   - `Komponen.tsx`: nama komponen sama dengan nama set di Figma, prop sama dengan properti Figma, dan nilainya huruf kecil. Pakai elemen HTML asli.
+   - `komponen.css`: class `.cargo-<komponen>` dengan atribut `data-*`, isinya hanya token `var(--cargo-…)` ditambah px untuk ukuran Figma yang tidak punya token.
+   - `komponen.meta.ts`: properti untuk tab Kode, dan padanan setiap variant property dan properti Figma.
+   - `Komponen.test.tsx`: peran, keyboard, dan aksesibilitas (axe).
+3. Daftarkan di `src/index.ts`, `src/meta.ts`, `src/styles.css`, dan `test/examples.tsx`.
+4. Tambahkan isi tab Kode di `apps/docs/src/components/kode/` dan contohnya di `apps/docs/src/demos/`, lalu daftarkan halamannya di `apps/docs/src/lib/code.mjs`.
+5. Jalankan di `packages/react`:
+   ```sh
+   npm test             # komponen, render di server, CSS, dan 'use client'
+   npm run typecheck    # tipe, termasuk contoh yang harus ditolak TypeScript
+   npm run build        # membuat ulang dist/
+   ```
+6. Commit `src` dan `dist` bersama-sama, lalu catat perubahannya di [`CHANGELOG.md`](CHANGELOG.md).
+
+## Komponen React (untuk developer)
+
+Paket `@cargo/react` belum dipublikasikan. Sementara itu, salin `packages/react/dist/`. Paket ini mendukung React 18.3 dan 19.
+
+Muat file brand dan gaya komponen sekali, misalnya di `app/layout.tsx`, lalu pakai komponennya:
+```tsx
+import '@cargo/tokens/css/uic';
+import '@cargo/react/styles.css';
+import { Button, TextField } from '@cargo/react';
+
+<TextField label="Email" type="email" required />
+<Button type="submit">Masuk</Button>
+```
+
+- **Next.js**: komponen yang butuh JavaScript di browser sudah bertanda `'use client'`. Badge, Button, Toggle, dan CheckboxGroup bisa dirender di server component.
+- **Device**: ukuran Mobile di bawah lebar 768px dan Desktop mulai 768px. `data-device="mobile"` atau `"desktop"` di elemen mana pun, atau prop `device` di Button dan TextField, memaksa salah satunya.
+- **Nama dari Figma**: Type di Button, Chip, dan Tabs menjadi `variant`, dan Style di Badge menjadi `appearance`, karena `type` dan `style` sudah dipakai HTML dan React. State seperti Hover dan Focussed muncul sendiri; Disabled menjadi `disabled`.
+
+Contoh dan properti setiap komponen ada di tab Kode di situs dokumentasi.
+
 ## Memakai token (untuk developer)
 
 Paket `@cargo/tokens` belum dipublikasikan. Sementara itu, salin file brand yang dibutuhkan dari `packages/tokens/dist/`.
@@ -295,7 +346,7 @@ lalu pakai token semantic dan ukuran:
 ```
 Mode Dark otomatis mengikuti setelan sistem. Untuk memilih sendiri, pasang `data-theme="dark"` atau `data-theme="light"` di `<html>`, atau di elemen lain untuk satu bagian halaman saja.
 
-Untuk teks, pakai class text style. Ukurannya otomatis berganti di lebar 768px:
+Untuk teks, pakai class text style. Ukurannya otomatis berganti di lebar 768px, atau ikut `data-device="mobile"` dan `data-device="desktop"`:
 ```html
 <h1 class="cargo-text-heading-1-bold">Pengajuan cuti</h1>
 <p class="cargo-text-body-regular">Permintaanmu sudah dikirim.</p>

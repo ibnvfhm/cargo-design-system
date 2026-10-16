@@ -4,8 +4,11 @@ import PageHeader from '../../components/PageHeader.astro';
 import Base from '../../layouts/Base.astro';
 import tokensPackage from '@tokens/package.json';
 import { BRAND_SUMMARY } from '../../lib/tokens.mjs';
+import { codeOf, hasCode, REACT_PACKAGE } from '../../lib/code.mjs';
 import { components, figmaUrl } from '../../lib/components.mjs';
 import { url } from '../../lib/site.mjs';
+
+const codePages = components.filter(hasCode);
 
 const steps = [
   { step: 1, name: 'Primitive colors', detail: 'Semua warna mentah, di Figma dan di kode.', status: 'done' },
@@ -15,6 +18,12 @@ const steps = [
   { step: 5, name: 'Token di komponen Figma', detail: 'Semua komponen dan ikon memakai token, dan setiap halaman komponen sudah direview.', status: 'done' },
   { step: 6, name: 'Paket developer dan situs dokumentasi', detail: `Token versi ${tokensPackage.version} dirilis, dan situs ini online serta diperbarui otomatis setiap ada perubahan di repo. Paket belum diterbitkan di npm.`, status: 'done' },
   { step: 7, name: 'Menerbitkan library Figma', detail: `Variable, style, dan komponen di Figma sudah sama persis dengan token ${tokensPackage.version}. Tinggal diterbitkan dari Figma.`, status: 'progress' },
+  {
+    step: 8,
+    name: 'Komponen kode (React)',
+    detail: `${REACT_PACKAGE.name} ${REACT_PACKAGE.version} berisi ${codePages.length} halaman komponen pertama, masing-masing dengan tab Kode. Komponen lain menyusul bertahap.`,
+    status: 'progress',
+  },
 ];
 
 const LABEL = { done: 'Selesai', progress: 'Berjalan' };
@@ -51,12 +60,15 @@ const ready = components.filter((component) => component.ready).length;
 
   <div class="prose">
     <h2>Komponen</h2>
-    <p>{ready} dari {components.length} halaman komponen sudah direview dan diberi tanda ✅ di Figma.</p>
+    <p>
+      {ready} dari {components.length} halaman komponen sudah direview dan diberi tanda ✅ di Figma. {codePages.length} di antaranya sudah punya komponen
+      React.
+    </p>
   </div>
   <div class="table-wrap block">
     <table class="table">
       <thead>
-        <tr><th>Komponen</th><th>Kategori</th><th>Set</th><th>Varian</th><th>Status</th><th><span class="sr-only">Figma</span></th></tr>
+        <tr><th>Komponen</th><th>Kategori</th><th>Set</th><th>Varian</th><th>Status</th><th>Kode</th><th><span class="sr-only">Figma</span></th></tr>
       </thead>
       <tbody>
         {
@@ -68,6 +80,15 @@ const ready = components.filter((component) => component.ready).length;
               <td>{component.variants}</td>
               <td class="nowrap">
                 <span class:list={['tag', component.ready ? 'tag-success' : 'tag-warning']}>{component.ready ? 'Siap dipakai' : 'Direview'}</span>
+              </td>
+              <td class="nowrap">
+                {hasCode(component) ? (
+                  <a href={url(`/komponen/${component.slug}/kode/`)} title={codeOf(component).map((meta) => meta.name).join(', ')}>
+                    React
+                  </a>
+                ) : (
+                  <span class="muted">–</span>
+                )}
               </td>
               <td class="nowrap">
                 <a class="figma-link" href={figmaUrl(component.pageId)} target="_blank" rel="noopener">
@@ -85,8 +106,8 @@ const ready = components.filter((component) => component.ready).length;
     <h2>Berikutnya</h2>
     <ul>
       <li>Terbitkan library Figma supaya komponen, variable, dan style bisa dipakai di file lain.</li>
-      <li>Terbitkan paket token di npm supaya developer cukup menjalankan <code>npm install</code>, tanpa menyalin file dari repo.</li>
-      <li>Komponen kode (React dan Storybook) dengan nama dan properti yang sama dengan Figma.</li>
+      <li>Terbitkan paket token dan komponen di npm supaya developer cukup menjalankan <code>npm install</code>, tanpa menyalin file dari repo.</li>
+      <li>Komponen React berikutnya, misalnya Select, Search Bar, Modals, dan Section Message, dengan nama dan properti yang sama dengan Figma.</li>
     </ul>
   </div>
 </Base>

@@ -4,6 +4,8 @@ import Icon from '../../components/Icon.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Base from '../../layouts/Base.astro';
 import tokensPackage from '@tokens/package.json';
+import { hasCode, REACT_PACKAGE } from '../../lib/code.mjs';
+import { components } from '../../lib/components.mjs';
 import { SITE, url } from '../../lib/site.mjs';
 import { BRAND_GROUPS } from '../../lib/tokens.mjs';
 
@@ -22,6 +24,23 @@ const css = `.button-primary {
 
 const html = `<h1 class="cargo-text-heading-1-bold">Pengajuan cuti</h1>
 <p class="cargo-text-body-regular">Permintaanmu sudah dikirim.</p>`;
+
+const reactSetup = `import '@cargo/tokens/css/uic';
+import '@cargo/react/styles.css';`;
+
+const reactUse = `import { Button, TextField } from '@cargo/react';
+
+export function LoginForm() {
+  return (
+    <form>
+      <TextField label="Email" type="email" required />
+      <Button type="submit">Masuk</Button>
+    </form>
+  );
+}`;
+
+// Component pages with React components, for the list and links in the Komponen React section.
+const codePages = components.filter(hasCode);
 
 const js = `import { ColorBgBrand, ColorTextOnBrand } from '@cargo/tokens/js/uic/light';
 import { Space16, Radius8 } from '@cargo/tokens/js/dimension';
@@ -57,11 +76,11 @@ const tree = `packages/tokens/dist/
 └── ios/CargoDimension.swift, CargoTypographyMobile.swift, CargoShadow.swift, …`;
 ---
 
-<Base title="Mulai mengembangkan" description="Cara memasang token Cargo di web, Flutter, Android, dan iOS.">
+<Base title="Mulai mengembangkan" description="Cara memasang token dan komponen React Cargo di web, serta token di Flutter, Android, dan iOS.">
   <PageHeader
     eyebrow="Cara memulai"
     title="Mulai mengembangkan"
-    lead="Memasang token Cargo di web, Flutter, Android (Compose), dan iOS (SwiftUI). Komponen kode menyusul; yang tersedia sekarang adalah token."
+    lead="Memasang token dan komponen React Cargo di web, serta token di Flutter, Android (Compose), dan iOS (SwiftUI)."
   >
     <a class="btn btn-outlined btn-sm" href={SITE.repo} target="_blank" rel="noopener">Buka repositori<Icon name="ArrowUpRight" size={16} /></a>
   </PageHeader>
@@ -69,9 +88,10 @@ const tree = `packages/tokens/dist/
   <div class="note">
     <Icon name="Info" />
     <p>
-      Versi token terbaru: <strong>{tokensPackage.version}</strong> (lihat <a href={url('/mulai/changelog/')}>Changelog</a>). Paket
-      <code class="inline-code">@cargo/tokens</code> belum dipublikasikan ke npm. Sementara itu, salin file yang dibutuhkan dari folder
-      <code class="inline-code">packages/tokens/dist/</code> di repositori.
+      Versi terbaru: token <strong>{tokensPackage.version}</strong> dan komponen React <strong>{REACT_PACKAGE.version}</strong> (lihat
+      <a href={url('/mulai/changelog/')}>Changelog</a>). Paket <code class="inline-code">@cargo/tokens</code> dan
+      <code class="inline-code">@cargo/react</code> belum dipublikasikan ke npm. Sementara itu, salin folder <code class="inline-code">dist</code>
+      dari <code class="inline-code">packages/tokens/</code> dan <code class="inline-code">packages/react/</code> di repositori.
     </p>
   </div>
 
@@ -84,6 +104,7 @@ const tree = `packages/tokens/dist/
       </li>
       <li>Untuk jarak dan sudut, pakai <code>space</code>, <code>radius</code>, dan <code>border-width</code>. Angkanya sama di semua platform: px di web, dp di Android, pt di iOS.</li>
       <li>Untuk teks, pakai text style. Di web tersedia sebagai class, misalnya <code>.cargo-text-body-medium</code>.</li>
+      <li>Kalau komponennya sudah ada di <code>@cargo/react</code>, pakai komponen itu daripada membuat sendiri.</li>
     </ul>
 
     <h2>Web (CSS, React, Next.js)</h2>
@@ -107,6 +128,41 @@ const tree = `packages/tokens/dist/
   <div class="block"><CodeBlock code={html} lang="html" title="HTML" /></div>
   <div class="prose">
     <p>Font Inter dan Montserrat perlu dimuat sendiri, misalnya dari Google Fonts atau paket Fontsource.</p>
+
+    <h2 id="komponen-react">Komponen React</h2>
+    <p>
+      Paket <code>{REACT_PACKAGE.name}</code> {REACT_PACKAGE.version} berisi komponen dari halaman
+      <Fragment set:html={codePages.map((page) => `<a href="${url(`/komponen/${page.slug}/kode/`)}">${page.page}</a>`).join(', ')} />. Contoh, properti,
+      dan padanannya dengan Figma ada di tab <strong>Kode</strong> setiap halaman itu. Paket ini mendukung React 18.3 dan 19.
+    </p>
+    <p>Muat file brand dan gaya komponen sekali untuk seluruh aplikasi:</p>
+  </div>
+  <div class="block"><CodeBlock code={reactSetup} lang="ts" title="app/layout.tsx" /></div>
+  <div class="prose"><p>Lalu pakai komponennya:</p></div>
+  <div class="block"><CodeBlock code={reactUse} lang="tsx" title="login-form.tsx" /></div>
+  <div class="prose">
+    <h3>Next.js</h3>
+    <p>
+      Komponen yang butuh JavaScript di browser, seperti TextField, Checkbox, Tabs, dan Tooltip, sudah bertanda <code>'use client'</code>. Badge, Button,
+      Toggle, dan CheckboxGroup juga bisa dirender di server component. Event handler seperti <code>onClick</code> tetap hanya bisa dipasang dari client
+      component.
+    </p>
+    <h3>Brand, mode, dan Device</h3>
+    <p>
+      Komponen memakai token, jadi brand dan mode mengikuti file brand dan <code>data-theme</code> seperti di atas. Ukuran Device (tinggi tombol dan
+      kolom, ukuran ikon, dan tipografi) mengikuti lebar layar: Mobile di bawah 768px, Desktop mulai 768px. Untuk memaksa salah satunya, pasang
+      <code>data-device="mobile"</code> atau <code>data-device="desktop"</code> di elemen mana pun, atau prop <code>device</code> di Button dan TextField.
+    </p>
+    <h3>Nama dari Figma</h3>
+    <ul>
+      <li>Nama komponen sama dengan nama set di Figma: Text Field menjadi <code>TextField</code>, Radio Button menjadi <code>RadioButton</code>.</li>
+      <li>Properti Figma menjadi prop dengan nama yang sama (<code>size</code>), dan nilainya ditulis huruf kecil (<code>danger-outlined</code>).</li>
+      <li>
+        Nama yang sudah dipakai HTML atau React diganti: Type di Button, Chip, dan Tabs menjadi <code>variant</code>, dan Style di Badge menjadi
+        <code>appearance</code>.
+      </li>
+      <li>State seperti Hover, Pressed, dan Focussed muncul sendiri dari interaksi. Disabled menjadi <code>disabled</code>.</li>
+    </ul>
 
     <h2>JavaScript dan TypeScript</h2>
     <p>Warna dan cincin fokus ada di satu modul untuk setiap brand dan mode. Ukuran, tipografi, dan shadow masing-masing punya modul sendiri.</p>
@@ -139,6 +195,12 @@ const tree = `packages/tokens/dist/
     </p>
   </div>
   <div class="block"><CodeBlock code={tree} lang="plaintext" title="packages/tokens/dist" /></div>
+  <div class="prose">
+    <p>
+      Komponen React dibuat dari <code>packages/react/src</code> dengan <code>npm run build</code>: satu file JavaScript dan <code>.d.ts</code> per
+      komponen di <code>dist/</code>, dan semua gaya dalam <code>dist/styles.css</code>.
+    </p>
+  </div>
 </Base>
 
 <style>

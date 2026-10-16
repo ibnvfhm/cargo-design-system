@@ -1,6 +1,57 @@
 # Changelog
 
-Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/), dan nomor versi mengikuti [Semantic Versioning](https://semver.org/lang/id/).
+Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/), dan nomor versi mengikuti [Semantic Versioning](https://semver.org/lang/id/). Sejak ada dua paket, judul versi menyebut paketnya; versi tanpa nama paket adalah versi `@cargo/tokens`.
+
+## @cargo/react [0.1.0] - 2026-10-16
+
+Paket baru: komponen React dari library Figma, dengan nama, properti, dan token yang sama seperti di Figma.
+
+### Ditambahkan
+
+- 10 komponen dari 9 halaman komponen Figma:
+  - `Badge`: `type` (label, counter, dot), 7 `variant`, `size`, dan `appearance` (Style di Figma).
+  - `Button`: 8 `variant` (Type di Figma), `size` lg, md, dan sm, ikon kiri dan kanan, dan tombol ikon saja yang wajib punya `aria-label`.
+  - `TextField`: label, penanda wajib, prefix dan suffix, ikon, teks bantuan, pesan error, dan tombol hapus isian.
+  - `TextArea`: teks bantuan, pesan error, dan penghitung karakter.
+  - `Checkbox` dan `CheckboxGroup`: Size md dan sm, indeterminate, keterangan, dan pesan error.
+  - `RadioGroup` dan `RadioButton`.
+  - `Toggle`: saklar dengan `role="switch"`.
+  - `Chip`: Filter yang bisa dinyalakan, dan Input dengan tombol hapus.
+  - `Tabs`, `TabList`, `Tab`, dan `TabPanel`: pola Tabs WAI-ARIA dengan panah keyboard, ikon Fill untuk tab yang terbuka, dan Badge angka.
+  - `Tooltip`: arti Side dan Arrow sama dengan Figma. Posisinya dihitung `@floating-ui/react-dom`, tampil di lapisan teratas, dan bisa ditutup dengan Escape.
+- Ukuran Device otomatis, sama seperti tipografi: Mobile di bawah 768px dan Desktop mulai 768px. `data-device` atau prop `device` memaksa salah satunya.
+- Semua gaya dalam satu file, `@cargo/react/styles.css`. Isinya hanya token `var(--cargo-…)`, sehingga brand dan mode ikut berganti.
+- `@cargo/react/meta`: padanan Figma ke kode setiap komponen, dibaca oleh tab Kode di situs.
+- 151 tes:
+  - peran, keyboard, dan aksesibilitas (axe) setiap komponen;
+  - render di server dan hydration tanpa peringatan;
+  - CSS hanya memakai token;
+  - `'use client'` hanya di modul yang butuh;
+  - contoh yang harus ditolak TypeScript, misalnya tombol ikon tanpa `aria-label`.
+
+### Berbeda dari Figma
+
+Bagian yang belum ada di Figma dibuat dengan pola dan token dari komponen lain:
+- Garis error Text Field memakai `border/error`, seperti Text Area State=Danger.
+- Hover, fokus, dan disabled pada Toggle; disabled pada Radio Button; hover, disabled, dan penanda wajib pada Text Area.
+- Badge angka di Tabs memakai ukuran Badge Counter (22px). Di Figma, badge-nya direntangkan menjadi 35px.
+- Bawaan Tooltip adalah `side="bottom"` dan `arrow="center"` (tooltip di atas pemicu). Bawaan Figma adalah Side=Top dan Arrow=Left.
+
+### Situs dokumentasi
+
+- Tab **Kode** di 9 halaman komponen. Isinya pemasangan, contoh hidup dengan pilihan Device, properti, padanan Figma ke kode, dan aksesibilitas.
+- Build situs gagal kalau ada variant property atau properti Figma yang belum punya padanan di kode.
+- Panduan developer punya bagian Komponen React, halaman Status punya langkah 8, dan pencarian mencakup nama komponen React.
+
+## @cargo/tokens [0.4.0] - 2026-10-16
+
+### Ditambahkan
+
+- `data-device="desktop"` dan `data-device="mobile"` di CSS. Keduanya memaksa ukuran tipografi Desktop atau Mobile untuk sebuah elemen dan isinya, berapa pun lebar layarnya, seperti `data-theme` untuk mode warna. Komponen React memakainya untuk prop `device`.
+
+### Diubah
+
+- Ukuran tipografi Desktop di lebar 768px ke atas sekarang memakai selector `:root:not([data-device="mobile"])`. Tanpa `data-device`, hasilnya sama seperti sebelumnya.
 
 ## [0.3.0] - 2026-10-16
 

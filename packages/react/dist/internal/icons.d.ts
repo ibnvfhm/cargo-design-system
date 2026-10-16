@@ -1,6 +1,6 @@
 import type { SVGProps } from 'react';
 type IconProps = SVGProps<SVGSVGElement>;
-/** XCircle, Type=Regular (Figma 1261:1078). */
+/** XCircle, Type=Fill (Figma 1261:1078). */
 export declare function XCircleIcon(props: IconProps): import("react").JSX.Element;
 /** Check, Type=Regular (Figma 1215:238). */
 export declare function CheckIcon(props: IconProps): import("react").JSX.Element;

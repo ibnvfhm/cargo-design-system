@@ -1,4 +1,5 @@
 // Search index for the top bar: pages, components, colour tokens, type roles, dimensions and icons.
+import { codeOf, hasCode } from '../lib/code.mjs';
 import { components } from '../lib/components.mjs';
 import { ICONS } from '../lib/icons.mjs';
 import { SECTIONS, SIDEBAR, url } from '../lib/site.mjs';
@@ -20,6 +21,13 @@ export function GET() {
     const mainSets = component.sets.filter((set) => !set.helper);
     if (mainSets.length > 1) {
       for (const set of mainSets) add(set.name, `Komponen · ${component.page}`, `/komponen/${component.slug}/#${set.slug}`, set.summary, 2);
+    }
+  }
+
+  // React components, on the Kode tab of their page.
+  for (const component of components.filter(hasCode)) {
+    for (const meta of codeOf(component)) {
+      add(meta.name, `Komponen React · ${component.page}`, `/komponen/${component.slug}/kode/`, `react kode ${meta.props.map((prop) => prop.name).join(' ')}`, 2);
     }
   }
 

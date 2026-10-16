@@ -29,6 +29,7 @@ const metric = (m) => `${m.size} / ${m.lineHeight}`;
   <div class="prose intro">
     <ul>
       <li>Web memakai ukuran Mobile di layar kecil, lalu ukuran Desktop mulai lebar 768px. Aplikasi HP memakai ukuran Mobile.</li>
+      <li>Di web, <code>data-device="mobile"</code> atau <code>data-device="desktop"</code> memaksa salah satu ukuran untuk sebuah elemen dan isinya, berapa pun lebar layarnya. Komponen React ikut berganti ukuran.</li>
       <li>Di Figma, ukuran berganti lewat mode collection Typography (Desktop atau Mobile) pada frame.</li>
       <li>Letter spacing ditulis dalam px, seperti di Figma. Nilainya berasal dari persen ukuran huruf, misalnya -2% × 24px = -0,48px.</li>
     </ul>

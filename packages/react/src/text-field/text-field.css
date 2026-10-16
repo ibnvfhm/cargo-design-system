@@ -90,8 +90,8 @@
   height: 100%;
 }
 
-/* Clear button (Figma: State=Pressed): XCircle in icon/secondary, shown while the field has a value. Its click area
-   reaches 4px past the icon without moving anything. */
+/* Clear button (Figma: State=Pressed): XCircle (Type=Fill) in icon/secondary, shown while the field has a value.
+   Its click area reaches 4px past the icon without moving anything. */
 .cargo-text-field__clear {
   display: inline-flex;
   flex: none;
