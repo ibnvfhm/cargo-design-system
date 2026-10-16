@@ -106,23 +106,29 @@ const search = document.querySelector('[data-search]');
 const topbar = document.querySelector('[data-topbar]');
 const searchInput = search?.querySelector('[data-search-input]');
 const searchResults = search?.querySelector('[data-search-results]');
-let searchIndex = null;
+// One request for the index, however many keystrokes arrive while it loads. A failed request is tried again next time.
+let indexRequest = null;
 let matches = [];
 let activeMatch = -1;
 
 const fold = (text) => text.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '');
 
-async function loadIndex() {
-  if (!searchIndex) {
-    const response = await fetch(search.dataset.index);
-    searchIndex = (await response.json()).map((entry) => ({
-      ...entry,
-      title: fold(entry.t),
-      lead: fold(entry.k ?? ''),
-      text: fold(`${entry.t} ${entry.k ?? ''}`),
-    }));
-  }
-  return searchIndex;
+function loadIndex() {
+  indexRequest ??= fetch(search.dataset.index)
+    .then((response) => response.json())
+    .then((entries) =>
+      entries.map((entry) => ({
+        ...entry,
+        title: fold(entry.t),
+        lead: fold(entry.k ?? ''),
+        text: fold(`${entry.t} ${entry.k ?? ''}`),
+      })),
+    )
+    .catch((error) => {
+      indexRequest = null;
+      throw error;
+    });
+  return indexRequest;
 }
 
 function score(entry, terms) {
@@ -173,9 +179,11 @@ function closeResults() {
 }
 
 async function runSearch() {
+  if (!fold(searchInput.value).trim()) return closeResults();
+  const index = await loadIndex();
+  // Read the input after the index has loaded: the visitor may have typed more in the meantime.
   const terms = fold(searchInput.value).split(/\s+/).filter(Boolean);
   if (!terms.length) return closeResults();
-  const index = await loadIndex();
   matches = index
     .map((entry) => ({ entry, score: score(entry, terms) }))
     .filter((item) => item.score > 0)
@@ -201,7 +209,8 @@ function closeMobileSearch() {
 if (search) {
   searchInput.addEventListener('input', runSearch);
   searchInput.addEventListener('focus', () => {
-    loadIndex();
+    // Start loading early; a failure here is retried by the next search.
+    loadIndex().catch(() => {});
     if (searchInput.value) runSearch();
   });
   searchInput.addEventListener('keydown', (event) => {
