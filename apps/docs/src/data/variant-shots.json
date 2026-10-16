@@ -1,0 +1,440 @@
+{
+  "source": "Figma coH5y39eGFKMWPdU1EtY6f, varian Size dan State dengan brand UIC dan mode Desktop",
+  "exported": "2026-10-16",
+  "rows": [
+    {
+      "page": "Avatar",
+      "set": "Avatar",
+      "axis": "Size",
+      "file": "avatar--avatar--size",
+      "values": [
+        "xs",
+        "sm",
+        "md",
+        "lg",
+        "xl"
+      ],
+      "default": "xs",
+      "fixed": {
+        "Type": "Initials"
+      }
+    },
+    {
+      "page": "Badge",
+      "set": "Badge",
+      "axis": "Size",
+      "file": "badge--badge--size",
+      "values": [
+        "Xs",
+        "Sm",
+        "Md"
+      ],
+      "default": "Md",
+      "fixed": {
+        "Type": "Label",
+        "Variant": "Primary",
+        "Style": "Subtle"
+      }
+    },
+    {
+      "page": "Button",
+      "set": "Button",
+      "axis": "Size",
+      "file": "button--button--size",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "default": "lg",
+      "fixed": {
+        "Device": "Desktop",
+        "Type": "Primary",
+        "State": "Default"
+      }
+    },
+    {
+      "page": "Button",
+      "set": "Button",
+      "axis": "State",
+      "file": "button--button--state",
+      "values": [
+        "Default",
+        "Hover",
+        "Pressed",
+        "Focussed",
+        "Disabled"
+      ],
+      "default": "Default",
+      "fixed": {
+        "Device": "Desktop",
+        "Type": "Primary",
+        "Size": "md"
+      }
+    },
+    {
+      "page": "Button Group",
+      "set": "Button Group",
+      "axis": "Size",
+      "file": "button-group--button-group--size",
+      "values": [
+        "sm",
+        "md"
+      ],
+      "default": "md",
+      "fixed": {
+        "Items": "3"
+      }
+    },
+    {
+      "page": "Checkbox & Radio Button",
+      "set": "Checkbox",
+      "axis": "Size",
+      "file": "checkbox-radio-button--checkbox--size",
+      "values": [
+        "sm",
+        "md"
+      ],
+      "default": "md",
+      "fixed": {
+        "Type": "Checked",
+        "State": "Normal"
+      }
+    },
+    {
+      "page": "Checkbox & Radio Button",
+      "set": "Checkbox",
+      "axis": "State",
+      "file": "checkbox-radio-button--checkbox--state",
+      "values": [
+        "Normal",
+        "Hover",
+        "Focussed",
+        "Disabled"
+      ],
+      "default": "Normal",
+      "fixed": {
+        "Type": "Checked",
+        "Size": "md"
+      }
+    },
+    {
+      "page": "Checkbox & Radio Button",
+      "set": "Radio Button",
+      "axis": "State",
+      "file": "checkbox-radio-button--radio-button--state",
+      "values": [
+        "Normal",
+        "Hover",
+        "Focussed",
+        "Selected"
+      ],
+      "default": "Normal",
+      "fixed": {}
+    },
+    {
+      "page": "Chips",
+      "set": "Chip",
+      "axis": "Size",
+      "file": "chips--chip--size",
+      "values": [
+        "sm",
+        "md"
+      ],
+      "default": "md",
+      "fixed": {
+        "Type": "Filter",
+        "State": "Default"
+      }
+    },
+    {
+      "page": "Chips",
+      "set": "Chip",
+      "axis": "State",
+      "file": "chips--chip--state",
+      "values": [
+        "Default",
+        "Hover",
+        "Selected",
+        "Disabled"
+      ],
+      "default": "Default",
+      "fixed": {
+        "Type": "Filter",
+        "Size": "md"
+      }
+    },
+    {
+      "page": "Data Table",
+      "set": "Table Cell",
+      "axis": "State",
+      "file": "data-table--table-cell--state",
+      "values": [
+        "Default",
+        "Hover",
+        "Selected"
+      ],
+      "default": "Default",
+      "fixed": {
+        "Type": "Text"
+      }
+    },
+    {
+      "page": "Empty State",
+      "set": "Empty State",
+      "axis": "Size",
+      "file": "empty-state--empty-state--size",
+      "values": [
+        "Compact",
+        "Default"
+      ],
+      "default": "Default",
+      "fixed": {
+        "Type": "No Data"
+      }
+    },
+    {
+      "page": "File Upload",
+      "set": "File Upload",
+      "axis": "State",
+      "file": "file-upload--file-upload--state",
+      "values": [
+        "Default",
+        "Hover",
+        "Error",
+        "Disabled"
+      ],
+      "default": "Default",
+      "fixed": {
+        "Device": "Desktop"
+      }
+    },
+    {
+      "page": "File Upload",
+      "set": "File Item",
+      "axis": "State",
+      "file": "file-upload--file-item--state",
+      "values": [
+        "Uploading",
+        "Success",
+        "Error"
+      ],
+      "default": "Uploading",
+      "fixed": {}
+    },
+    {
+      "page": "List Data",
+      "set": "List Data",
+      "axis": "State",
+      "file": "list-data--list-data--state",
+      "values": [
+        "Default",
+        "Hover",
+        "Pressed",
+        "Focussed"
+      ],
+      "default": "Default",
+      "fixed": {}
+    },
+    {
+      "page": "Loading",
+      "set": "Spinner",
+      "axis": "Size",
+      "file": "loading--spinner--size",
+      "values": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "default": "sm",
+      "fixed": {
+        "Color": "Brand"
+      }
+    },
+    {
+      "page": "Loading",
+      "set": "Progress Bar",
+      "axis": "Size",
+      "file": "loading--progress-bar--size",
+      "values": [
+        "sm",
+        "md"
+      ],
+      "default": "md",
+      "fixed": {
+        "Status": "Default",
+        "Value": "50"
+      }
+    },
+    {
+      "page": "Search Bar",
+      "set": "Search Bar",
+      "axis": "State",
+      "file": "search-bar--search-bar--state",
+      "values": [
+        "Default",
+        "Hover",
+        "Pressed",
+        "Focussed"
+      ],
+      "default": "Default",
+      "fixed": {
+        "Device": "Desktop",
+        "Type": "Primary"
+      }
+    },
+    {
+      "page": "Select & Dropdown",
+      "set": "Select",
+      "axis": "State",
+      "file": "select-dropdown--select--state",
+      "values": [
+        "Default",
+        "Hover",
+        "Focussed",
+        "Filled",
+        "Error",
+        "Disabled"
+      ],
+      "default": "Default",
+      "fixed": {
+        "Device": "Desktop",
+        "Type": "Single"
+      }
+    },
+    {
+      "page": "Select & Dropdown",
+      "set": "Menu Item",
+      "axis": "State",
+      "file": "select-dropdown--menu-item--state",
+      "values": [
+        "Default",
+        "Hover",
+        "Selected",
+        "Disabled"
+      ],
+      "default": "Default",
+      "fixed": {
+        "Type": "Default"
+      }
+    },
+    {
+      "page": "Side Menu",
+      "set": "Side Menu Item",
+      "axis": "State",
+      "file": "side-menu--side-menu-item--state",
+      "values": [
+        "Default",
+        "Hover",
+        "Active",
+        "Disabled"
+      ],
+      "default": "Default",
+      "fixed": {
+        "Collapsed": "False"
+      }
+    },
+    {
+      "page": "Stepper",
+      "set": "Stepper Item / Vertical",
+      "axis": "State",
+      "file": "stepper--stepper-item-vertical--state",
+      "values": [
+        "Default",
+        "Active",
+        "Done",
+        "Error"
+      ],
+      "default": "Default",
+      "fixed": {}
+    },
+    {
+      "page": "Stepper",
+      "set": "Stepper Item / Horizontal",
+      "axis": "State",
+      "file": "stepper--stepper-item-horizontal--state",
+      "values": [
+        "Default",
+        "Active",
+        "Done",
+        "Error"
+      ],
+      "default": "Default",
+      "fixed": {}
+    },
+    {
+      "page": "Tabs",
+      "set": "Tabs",
+      "axis": "State",
+      "file": "tabs--tabs--state",
+      "values": [
+        "Default",
+        "Active"
+      ],
+      "default": "Default",
+      "fixed": {
+        "Type": "Default"
+      }
+    },
+    {
+      "page": "Text Area",
+      "set": "Text Area",
+      "axis": "State",
+      "file": "text-area--text-area--state",
+      "values": [
+        "Normal",
+        "Pressed",
+        "Focussed",
+        "Danger"
+      ],
+      "default": "Normal",
+      "fixed": {}
+    },
+    {
+      "page": "Text Fields",
+      "set": "Text Field",
+      "axis": "State",
+      "file": "text-fields--text-field--state",
+      "values": [
+        "Default",
+        "Hover",
+        "Pressed",
+        "Focussed",
+        "Disabled"
+      ],
+      "default": "Default",
+      "fixed": {
+        "Device": "Desktop",
+        "Type": "Normal"
+      }
+    },
+    {
+      "page": "Toggle",
+      "set": "Toggle",
+      "axis": "State",
+      "file": "toggle--toggle--state",
+      "values": [
+        "Inactive",
+        "Active"
+      ],
+      "default": "Inactive",
+      "fixed": {}
+    },
+    {
+      "page": "Featured Icon",
+      "set": "Featured Icon",
+      "axis": "Size",
+      "file": "featured-icon--featured-icon--size",
+      "values": [
+        "32",
+        "40",
+        "56"
+      ],
+      "default": "32",
+      "fixed": {
+        "Type": "Info",
+        "Shape": "Circle"
+      }
+    }
+  ]
+}

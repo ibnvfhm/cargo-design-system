@@ -1,4 +1,5 @@
 import data from '../data/components.json';
+import shotData from '../data/variant-shots.json';
 
 export const FIGMA_FILE_KEY = 'coH5y39eGFKMWPdU1EtY6f';
 export const figmaUrl = (nodeId) =>
@@ -58,6 +59,32 @@ export const PREVIEW_SCALE = 2;
 const previews = import.meta.glob('../assets/komponen/*.{png,webp}', { eager: true, import: 'default' });
 const previewOf = (file) => Object.entries(previews).find(([path]) => path.endsWith(`/${file}`))?.[1];
 
+// One image per Size or State value, listed in src/data/variant-shots.json and exported like the previews.
+const variantImages = new Map(
+  Object.entries(import.meta.glob('../assets/komponen/varian/*.webp', { eager: true, import: 'default' })).map(([path, image]) => [
+    path.split('/').pop().replace(/\.webp$/, ''),
+    image,
+  ]),
+);
+const variantImage = (name) => {
+  const image = variantImages.get(name);
+  if (!image) throw new Error(`Gambar varian ${name}.webp tidak ada di src/assets/komponen/varian`);
+  return image;
+};
+const shotsOf = (pageName, setName) =>
+  shotData.rows
+    .filter((row) => row.page === pageName && row.set === setName)
+    .map((row) => ({
+      axis: row.axis,
+      fixed: row.fixed,
+      default: row.default,
+      items: row.values.map((value) => ({
+        value,
+        light: variantImage(`${row.file}--${slugify(value)}--light`),
+        dark: variantImage(`${row.file}--${slugify(value)}--dark`),
+      })),
+    }));
+
 export const components = CATEGORIES.flatMap((category) =>
   category.pages.map((pageName) => {
     const page = data.pages.find((p) => p.page === pageName);
@@ -74,6 +101,7 @@ export const components = CATEGORIES.flatMap((category) =>
           light: previewOf(`${slug}--${setSlug}--light.webp`) ?? previewOf(`${slug}--${setSlug}--light.png`),
           dark: previewOf(`${slug}--${setSlug}--dark.webp`) ?? previewOf(`${slug}--${setSlug}--dark.png`),
         },
+        shots: shotsOf(page.page, set.name),
       };
     });
     const main = sets.find((set) => !set.helper) ?? sets[0];
@@ -93,6 +121,12 @@ export const components = CATEGORIES.flatMap((category) =>
 const uncategorised = data.pages.filter((page) => !components.some((component) => component.pageId === page.pageId));
 if (uncategorised.length) {
   throw new Error(`Halaman tanpa kategori di src/lib/components.mjs: ${uncategorised.map((page) => page.page).join(', ')}`);
+}
+
+// Likewise when a renamed page or set leaves rows in variant-shots.json with nowhere to show.
+const strayShots = shotData.rows.filter((row) => !data.pages.some((page) => page.page === row.page && page.sets.some((set) => set.name === row.set)));
+if (strayShots.length) {
+  throw new Error(`Baris variant-shots.json tanpa component set: ${strayShots.map((row) => `${row.page} / ${row.set}`).join(', ')}`);
 }
 
 // Every component page has these tabs, each at its own address under /komponen/<slug>/.

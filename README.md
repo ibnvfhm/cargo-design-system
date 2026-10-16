@@ -60,7 +60,7 @@ Situs dokumentasi ada di `apps/docs`, dibuat dengan [Astro](https://astro.build)
 Isinya:
 - **Beranda dan Mulai**: pengenalan, panduan memakai library Figma, panduan memasang token, status, dan changelog.
 - **Foundations**: token warna, palet primitive, tema brand, kontras, tipografi, spacing dan radius, shadow, dan 186 ikon yang bisa dicari. Semuanya dibaca langsung dari `packages/tokens/src`, jadi selalu sama dengan file token.
-- **Komponen**: satu halaman per halaman komponen di Figma, dengan dua tab seperti Soul. Tab **Penggunaan** berisi status, gambar pratinjau (Light dan Dark), Kapan dipakai, Cara pakai, dan Hindari. Tab **Properti desain** (`/komponen/<nama>/properti-desain/`) berisi varian, properti, dan bagian penyusun. Panel kanan menampilkan daftar isi halaman.
+- **Komponen**: satu halaman per halaman komponen di Figma, dengan dua tab seperti Soul. Tab **Penggunaan** berisi status, gambar pratinjau (Light dan Dark), Kapan dipakai, Cara pakai, dan Hindari. Tab **Properti desain** (`/komponen/<nama>/properti-desain/`) berisi gambar setiap pilihan Size dan State, varian, properti, dan bagian penyusun. Panel kanan menampilkan daftar isi halaman.
 
 Menjalankan di komputer sendiri (butuh Node.js 22.12 atau lebih baru):
 ```sh
@@ -78,6 +78,8 @@ Data dari Figma disimpan di repo, karena situs tidak membaca Figma secara langsu
 | `apps/docs/src/data/components.json` | Halaman, component set, varian, properti, dan deskripsi komponen |
 | `apps/docs/src/data/icons.json` | 186 ikon (SVG 24px, Regular dan Fill) beserta kata kuncinya |
 | `apps/docs/src/assets/komponen/` | Gambar pratinjau setiap component set, brand UIC, mode Light dan Dark |
+| `apps/docs/src/data/variant-shots.json` | Varian Size dan State yang digambar di tab Properti desain, beserta properti lain yang dibuat tetap |
+| `apps/docs/src/assets/komponen/varian/` | Gambar setiap pilihan Size dan State (brand UIC, Desktop), mode Light dan Dark |
 
 Kalau komponen, deskripsi, atau ikon di Figma berubah, data ini perlu diekspor ulang dari Figma. Perubahan token cukup lewat `packages/tokens/src`, tanpa ekspor ulang.
 

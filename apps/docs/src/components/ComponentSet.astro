@@ -30,6 +30,16 @@ const swapDefault = (value) => {
   if (!match) return { name: value, detail: '' };
   return { name: match[1], detail: match[2].split(',').map((part) => part.split('=').pop().trim()).join(', ') };
 };
+
+// One row of images per Size or State axis, like the Sizes and States sections in Soul.
+const SHOT_TITLES = { Size: { title: 'Ukuran', id: 'ukuran', note: 'dari yang terkecil' }, State: { title: 'State', id: 'state', note: '' } };
+const shots = (set.shots ?? []).map((shot) => ({
+  ...shot,
+  ...SHOT_TITLES[shot.axis],
+  // Columns may shrink to 85% of the widest image before the row wraps.
+  width: Math.max(...shot.items.map((item) => item.light.width / PREVIEW_SCALE)),
+  others: Object.entries(shot.fixed).map(([key, value]) => `${key} ${value}`),
+}));
 ---
 
 {usage && set.preview.light && previewHeading && <Heading class="spec-title" id={id('pratinjau')}>Pratinjau</Heading>}
@@ -67,6 +77,50 @@ const swapDefault = (value) => {
 }
 
 {usage && body && <div class="prose description" set:html={renderMarkdown(body, { labels: true, labelLevel: level, labelIdPrefix: idPrefix })} />}
+
+{
+  design &&
+    shots.map((shot) => (
+      <div class="spec">
+        <Heading class="spec-title" id={id(shot.id)}>
+          {shot.title}
+        </Heading>
+        <p class="spec-note">Setiap pilihan <strong>{shot.axis}</strong>{shot.note ? `, ${shot.note}.` : '.'}</p>
+        <figure class="shots-figure">
+          <div class="shots" style={`--shot-w: ${shot.width}px`}>
+            {shot.items.map((item) => (
+              <div class="shot">
+                <p class="shot-label">{item.value}{item.value === shot.default && <span class="shot-default"> · bawaan</span>}</p>
+                <img
+                  class="theme-img"
+                  data-mode="light"
+                  src={item.light.src}
+                  width={item.light.width / PREVIEW_SCALE}
+                  height={item.light.height / PREVIEW_SCALE}
+                  alt={`${set.name}, ${shot.axis} ${item.value}`}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  class="theme-img"
+                  data-mode="dark"
+                  src={item.dark.src}
+                  width={item.dark.width / PREVIEW_SCALE}
+                  height={item.dark.height / PREVIEW_SCALE}
+                  alt={`${set.name}, ${shot.axis} ${item.value}, mode Dark`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+          <figcaption class="preview-note">
+            {shot.others.length > 0 && `Properti lain: ${shot.others.join(', ')}. `}Gambar dari Figma dengan brand UIC, mengikuti mode Light atau Dark yang dipilih.
+          </figcaption>
+        </figure>
+      </div>
+    ))
+}
 
 {
   design && (
@@ -184,5 +238,28 @@ const swapDefault = (value) => {
   }
   .spec-note { margin: var(--cargo-space-4) 0 var(--cargo-space-12); color: var(--cargo-color-text-secondary); font-size: 14px; }
   .options { display: flex; flex-wrap: wrap; gap: var(--cargo-space-4); }
+  .shots-figure { margin: 0; }
+  /* The page background, not bg/secondary: hover states are tints of it, and products show them on it. */
+  .shots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--shot-w) * 0.85)), 1fr));
+    gap: var(--cargo-space-24) var(--cargo-space-16);
+    padding: var(--cargo-space-24);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12);
+    background: var(--cargo-color-bg-default);
+  }
+  /* Labels on one line at the top, images centred in the space below, as in Soul. */
+  .shot { display: grid; grid-template-rows: auto 1fr; justify-items: center; align-items: center; gap: var(--cargo-space-8); min-width: 0; }
+  .shot img { max-width: 100%; height: auto; }
+  .shot-label {
+    margin: 0;
+    color: var(--cargo-color-text-secondary);
+    font-family: var(--site-font-mono);
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+  }
+  .shot-default { color: var(--cargo-color-text-tertiary); }
   .swap { white-space: nowrap; }
 </style>
