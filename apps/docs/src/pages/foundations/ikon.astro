@@ -46,7 +46,7 @@ const details = Object.fromEntries(
     <label class="size-pick">
       <span>Ukuran</span>
       <select data-icon-size>
-        {[16, 20, 24, 32].map((size) => <option value={size} selected={size === 24}>{size}px</option>)}
+        {ICON_SIZES.map((size) => <option value={size} selected={size === 24}>{size}px</option>)}
       </select>
     </label>
     <p class="icon-count" aria-live="polite" data-icon-count>{ICONS.length} ikon</p>
@@ -93,7 +93,7 @@ const details = Object.fromEntries(
     </div>
     <div class="dialog-actions">
       <button class="btn btn-outlined btn-sm" type="button" data-copy="" data-dialog-copy><Icon name="Copy" size={16} /><span data-copy-label>Salin nama</span></button>
-      <button class="btn btn-outlined btn-sm" type="button" data-dialog-download><Icon name="Download" size={16} />Unduh SVG</button>
+      <button class="btn btn-outlined btn-sm" type="button" data-dialog-download><Icon name="Download" size={16} /><span data-dialog-download-label>Unduh SVG 24px</span></button>
       <a class="btn btn-primary btn-sm" href="#" target="_blank" rel="noopener" data-dialog-figma>Buka di Figma<Icon name="ArrowUpRight" size={16} /></a>
     </div>
   </dialog>
@@ -113,6 +113,8 @@ const details = Object.fromEntries(
   const empty = document.querySelector('[data-icon-empty]');
   const regular = new Map(items.map((item) => [item.dataset.name, item.querySelector('svg').innerHTML]));
   let style = 'regular';
+  // Figma's Size variants are the 24px drawing scaled (a few icons differ slightly), so one SVG serves every size.
+  let size = 24;
 
   const fold = (text) => text.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '');
   const markup = (name) => (style === 'fill' && fills[name]) || regular.get(name);
@@ -146,7 +148,8 @@ const details = Object.fromEntries(
   );
 
   document.querySelector('[data-icon-size]').addEventListener('change', (event) => {
-    container.style.setProperty('--icon-size', `${event.target.value}px`);
+    size = Number(event.target.value);
+    container.style.setProperty('--icon-size', `${size}px`);
   });
 
   /* Detail dialog */
@@ -172,6 +175,7 @@ const details = Object.fromEntries(
     );
     dialog.querySelector('[data-dialog-copy]').dataset.copy = `Icon-${name}`;
     dialog.querySelector('[data-dialog-figma]').href = info.figma;
+    dialog.querySelector('[data-dialog-download-label]').textContent = `Unduh SVG ${size}px`;
     dialog.showModal();
   }
 
@@ -187,10 +191,10 @@ const details = Object.fromEntries(
     const variant = style === 'fill' && fills[current] ? 'Fill' : 'Regular';
     // A saved file has no Cargo CSS variables, so parts drawn in icon/inverse get its Light value.
     const body = markup(current).replaceAll('var(--cargo-color-icon-inverse)', '#FFFFFF');
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">${body}</svg>\n`;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="currentColor">${body}</svg>\n`;
     const link = document.createElement('a');
     link.href = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
-    link.download = `Icon-${current}-${variant}.svg`;
+    link.download = `Icon-${current}-${variant}-${size}.svg`;
     link.click();
     URL.revokeObjectURL(link.href);
   });
