@@ -1,0 +1,85 @@
+/* Tabs. Figma: Tabs (133:1370), one tab per variant: 16px padding, 8px between icon, label and number, title text
+   and 22px icons. Type=Default draws a 1px border/default line under the row and a 2px border/brand line under the
+   open tab; No Underline draws neither. */
+.cargo-tabs {
+  --_line: var(--cargo-color-border-default);
+  --_active-line: var(--cargo-color-border-brand);
+}
+.cargo-tabs[data-variant='no-underline'] {
+  --_line: transparent;
+  --_active-line: transparent;
+}
+/* The row scrolls sideways when the tabs don't fit, such as on a phone. */
+.cargo-tabs__list {
+  display: flex;
+  overflow-x: auto;
+  box-shadow: inset 0 calc(-1 * var(--cargo-border-width-1)) 0 var(--_line);
+  scrollbar-width: none;
+}
+
+/* State=Default: title/regular in text/secondary, icon/secondary. */
+.cargo-tab {
+  --_fg: var(--cargo-color-text-secondary);
+  --_icon: var(--cargo-color-icon-secondary);
+  display: inline-flex;
+  flex: none;
+  box-sizing: border-box;
+  align-items: center;
+  gap: var(--cargo-space-8);
+  margin: 0;
+  padding: var(--cargo-space-16);
+  border: 0;
+  background: none;
+  color: var(--_fg);
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-size: var(--cargo-title-font-size);
+  font-weight: var(--cargo-font-weight-regular);
+  line-height: var(--cargo-title-line-height);
+  letter-spacing: var(--cargo-title-letter-spacing);
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.cargo-tab__icon {
+  display: inline-flex;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--_icon);
+}
+.cargo-tab__icon > svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* State=Active: title/bold in text/brand, icon/brand, and the 2px line. */
+.cargo-tab[aria-selected='true'] {
+  --_fg: var(--cargo-color-text-brand);
+  --_icon: var(--cargo-color-icon-brand);
+  font-weight: var(--cargo-font-weight-bold);
+  box-shadow: inset 0 calc(-1 * var(--cargo-border-width-2)) 0 var(--_active-line);
+}
+
+/* Not in Figma: keyboard focus draws a border/focus ring inside the tab, so the scrolling row doesn't clip it. */
+.cargo-tab:focus-visible {
+  outline: var(--cargo-border-width-2) solid var(--cargo-color-border-focus);
+  outline-offset: calc(-1 * var(--cargo-border-width-2));
+}
+.cargo-tab:disabled {
+  --_fg: var(--cargo-color-text-disabled);
+  --_icon: var(--cargo-color-icon-disabled);
+  cursor: not-allowed;
+}
+.cargo-tab-panel:focus-visible {
+  outline: 2px solid transparent;
+  box-shadow: var(--cargo-focus-ring-default);
+}
+
+/* Windows high contrast mode drops the box-shadow lines: underline the open tab instead. */
+@media (forced-colors: active) {
+  .cargo-tab[aria-selected='true'] {
+    text-decoration: underline;
+    text-decoration-thickness: var(--cargo-border-width-2);
+    text-underline-offset: var(--cargo-space-6);
+  }
+}

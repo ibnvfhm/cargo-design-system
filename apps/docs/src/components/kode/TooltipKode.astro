@@ -1,0 +1,31 @@
+---
+import { META } from '@cargo/react/meta';
+import Arrows from '../../demos/tooltip/Arrows.tsx';
+import arrowsSource from '../../demos/tooltip/Arrows.tsx?raw';
+import Basic from '../../demos/tooltip/Basic.tsx';
+import basicSource from '../../demos/tooltip/Basic.tsx?raw';
+import Sides from '../../demos/tooltip/Sides.tsx';
+import sidesSource from '../../demos/tooltip/Sides.tsx?raw';
+import Example from './Example.astro';
+import Install from './Install.astro';
+import Reference from './Reference.astro';
+
+const meta = META.Tooltip;
+---
+
+<Install names={['Tooltip']} />
+
+<section class="kode-section">
+  <h2 class="section-title" id="contoh">Contoh</h2>
+  <Example id="dasar" title="Dasar" description="Arahkan kursor ke tombol, atau fokus dengan Tab. Tooltip membungkus satu elemen pemicu, misalnya Button." source={basicSource}>
+    <Basic client:visible />
+  </Example>
+  <Example id="side" title="Side" description="side adalah sisi tooltip tempat panah berada, sama seperti di Figma. Kalau tidak muat, tooltip pindah ke sisi sebaliknya." source={sidesSource}>
+    <Sides client:visible />
+  </Example>
+  <Example id="arrow" title="Arrow" description="Posisi panah di sepanjang sisinya. Panah selalu menunjuk ke tengah pemicu." source={arrowsSource}>
+    <Arrows client:visible />
+  </Example>
+</section>
+
+<Reference meta={meta} page="Tooltip" />

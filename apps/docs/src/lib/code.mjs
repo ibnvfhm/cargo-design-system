@@ -16,6 +16,8 @@ const CODE_COMPONENTS = {
   'Checkbox & Radio Button': ['Checkbox', 'CheckboxGroup', 'RadioGroup', 'RadioButton'],
   Toggle: ['Toggle'],
   Chips: ['Chip'],
+  Tabs: ['Tabs', 'TabList', 'Tab', 'TabPanel'],
+  Tooltip: ['Tooltip'],
 };
 
 export const hasCode = (component) => component.page in CODE_COMPONENTS;

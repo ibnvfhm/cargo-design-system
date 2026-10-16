@@ -1,5 +1,5 @@
 // Type-level checks, run by `npm run typecheck`: each line below must be a type error.
-import { Badge, Button, Checkbox, Chip, RadioButton, RadioGroup, TextArea, TextField, Toggle } from '../src/index.js';
+import { Badge, Button, Checkbox, Chip, RadioButton, RadioGroup, Tabs, TextArea, TextField, Toggle, Tooltip } from '../src/index.js';
 
 // @ts-expect-error Figma's Style is `appearance` in code; `style` stays React's style object.
 export const styleIsNotAppearance = <Badge style="solid" />;
@@ -32,3 +32,9 @@ export const unnamedToggle = <Toggle />;
 // @ts-expect-error onRemove belongs to input chips only.
 export const filterWithRemove = <Chip onRemove={() => {}}>Jakarta</Chip>;
 export const inputChip = <Chip variant="input" onRemove={() => {}}>Jakarta</Chip>;
+
+// @ts-expect-error Tabs needs value or defaultValue.
+export const tabsWithoutValue = <Tabs>{null}</Tabs>;
+// @ts-expect-error Side=Top takes Left, Center or Right arrows, as in Figma.
+export const wrongArrow = <Tooltip side="top" arrow="bottom" description="x"><button type="button">x</button></Tooltip>;
+export const sideArrow = <Tooltip side="left" arrow="bottom" description="x"><button type="button">x</button></Tooltip>;

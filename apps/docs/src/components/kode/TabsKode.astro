@@ -1,0 +1,34 @@
+---
+import { META } from '@cargo/react/meta';
+import Basic from '../../demos/tabs/Basic.tsx';
+import basicSource from '../../demos/tabs/Basic.tsx?raw';
+import NoUnderline from '../../demos/tabs/NoUnderline.tsx';
+import noUnderlineSource from '../../demos/tabs/NoUnderline.tsx?raw';
+import Example from './Example.astro';
+import Install from './Install.astro';
+import Reference from './Reference.astro';
+
+const components = ['Tabs', 'TabList', 'Tab', 'TabPanel'];
+const slug = (name) => name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+---
+
+<Install names={components} />
+
+<section class="kode-section">
+  <h2 class="section-title" id="contoh">Contoh</h2>
+  <Example id="tabs-dasar" title="Dengan ikon dan angka" description="Setiap Tab terhubung ke TabPanel lewat value. activeIcon menggantikan icon saat tab terbuka, seperti ikon Fill di State=Active." source={basicSource}>
+    <Basic client:visible />
+  </Example>
+  <Example id="tanpa-garis" title="Tanpa garis" description={'variant="no-underline" untuk tab di dalam kartu, seperti Type=No Underline. Tab disabled dilewati panah keyboard.'} source={noUnderlineSource}>
+    <NoUnderline client:visible />
+  </Example>
+</section>
+
+{
+  components.map((name) => (
+    <section class="kode-section kode-component">
+      <h2 class="section-title" id={slug(name)}>{name}</h2>
+      <Reference meta={META[name]} page="Tabs" level={3} idPrefix={`${slug(name)}-`} />
+    </section>
+  ))
+}

@@ -1,0 +1,79 @@
+/* Tooltip. Figma: Tooltips (200:1825). bg/inverse with radius/8 and 8px × 16px padding; the title (title/bold) and
+   the description (body/regular) in text/inverse, 4px apart; at most 340px wide. A 10 × 6 arrow on the side Figma's
+   Side names, 16px from the edge for Left/Right/Top/Bottom arrows. */
+.cargo-tooltip {
+  /* Undo the browser's popover styles; the component positions it. */
+  display: block;
+  box-sizing: border-box;
+  width: max-content;
+  max-width: min(340px, calc(100vw - 16px));
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: none;
+  color: var(--cargo-color-text-inverse);
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  pointer-events: auto;
+}
+.cargo-tooltip:not([data-open]) {
+  display: none;
+}
+.cargo-tooltip__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cargo-space-4);
+  padding: var(--cargo-space-8) var(--cargo-space-16);
+  border-radius: var(--cargo-radius-8);
+  background-color: var(--cargo-color-bg-inverse);
+}
+.cargo-tooltip__title,
+.cargo-tooltip__description {
+  display: block;
+}
+.cargo-tooltip__title {
+  font-size: var(--cargo-title-font-size);
+  font-weight: var(--cargo-font-weight-bold);
+  line-height: var(--cargo-title-line-height);
+  letter-spacing: var(--cargo-title-letter-spacing);
+}
+.cargo-tooltip__description {
+  font-size: var(--cargo-body-font-size);
+  font-weight: var(--cargo-font-weight-regular);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+}
+
+/* The arrow: the component sets its position along the side. */
+.cargo-tooltip__arrow {
+  position: absolute;
+  width: 10px;
+  height: 6px;
+  background-color: var(--cargo-color-bg-inverse);
+}
+.cargo-tooltip[data-side='top'] .cargo-tooltip__arrow {
+  top: -6px;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.cargo-tooltip[data-side='bottom'] .cargo-tooltip__arrow {
+  bottom: -6px;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+.cargo-tooltip[data-side='left'] .cargo-tooltip__arrow {
+  left: -6px;
+  width: 6px;
+  height: 10px;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+.cargo-tooltip[data-side='right'] .cargo-tooltip__arrow {
+  right: -6px;
+  width: 6px;
+  height: 10px;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+@media (forced-colors: active) {
+  .cargo-tooltip__content {
+    border: var(--cargo-border-width-1) solid CanvasText;
+  }
+}

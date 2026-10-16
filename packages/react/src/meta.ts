@@ -4,9 +4,11 @@ import { buttonMeta } from './button/button.meta.js';
 import { checkboxGroupMeta, checkboxMeta } from './checkbox/checkbox.meta.js';
 import { chipMeta } from './chip/chip.meta.js';
 import { radioButtonMeta, radioGroupMeta } from './radio-button/radio-button.meta.js';
+import { tabListMeta, tabMeta, tabPanelMeta, tabsMeta } from './tabs/tabs.meta.js';
 import { textAreaMeta } from './text-area/text-area.meta.js';
 import { textFieldMeta } from './text-field/text-field.meta.js';
 import { toggleMeta } from './toggle/toggle.meta.js';
+import { tooltipMeta } from './tooltip/tooltip.meta.js';
 import type { ComponentMeta } from './meta-types.js';
 
 export type { AxisMeta, ComponentMeta, FigmaOnlyMeta, PropMeta } from './meta-types.js';
@@ -22,4 +24,9 @@ export const META: Record<string, ComponentMeta> = {
   RadioButton: radioButtonMeta,
   Toggle: toggleMeta,
   Chip: chipMeta,
+  Tabs: tabsMeta,
+  TabList: tabListMeta,
+  Tab: tabMeta,
+  TabPanel: tabPanelMeta,
+  Tooltip: tooltipMeta,
 };

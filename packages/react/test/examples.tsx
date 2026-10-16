@@ -8,9 +8,14 @@ import {
   Chip,
   RadioButton,
   RadioGroup,
+  Tab,
+  TabList,
+  TabPanel,
+  Tabs,
   TextArea,
   TextField,
   Toggle,
+  Tooltip,
 } from '../src/index.js';
 
 export const examples: Record<string, FunctionComponent> = {
@@ -68,6 +73,25 @@ export const examples: Record<string, FunctionComponent> = {
       <Chip variant="input" size="sm">
         Surabaya
       </Chip>
+    </p>
+  ),
+  Tabs: () => (
+    <Tabs defaultValue="a">
+      <TabList aria-label="Pesanan">
+        <Tab value="a" number={2}>
+          Aktif
+        </Tab>
+        <Tab value="b">Selesai</Tab>
+      </TabList>
+      <TabPanel value="a">Pesanan aktif</TabPanel>
+      <TabPanel value="b">Pesanan selesai</TabPanel>
+    </Tabs>
+  ),
+  Tooltip: () => (
+    <p>
+      <Tooltip title="Ekspor" description="Unduh laporan sebagai Excel.">
+        <button type="button">Ekspor</button>
+      </Tooltip>
     </p>
   ),
 };

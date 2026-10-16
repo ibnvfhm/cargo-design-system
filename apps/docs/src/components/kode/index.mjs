@@ -4,9 +4,11 @@ import BadgeKode from './BadgeKode.astro';
 import ButtonKode from './ButtonKode.astro';
 import CheckboxRadioKode from './CheckboxRadioKode.astro';
 import ChipKode from './ChipKode.astro';
+import TabsKode from './TabsKode.astro';
 import TextAreaKode from './TextAreaKode.astro';
 import TextFieldKode from './TextFieldKode.astro';
 import ToggleKode from './ToggleKode.astro';
+import TooltipKode from './TooltipKode.astro';
 
 export const KODE = {
   badge: BadgeKode,
@@ -16,4 +18,6 @@ export const KODE = {
   'checkbox-radio-button': CheckboxRadioKode,
   toggle: ToggleKode,
   chips: ChipKode,
+  tabs: TabsKode,
+  tooltip: TooltipKode,
 };
