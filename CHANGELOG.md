@@ -2,6 +2,52 @@
 
 Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/), dan nomor versi mengikuti [Semantic Versioning](https://semver.org/lang/id/).
 
+## [0.3.0] - 2026-10-16
+
+Delapan produk INTI sekarang ada di token dan library Figma: InAccount, InBot, InProject, InSend, InDocs, InRecap, InPos, dan InCoop. Totalnya 5 brand dan 8 produk, masing-masing dengan mode Light dan Dark.
+
+### Ditambahkan
+
+- 8 palet primitive untuk produk INTI, masing-masing step 10 sampai 100. Nilainya sama dengan palet di halaman Color Figma. Di Figma, palet ini ada di collection Primitive sebagai `color/orange/10` sampai `color/punch/100` (80 variable baru).
+  - `orange` untuk InAccount
+  - `sky` untuk InBot
+  - `sapphire` untuk InProject
+  - `lime` untuk InSend
+  - `bronze` untuk InDocs
+  - `violet` untuk InRecap
+  - `jungle` untuk InPos
+  - `punch` untuk InCoop
+- Tema untuk setiap produk, satu file per produk di `src/brand/` (misalnya `inbot.json`), dengan 16 token yang sama seperti brand lain:
+  - **Isi brand** (`fill`) memakai warna primary produk: orange 50, sky 40, sapphire 60, lime 50, bronze 40, violet 50, jungle 50, dan punch 60. Hover satu step lebih gelap dan pressed dua step lebih gelap, sama di Light dan Dark. Teks dan ikon di atasnya putih, sama seperti brand lain.
+  - **Mode Light:** teks dan link brand memakai step 70 (hover step 80) supaya terbaca di latar putih, abu-abu, dan subtle. Garis dan cincin fokus memakai step pertama, mulai dari primary, yang mencapai 3:1.
+  - **Mode Dark:** teks, ikon, garis, dan cincin fokus memakai step 40 atau 50, supaya lolos kontras di latar gelap. Hover satu step lebih terang.
+- Collection baru di Figma, **INTI Product**. Isinya 9 mode, yaitu INTI (bawaan) dan 8 produk, dan 16 variable dengan nama yang sama seperti Brand Theme.
+  - Brand Theme mode INTI sekarang menunjuk ke collection ini, karena satu collection Figma memuat maksimal 10 mode.
+  - Untuk mendesain produk INTI: Brand Theme = INTI, lalu INTI Product = produknya.
+  - UIC, InMeterai, InCivas, dan InCustoms tidak terpengaruh.
+- Hasil build untuk 8 produk: `dist/css/<produk>.css`, `dist/js/<produk>/`, serta kelas `CargoTokensLight` dan `CargoTokensDark` di folder setiap produk untuk Flutter, Android, dan iOS. Di kode, setiap produk adalah brand sendiri, tanpa sambungan seperti di Figma.
+- `contrast-exceptions.json`: 42 pasangan baru untuk produk INTI. Semuanya akibat warna primary yang terang. InProject lolos semua.
+  - 30 pasangan teks putih di atas tombol primary (isi, hover, atau pressed). Yang paling rendah InBot, 2.22:1.
+  - 8 pasangan ikon putih di atas tombol InBot, InSend, InDocs, dan InPos, di Light dan Dark.
+  - 4 pasangan tanggal libur di latar subtle mode Dark, untuk InSend, InRecap, InPos, dan InCoop (4.38 sampai 4.49:1).
+- `lib/themes.mjs`: produk ditandai dengan `parent: 'inti'`.
+- Tes baru: setiap collection Figma memuat maksimal 10 mode, dan setiap produk menunjuk ke brand induk yang ada.
+
+### Diubah
+
+- Brand Theme mode INTI di Figma menunjuk ke INTI Product mode INTI, bukan langsung ke `grape`. Warnanya tidak berubah; semua token Semantic sudah dicek di Light dan Dark.
+- `dist/docs/semantic.md`: tabel Brand Theme dipecah per collection, yaitu Brand Theme dan INTI Product.
+- Label di halaman Color Figma: "ORANGES" menjadi "ORANGE", dan "BRONZE 70" di bagian InRecap menjadi "VIOLET 70".
+- Situs dokumentasi:
+  - Pemilih brand dikelompokkan menjadi Brand dan Produk INTI.
+  - Halaman Tema brand punya tabel per collection dan tabel cara memakai produk INTI di Figma.
+  - Halaman Kontras merender satu tabel detail yang isinya berganti mengikuti brand dan mode. Ukurannya turun dari 844 KB menjadi 185 KB, padahal brand bertambah dari 5 menjadi 13.
+  - Panduan designer menyebut collection INTI Product. Panduan developer mencantumkan nama file setiap brand.
+
+### Diperbaiki
+
+- Pencarian di situs dokumentasi kadang menampilkan hasil untuk huruf pertama saja, kalau kata diketik cepat saat pertama kali mencari.
+
 ## [0.2.0] - 2026-10-16
 
 Token sekarang sama persis dengan variable dan style di library Figma Cargo Design System: 5 collection (Primitive, Brand Theme, Semantic, Dimension, dan Typography) berisi 267 variable, ditambah 7 effect style dan 30 text style.

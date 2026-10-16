@@ -1,6 +1,6 @@
 # Cargo Design System
 
-Satu sumber kebenaran untuk warna, tipografi, spacing, dan komponen di semua produk Cargo: UIC, INTI, InMeterai, InCivas, InCustoms, dan brand lain yang menyusul.
+Satu sumber kebenaran untuk warna, tipografi, spacing, dan komponen di semua produk Cargo: UIC, INTI beserta 8 produknya (InAccount, InBot, InProject, InSend, InDocs, InRecap, InPos, dan InCoop), InMeterai, InCivas, InCustoms, dan brand lain yang menyusul.
 
 ## Status
 
@@ -8,11 +8,11 @@ Satu sumber kebenaran untuk warna, tipografi, spacing, dan komponen di semua pro
 |---|---|---|
 | 1 | Primitive colors: semua warna mentah | Selesai, di Figma dan di kode |
 | 2 | Semantic colors: tugas tiap warna (latar, teks, ikon, garis, status) | Selesai |
-| 3 | Tema brand (UIC, INTI, InMeterai, InCivas, InCustoms) dan mode gelap | Selesai: 5 brand, mode Light dan Dark |
+| 3 | Tema brand (UIC, INTI, InMeterai, InCivas, InCustoms, dan 8 produk INTI) dan mode gelap | Selesai: 5 brand dan 8 produk INTI, mode Light dan Dark |
 | 4 | Token non-warna: tipografi, spacing, radius, shadow | Selesai: spacing, radius, tebal garis, tipografi, dan shadow |
 | 5 | Memasang token ke komponen Figma | Selesai: semua komponen dan ikon memakai token, style lama sudah dihapus, dan 33 halaman komponen sudah direview |
-| 6 | Paket developer dan situs dokumentasi | Selesai: token versi 0.2.0 dirilis (tag `v0.2.0`, lihat [CHANGELOG](CHANGELOG.md)) dan situs dokumentasi online di [cargo-design-system-docs.vercel.app](https://cargo-design-system-docs.vercel.app) (lihat [Situs dokumentasi](#situs-dokumentasi)). Paket belum diterbitkan di npm; file token diambil dari `packages/tokens/dist` |
-| 7 | Menerbitkan library Figma | Siap diterbitkan: 267 variable, 7 effect style, dan 30 text style di Figma sudah sama persis dengan token 0.2.0 |
+| 6 | Paket developer dan situs dokumentasi | Selesai: token versi 0.3.0 dirilis (tag `v0.3.0`, lihat [CHANGELOG](CHANGELOG.md)) dan situs dokumentasi online di [cargo-design-system-docs.vercel.app](https://cargo-design-system-docs.vercel.app) (lihat [Situs dokumentasi](#situs-dokumentasi)). Paket belum diterbitkan di npm; file token diambil dari `packages/tokens/dist` |
+| 7 | Menerbitkan library Figma | Siap diterbitkan: 363 variable di 6 collection, 7 effect style, dan 30 text style di Figma sudah sama persis dengan token 0.3.0 |
 
 ## Cara kerjanya
 
@@ -28,9 +28,10 @@ color.imperial.70 ◄──  color.brand.dark.fill   ◄──    color.bg.brand
 
 - **Primitive**: semua warna mentah, dinamai sesuai warnanya. Tidak dipakai langsung.
 - **Brand Theme**: warna khas setiap brand. Satu mode di Figma untuk setiap brand, dan satu file untuk setiap brand di kode. Grup `light` dipakai mode Light, grup `dark` dipakai mode Dark.
+- **INTI Product**: warna khas 8 produk INTI, dengan 16 token yang sama seperti Brand Theme. Di Figma ini collection tersendiri, karena satu collection memuat maksimal 10 mode. Brand Theme mode INTI menunjuk ke collection ini, dan mode pertamanya (INTI) berisi warna INTI. Di kode, setiap produk punya file sendiri seperti brand lain.
 - **Semantic**: tugas warna, misalnya latar tombol utama atau teks error. Ada dua mode, Light dan Dark, dengan nama token yang sama; yang berbeda hanya warna yang dituju. **Inilah yang dipakai designer dan developer.**
 
-Di Figma, setiap frame memilih satu mode Brand Theme (brand-nya) dan satu mode Semantic (Light atau Dark). Kombinasi apa pun dari 5 brand dan 2 mode pasti cocok.
+Di Figma, setiap frame memilih satu mode Brand Theme (brand-nya) dan satu mode Semantic (Light atau Dark). Untuk produk INTI, pilih INTI di Brand Theme, lalu produknya di INTI Product. Kombinasi apa pun dari 13 brand dan produk serta 2 mode pasti cocok.
 
 Ukuran ada di collection terpisah, **Dimension**: spacing, radius, dan tebal garis. Ukuran sama untuk semua brand dan mode, jadi cukup satu lapis. Designer langsung memakai `space/16` atau `radius/8`, tanpa lapis semantic.
 
@@ -56,7 +57,7 @@ Brand dipilih dengan memakai file brand itu. Mode dipilih dengan `data-theme` di
 
 ## Situs dokumentasi
 
-Situs dokumentasi ada di `apps/docs`, dibuat dengan [Astro](https://astro.build). Tampilannya mengikuti Soul Design System: bar atas gelap, menu samping, dan beranda dengan hero. Situs ini juga memakai token Cargo, jadi brand (5 brand) dan mode Light/Dark bisa diganti langsung dari bar atas.
+Situs dokumentasi ada di `apps/docs`, dibuat dengan [Astro](https://astro.build). Tampilannya mengikuti Soul Design System: bar atas gelap, menu samping, dan beranda dengan hero. Situs ini juga memakai token Cargo, jadi brand (5 brand dan 8 produk INTI) dan mode Light/Dark bisa diganti langsung dari bar atas.
 
 Isinya:
 - **Beranda dan Mulai**: pengenalan, panduan memakai library Figma, panduan memasang token, status, dan changelog.
@@ -95,12 +96,13 @@ apps/docs/                      situs dokumentasi (Astro)
 packages/tokens/
 ├── src/
 │   ├── primitive/color.json     collection Primitive di Figma
-│   ├── brand/                   collection Brand Theme, satu file per mode (brand)
+│   ├── brand/                   collection Brand Theme dan INTI Product, satu file per mode (brand atau produk)
 │   │   ├── uic.json
 │   │   ├── inti.json
 │   │   ├── inmeterai.json
 │   │   ├── incivas.json
-│   │   └── incustoms.json
+│   │   ├── incustoms.json
+│   │   └── inaccount.json, inbot.json, inproject.json, insend.json, indocs.json, inrecap.json, inpos.json, incoop.json
 │   ├── semantic/                collection Semantic, satu file per mode
 │   │   ├── light.json
 │   │   ├── dark.json
@@ -131,7 +133,7 @@ packages/tokens/
     ├── ios/CargoDimension.swift, CargoTypographyDesktop.swift, CargoTypographyMobile.swift, CargoShadow.swift
     └── docs/
         ├── colors.md            tabel primitive dan kontrasnya
-        ├── semantic.md          Brand Theme semua brand, dan Semantic Light dan Dark
+        ├── semantic.md          Brand Theme dan INTI Product, serta Semantic Light dan Dark
         ├── contrast.md          hasil cek kontras untuk setiap brand dan mode
         ├── dimension.md         spacing, radius, dan tebal garis
         ├── typography.md        jenis dan tebal huruf, peran, dan text style
@@ -154,6 +156,14 @@ packages/tokens/
 | `fuchsia` | Brand InMeterai |
 | `tosca` | Brand InCivas |
 | `sea` | Brand InCustoms |
+| `orange` | Produk INTI: InAccount |
+| `sky` | Produk INTI: InBot |
+| `sapphire` | Produk INTI: InProject |
+| `lime` | Produk INTI: InSend |
+| `bronze` | Produk INTI: InDocs |
+| `violet` | Produk INTI: InRecap |
+| `jungle` | Produk INTI: InPos |
+| `punch` | Produk INTI: InCoop |
 | `midnight` | Netral kebiruan untuk mode Dark, diturunkan dari latar #000211 (`midnight.100`) |
 
 Ditambah `white` (#FFFFFF) dan `black` (#000000, hitam murni). Warna teks utama memakai `neutral.100` (#212121), bukan `black`. Latar mode Dark memakai `midnight.100` (#000211), dan lapisan di atasnya (sidebar, hover, garis) memakai step `midnight` yang lebih terang.
@@ -163,7 +173,9 @@ Ditambah `white` (#FFFFFF) dan `black` (#000000, hitam murni). Warna teks utama 
 - **Setiap brand punya 16 token dengan nama yang sama**: 8 di grup `light` dan 8 di grup `dark`, yaitu `fill`, `fill-hover`, `fill-pressed`, `fill-subtle`, `on-fill`, `text`, `text-hover`, dan `border`.
 - **Selalu alias ke primitive**, tidak pernah kode hex langsung.
 - **Tidak dipakai langsung di desain.** Di Figma, scoping-nya dikosongkan.
+- **Batas 10 mode per collection Figma.** Brand Theme memakai 5 mode, INTI Product memakai 9 (INTI dan 8 produk). `npm test` gagal kalau sebuah collection butuh lebih dari 10 mode.
 - **Menambah brand**: tambah mode di collection Brand Theme di Figma, tambah file `src/brand/<brand>.json` dengan 16 token yang sama, lalu tambah satu baris di `lib/themes.mjs`.
+- **Menambah produk INTI**: sama, tetapi mode-nya ditambah di collection INTI Product, dan barisnya di `lib/themes.mjs` diberi `parent: 'inti'`.
 
 ## Aturan token semantic
 
