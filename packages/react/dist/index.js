@@ -1,2 +1,6 @@
 // Cargo Design System components for React. Import the styles once: import '@cargo/react/styles.css'.
 export { Badge, BADGE_APPEARANCES, BADGE_SIZES, BADGE_TYPES, BADGE_VARIANTS } from './badge/Badge.js';
+export { Button, BUTTON_SIZES, BUTTON_VARIANTS } from './button/Button.js';
+export { TextArea } from './text-area/TextArea.js';
+export { TextField } from './text-field/TextField.js';
+export { REQUIRED_INDICATORS } from './internal/field.js';

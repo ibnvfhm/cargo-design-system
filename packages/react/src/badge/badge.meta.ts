@@ -14,6 +14,7 @@ export const badgeMeta: ComponentMeta = {
     { name: 'leftIcon', type: 'ReactNode', figma: '.AddOn Left, Change Left Icon', description: 'Ikon di kiri teks, khusus Label. Ukurannya otomatis 16px.' },
     { name: 'rightIcon', type: 'ReactNode', figma: '.AddOn Right, Change Right Icon', description: 'Ikon di kanan teks, khusus Label.' },
   ],
+  attributes: 'Atribut HTML lain, seperti id dan title, diteruskan ke <span>, begitu juga ref.',
   axes: {
     Type: { prop: 'type', values: { Label: 'label', Counter: 'counter', Dot: 'dot' } },
     Variant: { prop: 'variant', values: { Primary: 'primary', Info: 'info', Warning: 'warning', Success: 'success', Danger: 'danger', Gray: 'gray', Accent: 'accent' } },

@@ -1,0 +1,45 @@
+export const textAreaMeta = {
+    name: 'TextArea',
+    figmaSet: 'Text Area',
+    figmaNode: '133:3680',
+    client: true,
+    props: [
+        { name: 'label', type: 'ReactNode', figma: 'Label Text, Label', description: 'Label di atas kolom. Tanpa label, beri aria-label supaya kolom tetap punya nama.' },
+        { name: 'placeholder', type: 'string', figma: 'Placeholder Text', description: 'Contoh isian di dalam kolom.' },
+        { name: 'description', type: 'ReactNode', figma: 'Description Text, Description', description: 'Teks bantuan di bawah kolom.' },
+        {
+            name: 'error',
+            type: 'ReactNode',
+            figma: 'Error Text, Error, State=Danger',
+            description: 'Pesan error di bawah description. Garis kolom ikut merah dan kolom ditandai aria-invalid. Isi true untuk menandai error tanpa pesan.',
+        },
+        { name: 'counter', type: 'boolean', default: 'false', figma: 'Counter', description: 'Penghitung karakter di kanan bawah. Dengan maxLength, tampil sebagai 0/100.' },
+        { name: 'maxLength', type: 'number', description: 'Atribut HTML: batas jumlah karakter, juga angka kedua pada counter.' },
+        { name: 'required', type: 'boolean', default: 'false', description: 'Kolom wajib diisi: penanda wajib seperti di Text Field, dan atribut required.' },
+        { name: 'requiredIndicator', type: "'text' | 'symbol'", default: "'text'", description: 'Bentuk penanda wajib: text untuk "(Required)", symbol untuk "*".' },
+        { name: 'rows', type: 'number', description: 'Atribut HTML: tinggi kolom dalam jumlah baris. Tanpa rows, tingginya 180px seperti di Figma.' },
+        { name: 'disabled', type: 'boolean', default: 'false', description: 'Kolom tidak aktif, dengan warna yang sama seperti Text Field disabled.' },
+    ],
+    attributes: 'Atribut lain, seperti name, value, onChange, dan autoComplete, diteruskan ke <textarea>, begitu juga ref. style dipasang di elemen terluar.',
+    axes: {
+        State: {
+            figmaOnly: 'Muncul otomatis: Focussed saat mengetik, Pressed saat kolom berisi (garis brand). Danger menjadi prop error.',
+        },
+    },
+    properties: {
+        'Label Text': { prop: 'label' },
+        Label: { prop: 'label', note: 'Label tampil kalau label diisi.' },
+        'Placeholder Text': { prop: 'placeholder' },
+        'Description Text': { prop: 'description' },
+        Description: { prop: 'description', note: 'Teks bantuan tampil kalau description diisi.' },
+        'Error Text': { prop: 'error' },
+        Error: { prop: 'error', note: 'Pesan error tampil kalau error diisi.' },
+        Counter: { prop: 'counter', note: 'Angka kedua diambil dari maxLength.' },
+    },
+    accessibility: [
+        'Label terhubung ke kolom: mengeklik label memfokuskan kolom, dan screen reader membacanya sebagai nama kolom.',
+        'Tanpa label yang terlihat, kolom wajib punya aria-label atau aria-labelledby. TypeScript menolak TextArea tanpa keduanya.',
+        'Pesan error, teks bantuan, dan counter dibaca sebagai keterangan kolom (aria-describedby). Saat error, kolom ditandai aria-invalid.',
+        'Tinggi kolom bisa diubah pengguna dengan menarik sudut kanan bawah.',
+    ],
+};

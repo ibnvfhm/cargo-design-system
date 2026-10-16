@@ -1,0 +1,37 @@
+/* Label, required mark and helper text of the form fields (Text Field, Text Area). Figma: Label and Description in
+   Text Field (114:649), Required Object (1269:2868) and Description (1535:321). */
+
+/* Label: body/regular in text/default, with the required mark 2px after it. */
+.cargo-field__label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--cargo-space-2);
+  color: var(--cargo-color-text-default);
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-size: var(--cargo-body-font-size);
+  font-weight: var(--cargo-font-weight-regular);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+}
+
+/* Required Object: Type=Text "(Required)" in text/tertiary, Type=Symbol "*" in text/error. */
+.cargo-field__required {
+  color: var(--cargo-color-text-tertiary);
+}
+.cargo-field__required[data-indicator='symbol'] {
+  color: var(--cargo-color-text-error);
+}
+
+/* Description: small/regular, text/tertiary; Type=Error in text/error. */
+.cargo-field__message {
+  color: var(--cargo-color-text-tertiary);
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-size: var(--cargo-small-font-size);
+  font-weight: var(--cargo-font-weight-regular);
+  line-height: var(--cargo-small-line-height);
+  letter-spacing: var(--cargo-small-letter-spacing);
+}
+.cargo-field__message[data-tone='error'] {
+  color: var(--cargo-color-text-error);
+}

@@ -10,7 +10,8 @@ export interface PropMeta {
     /** What the prop does, in Indonesian. */
     description: string;
 }
-/** A Figma variant property: the code prop it became and how each Figma value is written in code. */
+/** A Figma variant property: the code prop it became and how each Figma value is written in code ('' when the value
+ * needs no prop, such as Text Field's Type=Normal). */
 export interface AxisMeta {
     prop: string;
     values: Record<string, string>;
@@ -30,6 +31,8 @@ export interface ComponentMeta {
     /** Whether the module is a client component ('use client'). */
     client: boolean;
     props: PropMeta[];
+    /** Where the other HTML attributes and the ref go, in Indonesian. */
+    attributes: string;
     /** Figma variant properties, by name. */
     axes: Record<string, AxisMeta | FigmaOnlyMeta>;
     /** Figma component properties (text, boolean and instance swap), by name without the "#id" suffix. */

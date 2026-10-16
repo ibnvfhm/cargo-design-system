@@ -1,0 +1,46 @@
+---
+import { META } from '@cargo/react/meta';
+import Affixes from '../../demos/text-field/Affixes.tsx';
+import affixesSource from '../../demos/text-field/Affixes.tsx?raw';
+import Basic from '../../demos/text-field/Basic.tsx';
+import basicSource from '../../demos/text-field/Basic.tsx?raw';
+import Clear from '../../demos/text-field/Clear.tsx';
+import clearSource from '../../demos/text-field/Clear.tsx?raw';
+import Disabled from '../../demos/text-field/Disabled.tsx';
+import disabledSource from '../../demos/text-field/Disabled.tsx?raw';
+import Messages from '../../demos/text-field/Messages.tsx';
+import messagesSource from '../../demos/text-field/Messages.tsx?raw';
+import WithIcons from '../../demos/text-field/WithIcons.tsx';
+import withIconsSource from '../../demos/text-field/WithIcons.tsx?raw';
+import Example from './Example.astro';
+import Install from './Install.astro';
+import Reference from './Reference.astro';
+
+const meta = META.TextField;
+---
+
+<Install names={['TextField']} />
+
+<section class="kode-section">
+  <h2 class="section-title" id="contoh">Contoh</h2>
+  <Example id="label" title="Label dan penanda wajib" description={'required menampilkan penanda wajib: "(Required)" seperti di Figma, atau "*" dengan requiredIndicator="symbol". Tinggi kolom ikut Device.'} source={basicSource}>
+    <Basic client:visible />
+  </Example>
+  <Example id="teks-bantuan" title="Teks bantuan dan error" description="description untuk teks bantuan. Kalau error diisi, pesannya menggantikan description dan garis kolom menjadi merah." source={messagesSource}>
+    <Messages client:visible />
+  </Example>
+  <Example id="prefix-suffix" title="Prefix dan suffix" description="Kotak awalan dan akhiran, seperti Type=Prefix dan Type=Suffix di Figma. Bisa berisi teks dan ikon." source={affixesSource}>
+    <Affixes client:visible />
+  </Example>
+  <Example id="ikon" title="Dengan ikon" description="leftIcon dan rightIcon untuk ikon di dalam kolom. Kolom tanpa label wajib punya aria-label." source={withIconsSource}>
+    <WithIcons client:visible />
+  </Example>
+  <Example id="hapus-isian" title="Tombol hapus isian" description="Muncul saat kolom berisi, seperti State=Pressed di Figma, dan memanggil onChange dengan nilai kosong. Matikan dengan clearable={false}." source={clearSource}>
+    <Clear client:visible />
+  </Example>
+  <Example id="disabled" title="Disabled" description="State Disabled di Figma menjadi prop disabled." source={disabledSource}>
+    <Disabled client:visible />
+  </Example>
+</section>
+
+<Reference meta={meta} page="Text Fields" />

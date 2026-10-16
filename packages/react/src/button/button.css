@@ -1,0 +1,255 @@
+/* Button. Figma: Button (1249:2271). Height = padding + the line height of the text style, as in Figma:
+   Desktop lg 54, md 44, sm 32; Mobile lg 44, md 32, sm 26. Text and icon colours, fills and strokes come from the
+   Default, Hover, Pressed, Focussed and Disabled variants of each Type. */
+
+/* Sizes that change with Device. They are inherited custom properties, so data-device on the button or on any
+   element above it picks Desktop or Mobile (the closest one wins). Without it the screen width decides: Mobile
+   below 768px, Desktop from 768px, like the typography tokens. */
+:root,
+[data-device='mobile'] {
+  --cargo-button-gap: var(--cargo-space-6);
+  --cargo-button-lg-padding-y: var(--cargo-space-12);
+  --cargo-button-lg-padding-x: var(--cargo-space-16);
+  --cargo-button-lg-icon: 20px;
+  --cargo-button-md-padding-y: var(--cargo-space-8);
+  --cargo-button-md-padding-x: var(--cargo-space-12);
+  --cargo-button-md-icon: 16px;
+  --cargo-button-sm-padding-y: var(--cargo-space-6);
+  --cargo-button-sm-padding-x: var(--cargo-space-8);
+  --cargo-button-sm-icon: 14px;
+}
+@media (min-width: 768px) {
+  :root:not([data-device='mobile']) {
+    --cargo-button-gap: var(--cargo-space-8);
+    --cargo-button-lg-padding-y: var(--cargo-space-16);
+    --cargo-button-lg-padding-x: var(--cargo-space-20);
+    --cargo-button-lg-icon: 22px;
+    --cargo-button-md-padding-y: var(--cargo-space-12);
+    --cargo-button-md-padding-x: var(--cargo-space-16);
+    --cargo-button-md-icon: 20px;
+    --cargo-button-sm-padding-y: var(--cargo-space-8);
+    --cargo-button-sm-padding-x: var(--cargo-space-12);
+    --cargo-button-sm-icon: 16px;
+  }
+}
+[data-device='desktop'] {
+  --cargo-button-gap: var(--cargo-space-8);
+  --cargo-button-lg-padding-y: var(--cargo-space-16);
+  --cargo-button-lg-padding-x: var(--cargo-space-20);
+  --cargo-button-lg-icon: 22px;
+  --cargo-button-md-padding-y: var(--cargo-space-12);
+  --cargo-button-md-padding-x: var(--cargo-space-16);
+  --cargo-button-md-icon: 20px;
+  --cargo-button-sm-padding-y: var(--cargo-space-8);
+  --cargo-button-sm-padding-x: var(--cargo-space-12);
+  --cargo-button-sm-icon: 16px;
+}
+
+/* Size=lg (the default): title text style, radius/12. Every button has a 1px border, transparent when the Type has
+   no stroke, so all Types are the same size; the padding subtracts it because Figma's strokes take no space. */
+.cargo-button {
+  --_padding-y: var(--cargo-button-lg-padding-y);
+  --_padding-x: var(--cargo-button-lg-padding-x);
+  --_icon-size: var(--cargo-button-lg-icon);
+  --_bg: var(--cargo-color-bg-brand);
+  --_fg: var(--cargo-color-text-on-brand);
+  --_icon: var(--cargo-color-icon-on-brand);
+  --_border: transparent;
+  --_ring: var(--cargo-focus-ring-default);
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cargo-button-gap);
+  margin: 0;
+  padding: calc(var(--_padding-y) - var(--cargo-border-width-1)) calc(var(--_padding-x) - var(--cargo-border-width-1));
+  border: var(--cargo-border-width-1) solid var(--_border);
+  border-radius: var(--cargo-radius-12);
+  background-color: var(--_bg);
+  color: var(--_fg);
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-size: var(--cargo-title-font-size);
+  font-weight: var(--cargo-font-weight-bold);
+  line-height: var(--cargo-title-line-height);
+  letter-spacing: var(--cargo-title-letter-spacing);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.cargo-button[data-size='md'] {
+  --_padding-y: var(--cargo-button-md-padding-y);
+  --_padding-x: var(--cargo-button-md-padding-x);
+  --_icon-size: var(--cargo-button-md-icon);
+  border-radius: var(--cargo-radius-8);
+  font-size: var(--cargo-body-font-size);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+}
+.cargo-button[data-size='sm'] {
+  --_padding-y: var(--cargo-button-sm-padding-y);
+  --_padding-x: var(--cargo-button-sm-padding-x);
+  --_icon-size: var(--cargo-button-sm-icon);
+  border-radius: var(--cargo-radius-6);
+  font-size: var(--cargo-small-font-size);
+  line-height: var(--cargo-small-line-height);
+  letter-spacing: var(--cargo-small-letter-spacing);
+}
+/* Primary, Tertiary and Danger use the bold text style; the outlined and borderless Types use medium. */
+.cargo-button:is(
+    [data-variant='secondary'],
+    [data-variant='outlined'],
+    [data-variant='borderless'],
+    [data-variant='danger-outlined'],
+    [data-variant='danger-borderless']
+  ) {
+  font-weight: var(--cargo-font-weight-medium);
+}
+
+.cargo-button__icon {
+  display: inline-flex;
+  flex: none;
+  width: var(--_icon-size);
+  height: var(--_icon-size);
+  color: var(--_icon);
+}
+.cargo-button__icon > svg {
+  width: 100%;
+  height: 100%;
+}
+.cargo-button__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Type, State=Default. Primary is set on .cargo-button above. */
+.cargo-button[data-variant='secondary'] {
+  --_bg: var(--cargo-color-bg-default);
+  --_fg: var(--cargo-color-text-brand);
+  --_icon: var(--cargo-color-icon-brand);
+  --_border: var(--cargo-color-border-brand);
+}
+.cargo-button[data-variant='tertiary'] {
+  --_bg: var(--cargo-color-bg-brand-subtle);
+  --_fg: var(--cargo-color-text-brand);
+  --_icon: var(--cargo-color-icon-brand);
+}
+.cargo-button[data-variant='outlined'] {
+  --_bg: var(--cargo-color-bg-default);
+  --_fg: var(--cargo-color-text-secondary);
+  --_icon: var(--cargo-color-icon-secondary);
+  --_border: var(--cargo-color-border-default);
+}
+.cargo-button[data-variant='borderless'] {
+  --_bg: transparent;
+  --_fg: var(--cargo-color-text-brand);
+  --_icon: var(--cargo-color-icon-brand);
+}
+.cargo-button[data-variant='danger'] {
+  --_bg: var(--cargo-color-bg-error);
+  --_fg: var(--cargo-color-text-on-error);
+  --_icon: var(--cargo-color-icon-on-error);
+  --_ring: var(--cargo-focus-ring-error);
+}
+.cargo-button[data-variant='danger-outlined'] {
+  --_bg: var(--cargo-color-bg-default);
+  --_fg: var(--cargo-color-text-error);
+  --_icon: var(--cargo-color-icon-error);
+  --_border: var(--cargo-color-border-error);
+  --_ring: var(--cargo-focus-ring-error);
+}
+.cargo-button[data-variant='danger-borderless'] {
+  --_bg: transparent;
+  --_fg: var(--cargo-color-text-error);
+  --_icon: var(--cargo-color-icon-error);
+  --_ring: var(--cargo-focus-ring-error);
+}
+
+/* State=Focussed: the focus ring shows for keyboard focus only. The transparent outline is drawn in Windows high
+   contrast mode, which removes box shadows. Borderless Types get the bg/default fill behind the ring. */
+.cargo-button:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: var(--_ring);
+}
+.cargo-button:is([data-variant='borderless'], [data-variant='danger-borderless']):focus-visible {
+  --_bg: var(--cargo-color-bg-default);
+}
+
+/* State=Hover, on devices with a mouse or trackpad. */
+@media (hover: hover) {
+  .cargo-button:hover:not(:disabled) {
+    --_bg: var(--cargo-color-bg-brand-hover);
+  }
+  .cargo-button[data-variant='secondary']:hover:not(:disabled),
+  .cargo-button[data-variant='borderless']:hover:not(:disabled) {
+    --_bg: var(--cargo-color-bg-brand-subtle);
+  }
+  .cargo-button[data-variant='tertiary']:hover:not(:disabled) {
+    --_bg: var(--cargo-color-bg-brand-hover);
+    --_fg: var(--cargo-color-text-on-brand);
+    --_icon: var(--cargo-color-icon-on-brand);
+  }
+  .cargo-button[data-variant='outlined']:hover:not(:disabled) {
+    --_bg: var(--cargo-color-bg-secondary);
+  }
+  .cargo-button[data-variant='danger']:hover:not(:disabled) {
+    --_bg: var(--cargo-color-bg-error-hover);
+  }
+  .cargo-button[data-variant='danger-outlined']:hover:not(:disabled),
+  .cargo-button[data-variant='danger-borderless']:hover:not(:disabled) {
+    --_bg: var(--cargo-color-bg-error-subtle);
+  }
+}
+
+/* State=Pressed. Tertiary, Borderless and Danger Borderless look like Default again, as in Figma. */
+.cargo-button:active:not(:disabled) {
+  --_bg: var(--cargo-color-bg-brand-pressed);
+}
+.cargo-button[data-variant='secondary']:active:not(:disabled) {
+  --_bg: var(--cargo-color-bg-brand-subtle);
+}
+.cargo-button[data-variant='tertiary']:active:not(:disabled) {
+  --_bg: var(--cargo-color-bg-brand-subtle);
+  --_fg: var(--cargo-color-text-brand);
+  --_icon: var(--cargo-color-icon-brand);
+}
+.cargo-button[data-variant='outlined']:active:not(:disabled) {
+  --_bg: var(--cargo-color-bg-default);
+  --_border: var(--cargo-color-border-strong);
+}
+.cargo-button:is([data-variant='borderless'], [data-variant='danger-borderless']):active:not(:disabled) {
+  --_bg: transparent;
+}
+.cargo-button[data-variant='danger']:active:not(:disabled) {
+  --_bg: var(--cargo-color-bg-error-pressed);
+}
+.cargo-button[data-variant='danger-outlined']:active:not(:disabled) {
+  --_bg: var(--cargo-color-bg-error-subtle);
+}
+
+/* State=Disabled: text/disabled and icon/disabled. Filled Types get bg/disabled, outlined Types keep bg/default with
+   border/disabled, and borderless Types stay without a fill. */
+.cargo-button:disabled {
+  --_bg: var(--cargo-color-bg-disabled);
+  --_fg: var(--cargo-color-text-disabled);
+  --_icon: var(--cargo-color-icon-disabled);
+  cursor: not-allowed;
+}
+.cargo-button:disabled:is([data-variant='secondary'], [data-variant='outlined'], [data-variant='danger-outlined']) {
+  --_bg: var(--cargo-color-bg-default);
+  --_border: var(--cargo-color-border-disabled);
+}
+.cargo-button:disabled:is([data-variant='borderless'], [data-variant='danger-borderless']) {
+  --_bg: transparent;
+}
+
+@media (forced-colors: active) {
+  .cargo-button:disabled {
+    border-color: GrayText;
+    color: GrayText;
+  }
+}

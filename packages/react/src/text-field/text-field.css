@@ -1,0 +1,194 @@
+/* Text Field. Figma: Text Field (114:649). Label, field and description 4px apart. The field is 44px high on Desktop
+   and 32px on Mobile, with 12px side padding, radius/6, bg/default and a 1px border/strong stroke. */
+
+/* Sizes that change with Device, inherited like the Button's: data-device on the field or any element above it, or
+   the screen width (Desktop from 768px). */
+:root,
+[data-device='mobile'] {
+  --cargo-text-field-height: 32px;
+  --cargo-text-field-gap: var(--cargo-space-6);
+  --cargo-text-field-icon: 16px;
+  --cargo-text-field-affix-icon: 16px;
+}
+@media (min-width: 768px) {
+  :root:not([data-device='mobile']) {
+    --cargo-text-field-height: 44px;
+    --cargo-text-field-gap: var(--cargo-space-8);
+    --cargo-text-field-icon: 18px;
+    --cargo-text-field-affix-icon: 20px;
+  }
+}
+[data-device='desktop'] {
+  --cargo-text-field-height: 44px;
+  --cargo-text-field-gap: var(--cargo-space-8);
+  --cargo-text-field-icon: 18px;
+  --cargo-text-field-affix-icon: 20px;
+}
+
+.cargo-text-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cargo-space-4);
+  min-width: 0;
+}
+
+/* The field: body/regular text. The padding subtracts the border because Figma's strokes take no space. */
+.cargo-text-field__field {
+  --_bg: var(--cargo-color-bg-default);
+  --_border: var(--cargo-color-border-strong);
+  --_icon: var(--cargo-color-icon-default);
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  gap: var(--cargo-text-field-gap);
+  height: var(--cargo-text-field-height);
+  padding: 0 calc(var(--cargo-space-12) - var(--cargo-border-width-1));
+  overflow: hidden;
+  border: var(--cargo-border-width-1) solid var(--_border);
+  border-radius: var(--cargo-radius-6);
+  background-color: var(--_bg);
+  color: var(--cargo-color-text-default);
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-size: var(--cargo-body-font-size);
+  font-weight: var(--cargo-font-weight-regular);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+}
+.cargo-text-field__input {
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-overflow: ellipsis;
+}
+.cargo-text-field__input::placeholder {
+  color: var(--cargo-color-text-tertiary);
+  opacity: 1;
+}
+.cargo-text-field__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+/* Placeholder icons: 18px on Desktop, 16px on Mobile, icon/default. */
+.cargo-text-field__icon {
+  display: inline-flex;
+  flex: none;
+  width: var(--cargo-text-field-icon);
+  height: var(--cargo-text-field-icon);
+  color: var(--_icon);
+}
+.cargo-text-field__icon > svg,
+.cargo-text-field__clear > svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Clear button (Figma: State=Pressed): XCircle in icon/secondary, shown while the field has a value. Its click area
+   reaches 4px past the icon without moving anything. */
+.cargo-text-field__clear {
+  display: inline-flex;
+  flex: none;
+  box-sizing: content-box;
+  width: var(--cargo-text-field-icon);
+  height: var(--cargo-text-field-icon);
+  margin: calc(-1 * var(--cargo-space-4));
+  padding: var(--cargo-space-4);
+  border: 0;
+  border-radius: var(--cargo-radius-full);
+  background: none;
+  color: var(--cargo-color-icon-secondary);
+  cursor: pointer;
+}
+.cargo-text-field__input:is(:placeholder-shown, :read-only) ~ .cargo-text-field__clear {
+  display: none;
+}
+
+/* Type=Prefix and Type=Suffix: a bg/secondary box with 8px side padding, divided from the input by the field's
+   border colour. Icons inside are 20px on Desktop, 16px on Mobile. */
+.cargo-text-field__affix {
+  display: flex;
+  flex: none;
+  align-items: center;
+  align-self: stretch;
+  gap: var(--cargo-text-field-gap);
+  padding: 0 var(--cargo-space-8);
+  background-color: var(--cargo-color-bg-secondary);
+  color: var(--cargo-color-text-default);
+  white-space: nowrap;
+}
+.cargo-text-field__affix svg {
+  flex: none;
+  width: var(--cargo-text-field-affix-icon);
+  height: var(--cargo-text-field-affix-icon);
+  color: var(--_icon);
+}
+.cargo-text-field__affix[data-side='start'] {
+  border-inline-end: var(--cargo-border-width-1) solid var(--_border);
+}
+.cargo-text-field__affix[data-side='end'] {
+  border-inline-start: var(--cargo-border-width-1) solid var(--_border);
+}
+.cargo-text-field__field:has(> .cargo-text-field__affix[data-side='start']) {
+  padding-inline-start: 0;
+}
+.cargo-text-field__field:has(> .cargo-text-field__affix[data-side='end']) {
+  padding-inline-end: 0;
+}
+
+/* State=Pressed: the field has a value. Kept at the lowest specificity so the states below win. */
+.cargo-text-field__field:has(:where(.cargo-text-field__input:not(:placeholder-shown))) {
+  --_border: var(--cargo-color-border-brand);
+}
+/* State=Hover, on devices with a mouse or trackpad. */
+@media (hover: hover) {
+  .cargo-text-field__field:hover {
+    --_border: var(--cargo-color-border-brand);
+  }
+}
+/* State=Focussed: typing. The transparent outline is drawn in Windows high contrast mode, which drops box shadows. */
+.cargo-text-field__field:focus-within {
+  --_border: var(--cargo-color-border-strong);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: var(--cargo-focus-ring-default);
+}
+/* Error. Figma's Text Field has no error state; this follows Text Area State=Danger (border/error). */
+.cargo-text-field__field[data-invalid] {
+  --_border: var(--cargo-color-border-error);
+}
+/* State=Disabled: bg/disabled, border/disabled, text/disabled. */
+.cargo-text-field__field:has(.cargo-text-field__input:disabled) {
+  --_bg: var(--cargo-color-bg-disabled);
+  --_border: var(--cargo-color-border-disabled);
+  --_icon: var(--cargo-color-icon-disabled);
+  color: var(--cargo-color-text-disabled);
+  cursor: not-allowed;
+}
+.cargo-text-field__field:has(.cargo-text-field__input:disabled) .cargo-text-field__affix {
+  background-color: var(--cargo-color-bg-disabled);
+  color: var(--cargo-color-text-disabled);
+}
+.cargo-text-field__input:disabled {
+  cursor: not-allowed;
+  /* Safari dims disabled text on its own; the colour above already says disabled. */
+  opacity: 1;
+  -webkit-text-fill-color: currentColor;
+}
+.cargo-text-field__input:disabled::placeholder {
+  color: var(--cargo-color-text-disabled);
+  -webkit-text-fill-color: currentColor;
+}
+
+@media (forced-colors: active) {
+  .cargo-text-field__field:has(.cargo-text-field__input:disabled) {
+    border-color: GrayText;
+    color: GrayText;
+  }
+}

@@ -66,7 +66,7 @@ const groups = [
       </tbody>
     </table>
   </div>
-  <p class="kode-note">Atribut HTML lain, seperti <code>id</code> dan <code>onClick</code>, juga bisa dipakai. <code>className</code> ditambahkan ke elemen terluar.</p>
+  <p class="kode-note">{meta.attributes} <code>className</code> ditambahkan ke elemen terluar.</p>
 </section>
 
 <section class="kode-section">
@@ -95,7 +95,7 @@ const groups = [
                     <span class="values">
                       {row.values.map(([figma, code]) => (
                         <span class="value">
-                          {figma} → <code>{code}</code>
+                          {figma} → {code ? <code>{code}</code> : <span class="muted">tanpa prop</span>}
                         </span>
                       ))}
                     </span>

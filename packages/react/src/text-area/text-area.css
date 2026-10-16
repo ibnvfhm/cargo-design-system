@@ -1,0 +1,99 @@
+/* Text Area. Figma: Text Area (133:3680). Label, field and helper text 4px apart. The field: 180px high, 8px padding,
+   radius/6, bg/default, a 1px border/strong stroke and body/regular text. Figma's resize handle is the browser's own
+   resize corner. */
+.cargo-text-area {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cargo-space-4);
+  min-width: 0;
+}
+
+.cargo-text-area__input {
+  --_border: var(--cargo-color-border-strong);
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(var(--cargo-body-line-height) + 2 * var(--cargo-space-8));
+  margin: 0;
+  /* Figma's strokes take no space, so the padding subtracts the border. */
+  padding: calc(var(--cargo-space-8) - var(--cargo-border-width-1));
+  border: var(--cargo-border-width-1) solid var(--_border);
+  border-radius: var(--cargo-radius-6);
+  outline: none;
+  background-color: var(--cargo-color-bg-default);
+  color: var(--cargo-color-text-default);
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-size: var(--cargo-body-font-size);
+  font-weight: var(--cargo-font-weight-regular);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+  resize: vertical;
+}
+/* 180px like Figma, unless the rows attribute sets the height. */
+.cargo-text-area__input:not([rows]) {
+  height: 180px;
+}
+.cargo-text-area__input::placeholder {
+  color: var(--cargo-color-text-tertiary);
+  opacity: 1;
+}
+
+/* State=Pressed: the field has text. Kept at the lowest specificity so the states below win. */
+.cargo-text-area__input:where(:not(:placeholder-shown)) {
+  --_border: var(--cargo-color-border-brand);
+}
+/* Hover is not in Figma's Text Area; it follows Text Field's Hover (border/brand). */
+@media (hover: hover) {
+  .cargo-text-area__input:hover {
+    --_border: var(--cargo-color-border-brand);
+  }
+}
+/* State=Focussed: typing. The transparent outline is drawn in Windows high contrast mode, which drops box shadows. */
+.cargo-text-area__input:focus {
+  --_border: var(--cargo-color-border-strong);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: var(--cargo-focus-ring-default);
+}
+/* State=Danger. */
+.cargo-text-area__input[aria-invalid='true'] {
+  --_border: var(--cargo-color-border-error);
+}
+/* Disabled is not in Figma's Text Area; it follows Text Field's Disabled. */
+.cargo-text-area__input:disabled {
+  --_border: var(--cargo-color-border-disabled);
+  background-color: var(--cargo-color-bg-disabled);
+  color: var(--cargo-color-text-disabled);
+  cursor: not-allowed;
+  opacity: 1;
+  -webkit-text-fill-color: currentColor;
+}
+.cargo-text-area__input:disabled::placeholder {
+  color: var(--cargo-color-text-disabled);
+  -webkit-text-fill-color: currentColor;
+}
+
+/* Helper text: description and error message on the left, the counter on the right, all small/regular. */
+.cargo-text-area__helper {
+  display: flex;
+  gap: var(--cargo-space-4);
+}
+.cargo-text-area__messages {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--cargo-space-4);
+  min-width: 0;
+}
+.cargo-text-area__counter {
+  flex: none;
+  margin-inline-start: auto;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (forced-colors: active) {
+  .cargo-text-area__input:disabled {
+    border-color: GrayText;
+    color: GrayText;
+  }
+}

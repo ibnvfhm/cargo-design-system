@@ -1,0 +1,31 @@
+---
+import { META } from '@cargo/react/meta';
+import Basic from '../../demos/text-area/Basic.tsx';
+import basicSource from '../../demos/text-area/Basic.tsx?raw';
+import Counter from '../../demos/text-area/Counter.tsx';
+import counterSource from '../../demos/text-area/Counter.tsx?raw';
+import ErrorDemo from '../../demos/text-area/Error.tsx';
+import errorSource from '../../demos/text-area/Error.tsx?raw';
+import Example from './Example.astro';
+import Install from './Install.astro';
+import Reference from './Reference.astro';
+
+const meta = META.TextArea;
+---
+
+<Install names={['TextArea']} />
+
+<section class="kode-section">
+  <h2 class="section-title" id="contoh">Contoh</h2>
+  <Example id="dasar" title="Label dan teks bantuan" description="Tingginya 180px seperti di Figma, dan bisa ditarik dari sudut kanan bawah." source={basicSource}>
+    <Basic client:visible />
+  </Example>
+  <Example id="counter" title="Counter" description="counter menghitung karakter; dengan maxLength tampil sebagai 0/100. rows mengatur tinggi awal." source={counterSource}>
+    <Counter client:visible />
+  </Example>
+  <Example id="error" title="Error" description="Pesan error tampil di bawah teks bantuan, dan garis kolom menjadi merah seperti State=Danger." source={errorSource}>
+    <ErrorDemo client:visible />
+  </Example>
+</section>
+
+<Reference meta={meta} page="Text Area" />

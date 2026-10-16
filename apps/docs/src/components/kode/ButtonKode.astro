@@ -1,0 +1,41 @@
+---
+import { META } from '@cargo/react/meta';
+import Device from '../../demos/button/Device.tsx';
+import deviceSource from '../../demos/button/Device.tsx?raw';
+import Disabled from '../../demos/button/Disabled.tsx';
+import disabledSource from '../../demos/button/Disabled.tsx?raw';
+import Sizes from '../../demos/button/Sizes.tsx';
+import sizesSource from '../../demos/button/Sizes.tsx?raw';
+import Variants from '../../demos/button/Variants.tsx';
+import variantsSource from '../../demos/button/Variants.tsx?raw';
+import WithIcons from '../../demos/button/WithIcons.tsx';
+import withIconsSource from '../../demos/button/WithIcons.tsx?raw';
+import Example from './Example.astro';
+import Install from './Install.astro';
+import Reference from './Reference.astro';
+
+const meta = META.Button;
+---
+
+<Install names={['Button']} />
+
+<section class="kode-section">
+  <h2 class="section-title" id="contoh">Contoh</h2>
+  <Example id="jenis" title="Jenis" description="Delapan variant sesuai Type di Figma. Primary untuk aksi utama, satu per layar; Danger untuk aksi yang menghapus atau tidak bisa dibatalkan." source={variantsSource}>
+    <Variants />
+  </Example>
+  <Example id="ukuran" title="Ukuran" description="Tiga ukuran: lg (bawaan), md, dan sm. Tingginya ikut Device: pilih Desktop atau Mobile di atas demo untuk melihat bedanya." source={sizesSource}>
+    <Sizes />
+  </Example>
+  <Example id="ikon" title="Dengan ikon" description="Ikon diisi lewat leftIcon dan rightIcon, dengan ukuran dan warna otomatis. Tombol ikon saja wajib punya aria-label." source={withIconsSource}>
+    <WithIcons />
+  </Example>
+  <Example id="disabled" title="Disabled" description="State Disabled di Figma menjadi prop disabled." source={disabledSource}>
+    <Disabled />
+  </Example>
+  <Example id="device" title="Device" description="device memaksa ukuran Desktop atau Mobile, berapa pun lebar layarnya. Tanpa device, ukurannya mengikuti layar atau data-device pada elemen di atasnya." source={deviceSource}>
+    <Device />
+  </Example>
+</section>
+
+<Reference meta={meta} page="Button" />

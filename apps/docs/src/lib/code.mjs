@@ -10,6 +10,9 @@ export const REACT_PACKAGE = { name: reactPackage.name, version: reactPackage.ve
 // Figma page → its code components, in the order the Kode tab shows them.
 const CODE_COMPONENTS = {
   Badge: ['Badge'],
+  Button: ['Button'],
+  'Text Fields': ['TextField'],
+  'Text Area': ['TextArea'],
 };
 
 export const hasCode = (component) => component.page in CODE_COMPONENTS;
