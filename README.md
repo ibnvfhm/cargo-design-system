@@ -11,7 +11,7 @@ Satu sumber kebenaran untuk warna, tipografi, spacing, dan komponen di semua pro
 | 3 | Tema brand (UIC, INTI, InMeterai, InCivas, InCustoms) dan mode gelap | Selesai: 5 brand, mode Light dan Dark |
 | 4 | Token non-warna: tipografi, spacing, radius, shadow | Selesai: spacing, radius, tebal garis, tipografi, dan shadow |
 | 5 | Memasang token ke komponen Figma | Selesai: semua komponen dan ikon memakai token, style lama sudah dihapus, dan 33 halaman komponen sudah direview |
-| 6 | Paket developer dan situs dokumentasi | Berjalan: situs dokumentasi sudah bisa dijalankan di komputer sendiri (lihat [Situs dokumentasi](#situs-dokumentasi)); paket token belum dipublikasikan |
+| 6 | Paket developer dan situs dokumentasi | Berjalan: situs dokumentasi sudah online di [cargo-design-system-docs.vercel.app](https://cargo-design-system-docs.vercel.app) (lihat [Situs dokumentasi](#situs-dokumentasi)); paket token belum dipublikasikan |
 
 ## Cara kerjanya
 
@@ -69,7 +69,7 @@ npm run docs         # buka http://localhost:4321
 npm run docs:build   # membuat situs statis di apps/docs/dist
 ```
 
-Terbit online lewat [Vercel](https://vercel.com). Pengaturannya ada di `vercel.json`, jadi saat repo ini diimpor di Vercel tidak ada pengaturan yang perlu diubah. Vercel menjalankan `npm ci` dan `npm run docs:build`, lalu menerbitkan `apps/docs/dist`. Setiap perubahan di branch utama repo (saat ini `claude/ecstatic-cannon-vg2an8`) diterbitkan ulang otomatis dalam beberapa menit. Header `X-Robots-Tag: noindex` membuat situs tidak muncul di mesin pencari; hapus header itu kalau situs ini mau dibuka untuk umum.
+Situsnya online di [cargo-design-system-docs.vercel.app](https://cargo-design-system-docs.vercel.app), diterbitkan lewat [Vercel](https://vercel.com). Pengaturannya ada di `vercel.json`. Root Directory proyek di Vercel harus folder paling atas repo (`./`), bukan `apps/docs` yang dipilih Vercel secara otomatis, supaya `vercel.json` terbaca. Vercel menjalankan `npm ci` dan `npm run docs:build`, lalu menerbitkan `apps/docs/dist`. Setiap perubahan di branch utama repo (saat ini `claude/ecstatic-cannon-vg2an8`) diterbitkan ulang otomatis dalam beberapa menit. Header `X-Robots-Tag: noindex` membuat situs tidak muncul di mesin pencari; hapus header itu kalau situs ini mau dibuka untuk umum.
 
 Data dari Figma disimpan di repo, karena situs tidak membaca Figma secara langsung:
 
