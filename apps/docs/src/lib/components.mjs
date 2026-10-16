@@ -95,6 +95,12 @@ if (uncategorised.length) {
   throw new Error(`Halaman tanpa kategori di src/lib/components.mjs: ${uncategorised.map((page) => page.page).join(', ')}`);
 }
 
+// Every component page has these tabs, each at its own address under /komponen/<slug>/.
+export const COMPONENT_TABS = [
+  { id: 'penggunaan', label: 'Penggunaan', path: '' },
+  { id: 'properti-desain', label: 'Properti desain', path: 'properti-desain/' },
+];
+
 export const PROPERTY_TYPES = {
   VARIANT: 'Varian',
   TEXT: 'Teks',

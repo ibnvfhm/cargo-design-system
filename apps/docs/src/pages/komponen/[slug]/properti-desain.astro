@@ -1,0 +1,78 @@
+---
+import ComponentSet from '../../../components/ComponentSet.astro';
+import Icon from '../../../components/Icon.astro';
+import ComponentPage from '../../../layouts/ComponentPage.astro';
+import { components, figmaUrl } from '../../../lib/components.mjs';
+
+export function getStaticPaths() {
+  return components.map((component, index) => ({ params: { slug: component.slug }, props: { index } }));
+}
+
+const { index } = Astro.props;
+const component = components[index];
+const mainSets = component.sets.filter((set) => !set.helper);
+const helpers = component.sets.filter((set) => set.helper);
+const several = mainSets.length > 1;
+---
+
+<ComponentPage index={index} tab="properti-desain">
+  {
+    several && (
+      <nav class="set-nav" aria-label="Komponen di halaman ini">
+        <span class="muted">Di halaman ini:</span>
+        {mainSets.map((set) => (
+          <a href={`#${set.slug}`}>{set.name}</a>
+        ))}
+        {helpers.length > 0 && <a href="#bagian-penyusun">Bagian penyusun</a>}
+      </nav>
+    )
+  }
+
+  {
+    mainSets.map((set) =>
+      several ? (
+        <section class="set">
+          <div class="set-head">
+            <h2 class="section-title" id={set.slug}>
+              {set.name}
+            </h2>
+            <p class="section-intro">{set.summary}</p>
+            <a class="set-link" href={figmaUrl(set.id)} target="_blank" rel="noopener">
+              Buka {set.name} di Figma
+              <Icon name="ArrowUpRight" size={14} />
+            </a>
+          </div>
+          <ComponentSet set={set} part="design" level={3} idPrefix={`${set.slug}-`} />
+        </section>
+      ) : (
+        <ComponentSet set={set} part="design" level={2} idPrefix="" />
+      ),
+    )
+  }
+
+  {
+    helpers.length > 0 && (
+      <section class="set parts">
+        <div class="set-head">
+          <h2 class="section-title" id="bagian-penyusun">
+            Bagian penyusun
+          </h2>
+          <p class="section-intro">
+            Komponen ini dipakai di dalam {component.page}. Namanya diawali titik, jadi tidak ikut terbit di library dan tidak perlu diambil sendiri.
+          </p>
+        </div>
+        {helpers.map((set) => (
+          <details class="helper">
+            <summary>
+              <span class="helper-name">{set.name}</span>
+              <span class="helper-summary">{set.summary}</span>
+            </summary>
+            <div class="helper-body">
+              <ComponentSet set={set} level={4} />
+            </div>
+          </details>
+        ))}
+      </section>
+    )
+  }
+</ComponentPage>

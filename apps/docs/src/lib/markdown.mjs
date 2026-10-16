@@ -32,8 +32,9 @@ export function inline(text) {
  * @param {number} [options.shift] Added to every heading level, e.g. 1 turns "#" into <h2>.
  * @param {boolean} [options.labels] Turns a paragraph that is only bold text ("**Cara pakai**") into a small heading.
  * @param {number} [options.labelLevel] Heading level for those labels.
+ * @param {string} [options.labelIdPrefix] Gives each label an id, this prefix plus the label as a slug, so the page outline can link to it.
  */
-export function renderMarkdown(source, { shift = 0, labels = false, labelLevel = 3 } = {}) {
+export function renderMarkdown(source, { shift = 0, labels = false, labelLevel = 3, labelIdPrefix } = {}) {
   const html = [];
   let paragraph = [];
   let list = null;
@@ -42,7 +43,8 @@ export function renderMarkdown(source, { shift = 0, labels = false, labelLevel =
     if (!paragraph.length) return;
     const text = paragraph.join(' ');
     const label = labels && text.match(/^\*\*([^*]+)\*\*:?$/);
-    html.push(label ? `<h${labelLevel} class="md-label">${inline(label[1])}</h${labelLevel}>` : `<p>${inline(text)}</p>`);
+    const id = label && labelIdPrefix !== undefined ? ` id="${labelIdPrefix}${slugify(label[1])}"` : '';
+    html.push(label ? `<h${labelLevel} class="md-label"${id}>${inline(label[1])}</h${labelLevel}>` : `<p>${inline(text)}</p>`);
     paragraph = [];
   };
   const flushList = () => {

@@ -1,0 +1,125 @@
+---
+import Icon from '../components/Icon.astro';
+import { COMPONENT_TABS, components, figmaUrl } from '../lib/components.mjs';
+import { url } from '../lib/site.mjs';
+import Base from './Base.astro';
+
+interface Props {
+  /** Position of the component in `components`, for the previous and next links. */
+  index: number;
+  /** The tab this page shows, from COMPONENT_TABS. */
+  tab: string;
+}
+
+const { index, tab } = Astro.props;
+const component = components[index];
+const previous = components[index - 1];
+const next = components[index + 1];
+const mainSets = component.sets.filter((set) => !set.helper);
+const current = COMPONENT_TABS.find((item) => item.id === tab);
+const first = current === COMPONENT_TABS[0];
+const title = first ? component.page : `${component.page}: ${current.label}`;
+const description = first ? `${component.page}: ${component.summary}` : `${current.label} ${component.page}: varian dan properti komponennya di Figma.`;
+---
+
+<Base title={title} description={description} tocDepth={3}>
+  <header class="page-header component-header">
+    <p class="eyebrow">Komponen · {component.category.name}</p>
+    <h1 class="page-title">{component.page}</h1>
+    <p class="lead">{component.summary}</p>
+    <div class="page-actions">
+      <a class="btn btn-primary btn-sm" href={figmaUrl(component.pageId)} target="_blank" rel="noopener">
+        Buka di Figma<Icon name="ArrowUpRight" size={16} />
+      </a>
+      <span class="tag">{component.variants} varian</span>
+      {mainSets.length > 1 && <span class="tag">{mainSets.length} komponen</span>}
+    </div>
+  </header>
+
+  <nav class="tabs" aria-label={`Bagian halaman ${component.page}`}>
+    {
+      COMPONENT_TABS.map((item) => (
+        <a href={url(`/komponen/${component.slug}/${item.path}`)} aria-current={item === current ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+
+  <slot />
+
+  <nav class="pager" aria-label="Komponen lain">
+    {
+      previous ? (
+        <a class="pager-link" href={url(`/komponen/${previous.slug}/`)}>
+          <span class="pager-label">
+            <Icon name="ArrowLeft" size={16} />
+            Sebelumnya
+          </span>
+          <span class="pager-name">{previous.page}</span>
+        </a>
+      ) : (
+        <span />
+      )
+    }
+    {
+      next && (
+        <a class="pager-link pager-next" href={url(`/komponen/${next.slug}/`)}>
+          <span class="pager-label">
+            Berikutnya
+            <Icon name="ArrowRight" size={16} />
+          </span>
+          <span class="pager-name">{next.page}</span>
+        </a>
+      )
+    }
+  </nav>
+</Base>
+
+<style>
+  .component-header { margin-bottom: var(--cargo-space-32); }
+  .page-actions .tag { min-height: 28px; padding: var(--cargo-space-4) var(--cargo-space-12); }
+
+  /* Same look as the Cargo Tabs component: space/16 padding, title/regular in text/secondary, and title/bold in
+     text/brand with a 2px border/brand line for the open tab. The 1px border/default line runs the full width. */
+  .tabs {
+    display: flex;
+    margin-bottom: var(--cargo-space-40);
+    border-bottom: var(--cargo-border-width-1) solid var(--cargo-color-border-default);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs a {
+    flex: none;
+    margin-bottom: calc(-1 * var(--cargo-border-width-1));
+    padding: var(--cargo-space-16);
+    border-bottom: var(--cargo-border-width-2) solid transparent;
+    color: var(--cargo-color-text-secondary);
+    font-size: var(--cargo-title-font-size);
+    line-height: var(--cargo-title-line-height);
+    letter-spacing: var(--cargo-title-letter-spacing);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .tabs a:hover { color: var(--cargo-color-text-default); }
+  .tabs a[aria-current] {
+    border-bottom-color: var(--cargo-color-border-brand);
+    color: var(--cargo-color-text-brand);
+    font-weight: var(--cargo-font-weight-bold);
+  }
+
+  .pager { display: grid; grid-template-columns: 1fr 1fr; gap: var(--cargo-space-16); margin-top: var(--cargo-space-64); }
+  .pager-link {
+    display: grid;
+    gap: var(--cargo-space-4);
+    padding: var(--cargo-space-16) var(--cargo-space-20);
+    border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+    border-radius: var(--cargo-radius-12);
+    color: var(--cargo-color-text-default);
+    text-decoration: none;
+  }
+  .pager-link:hover { border-color: var(--cargo-color-border-brand); color: var(--cargo-color-text-default); }
+  .pager-next { text-align: right; justify-items: end; }
+  .pager-label { display: inline-flex; align-items: center; gap: var(--cargo-space-4); color: var(--cargo-color-text-tertiary); font-size: 13px; }
+  .pager-name { font-weight: var(--cargo-font-weight-bold); color: var(--cargo-color-text-brand); }
+</style>

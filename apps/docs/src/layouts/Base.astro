@@ -18,9 +18,11 @@ interface Props {
   width?: 'normal' | 'wide';
   /** Builds "Di halaman ini" from the h2 headings on wide screens. */
   toc?: boolean;
+  /** 3 also lists h3 headings in "Di halaman ini", nested under their h2. */
+  tocDepth?: 2 | 3;
 }
 
-const { title, description = SITE.description, width = 'normal', toc = true } = Astro.props;
+const { title, description = SITE.description, width = 'normal', toc = true, tocDepth = 2 } = Astro.props;
 const path = normalize(Astro.url.pathname);
 const section = sectionOf(path);
 const fullTitle = path === '/' ? `${SITE.name}: ${SITE.tagline}` : `${title} · ${SITE.name}`;
@@ -57,7 +59,7 @@ const fullTitle = path === '/' ? `${SITE.name}: ${SITE.tagline}` : `${title} · 
       <main class:list={['main', `main--${width}`]} id="isi">
         <slot name="hero" />
         <div class="page">
-          <div class="page-body" data-page-body><slot /></div>
+          <div class="page-body" data-page-body data-toc-depth={tocDepth}><slot /></div>
           {
             toc && (
               <nav class="toc" aria-label="Di halaman ini" hidden data-toc>

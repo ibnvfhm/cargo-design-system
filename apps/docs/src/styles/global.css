@@ -445,6 +445,9 @@ h1, h2, h3, h4 { margin: 0; font-weight: var(--cargo-font-weight-bold); }
   color: var(--cargo-color-text-brand);
   font-weight: var(--cargo-font-weight-medium);
 }
+/* The page that holds the open one, such as Button while its Properti desain tab is open. */
+.side-group a[data-within] { color: var(--cargo-color-text-brand); font-weight: var(--cargo-font-weight-medium); }
+.side-group .side-sub { margin-top: 2px; padding-left: var(--cargo-space-12); }
 
 /* Main column */
 
@@ -516,6 +519,46 @@ h1, h2, h3, h4 { margin: 0; font-weight: var(--cargo-font-weight-bold); }
 }
 .toc a:hover { color: var(--cargo-color-text-default); }
 .toc a[aria-current] { border-left-color: var(--cargo-color-border-brand); color: var(--cargo-color-text-brand); font-weight: var(--cargo-font-weight-medium); }
+.toc .toc-sub a { padding-left: var(--cargo-space-24); }
+
+/* Component pages: a section per component set when one Figma page holds several */
+
+.set + .set,
+.parts { margin-top: var(--cargo-space-64); }
+.set-head { margin-bottom: var(--cargo-space-24); }
+.set-link { display: inline-flex; align-items: center; gap: 2px; margin-top: var(--cargo-space-8); font-size: 13px; }
+.set-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cargo-space-6) var(--cargo-space-12);
+  margin-bottom: var(--cargo-space-32);
+  padding: var(--cargo-space-12) var(--cargo-space-16);
+  border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+  border-radius: var(--cargo-radius-12);
+  font-size: 14px;
+}
+/* From 1280px the outline on the right lists the same sections. */
+@media (min-width: 1280px) {
+  .set-nav { display: none; }
+}
+.helper {
+  border: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle);
+  border-radius: var(--cargo-radius-12);
+}
+.helper + .helper { margin-top: var(--cargo-space-12); }
+.helper summary {
+  display: grid;
+  gap: 2px;
+  padding: var(--cargo-space-16) var(--cargo-space-20);
+  cursor: pointer;
+  list-style: none;
+}
+.helper summary::-webkit-details-marker { display: none; }
+.helper-name { font-weight: var(--cargo-font-weight-bold); }
+.helper-summary { color: var(--cargo-color-text-secondary); font-size: 14px; line-height: 20px; }
+.helper-body { padding: 0 var(--cargo-space-20) var(--cargo-space-20); }
+.helper[open] summary { border-bottom: var(--cargo-border-width-1) solid var(--cargo-color-border-subtle); margin-bottom: var(--cargo-space-20); }
 
 /* Page header */
 

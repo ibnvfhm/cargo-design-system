@@ -60,7 +60,7 @@ Situs dokumentasi ada di `apps/docs`, dibuat dengan [Astro](https://astro.build)
 Isinya:
 - **Beranda dan Mulai**: pengenalan, panduan memakai library Figma, panduan memasang token, status, dan changelog.
 - **Foundations**: token warna, palet primitive, tema brand, kontras, tipografi, spacing dan radius, shadow, dan 186 ikon yang bisa dicari. Semuanya dibaca langsung dari `packages/tokens/src`, jadi selalu sama dengan file token.
-- **Komponen**: satu halaman per halaman komponen di Figma, berisi gambar pratinjau (Light dan Dark), Kapan dipakai, Cara pakai, Hindari, varian, dan properti.
+- **Komponen**: satu halaman per halaman komponen di Figma, dengan dua tab seperti Soul. Tab **Penggunaan** berisi status, gambar pratinjau (Light dan Dark), Kapan dipakai, Cara pakai, dan Hindari. Tab **Properti desain** (`/komponen/<nama>/properti-desain/`) berisi varian, properti, dan bagian penyusun. Panel kanan menampilkan daftar isi halaman.
 
 Menjalankan di komputer sendiri (butuh Node.js 22.12 atau lebih baru):
 ```sh

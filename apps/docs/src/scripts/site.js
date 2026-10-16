@@ -264,13 +264,29 @@ document.addEventListener('click', async (event) => {
 
 const toc = document.querySelector('[data-toc]');
 const pageBody = document.querySelector('[data-page-body]');
-const headings = pageBody ? [...pageBody.querySelectorAll('h2')].filter((heading) => heading.textContent.trim()) : [];
+// Pages that ask for it (component pages) list h3 too, indented under their h2. Collapsed parts are left out.
+const tocSelector = pageBody?.dataset.tocDepth === '3' ? 'h2, h3' : 'h2';
+const headings = pageBody
+  ? [...pageBody.querySelectorAll(tocSelector)].filter((heading) => heading.textContent.trim() && !heading.closest('details'))
+  : [];
 
 if (toc && headings.length >= 2) {
   const list = toc.querySelector('ul');
+  const taken = new Set([...document.querySelectorAll('[id]')].map((element) => element.id));
+  let section = '';
   for (const heading of headings) {
-    if (!heading.id) heading.id = fold(heading.textContent).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    if (!heading.id) {
+      // An h3 takes its h2's id as a prefix, so two "Cara pakai" headings on one page get different ids.
+      let base = fold(heading.textContent).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      if (heading.tagName === 'H3' && section) base = `${section}-${base}`;
+      let id = base;
+      for (let n = 2; taken.has(id); n += 1) id = `${base}-${n}`;
+      heading.id = id;
+      taken.add(id);
+    }
+    if (heading.tagName === 'H2') section = heading.id;
     const item = document.createElement('li');
+    if (heading.tagName === 'H3') item.className = 'toc-sub';
     const link = document.createElement('a');
     link.href = `#${heading.id}`;
     link.textContent = heading.textContent.trim();

@@ -4,12 +4,21 @@ import { renderMarkdown } from '../lib/markdown.mjs';
 
 interface Props {
   set: any;
+  /** "usage" for the preview and guidance, "design" for variants and properties, "all" for both. */
+  part?: 'usage' | 'design' | 'all';
   /** Heading level for "Kapan dipakai", "Varian", and the other parts of the description. */
   level?: 2 | 3 | 4;
+  /** Prefix for heading ids, so the page outline can link to them. Without it, headings get no id. */
+  idPrefix?: string;
+  /** Puts a "Pratinjau" heading above the preview. */
+  previewHeading?: boolean;
 }
 
-const { set, level = 3 } = Astro.props;
+const { set, part = 'all', level = 3, idPrefix, previewHeading = false } = Astro.props;
 const Heading = `h${level}`;
+const usage = part !== 'design';
+const design = part !== 'usage';
+const id = (name) => (idPrefix === undefined ? undefined : `${idPrefix}${name}`);
 
 // The first paragraph is the summary, shown above; the rest holds "Kapan dipakai", "Cara pakai", and "Hindari".
 const body = set.md.split(/\n\s*\n/).slice(1).join('\n\n');
@@ -23,8 +32,10 @@ const swapDefault = (value) => {
 };
 ---
 
+{usage && set.preview.light && previewHeading && <Heading class="spec-title" id={id('pratinjau')}>Pratinjau</Heading>}
+
 {
-  set.preview.light && (
+  usage && set.preview.light && (
     <figure class="preview">
       <div class="preview-stage">
         <img
@@ -55,51 +66,55 @@ const swapDefault = (value) => {
   )
 }
 
-{body && <div class="prose description" set:html={renderMarkdown(body, { labels: true, labelLevel: level })} />}
-
-<div class="spec">
-  <Heading class="spec-title">Varian</Heading>
-  {
-    axes.length ? (
-      <>
-        <p class="spec-note">{set.variants} varian dari kombinasi properti berikut.</p>
-        <div class="table-wrap">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Properti</th>
-                <th>Pilihan</th>
-              </tr>
-            </thead>
-            <tbody>
-              {axes.map(([axis, options]) => (
-                <tr>
-                  <td class="nowrap">
-                    <strong>{axis}</strong>
-                  </td>
-                  <td>
-                    <span class="options">
-                      {options.map((option) => (
-                        <span class="tag">{option}</span>
-                      ))}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </>
-    ) : (
-      <p class="spec-note">Komponen tunggal, tanpa varian.</p>
-    )
-  }
-</div>
+{usage && body && <div class="prose description" set:html={renderMarkdown(body, { labels: true, labelLevel: level, labelIdPrefix: idPrefix })} />}
 
 {
-  set.props.length > 0 && (
+  design && (
     <div class="spec">
-      <Heading class="spec-title">Properti</Heading>
+      <Heading class="spec-title" id={id('varian')}>Varian</Heading>
+      {
+        axes.length ? (
+          <>
+            <p class="spec-note">{set.variants} varian dari kombinasi properti berikut.</p>
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Properti</th>
+                    <th>Pilihan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {axes.map(([axis, options]) => (
+                    <tr>
+                      <td class="nowrap">
+                        <strong>{axis}</strong>
+                      </td>
+                      <td>
+                        <span class="options">
+                          {options.map((option) => (
+                            <span class="tag">{option}</span>
+                          ))}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        ) : (
+          <p class="spec-note">Komponen tunggal, tanpa varian.</p>
+        )
+      }
+    </div>
+  )
+}
+
+{
+  design && set.props.length > 0 && (
+    <div class="spec">
+      <Heading class="spec-title" id={id('properti')}>Properti</Heading>
       <p class="spec-note">Diatur di panel kanan Figma setelah komponen dipilih.</p>
       <div class="table-wrap">
         <table class="table">
@@ -139,6 +154,7 @@ const swapDefault = (value) => {
 
 <style>
   .preview { margin: 0 0 var(--cargo-space-24); }
+  .spec-title + .preview { margin-top: var(--cargo-space-16); }
   .preview-stage {
     display: grid;
     place-items: center;
@@ -155,6 +171,7 @@ const swapDefault = (value) => {
   .description :global(.md-label) { margin-top: var(--cargo-space-24); }
   .description :global(.md-label:first-child) { margin-top: 0; }
   .spec { margin-top: var(--cargo-space-32); }
+  :global(.tabs) + .spec { margin-top: 0; }
   .spec-title {
     font-size: var(--cargo-heading-3-font-size);
     line-height: var(--cargo-heading-3-line-height);
