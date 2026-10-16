@@ -38,10 +38,12 @@ const rowsOf = (setName, axes, properties) => {
     })),
   ];
 };
-const groups = [
-  { set: meta.figmaSet, rows: rowsOf(meta.figmaSet, meta.axes, meta.properties) },
-  ...Object.entries(meta.helperSets ?? {}).map(([name, helper]) => ({ set: name, rows: rowsOf(name, helper.axes, helper.properties) })),
-];
+const groups = meta.figmaSet
+  ? [
+      { set: meta.figmaSet, rows: rowsOf(meta.figmaSet, meta.axes, meta.properties) },
+      ...Object.entries(meta.helperSets ?? {}).map(([name, helper]) => ({ set: name, rows: rowsOf(name, helper.axes, helper.properties) })),
+    ]
+  : [];
 ---
 
 <section class="kode-section">
@@ -69,47 +71,49 @@ const groups = [
   <p class="kode-note">{meta.attributes} <code>className</code> ditambahkan ke elemen terluar.</p>
 </section>
 
-<section class="kode-section">
-  <Heading class={headingClass} id={`${idPrefix}figma-ke-kode`}>Figma ke kode</Heading>
-  <p class="kode-note">Setiap variant property dan properti komponen di Figma, dan padanannya di kode.</p>
-  {
-    groups.map((group) => (
-      <div class="table-wrap kode-block">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Figma{groups.length > 1 ? `: ${group.set}` : ''}</th>
-              <th>Jenis</th>
-              <th>Kode</th>
-              <th>Catatan</th>
-            </tr>
-          </thead>
-          <tbody>
-            {group.rows.map((row) => (
+{groups.length > 0 && (
+  <section class="kode-section">
+    <Heading class={headingClass} id={`${idPrefix}figma-ke-kode`}>Figma ke kode</Heading>
+    <p class="kode-note">Setiap variant property dan properti komponen di Figma, dan padanannya di kode.</p>
+    {
+      groups.map((group) => (
+        <div class="table-wrap kode-block">
+          <table class="table">
+            <thead>
               <tr>
-                <td class="nowrap">{row.figma}</td>
-                <td class="nowrap muted">{row.kind}</td>
-                <td class="nowrap">{row.code ? <code>{row.code}</code> : <span class="muted">Hanya di Figma</span>}</td>
-                <td class="desc">
-                  {row.values.length > 0 && (
-                    <span class="values">
-                      {row.values.map(([figma, code]) => (
-                        <span class="value">
-                          {figma} → {code ? <code>{code}</code> : <span class="muted">tanpa prop</span>}
-                        </span>
-                      ))}
-                    </span>
-                  )}
-                  {row.note && <span class="value-note">{row.note}</span>}
-                </td>
+                <th>Figma{groups.length > 1 ? `: ${group.set}` : ''}</th>
+                <th>Jenis</th>
+                <th>Kode</th>
+                <th>Catatan</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    ))
-  }
-</section>
+            </thead>
+            <tbody>
+              {group.rows.map((row) => (
+                <tr>
+                  <td class="nowrap">{row.figma}</td>
+                  <td class="nowrap muted">{row.kind}</td>
+                  <td class="nowrap">{row.code ? <code>{row.code}</code> : <span class="muted">Hanya di Figma</span>}</td>
+                  <td class="desc">
+                    {row.values.length > 0 && (
+                      <span class="values">
+                        {row.values.map(([figma, code]) => (
+                          <span class="value">
+                            {figma} → {code ? <code>{code}</code> : <span class="muted">tanpa prop</span>}
+                          </span>
+                        ))}
+                      </span>
+                    )}
+                    {row.note && <span class="value-note">{row.note}</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ))
+    }
+  </section>
+)}
 
 <section class="kode-section">
   <Heading class={headingClass} id={`${idPrefix}aksesibilitas`}>Aksesibilitas</Heading>

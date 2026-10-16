@@ -553,6 +553,9 @@ h1, h2, h3, h4 { margin: 0; font-weight: var(--cargo-font-weight-bold); }
 }
 .kode-list { margin: var(--cargo-space-12) 0 0; padding-left: var(--cargo-space-20); color: var(--cargo-color-text-secondary); }
 .kode-list li + li { margin-top: var(--cargo-space-6); }
+/* A page with several components lists each one's reference under its own heading. */
+.kode-component > .section-title + .kode-section { margin-top: var(--cargo-space-20); }
+.kode-component .kode-section + .kode-section { margin-top: var(--cargo-space-32); }
 
 /* From 1280px the outline on the right lists the same sections. */
 @media (min-width: 1280px) {

@@ -24,10 +24,11 @@ export interface FigmaOnlyMeta {
 export interface ComponentMeta {
     /** The component name in code. */
     name: string;
-    /** The Figma component set it implements. */
-    figmaSet: string;
+    /** The Figma component set it implements. A companion such as CheckboxGroup has none: the main component's meta
+     * maps the whole set. */
+    figmaSet?: string;
     /** Node ID of that set in the Cargo Design System file. */
-    figmaNode: string;
+    figmaNode?: string;
     /** Whether the module is a client component ('use client'). */
     client: boolean;
     props: PropMeta[];

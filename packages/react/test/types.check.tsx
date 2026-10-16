@@ -1,5 +1,5 @@
 // Type-level checks, run by `npm run typecheck`: each line below must be a type error.
-import { Badge, Button, TextArea, TextField } from '../src/index.js';
+import { Badge, Button, Checkbox, Chip, RadioButton, RadioGroup, TextArea, TextField, Toggle } from '../src/index.js';
 
 // @ts-expect-error Figma's Style is `appearance` in code; `style` stays React's style object.
 export const styleIsNotAppearance = <Badge style="solid" />;
@@ -20,3 +20,15 @@ export const unknownIndicator = <TextField label="Email" requiredIndicator="star
 // @ts-expect-error A text area needs a name too.
 export const unnamedTextArea = <TextArea placeholder="Catatan" />;
 export const searchField = <TextField aria-label="Cari" type="search" />;
+
+// @ts-expect-error A checkbox without text needs aria-label.
+export const unnamedCheckbox = <Checkbox />;
+// @ts-expect-error A radio needs a value.
+export const radioWithoutValue = <RadioButton>Reguler</RadioButton>;
+// @ts-expect-error A radio group needs a label.
+export const groupWithoutLabel = <RadioGroup />;
+// @ts-expect-error A switch needs a name.
+export const unnamedToggle = <Toggle />;
+// @ts-expect-error onRemove belongs to input chips only.
+export const filterWithRemove = <Chip onRemove={() => {}}>Jakarta</Chip>;
+export const inputChip = <Chip variant="input" onRemove={() => {}}>Jakarta</Chip>;

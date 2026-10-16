@@ -1,0 +1,31 @@
+---
+import { META } from '@cargo/react/meta';
+import Filter from '../../demos/chip/Filter.tsx';
+import filterSource from '../../demos/chip/Filter.tsx?raw';
+import InputDemo from '../../demos/chip/Input.tsx';
+import inputSource from '../../demos/chip/Input.tsx?raw';
+import Sizes from '../../demos/chip/Sizes.tsx';
+import sizesSource from '../../demos/chip/Sizes.tsx?raw';
+import Example from './Example.astro';
+import Install from './Install.astro';
+import Reference from './Reference.astro';
+
+const meta = META.Chip;
+---
+
+<Install names={['Chip']} />
+
+<section class="kode-section">
+  <h2 class="section-title" id="contoh">Contoh</h2>
+  <Example id="filter" title="Filter" description="Chip bawaan. Klik untuk menyalakan; chip yang menyala diberi centang, seperti State=Selected." source={filterSource}>
+    <Filter client:visible />
+  </Example>
+  <Example id="input" title="Input" description={'variant="input" untuk nilai terpilih yang bisa dihapus dengan X.'} source={inputSource}>
+    <InputDemo client:visible />
+  </Example>
+  <Example id="ukuran" title="Ukuran dan disabled" description="md (bawaan, 28px) dan sm (24px)." source={sizesSource}>
+    <Sizes client:visible />
+  </Example>
+</section>
+
+<Reference meta={meta} page="Chips" />

@@ -1,0 +1,190 @@
+/* Checkbox and CheckboxGroup. Figma: Checkbox (133:568).
+   Size md: a 20px box, body/regular text 8px from it, small/regular messages, 4px between rows.
+   Size sm: a 16px box, small/regular text, extra-small/regular messages, 2px between rows. */
+
+/* Size, set on a checkbox or on its CheckboxGroup. Inherited custom properties, so the closest size wins; the rules
+   below fall back to md. */
+.cargo-checkbox-group[data-size='sm'],
+.cargo-checkbox[data-size='sm'] {
+  --cargo-checkbox-box: 16px;
+  --cargo-checkbox-row-gap: var(--cargo-space-2);
+  --cargo-checkbox-font-size: var(--cargo-small-font-size);
+  --cargo-checkbox-line-height: var(--cargo-small-line-height);
+  --cargo-checkbox-letter-spacing: var(--cargo-small-letter-spacing);
+  --cargo-checkbox-message-font-size: var(--cargo-extra-small-font-size);
+  --cargo-checkbox-message-line-height: var(--cargo-extra-small-line-height);
+  --cargo-checkbox-message-letter-spacing: var(--cargo-extra-small-letter-spacing);
+}
+.cargo-checkbox-group[data-size='md'],
+.cargo-checkbox[data-size='md'] {
+  --cargo-checkbox-box: 20px;
+  --cargo-checkbox-row-gap: var(--cargo-space-4);
+  --cargo-checkbox-font-size: var(--cargo-body-font-size);
+  --cargo-checkbox-line-height: var(--cargo-body-line-height);
+  --cargo-checkbox-letter-spacing: var(--cargo-body-letter-spacing);
+  --cargo-checkbox-message-font-size: var(--cargo-small-font-size);
+  --cargo-checkbox-message-line-height: var(--cargo-small-line-height);
+  --cargo-checkbox-message-letter-spacing: var(--cargo-small-letter-spacing);
+}
+
+.cargo-checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--cargo-checkbox-row-gap, var(--cargo-space-4));
+  min-width: 0;
+}
+.cargo-checkbox__control {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--cargo-space-8);
+  color: var(--cargo-color-text-default);
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-size: var(--cargo-checkbox-font-size, var(--cargo-body-font-size));
+  font-weight: var(--cargo-font-weight-regular);
+  line-height: var(--cargo-checkbox-line-height, var(--cargo-body-line-height));
+  letter-spacing: var(--cargo-checkbox-letter-spacing, var(--cargo-body-letter-spacing));
+  cursor: pointer;
+}
+/* The text sits centred on the box (Figma aligns the row to the centre) and wraps under its own first line. */
+.cargo-checkbox__text {
+  padding-top: max(0px, calc((var(--cargo-checkbox-box, 20px) - var(--cargo-checkbox-line-height, var(--cargo-body-line-height))) / 2));
+}
+
+/* The real input lies invisibly over the box, so clicks, touch and screen reader focus land on it. */
+.cargo-checkbox__target {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+}
+.cargo-checkbox__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+/* Type=Default: bg/default with a 1px border/strong stroke, radius/4. The 16px icon is centred in the box. */
+.cargo-checkbox__box {
+  --_bg: var(--cargo-color-bg-default);
+  --_border: var(--cargo-color-border-strong);
+  --_icon: var(--cargo-color-icon-on-brand);
+  display: flex;
+  box-sizing: border-box;
+  width: var(--cargo-checkbox-box, 20px);
+  height: var(--cargo-checkbox-box, 20px);
+  padding: calc((var(--cargo-checkbox-box, 20px) - 16px) / 2);
+  border-radius: var(--cargo-radius-4);
+  background-color: var(--_bg);
+  box-shadow: inset 0 0 0 var(--cargo-border-width-1) var(--_border);
+  color: var(--_icon);
+}
+.cargo-checkbox__check,
+.cargo-checkbox__minus {
+  display: none;
+  flex: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* Type=Checked (Check icon) and Type=Indeterminate (MinusCircle icon): bg/brand, icon/on-brand, no stroke. */
+.cargo-checkbox__input:is(:checked, :indeterminate, [data-indeterminate]) + .cargo-checkbox__box {
+  --_bg: var(--cargo-color-bg-brand);
+  --_border: transparent;
+}
+.cargo-checkbox__input:checked + .cargo-checkbox__box .cargo-checkbox__check,
+.cargo-checkbox__input:is(:indeterminate, [data-indeterminate]) + .cargo-checkbox__box .cargo-checkbox__minus {
+  display: block;
+}
+.cargo-checkbox__input:is(:indeterminate, [data-indeterminate]) + .cargo-checkbox__box .cargo-checkbox__check {
+  display: none;
+}
+
+/* State=Hover: border/brand (or bg/brand-hover when checked) and shadow/md, anywhere on the box or its text. */
+@media (hover: hover) {
+  .cargo-checkbox__control:hover .cargo-checkbox__input:not(:disabled) + .cargo-checkbox__box {
+    --_border: var(--cargo-color-border-brand);
+    box-shadow:
+      inset 0 0 0 var(--cargo-border-width-1) var(--_border),
+      var(--cargo-shadow-md);
+  }
+  .cargo-checkbox__control:hover .cargo-checkbox__input:not(:disabled):is(:checked, :indeterminate, [data-indeterminate]) + .cargo-checkbox__box {
+    --_bg: var(--cargo-color-bg-brand-hover);
+    --_border: transparent;
+  }
+}
+
+/* State=Focussed: a 2px border/focus ring inside the box edge and 1px of bg/default, around a 14px box (md). */
+/* Wins over hover, so the ring stays while the pointer is on the box. */
+.cargo-checkbox__control .cargo-checkbox__input:not(:disabled):focus-visible + .cargo-checkbox__box {
+  padding: 3px;
+  background-clip: content-box;
+  box-shadow:
+    inset 0 0 0 var(--cargo-border-width-2) var(--cargo-color-border-focus),
+    inset 0 0 0 3px var(--cargo-color-bg-default),
+    inset 0 0 0 4px var(--_border);
+}
+
+/* State=Disabled: bg/disabled with border/disabled (or no stroke when checked), icon/disabled, text/disabled. */
+.cargo-checkbox__input:disabled + .cargo-checkbox__box {
+  --_bg: var(--cargo-color-bg-disabled);
+  --_border: var(--cargo-color-border-disabled);
+  --_icon: var(--cargo-color-icon-disabled);
+}
+.cargo-checkbox__input:disabled:is(:checked, :indeterminate, [data-indeterminate]) + .cargo-checkbox__box {
+  --_border: transparent;
+}
+.cargo-checkbox:has(.cargo-checkbox__input:disabled) :is(.cargo-checkbox__control, .cargo-field__message) {
+  color: var(--cargo-color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* Messages under a checkbox or a group: small/regular (md) or extra-small/regular (sm). */
+.cargo-checkbox > .cargo-field__message,
+.cargo-checkbox-group > .cargo-field__message {
+  font-size: var(--cargo-checkbox-message-font-size, var(--cargo-small-font-size));
+  line-height: var(--cargo-checkbox-message-line-height, var(--cargo-small-line-height));
+  letter-spacing: var(--cargo-checkbox-message-letter-spacing, var(--cargo-small-letter-spacing));
+}
+
+/* CheckboxGroup: a fieldset with the Figma Label as its legend, the checkboxes 8px apart, then its messages. */
+.cargo-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cargo-checkbox-row-gap, var(--cargo-space-4));
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.cargo-checkbox-group__label {
+  margin-bottom: var(--cargo-checkbox-row-gap, var(--cargo-space-4));
+  padding: 0;
+  font-size: var(--cargo-checkbox-font-size, var(--cargo-body-font-size));
+  line-height: var(--cargo-checkbox-line-height, var(--cargo-body-line-height));
+  letter-spacing: var(--cargo-checkbox-letter-spacing, var(--cargo-body-letter-spacing));
+}
+.cargo-checkbox-group__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cargo-space-8);
+}
+.cargo-checkbox-group:disabled > :is(.cargo-checkbox-group__label, .cargo-field__message) {
+  color: var(--cargo-color-text-disabled);
+}
+
+/* Windows high contrast mode drops the box's shadow stroke and background: show the real checkbox instead. */
+@media (forced-colors: active) {
+  .cargo-checkbox__input {
+    position: static;
+    width: var(--cargo-checkbox-box, 20px);
+    height: var(--cargo-checkbox-box, 20px);
+    opacity: 1;
+  }
+  .cargo-checkbox__box {
+    display: none;
+  }
+}

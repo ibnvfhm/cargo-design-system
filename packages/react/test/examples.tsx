@@ -1,6 +1,17 @@
 // One small example per component, shared by the server rendering and hydration tests.
 import type { FunctionComponent } from 'react';
-import { Badge, Button, TextArea, TextField } from '../src/index.js';
+import {
+  Badge,
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  Chip,
+  RadioButton,
+  RadioGroup,
+  TextArea,
+  TextField,
+  Toggle,
+} from '../src/index.js';
 
 export const examples: Record<string, FunctionComponent> = {
   Badge: () => (
@@ -29,5 +40,34 @@ export const examples: Record<string, FunctionComponent> = {
     <form>
       <TextArea label="Catatan" counter maxLength={100} defaultValue="Antar sore" />
     </form>
+  ),
+  Checkbox: () => (
+    <CheckboxGroup label="Notifikasi" required size="sm">
+      <Checkbox defaultChecked>Email</Checkbox>
+      <Checkbox indeterminate description="Sebagian">
+        Semua
+      </Checkbox>
+    </CheckboxGroup>
+  ),
+  RadioButton: () => (
+    <RadioGroup label="Pengiriman" defaultValue="a" error="Pilih salah satu.">
+      <RadioButton value="a">Reguler</RadioButton>
+      <RadioButton value="b" description="Sampai hari ini">
+        Kilat
+      </RadioButton>
+    </RadioGroup>
+  ),
+  Toggle: () => (
+    <Toggle label="Notifikasi" defaultChecked description="Langsung tersimpan.">
+      Email
+    </Toggle>
+  ),
+  Chip: () => (
+    <p>
+      <Chip defaultSelected>Jakarta</Chip>
+      <Chip variant="input" size="sm">
+        Surabaya
+      </Chip>
+    </p>
   ),
 };

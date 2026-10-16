@@ -1,0 +1,126 @@
+/* Chip. Figma: Chip (2077:113). A pill with 16px icons. Size md: 28px high, 12px side padding, 6px gap, body/regular.
+   Size sm: 24px high, 8px side padding, 4px gap, small/regular. */
+.cargo-chip {
+  --_bg: var(--cargo-color-bg-default);
+  --_fg: var(--cargo-color-text-default);
+  --_icon: var(--cargo-color-icon-default);
+  display: inline-flex;
+  box-sizing: border-box;
+  align-items: center;
+  gap: var(--cargo-space-6);
+  margin: 0;
+  padding: var(--cargo-space-4) var(--cargo-space-12);
+  border: 0;
+  border-radius: var(--cargo-radius-full);
+  background-color: var(--_bg);
+  color: var(--_fg);
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-size: var(--cargo-body-font-size);
+  font-weight: var(--cargo-font-weight-regular);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.cargo-chip[data-size='sm'] {
+  gap: var(--cargo-space-4);
+  padding: var(--cargo-space-4) var(--cargo-space-8);
+  font-size: var(--cargo-small-font-size);
+  line-height: var(--cargo-small-line-height);
+  letter-spacing: var(--cargo-small-letter-spacing);
+}
+.cargo-chip__icon {
+  display: inline-flex;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--_icon);
+}
+.cargo-chip__icon > svg,
+.cargo-chip__remove > svg {
+  width: 100%;
+  height: 100%;
+}
+.cargo-chip__check {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--_icon);
+}
+.cargo-chip__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Type=Filter: bg/default; Hover bg/secondary; Selected bg/brand-subtle with a Check icon and text/brand; Disabled
+   bg/disabled with text/disabled. */
+.cargo-chip[data-variant='filter'] {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .cargo-chip[data-variant='filter']:hover:not(:disabled, [aria-pressed='true']) {
+    --_bg: var(--cargo-color-bg-secondary);
+  }
+}
+.cargo-chip[data-variant='filter'][aria-pressed='true'] {
+  --_bg: var(--cargo-color-bg-brand-subtle);
+  --_fg: var(--cargo-color-text-brand);
+  --_icon: var(--cargo-color-icon-brand);
+}
+.cargo-chip[data-variant='filter']:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: var(--cargo-focus-ring-default);
+}
+
+/* Type=Input: bg/secondary with an X in icon/secondary; Hover bg/tertiary; Disabled bg/disabled. */
+.cargo-chip[data-variant='input'] {
+  --_bg: var(--cargo-color-bg-secondary);
+}
+@media (hover: hover) {
+  .cargo-chip[data-variant='input']:not([data-disabled]):hover {
+    --_bg: var(--cargo-color-bg-tertiary);
+  }
+}
+/* The X's click area reaches 4px past the icon without moving anything. */
+.cargo-chip__remove {
+  display: inline-flex;
+  flex: none;
+  box-sizing: content-box;
+  width: 16px;
+  height: 16px;
+  margin: calc(-1 * var(--cargo-space-4));
+  padding: var(--cargo-space-4);
+  border: 0;
+  border-radius: var(--cargo-radius-full);
+  background: none;
+  color: var(--cargo-color-icon-secondary);
+  cursor: pointer;
+}
+.cargo-chip__remove:focus-visible {
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 var(--cargo-border-width-2) var(--cargo-color-border-focus);
+}
+
+/* State=Disabled, both types. */
+.cargo-chip:is(:disabled, [data-disabled]) {
+  --_bg: var(--cargo-color-bg-disabled);
+  --_fg: var(--cargo-color-text-disabled);
+  --_icon: var(--cargo-color-icon-disabled);
+  cursor: not-allowed;
+}
+.cargo-chip__remove:disabled {
+  color: var(--cargo-color-icon-disabled);
+  cursor: not-allowed;
+}
+
+@media (forced-colors: active) {
+  .cargo-chip {
+    border: var(--cargo-border-width-1) solid CanvasText;
+  }
+  .cargo-chip[data-variant='filter'][aria-pressed='true'] {
+    border-width: var(--cargo-border-width-2);
+  }
+}

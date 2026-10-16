@@ -1,0 +1,59 @@
+---
+import { META } from '@cargo/react/meta';
+import CheckboxBasic from '../../demos/checkbox/Basic.tsx';
+import checkboxBasicSource from '../../demos/checkbox/Basic.tsx?raw';
+import CheckboxGroupDemo from '../../demos/checkbox/Group.tsx';
+import checkboxGroupSource from '../../demos/checkbox/Group.tsx?raw';
+import CheckboxIndeterminate from '../../demos/checkbox/Indeterminate.tsx';
+import checkboxIndeterminateSource from '../../demos/checkbox/Indeterminate.tsx?raw';
+import CheckboxSizes from '../../demos/checkbox/Sizes.tsx';
+import checkboxSizesSource from '../../demos/checkbox/Sizes.tsx?raw';
+import CheckboxStates from '../../demos/checkbox/States.tsx';
+import checkboxStatesSource from '../../demos/checkbox/States.tsx?raw';
+import RadioControlled from '../../demos/radio-button/Controlled.tsx';
+import radioControlledSource from '../../demos/radio-button/Controlled.tsx?raw';
+import RadioGroupDemo from '../../demos/radio-button/Group.tsx';
+import radioGroupSource from '../../demos/radio-button/Group.tsx?raw';
+import Example from './Example.astro';
+import Install from './Install.astro';
+import Reference from './Reference.astro';
+
+const components = ['Checkbox', 'CheckboxGroup', 'RadioGroup', 'RadioButton'];
+const slug = (name) => name.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+---
+
+<Install names={components} />
+
+<section class="kode-section">
+  <h2 class="section-title" id="contoh">Contoh</h2>
+  <Example id="checkbox-dasar" title="Checkbox" description="Teks di samping kotak adalah isi komponen (children), dan mengekliknya juga mencentang." source={checkboxBasicSource}>
+    <CheckboxBasic />
+  </Example>
+  <Example id="indeterminate" title="Indeterminate" description="Kotak induk tampil sebagian tercentang saat hanya sebagian kota yang dipilih." source={checkboxIndeterminateSource}>
+    <CheckboxIndeterminate client:visible />
+  </Example>
+  <Example id="kelompok-checkbox" title="Kelompok checkbox" description="CheckboxGroup memberi judul, penanda wajib, dan keterangan untuk beberapa checkbox, seperti Label di Figma." source={checkboxGroupSource}>
+    <CheckboxGroupDemo />
+  </Example>
+  <Example id="ukuran" title="Ukuran" description="md (bawaan) dan sm. size di CheckboxGroup berlaku untuk semua checkbox di dalamnya." source={checkboxSizesSource}>
+    <CheckboxSizes />
+  </Example>
+  <Example id="error-disabled" title="Error dan disabled" description="error untuk pesan di bawah checkbox; disabled untuk State=Disabled." source={checkboxStatesSource}>
+    <CheckboxStates />
+  </Example>
+  <Example id="radio-dasar" title="Radio button" description="RadioGroup memberi judul dan menyatukan pilihan, sehingga hanya satu yang bisa terpilih. Panah keyboard memindahkan pilihan." source={radioGroupSource}>
+    <RadioGroupDemo />
+  </Example>
+  <Example id="radio-terkontrol" title="Radio terkontrol" description="value dan onValueChange kalau aplikasi yang menyimpan pilihan. Pesan error hilang setelah ada pilihan." source={radioControlledSource}>
+    <RadioControlled client:visible />
+  </Example>
+</section>
+
+{
+  components.map((name) => (
+    <section class="kode-section kode-component">
+      <h2 class="section-title" id={slug(name)}>{name}</h2>
+      <Reference meta={META[name]} page="Checkbox & Radio Button" level={3} idPrefix={`${slug(name)}-`} />
+    </section>
+  ))
+}

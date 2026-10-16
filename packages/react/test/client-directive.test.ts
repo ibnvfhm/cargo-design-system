@@ -7,7 +7,8 @@ import { expect, test } from 'vitest';
 const SRC = new URL('../src/', import.meta.url).pathname;
 const walk = (dir: string): string[] =>
   readdirSync(dir, { withFileTypes: true }).flatMap((entry) => (entry.isDirectory() ? walk(join(dir, entry.name)) : [join(dir, entry.name)]));
-const HOOKS = /\buse(State|Effect|LayoutEffect|InsertionEffect|Ref|Id|Context|Reducer|Callback|Memo|SyncExternalStore|Transition|DeferredValue|ImperativeHandle|Floating|Controllable[A-Za-z]*)\(|\bcreateContext\(/;
+// useId, useMemo and useCallback also work in server components, so they alone don't make a client module.
+const HOOKS = /\buse(State|Effect|LayoutEffect|InsertionEffect|Ref|Context|Reducer|SyncExternalStore|Transition|DeferredValue|ImperativeHandle|Floating|Controllable[A-Za-z]*)\(|\bcreateContext\(/;
 const modules = walk(SRC)
   .filter((file) => /\.tsx?$/.test(file) && !/\.test\.tsx?$/.test(file) && !/\.meta\.ts$|meta(-types)?\.ts$/.test(file))
   .map((file) => ({ name: relative(SRC, file), source: readFileSync(file, 'utf8') }));

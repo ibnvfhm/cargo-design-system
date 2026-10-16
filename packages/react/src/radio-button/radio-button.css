@@ -1,0 +1,137 @@
+/* RadioGroup and RadioButton. Figma: Radio Button (133:1176). A 20px circle with a 1px border/strong stroke, body/regular
+   text 8px from it, small/regular messages, 4px between rows. */
+.cargo-radio {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--cargo-space-4);
+  min-width: 0;
+}
+.cargo-radio__control {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--cargo-space-8);
+  color: var(--cargo-color-text-default);
+  font-family: var(--cargo-font-family-ui), sans-serif;
+  font-size: var(--cargo-body-font-size);
+  font-weight: var(--cargo-font-weight-regular);
+  line-height: var(--cargo-body-line-height);
+  letter-spacing: var(--cargo-body-letter-spacing);
+  cursor: pointer;
+}
+/* Centred on the circle, wrapping under its own first line. */
+.cargo-radio__text {
+  padding-top: max(0px, calc((20px - var(--cargo-body-line-height)) / 2));
+}
+
+/* The real input lies invisibly over the circle, so clicks, touch and screen reader focus land on it. */
+.cargo-radio__target {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+}
+.cargo-radio__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+/* State=Normal: no fill, 1px border/strong. The 10px dot shows when selected. */
+.cargo-radio__circle {
+  --_border: var(--cargo-color-border-strong);
+  --_dot: var(--cargo-color-bg-brand);
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--cargo-radius-full);
+  box-shadow: inset 0 0 0 var(--cargo-border-width-1) var(--_border);
+}
+.cargo-radio__circle::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: var(--cargo-radius-full);
+  background-color: var(--_dot);
+  opacity: 0;
+}
+
+/* State=Selected: border/brand and a bg/brand-pressed dot. */
+.cargo-radio__input:checked + .cargo-radio__circle {
+  --_border: var(--cargo-color-border-brand);
+  --_dot: var(--cargo-color-bg-brand-pressed);
+}
+.cargo-radio__input:checked + .cargo-radio__circle::after {
+  opacity: 1;
+}
+
+/* State=Hover: border/brand and shadow/md; a selected dot turns bg/brand-hover. */
+@media (hover: hover) {
+  .cargo-radio__control:hover .cargo-radio__input:not(:disabled) + .cargo-radio__circle {
+    --_border: var(--cargo-color-border-brand);
+    --_dot: var(--cargo-color-bg-brand-hover);
+    box-shadow:
+      inset 0 0 0 var(--cargo-border-width-1) var(--_border),
+      var(--cargo-shadow-md);
+  }
+}
+
+/* State=Focussed: a 2px border/focus stroke; a selected dot stays bg/brand. */
+/* Wins over hover, so the ring stays while the pointer is on the circle. */
+.cargo-radio__control .cargo-radio__input:not(:disabled):focus-visible + .cargo-radio__circle {
+  --_dot: var(--cargo-color-bg-brand);
+  box-shadow: inset 0 0 0 var(--cargo-border-width-2) var(--cargo-color-border-focus);
+}
+
+/* Disabled is not in Figma's Radio Button; it follows Checkbox: bg/disabled, border/disabled, text/disabled. */
+.cargo-radio__input:disabled + .cargo-radio__circle {
+  --_border: var(--cargo-color-border-disabled);
+  --_dot: var(--cargo-color-icon-disabled);
+  background-color: var(--cargo-color-bg-disabled);
+}
+.cargo-radio:has(.cargo-radio__input:disabled) :is(.cargo-radio__control, .cargo-field__message) {
+  color: var(--cargo-color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* RadioGroup: a fieldset with the Figma Label as its legend, the radios 8px apart, then its messages. */
+.cargo-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cargo-space-4);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.cargo-radio-group__label {
+  margin-bottom: var(--cargo-space-4);
+  padding: 0;
+}
+.cargo-radio-group__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cargo-space-8);
+}
+.cargo-radio-group:disabled > :is(.cargo-radio-group__label, .cargo-field__message) {
+  color: var(--cargo-color-text-disabled);
+}
+
+/* Windows high contrast mode drops the circle's shadow stroke: show the real radio instead. */
+@media (forced-colors: active) {
+  .cargo-radio__input {
+    position: static;
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+  }
+  .cargo-radio__circle {
+    display: none;
+  }
+}

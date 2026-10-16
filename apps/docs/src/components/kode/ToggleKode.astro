@@ -1,0 +1,31 @@
+---
+import { META } from '@cargo/react/meta';
+import Basic from '../../demos/toggle/Basic.tsx';
+import basicSource from '../../demos/toggle/Basic.tsx?raw';
+import Disabled from '../../demos/toggle/Disabled.tsx';
+import disabledSource from '../../demos/toggle/Disabled.tsx?raw';
+import WithLabel from '../../demos/toggle/WithLabel.tsx';
+import withLabelSource from '../../demos/toggle/WithLabel.tsx?raw';
+import Example from './Example.astro';
+import Install from './Install.astro';
+import Reference from './Reference.astro';
+
+const meta = META.Toggle;
+---
+
+<Install names={['Toggle']} />
+
+<section class="kode-section">
+  <h2 class="section-title" id="contoh">Contoh</h2>
+  <Example id="dasar" title="Nyala dan mati" description="State=Active di Figma adalah checked (atau defaultChecked); Inactive adalah sebaliknya." source={basicSource}>
+    <Basic />
+  </Example>
+  <Example id="label" title="Label dan keterangan" description="label tampil di atas saklar dan dibaca bersama teks di sampingnya." source={withLabelSource}>
+    <WithLabel />
+  </Example>
+  <Example id="disabled" title="Disabled" description="Figma belum punya state ini; warnanya mengikuti Checkbox disabled." source={disabledSource}>
+    <Disabled />
+  </Example>
+</section>
+
+<Reference meta={meta} page="Toggle" />

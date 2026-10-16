@@ -1,0 +1,75 @@
+import type { ComponentMeta } from '../meta-types.js';
+
+export const checkboxMeta: ComponentMeta = {
+  name: 'Checkbox',
+  figmaSet: 'Checkbox',
+  figmaNode: '133:568',
+  client: true,
+  props: [
+    { name: 'children', type: 'ReactNode', figma: 'Placeholder Text, Placeholder', description: 'Teks di samping kotak, sekaligus nama checkbox. Tanpa teks, beri aria-label.' },
+    { name: 'checked', type: 'boolean', figma: 'Type=Checked', description: 'Status tercentang, kalau aplikasi yang menyimpannya. Kalau tidak, pakai defaultChecked.' },
+    { name: 'indeterminate', type: 'boolean', default: 'false', figma: 'Type=Indeterminate', description: 'Sebagian pilihan tercentang, misalnya kotak "pilih semua" di tabel.' },
+    { name: 'size', type: "'md' | 'sm'", default: "'md'", figma: 'Size', description: 'Ukuran kotak dan teks. Tanpa size, ikut size CheckboxGroup.' },
+    { name: 'description', type: 'ReactNode', figma: 'Description Text, Description', description: 'Keterangan di bawah checkbox.' },
+    { name: 'error', type: 'ReactNode', figma: 'Error Text, Error', description: 'Pesan error di bawah checkbox; checkbox ditandai aria-invalid. Isi true untuk menandai error tanpa pesan.' },
+    { name: 'disabled', type: 'boolean', default: 'false', figma: 'State=Disabled', description: 'Checkbox tidak aktif.' },
+  ],
+  attributes: 'Atribut lain, seperti name, value, defaultChecked, dan onChange, diteruskan ke <input type="checkbox">, begitu juga ref. style dipasang di elemen terluar.',
+  axes: {
+    State: {
+      figmaOnly: 'Muncul otomatis: Hover saat kursor di atas kotak atau teksnya, Focussed saat berpindah dengan keyboard. Disabled menjadi prop disabled.',
+    },
+    Type: {
+      prop: 'checked, indeterminate',
+      values: { Default: '', Checked: 'checked', Indeterminate: 'indeterminate' },
+      note: 'Checked bisa juga lewat defaultChecked. Indeterminate mengalahkan checked.',
+    },
+    Size: { prop: 'size', values: { md: 'md', sm: 'sm' } },
+  },
+  properties: {
+    'Placeholder Text': { prop: 'children' },
+    Placeholder: { prop: 'children', note: 'Teks tampil kalau children diisi.' },
+    'Description Text': { prop: 'description' },
+    Description: { prop: 'description', note: 'Tampil kalau description diisi.' },
+    'Error Text': { prop: 'error' },
+    Error: { prop: 'error', note: 'Tampil kalau error diisi.' },
+    'Label Text': { prop: '<CheckboxGroup label>', note: 'Judul kelompok ada di CheckboxGroup, juga untuk satu checkbox.' },
+    Label: { prop: '<CheckboxGroup label>' },
+    'Required Object': { prop: '<CheckboxGroup required>' },
+    'Check Only': { figmaOnly: 'Kotak selalu tampil di kode. Untuk kotak saja, misalnya di tabel, kosongkan children dan beri aria-label.' },
+  },
+  accessibility: [
+    'Memakai <input type="checkbox"> asli: Tab untuk fokus, Spasi untuk mencentang.',
+    'Teks di sampingnya adalah nama checkbox, dan mengekliknya juga mencentang. Checkbox tanpa teks wajib punya aria-label; TypeScript menolaknya kalau tidak ada.',
+    'Indeterminate dibaca screen reader sebagai "sebagian tercentang".',
+    'Keterangan dan pesan error dibaca sebagai keterangan checkbox (aria-describedby).',
+  ],
+};
+
+export const checkboxGroupMeta: ComponentMeta = {
+  name: 'CheckboxGroup',
+  client: false,
+  props: [
+    { name: 'label', type: 'ReactNode', figma: 'Label Text, Label', description: 'Judul kelompok, sekaligus nama kelompok untuk screen reader. Wajib diisi.' },
+    {
+      name: 'required',
+      type: 'boolean',
+      default: 'false',
+      figma: 'Required Object',
+      description: 'Menampilkan penanda wajib. Memastikan ada yang dicentang tetap tugas aplikasi.',
+    },
+    { name: 'requiredIndicator', type: "'text' | 'symbol'", default: "'symbol'", figma: 'Required Object › Type', description: 'Bentuk penanda wajib. Checkbox di Figma memakai "*".' },
+    { name: 'description', type: 'ReactNode', figma: 'Description Text', description: 'Keterangan untuk seluruh kelompok, di bawah checkbox terakhir.' },
+    { name: 'error', type: 'ReactNode', figma: 'Error Text', description: 'Pesan error untuk seluruh kelompok.' },
+    { name: 'size', type: "'md' | 'sm'", default: "'md'", figma: 'Size', description: 'Ukuran judul, pesan, dan setiap checkbox di dalamnya yang tidak punya size sendiri.' },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Atribut fieldset: semua checkbox di dalamnya tidak aktif.' },
+    { name: 'children', type: 'ReactNode', description: 'Checkbox-checkbox di kelompok ini.' },
+  ],
+  attributes: 'Atribut HTML lain diteruskan ke <fieldset>, begitu juga ref.',
+  axes: {},
+  properties: {},
+  accessibility: [
+    'Kelompok berupa <fieldset> dengan judul di <legend>, sehingga screen reader membacakan judulnya saat masuk ke kelompok.',
+    'Penanda wajib disembunyikan dari screen reader. Tulis aturannya di description kalau perlu, misalnya "Pilih minimal satu".',
+  ],
+};

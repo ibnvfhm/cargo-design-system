@@ -13,6 +13,9 @@ const CODE_COMPONENTS = {
   Button: ['Button'],
   'Text Fields': ['TextField'],
   'Text Area': ['TextArea'],
+  'Checkbox & Radio Button': ['Checkbox', 'CheckboxGroup', 'RadioGroup', 'RadioButton'],
+  Toggle: ['Toggle'],
+  Chips: ['Chip'],
 };
 
 export const hasCode = (component) => component.page in CODE_COMPONENTS;
@@ -51,6 +54,8 @@ for (const [pageName, names] of Object.entries(CODE_COMPONENTS)) {
       problems.push(`${name} tidak ada di @cargo/react/meta`);
       continue;
     }
+    // A companion (CheckboxGroup, RadioGroup) has no set of its own; its main component maps it.
+    if (!meta.figmaSet) continue;
     const set = page.sets.find((item) => item.name === meta.figmaSet);
     if (!set) problems.push(`${name}: set ${meta.figmaSet} tidak ada di halaman ${pageName}`);
     else checkSet(name, set, meta.axes, meta.properties, problems);
