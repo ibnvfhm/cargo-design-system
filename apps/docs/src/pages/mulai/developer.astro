@@ -3,6 +3,7 @@ import CodeBlock from '../../components/CodeBlock.astro';
 import Icon from '../../components/Icon.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Base from '../../layouts/Base.astro';
+import tokensPackage from '@tokens/package.json';
 import { SITE, url } from '../../lib/site.mjs';
 
 const css = `.button-primary {
@@ -64,7 +65,8 @@ const tree = `packages/tokens/dist/
   <div class="note">
     <Icon name="Info" />
     <p>
-      Paket <code class="inline-code">@cargo/tokens</code> belum dipublikasikan ke npm. Sementara itu, salin file yang dibutuhkan dari folder
+      Versi token terbaru: <strong>{tokensPackage.version}</strong> (lihat <a href={url('/mulai/changelog/')}>Changelog</a>). Paket
+      <code class="inline-code">@cargo/tokens</code> belum dipublikasikan ke npm. Sementara itu, salin file yang dibutuhkan dari folder
       <code class="inline-code">packages/tokens/dist/</code> di repositori.
     </p>
   </div>

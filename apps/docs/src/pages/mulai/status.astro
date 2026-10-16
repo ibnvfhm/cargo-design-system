@@ -2,6 +2,7 @@
 import Icon from '../../components/Icon.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import Base from '../../layouts/Base.astro';
+import tokensPackage from '@tokens/package.json';
 import { components, figmaUrl } from '../../lib/components.mjs';
 import { url } from '../../lib/site.mjs';
 
@@ -11,7 +12,8 @@ const steps = [
   { step: 3, name: 'Tema brand dan mode gelap', detail: 'Lima brand, mode Light dan Dark.', status: 'done' },
   { step: 4, name: 'Token non-warna', detail: 'Spacing, radius, tebal garis, tipografi, dan shadow.', status: 'done' },
   { step: 5, name: 'Token di komponen Figma', detail: 'Semua komponen dan ikon memakai token, dan setiap halaman komponen sudah direview.', status: 'done' },
-  { step: 6, name: 'Paket developer dan situs dokumentasi', detail: 'Situs ini sudah online dan diperbarui otomatis setiap ada perubahan di repo. Paket token belum dipublikasikan.', status: 'progress' },
+  { step: 6, name: 'Paket developer dan situs dokumentasi', detail: `Token versi ${tokensPackage.version} dirilis, dan situs ini online serta diperbarui otomatis setiap ada perubahan di repo. Paket belum diterbitkan di npm.`, status: 'done' },
+  { step: 7, name: 'Menerbitkan library Figma', detail: `Variable, style, dan komponen di Figma sudah sama persis dengan token ${tokensPackage.version}. Tinggal diterbitkan dari Figma.`, status: 'progress' },
 ];
 
 const LABEL = { done: 'Selesai', progress: 'Berjalan' };
@@ -81,9 +83,8 @@ const ready = components.filter((component) => component.ready).length;
   <div class="prose">
     <h2>Berikutnya</h2>
     <ul>
-      <li>Publikasikan library Figma supaya bisa dipakai di file lain.</li>
-      <li>Rilis token versi 0.2.0, berisi semua perubahan yang tercatat di <a href={url('/mulai/changelog/')}>Changelog</a>.</li>
-      <li>Pasang situs ini di hosting (misalnya GitHub Pages atau Vercel) supaya bisa dibuka tim.</li>
+      <li>Terbitkan library Figma supaya komponen, variable, dan style bisa dipakai di file lain.</li>
+      <li>Terbitkan paket token di npm supaya developer cukup menjalankan <code>npm install</code>, tanpa menyalin file dari repo.</li>
       <li>Komponen kode (React dan Storybook) dengan nama dan properti yang sama dengan Figma.</li>
     </ul>
   </div>

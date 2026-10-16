@@ -2,7 +2,9 @@
 
 Semua perubahan penting dicatat di sini. Format mengikuti [Keep a Changelog](https://keepachangelog.com/id-ID/1.1.0/), dan nomor versi mengikuti [Semantic Versioning](https://semver.org/lang/id/).
 
-## [Belum dirilis]
+## [0.2.0] - 2026-10-16
+
+Token sekarang sama persis dengan variable dan style di library Figma Cargo Design System: 5 collection (Primitive, Brand Theme, Semantic, Dimension, dan Typography) berisi 267 variable, ditambah 7 effect style dan 30 text style.
 
 ### Ditambahkan
 

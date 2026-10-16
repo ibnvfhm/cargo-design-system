@@ -11,7 +11,8 @@ Satu sumber kebenaran untuk warna, tipografi, spacing, dan komponen di semua pro
 | 3 | Tema brand (UIC, INTI, InMeterai, InCivas, InCustoms) dan mode gelap | Selesai: 5 brand, mode Light dan Dark |
 | 4 | Token non-warna: tipografi, spacing, radius, shadow | Selesai: spacing, radius, tebal garis, tipografi, dan shadow |
 | 5 | Memasang token ke komponen Figma | Selesai: semua komponen dan ikon memakai token, style lama sudah dihapus, dan 33 halaman komponen sudah direview |
-| 6 | Paket developer dan situs dokumentasi | Berjalan: situs dokumentasi sudah online di [cargo-design-system-docs.vercel.app](https://cargo-design-system-docs.vercel.app) (lihat [Situs dokumentasi](#situs-dokumentasi)); paket token belum dipublikasikan |
+| 6 | Paket developer dan situs dokumentasi | Selesai: token versi 0.2.0 dirilis (tag `v0.2.0`, lihat [CHANGELOG](CHANGELOG.md)) dan situs dokumentasi online di [cargo-design-system-docs.vercel.app](https://cargo-design-system-docs.vercel.app) (lihat [Situs dokumentasi](#situs-dokumentasi)). Paket belum diterbitkan di npm; file token diambil dari `packages/tokens/dist` |
+| 7 | Menerbitkan library Figma | Siap diterbitkan: 267 variable, 7 effect style, dan 30 text style di Figma sudah sama persis dengan token 0.2.0 |
 
 ## Cara kerjanya
 
