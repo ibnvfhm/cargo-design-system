@@ -1,0 +1,78 @@
+{
+  "color": {
+    "brand": {
+      "$type": "color",
+      "$description": "INTI Product, mode InDocs: warna khas produk INTI. Di Figma dipakai lewat Brand Theme mode INTI. Tidak dipakai langsung di desain; desain memakai token semantic.",
+      "light": {
+        "$description": "Dipakai oleh Semantic mode Light.",
+        "fill": {
+          "$value": "{color.bronze.40}",
+          "$description": "Isi warna brand: tombol utama, toggle aktif, elemen terpilih."
+        },
+        "fill-hover": {
+          "$value": "{color.bronze.50}",
+          "$description": "Isi brand saat kursor di atasnya."
+        },
+        "fill-pressed": {
+          "$value": "{color.bronze.60}",
+          "$description": "Isi brand saat ditekan."
+        },
+        "fill-subtle": {
+          "$value": "{color.bronze.10}",
+          "$description": "Latar brand yang lembut: chip atau item terpilih."
+        },
+        "on-fill": {
+          "$value": "{color.white}",
+          "$description": "Teks dan ikon di atas isi brand."
+        },
+        "text": {
+          "$value": "{color.bronze.70}",
+          "$description": "Teks dan link berwarna brand di atas latar terang."
+        },
+        "text-hover": {
+          "$value": "{color.bronze.80}",
+          "$description": "Teks atau link brand saat kursor di atasnya."
+        },
+        "border": {
+          "$value": "{color.bronze.50}",
+          "$description": "Garis brand: elemen terpilih dan cincin fokus."
+        }
+      },
+      "dark": {
+        "$description": "Dipakai oleh Semantic mode Dark.",
+        "fill": {
+          "$value": "{color.bronze.40}",
+          "$description": "Isi warna brand di mode Dark: tombol utama, toggle aktif, elemen terpilih."
+        },
+        "fill-hover": {
+          "$value": "{color.bronze.50}",
+          "$description": "Isi brand di mode Dark saat kursor di atasnya."
+        },
+        "fill-pressed": {
+          "$value": "{color.bronze.60}",
+          "$description": "Isi brand di mode Dark saat ditekan."
+        },
+        "fill-subtle": {
+          "$value": "{color.bronze.90}",
+          "$description": "Latar brand yang lembut di mode Dark: chip atau item terpilih."
+        },
+        "on-fill": {
+          "$value": "{color.white}",
+          "$description": "Teks dan ikon di atas isi brand di mode Dark."
+        },
+        "text": {
+          "$value": "{color.bronze.40}",
+          "$description": "Teks dan link berwarna brand di atas latar gelap."
+        },
+        "text-hover": {
+          "$value": "{color.bronze.30}",
+          "$description": "Teks atau link brand di mode Dark saat kursor di atasnya."
+        },
+        "border": {
+          "$value": "{color.bronze.40}",
+          "$description": "Garis brand di mode Dark: elemen terpilih dan cincin fokus."
+        }
+      }
+    }
+  }
+}

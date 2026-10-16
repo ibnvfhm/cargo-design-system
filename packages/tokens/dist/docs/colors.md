@@ -212,3 +212,139 @@ Brand: InCustoms
 | `color.sea.80` | `#022E71` | 12.9 | 1.3 | putih |
 | `color.sea.90` | `#011C44` | 16.8 | 1.0 | putih |
 | `color.sea.100` | `#01122D` | 18.7 | 1.2 | putih |
+
+## orange
+
+Brand: InAccount
+
+| Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
+|---|---|---|---|---|
+| `color.orange.10` | `#FBEEED` | 1.1 | 14.2 | gelap |
+| `color.orange.20` | `#F6D5D1` | 1.4 | 11.8 | gelap |
+| `color.orange.30` | `#EFADA5` | 1.9 | 8.6 | gelap |
+| `color.orange.40` | `#EB8778` | 2.5 | 6.3 | gelap |
+| `color.orange.50` | `#E16349` | 3.5 | 4.7 | gelap |
+| `color.orange.60` | `#C5563F` | 4.4 | 3.7 | – (ikon, garis, teks besar) |
+| `color.orange.70` | `#9F4431` | 6.3 | 2.6 | putih |
+| `color.orange.80` | `#763122` | 9.4 | 1.7 | putih |
+| `color.orange.90` | `#4C1D13` | 14.1 | 1.1 | putih |
+| `color.orange.100` | `#230905` | 18.9 | 1.2 | putih |
+
+## sky
+
+Brand: InBot
+
+| Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
+|---|---|---|---|---|
+| `color.sky.10` | `#E0F4FF` | 1.1 | 14.2 | gelap |
+| `color.sky.20` | `#B4E7FF` | 1.3 | 12.1 | gelap |
+| `color.sky.30` | `#50D4FF` | 1.7 | 9.4 | gelap |
+| `color.sky.40` | `#00BDE9` | 2.2 | 7.3 | gelap |
+| `color.sky.50` | `#00A9D0` | 2.8 | 5.8 | gelap |
+| `color.sky.60` | `#008DAF` | 3.9 | 4.2 | – (ikon, garis, teks besar) |
+| `color.sky.70` | `#00708B` | 5.7 | 2.8 | putih |
+| `color.sky.80` | `#005165` | 8.9 | 1.8 | putih |
+| `color.sky.90` | `#003240` | 13.7 | 1.2 | putih |
+| `color.sky.100` | `#00131B` | 18.9 | 1.2 | putih |
+
+## sapphire
+
+Brand: InProject
+
+| Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
+|---|---|---|---|---|
+| `color.sapphire.10` | `#EEF0FF` | 1.1 | 14.2 | gelap |
+| `color.sapphire.20` | `#D7DBFE` | 1.4 | 11.8 | gelap |
+| `color.sapphire.30` | `#B2BAFD` | 1.9 | 8.7 | gelap |
+| `color.sapphire.40` | `#909DFC` | 2.5 | 6.5 | gelap |
+| `color.sapphire.50` | `#6E82FB` | 3.4 | 4.8 | gelap |
+| `color.sapphire.60` | `#4768FA` | 4.5 | 3.5 | putih |
+| `color.sapphire.70` | `#1651F1` | 6.0 | 2.7 | putih |
+| `color.sapphire.80` | `#0D3BB7` | 9.0 | 1.8 | putih |
+| `color.sapphire.90` | `#052478` | 13.7 | 1.2 | putih |
+| `color.sapphire.100` | `#010C38` | 18.9 | 1.2 | putih |
+
+## lime
+
+Brand: InSend
+
+| Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
+|---|---|---|---|---|
+| `color.lime.10` | `#D3FF96` | 1.1 | 14.2 | gelap |
+| `color.lime.20` | `#B3F300` | 1.3 | 12.1 | gelap |
+| `color.lime.30` | `#9ED700` | 1.7 | 9.3 | gelap |
+| `color.lime.40` | `#8BBE00` | 2.2 | 7.3 | gelap |
+| `color.lime.50` | `#7AA700` | 2.9 | 5.6 | gelap |
+| `color.lime.60` | `#6A9100` | 3.7 | 4.3 | – (ikon, garis, teks besar) |
+| `color.lime.70` | `#537400` | 5.4 | 3.0 | putih |
+| `color.lime.80` | `#3C5400` | 8.5 | 1.9 | putih |
+| `color.lime.90` | `#233400` | 13.4 | 1.2 | putih |
+| `color.lime.100` | `#0B1300` | 19.0 | 1.2 | putih |
+
+## bronze
+
+Brand: InDocs
+
+| Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
+|---|---|---|---|---|
+| `color.bronze.10` | `#FEEFD9` | 1.1 | 14.2 | gelap |
+| `color.bronze.20` | `#FCD792` | 1.4 | 11.7 | gelap |
+| `color.bronze.30` | `#E5B53C` | 1.9 | 8.4 | gelap |
+| `color.bronze.40` | `#C39A32` | 2.6 | 6.1 | gelap |
+| `color.bronze.50` | `#AF8A2C` | 3.2 | 5.0 | gelap |
+| `color.bronze.60` | `#937323` | 4.5 | 3.6 | – (ikon, garis, teks besar) |
+| `color.bronze.70` | `#755B1A` | 6.4 | 2.5 | putih |
+| `color.bronze.80` | `#564210` | 9.6 | 1.7 | putih |
+| `color.bronze.90` | `#362907` | 14.2 | 1.1 | putih |
+| `color.bronze.100` | `#171002` | 18.9 | 1.2 | putih |
+
+## violet
+
+Brand: InRecap
+
+| Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
+|---|---|---|---|---|
+| `color.violet.10` | `#F1EFFF` | 1.1 | 14.2 | gelap |
+| `color.violet.20` | `#DFDAFF` | 1.3 | 12.0 | gelap |
+| `color.violet.30` | `#C4BBFF` | 1.8 | 9.1 | gelap |
+| `color.violet.40` | `#AC9EFF` | 2.3 | 7.0 | gelap |
+| `color.violet.50` | `#9782FF` | 3.0 | 5.3 | gelap |
+| `color.violet.60` | `#8467FF` | 3.9 | 4.1 | – (ikon, garis, teks besar) |
+| `color.violet.70` | `#6C3BFF` | 5.7 | 2.8 | putih |
+| `color.violet.80` | `#5000DD` | 8.8 | 1.8 | putih |
+| `color.violet.90` | `#310090` | 13.7 | 1.2 | putih |
+| `color.violet.100` | `#130044` | 18.9 | 1.2 | putih |
+
+## jungle
+
+Brand: InPos
+
+| Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
+|---|---|---|---|---|
+| `color.jungle.10` | `#C9FDD2` | 1.1 | 14.2 | gelap |
+| `color.jungle.20` | `#64FC8B` | 1.3 | 12.1 | gelap |
+| `color.jungle.30` | `#45E071` | 1.7 | 9.3 | gelap |
+| `color.jungle.40` | `#3CC764` | 2.2 | 7.3 | gelap |
+| `color.jungle.50` | `#34AF57` | 2.8 | 5.7 | gelap |
+| `color.jungle.60` | `#2C984B` | 3.7 | 4.4 | – (ikon, garis, teks besar) |
+| `color.jungle.70` | `#21793A` | 5.4 | 3.0 | putih |
+| `color.jungle.80` | `#165829` | 8.5 | 1.9 | putih |
+| `color.jungle.90` | `#0A3617` | 13.5 | 1.2 | putih |
+| `color.jungle.100` | `#021505` | 18.9 | 1.2 | putih |
+
+## punch
+
+Brand: InCoop
+
+| Token | Hex | Kontras dengan putih | Kontras dengan gelap | Teks kecil |
+|---|---|---|---|---|
+| `color.punch.10` | `#FEEDED` | 1.1 | 14.2 | gelap |
+| `color.punch.20` | `#FCD5D6` | 1.3 | 12.0 | gelap |
+| `color.punch.30` | `#FAAEB2` | 1.8 | 9.0 | gelap |
+| `color.punch.40` | `#F9898F` | 2.3 | 6.9 | gelap |
+| `color.punch.50` | `#F85F6A` | 3.1 | 5.2 | gelap |
+| `color.punch.60` | `#F4253E` | 4.1 | 4.0 | – (ikon, garis, teks besar) |
+| `color.punch.70` | `#CD1D33` | 5.5 | 2.9 | putih |
+| `color.punch.80` | `#991323` | 8.5 | 1.9 | putih |
+| `color.punch.90` | `#630813` | 13.3 | 1.2 | putih |
+| `color.punch.100` | `#2B0204` | 18.9 | 1.2 | putih |

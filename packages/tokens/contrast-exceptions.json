@@ -1,5 +1,5 @@
 {
-  "$description": "Pasangan warna yang sengaja dibiarkan di bawah kontras minimum WCAG AA atas keputusan designer (12 Oktober 2026). Setiap pasangan ditulis [warna, latar] tanpa awalan color. Angka kontrasnya ada di dist/docs/contrast.md. Kalau warnanya diubah sampai lolos, hapus pasangannya dari sini.",
+  "$description": "Pasangan warna yang sengaja dibiarkan di bawah kontras minimum WCAG AA atas keputusan designer (12 Oktober 2026; produk INTI 16 Oktober 2026). Setiap pasangan ditulis [warna, latar] tanpa awalan color. Angka kontrasnya ada di dist/docs/contrast.md. Kalau warnanya diubah sampai lolos, hapus pasangannya dari sini.",
   "inmeterai": {
     "light": [
       ["text.brand", "bg.default"],
@@ -46,6 +46,90 @@
       ["text.on-brand", "bg.brand"],
       ["text.on-brand", "bg.brand-hover"],
       ["text.on-brand", "bg.brand-pressed"]
+    ]
+  },
+  "inaccount": {
+    "light": [
+      ["text.on-brand", "bg.brand"],
+      ["text.on-brand", "bg.brand-hover"]
+    ],
+    "dark": [
+      ["text.on-brand", "bg.brand"],
+      ["text.on-brand", "bg.brand-hover"]
+    ]
+  },
+  "inbot": {
+    "light": [
+      ["text.on-brand", "bg.brand"],
+      ["text.on-brand", "bg.brand-hover"],
+      ["text.on-brand", "bg.brand-pressed"],
+      ["icon.on-brand", "bg.brand"]
+    ],
+    "dark": [
+      ["text.on-brand", "bg.brand"],
+      ["text.on-brand", "bg.brand-hover"],
+      ["text.on-brand", "bg.brand-pressed"],
+      ["icon.on-brand", "bg.brand"]
+    ]
+  },
+  "insend": {
+    "light": [
+      ["text.on-brand", "bg.brand"],
+      ["text.on-brand", "bg.brand-hover"],
+      ["icon.on-brand", "bg.brand"]
+    ],
+    "dark": [
+      ["text.on-brand", "bg.brand"],
+      ["text.on-brand", "bg.brand-hover"],
+      ["text.holiday", "bg.brand-subtle"],
+      ["icon.on-brand", "bg.brand"]
+    ]
+  },
+  "indocs": {
+    "light": [
+      ["text.on-brand", "bg.brand"],
+      ["text.on-brand", "bg.brand-hover"],
+      ["text.on-brand", "bg.brand-pressed"],
+      ["icon.on-brand", "bg.brand"]
+    ],
+    "dark": [
+      ["text.on-brand", "bg.brand"],
+      ["text.on-brand", "bg.brand-hover"],
+      ["text.on-brand", "bg.brand-pressed"],
+      ["icon.on-brand", "bg.brand"]
+    ]
+  },
+  "inrecap": {
+    "light": [
+      ["text.on-brand", "bg.brand"],
+      ["text.on-brand", "bg.brand-hover"]
+    ],
+    "dark": [
+      ["text.on-brand", "bg.brand"],
+      ["text.on-brand", "bg.brand-hover"],
+      ["text.holiday", "bg.brand-subtle"]
+    ]
+  },
+  "inpos": {
+    "light": [
+      ["text.on-brand", "bg.brand"],
+      ["text.on-brand", "bg.brand-hover"],
+      ["icon.on-brand", "bg.brand"]
+    ],
+    "dark": [
+      ["text.on-brand", "bg.brand"],
+      ["text.on-brand", "bg.brand-hover"],
+      ["text.holiday", "bg.brand-subtle"],
+      ["icon.on-brand", "bg.brand"]
+    ]
+  },
+  "incoop": {
+    "light": [
+      ["text.on-brand", "bg.brand"]
+    ],
+    "dark": [
+      ["text.on-brand", "bg.brand"],
+      ["text.holiday", "bg.brand-subtle"]
     ]
   }
 }

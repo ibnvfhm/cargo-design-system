@@ -14,6 +14,10 @@ Warna khas setiap brand, satu file per brand di `src/brand/`. Tidak dipakai lang
 
 Dipakai oleh Semantic mode Light.
 
+#### Brand Theme
+
+Mode di collection Brand Theme di Figma: UIC, INTI, InMeterai, InCivas, dan InCustoms.
+
 | Token | UIC | INTI | InMeterai | InCivas | InCustoms | Dipakai untuk |
 |---|---|---|---|---|---|---|
 | `color.brand.light.fill` | `imperial.70` `#002D71` | `grape.50` `#843380` | `fuchsia.50` `#F5487C` | `tosca.50` `#0ABAB5` | `sea.50` `#458DFC` | Isi warna brand: tombol utama, toggle aktif, elemen terpilih. |
@@ -25,9 +29,28 @@ Dipakai oleh Semantic mode Light.
 | `color.brand.light.text-hover` | `imperial.80` `#002358` | `grape.60` `#682865` | `fuchsia.60` `#EC0C50` | `tosca.60` `#08918C` | `sea.60` `#0466F9` | Teks atau link brand saat kursor di atasnya. |
 | `color.brand.light.border` | `imperial.70` `#002D71` | `grape.50` `#843380` | `fuchsia.50` `#F5487C` | `tosca.50` `#0ABAB5` | `sea.50` `#458DFC` | Garis brand: elemen terpilih dan cincin fokus. |
 
+#### INTI Product
+
+Produk INTI. Di Figma, ini mode di collection INTI Product, yang dipakai lewat Brand Theme mode INTI. Mode pertamanya, INTI, berisi warna INTI di tabel Brand Theme.
+
+| Token | InAccount | InBot | InProject | InSend | InDocs | InRecap | InPos | InCoop | Dipakai untuk |
+|---|---|---|---|---|---|---|---|---|---|
+| `color.brand.light.fill` | `orange.50` `#E16349` | `sky.40` `#00BDE9` | `sapphire.60` `#4768FA` | `lime.50` `#7AA700` | `bronze.40` `#C39A32` | `violet.50` `#9782FF` | `jungle.50` `#34AF57` | `punch.60` `#F4253E` | Isi warna brand: tombol utama, toggle aktif, elemen terpilih. |
+| `color.brand.light.fill-hover` | `orange.60` `#C5563F` | `sky.50` `#00A9D0` | `sapphire.70` `#1651F1` | `lime.60` `#6A9100` | `bronze.50` `#AF8A2C` | `violet.60` `#8467FF` | `jungle.60` `#2C984B` | `punch.70` `#CD1D33` | Isi brand saat kursor di atasnya. |
+| `color.brand.light.fill-pressed` | `orange.70` `#9F4431` | `sky.60` `#008DAF` | `sapphire.80` `#0D3BB7` | `lime.70` `#537400` | `bronze.60` `#937323` | `violet.70` `#6C3BFF` | `jungle.70` `#21793A` | `punch.80` `#991323` | Isi brand saat ditekan. |
+| `color.brand.light.fill-subtle` | `orange.10` `#FBEEED` | `sky.10` `#E0F4FF` | `sapphire.10` `#EEF0FF` | `lime.10` `#D3FF96` | `bronze.10` `#FEEFD9` | `violet.10` `#F1EFFF` | `jungle.10` `#C9FDD2` | `punch.10` `#FEEDED` | Latar brand yang lembut: chip atau item terpilih. |
+| `color.brand.light.on-fill` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | Teks dan ikon di atas isi brand. |
+| `color.brand.light.text` | `orange.70` `#9F4431` | `sky.70` `#00708B` | `sapphire.70` `#1651F1` | `lime.70` `#537400` | `bronze.70` `#755B1A` | `violet.70` `#6C3BFF` | `jungle.70` `#21793A` | `punch.70` `#CD1D33` | Teks dan link berwarna brand di atas latar terang. |
+| `color.brand.light.text-hover` | `orange.80` `#763122` | `sky.80` `#005165` | `sapphire.80` `#0D3BB7` | `lime.80` `#3C5400` | `bronze.80` `#564210` | `violet.80` `#5000DD` | `jungle.80` `#165829` | `punch.80` `#991323` | Teks atau link brand saat kursor di atasnya. |
+| `color.brand.light.border` | `orange.50` `#E16349` | `sky.60` `#008DAF` | `sapphire.60` `#4768FA` | `lime.60` `#6A9100` | `bronze.50` `#AF8A2C` | `violet.50` `#9782FF` | `jungle.60` `#2C984B` | `punch.60` `#F4253E` | Garis brand: elemen terpilih dan cincin fokus. |
+
 ### color.brand.dark
 
 Dipakai oleh Semantic mode Dark.
+
+#### Brand Theme
+
+Mode di collection Brand Theme di Figma: UIC, INTI, InMeterai, InCivas, dan InCustoms.
 
 | Token | UIC | INTI | InMeterai | InCivas | InCustoms | Dipakai untuk |
 |---|---|---|---|---|---|---|
@@ -39,6 +62,21 @@ Dipakai oleh Semantic mode Dark.
 | `color.brand.dark.text` | `imperial.30` `#8DBBFF` | `grape.20` `#D189CE` | `fuchsia.50` `#F5487C` | `tosca.50` `#0ABAB5` | `sea.50` `#458DFC` | Teks dan link berwarna brand di atas latar gelap. |
 | `color.brand.dark.text-hover` | `imperial.20` `#C6DDFF` | `grape.10` `#F2DDF1` | `fuchsia.40` `#F76E97` | `tosca.40` `#13F3EB` | `sea.40` `#6DA6FD` | Teks atau link brand di mode Dark saat kursor di atasnya. |
 | `color.brand.dark.border` | `imperial.30` `#8DBBFF` | `grape.20` `#D189CE` | `fuchsia.50` `#F5487C` | `tosca.50` `#0ABAB5` | `sea.50` `#458DFC` | Garis brand di mode Dark: elemen terpilih dan cincin fokus. |
+
+#### INTI Product
+
+Produk INTI. Di Figma, ini mode di collection INTI Product, yang dipakai lewat Brand Theme mode INTI. Mode pertamanya, INTI, berisi warna INTI di tabel Brand Theme.
+
+| Token | InAccount | InBot | InProject | InSend | InDocs | InRecap | InPos | InCoop | Dipakai untuk |
+|---|---|---|---|---|---|---|---|---|---|
+| `color.brand.dark.fill` | `orange.50` `#E16349` | `sky.40` `#00BDE9` | `sapphire.60` `#4768FA` | `lime.50` `#7AA700` | `bronze.40` `#C39A32` | `violet.50` `#9782FF` | `jungle.50` `#34AF57` | `punch.60` `#F4253E` | Isi warna brand di mode Dark: tombol utama, toggle aktif, elemen terpilih. |
+| `color.brand.dark.fill-hover` | `orange.60` `#C5563F` | `sky.50` `#00A9D0` | `sapphire.70` `#1651F1` | `lime.60` `#6A9100` | `bronze.50` `#AF8A2C` | `violet.60` `#8467FF` | `jungle.60` `#2C984B` | `punch.70` `#CD1D33` | Isi brand di mode Dark saat kursor di atasnya. |
+| `color.brand.dark.fill-pressed` | `orange.70` `#9F4431` | `sky.60` `#008DAF` | `sapphire.80` `#0D3BB7` | `lime.70` `#537400` | `bronze.60` `#937323` | `violet.70` `#6C3BFF` | `jungle.70` `#21793A` | `punch.80` `#991323` | Isi brand di mode Dark saat ditekan. |
+| `color.brand.dark.fill-subtle` | `orange.90` `#4C1D13` | `sky.90` `#003240` | `sapphire.90` `#052478` | `lime.90` `#233400` | `bronze.90` `#362907` | `violet.90` `#310090` | `jungle.90` `#0A3617` | `punch.90` `#630813` | Latar brand yang lembut di mode Dark: chip atau item terpilih. |
+| `color.brand.dark.on-fill` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | `white` `#FFFFFF` | Teks dan ikon di atas isi brand di mode Dark. |
+| `color.brand.dark.text` | `orange.40` `#EB8778` | `sky.40` `#00BDE9` | `sapphire.40` `#909DFC` | `lime.50` `#7AA700` | `bronze.40` `#C39A32` | `violet.50` `#9782FF` | `jungle.50` `#34AF57` | `punch.40` `#F9898F` | Teks dan link berwarna brand di atas latar gelap. |
+| `color.brand.dark.text-hover` | `orange.30` `#EFADA5` | `sky.30` `#50D4FF` | `sapphire.30` `#B2BAFD` | `lime.40` `#8BBE00` | `bronze.30` `#E5B53C` | `violet.40` `#AC9EFF` | `jungle.40` `#3CC764` | `punch.30` `#FAAEB2` | Teks atau link brand di mode Dark saat kursor di atasnya. |
+| `color.brand.dark.border` | `orange.40` `#EB8778` | `sky.40` `#00BDE9` | `sapphire.40` `#909DFC` | `lime.50` `#7AA700` | `bronze.40` `#C39A32` | `violet.50` `#9782FF` | `jungle.50` `#34AF57` | `punch.40` `#F9898F` | Garis brand di mode Dark: elemen terpilih dan cincin fokus. |
 
 ## bg
 

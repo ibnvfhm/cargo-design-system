@@ -394,23 +394,40 @@ function semanticMarkdown() {
     '',
     'Warna khas setiap brand, satu file per brand di `src/brand/`. Tidak dipakai langsung di desain; desain memakai token semantic.',
   ];
+  // One table per Figma collection: Brand Theme, then one product collection for each brand that has products. In Figma
+  // the parent's mode in Brand Theme points at its product collection, whose first mode holds the parent's own colours.
+  const listed = (names) => (names.length > 2 ? `${names.slice(0, -1).join(', ')}, dan ${names.at(-1)}` : names.join(' dan '));
+  const top = BRANDS.filter((brand) => !brand.parent);
+  const collections = [
+    { name: 'Brand Theme', brands: top, note: `Mode di collection Brand Theme di Figma: ${listed(top.map((b) => b.name))}.` },
+    ...top
+      .filter((parent) => BRANDS.some((brand) => brand.parent === parent.id))
+      .map((parent) => ({
+        name: `${parent.name} Product`,
+        brands: BRANDS.filter((brand) => brand.parent === parent.id),
+        note: `Produk ${parent.name}. Di Figma, ini mode di collection ${parent.name} Product, yang dipakai lewat Brand Theme mode ${parent.name}. Mode pertamanya, ${parent.name}, berisi warna ${parent.name} di tabel Brand Theme.`,
+      })),
+  ];
   for (const mode of MODES) {
-    const perBrand = BRANDS.map((brand) => byPath(docs.get(`${brand.id}/${mode.id}`)));
     const tokens = light.allTokens.filter((t) => t.path[1] === 'brand' && t.path[2] === mode.id);
-    lines.push(
-      '',
-      `### color.brand.${mode.id}`,
-      '',
-      `Dipakai oleh Semantic mode ${mode.name}.`,
-      '',
-      `| Token | ${BRANDS.map((b) => b.name).join(' | ')} | Dipakai untuk |`,
-      `|---|${BRANDS.map(() => '---|').join('')}---|`,
-      ...tokens.map((t) => {
-        const key = t.path.join('.');
-        const cells = perBrand.map((m) => `\`${target(m.get(key))}\` \`${m.get(key).$value}\``);
-        return `| \`${key}\` | ${cells.join(' | ')} | ${t.$description ?? ''} |`;
-      }),
-    );
+    lines.push('', `### color.brand.${mode.id}`, '', `Dipakai oleh Semantic mode ${mode.name}.`);
+    for (const collection of collections) {
+      const perBrand = collection.brands.map((brand) => byPath(docs.get(`${brand.id}/${mode.id}`)));
+      lines.push(
+        '',
+        `#### ${collection.name}`,
+        '',
+        collection.note,
+        '',
+        `| Token | ${collection.brands.map((b) => b.name).join(' | ')} | Dipakai untuk |`,
+        `|---|${collection.brands.map(() => '---|').join('')}---|`,
+        ...tokens.map((t) => {
+          const key = t.path.join('.');
+          const cells = perBrand.map((m) => `\`${target(m.get(key))}\` \`${m.get(key).$value}\``);
+          return `| \`${key}\` | ${cells.join(' | ')} | ${t.$description ?? ''} |`;
+        }),
+      );
+    }
   }
   // Colours only: the focus rings, also in src/semantic, are documented with the shadows.
   const semantic = light.allTokens.filter((t) => isSemantic(t) && t.path[0] === 'color');

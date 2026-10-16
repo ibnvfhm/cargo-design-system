@@ -2,7 +2,7 @@
   "color": {
     "brand": {
       "$type": "color",
-      "$description": "Brand Theme, mode INTI: warna khas brand. Tidak dipakai langsung di desain; desain memakai token semantic.",
+      "$description": "Brand Theme, mode INTI: warna khas brand. Di Figma, nilainya disimpan di collection INTI Product mode INTI, dan Brand Theme mode INTI menunjuk ke sana. Tidak dipakai langsung di desain; desain memakai token semantic.",
       "light": {
         "$description": "Dipakai oleh Semantic mode Light.",
         "fill": {
